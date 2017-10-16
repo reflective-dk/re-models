@@ -1,0 +1,22 @@
+{
+  "name": "re-type-bootstrap",
+  "version": "0.0.1",
+  "description": "Bootstrap definitions for the Reflective Type System",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --recursive"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/reflective-dk/re-type-bootstrap.git"
+  },
+  "keywords": [
+    "reflective",
+    "type",
+    "system",
+    "bootstrap"
+  ],
+  "author": "Reflective Code <code@reflective.dk>",
+  "license": "UNLICENSED",
+  "private": true
+}
