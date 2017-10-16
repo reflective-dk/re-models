@@ -6,8 +6,8 @@ mimeType: application/vnd.reflective-dk.object+json
 registrations:
   - validity:
       - input:
-          # Relation to authoritative module: { id: module.id }
-          # Relation to actor: { id: actor.id }
+          # Authoritative module - module: { id: module.id }
+          # Responsible actor - actor: { id: actor.id }
           class: urn:core:class
           classId: urn:core:object
           properties:
