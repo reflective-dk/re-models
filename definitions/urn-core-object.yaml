@@ -25,7 +25,7 @@ registrations:
                 type: json
                 schema:
                   type: string
-                  pattern: ^application/vnd.reflective-dk.object\\+json$
+                  pattern: ^application/vnd.reflective-dk.object\+json$
               fundamental: true
             class:
               type: simple

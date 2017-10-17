@@ -1,6 +1,8 @@
 "use strict";
 
+var path = require('path');
 var requireyml = require('require-yml');
+var defloc = path.join(path.dirname(require.resolve('./index')), 'definitions');
 
 var urns = [ 'urn:core:object', 'urn:core:module', 'urn:core:class' ];
 
@@ -18,7 +20,7 @@ Bootstrap.prototype.objects = function() {
 };
 
 function loadDef(urn, moduleId) {
-    var obj = requireyml('./definitions/' + urn.replace(/:/g, '-'));
+    var obj = requireyml(path.join(defloc, urn.replace(/:/g, '-')));
     obj.registrations[0].validity[0].input.module = { id: moduleId };
     return obj;
 }
