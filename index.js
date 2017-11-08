@@ -4,7 +4,7 @@ var path = require('path');
 var requireyml = require('require-yml');
 var defloc = path.join(path.dirname(require.resolve('./index')), 'definitions');
 
-var urns = [ 'urn:core:object', 'urn:core:module', 'urn:core:class' ];
+var urns = [ 'class:core:object', 'class:core:module', 'class:core:class' ];
 
 module.exports = Bootstrap;
 

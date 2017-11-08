@@ -8,15 +8,15 @@ registrations:
       - input:
           # Authoritative module - module: { id: module.id }
           # Responsible actor - actor: { id: actor.id }
-          class: urn:core:class
-          classId: urn:core:class
-          extends: urn:core:object
+          class: class:core:class
+          classId: class:core:class
+          extends: class:core:object
           properties:
             module:
               type: simple
               dataType:
                 type: relation
-                target: urn:core:module
+                target: class:core:module
             classId:
               type: simple
               dataType: urn

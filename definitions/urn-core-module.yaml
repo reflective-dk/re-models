@@ -8,9 +8,9 @@ registrations:
       - input:
           # Authoritative module - module: { id: module.id }
           # Responsible actor - actor: { id: actor.id }
-          class: urn:core:class
-          classId: urn:core:module
-          extends: urn:core:object
+          class: class:core:class
+          classId: class:core:module
+          extends: class:core:object
           properties:
             name:
               type: simple
@@ -19,5 +19,5 @@ registrations:
               type: map
               dataType:
                 type: relation
-                target: urn:core:module
+                target: class:core:module
 ...
