@@ -65,14 +65,17 @@ registrations:
                         properties:
                           type: { type: 'string', pattern: 'relation' }
                           target: { type: 'string', pattern: '^class:[^:]+:[^:]+$' }
+                        additionalProperties: false
                       - type: object    # dataType: definition
                         properties:
                           type: { type: 'string', pattern: 'definition' }
                           definition: { type: 'string' }
+                        additionalProperties: false
                       - type: object    # dataType: json
                         properties:
                           type: { type: 'string', pattern: 'json' }
                           schema: { type: 'object' }
+                        additionalProperties: false
             dataType:
               type: json
               schema:
@@ -83,12 +86,15 @@ registrations:
                     properties:
                       type: { type: 'string', pattern: 'relation' }
                       target: { type: 'string', pattern: '^class:[^:]+:[^:]+$' }
+                    additionalProperties: false
                   - type: object    # dataType: definition
                     properties:
                       type: { type: 'string', pattern: 'definition' }
                       definition: { type: 'string' }
+                    additionalProperties: false
                   - type: object    # dataType: json
                     properties:
                       type: { type: 'string', pattern: 'json' }
                       schema: { type: 'object' }
+                    additionalProperties: false
 ...
