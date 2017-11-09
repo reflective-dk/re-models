@@ -17,7 +17,7 @@ registrations:
               type: simple
               dataType:
                 type: definition
-                definition: classUrn
+                definition: moduleUrn
             dependencies:
               description: Relations to other modules this module depends on
               type: map
