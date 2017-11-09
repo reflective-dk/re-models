@@ -10,16 +10,17 @@ registrations:
           # Responsible actor - actor: { id: actor.id }
           class: class:core:class
           classId: class:core:object
+          # The Object class does not extend another class
           properties:
             id:
+              description: An object has an id (must be a uuid)
               type: simple
               dataType:
-                type: json
-                schema:
-                  type: string
-                  pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
+                type: definition
+                definition: uuid
               fundamental: true
             mimeType:
+              description: "fixed mime type: 'application/vnd.reflective-dk.object+json'"
               type: simple
               dataType:
                 type: json
@@ -28,9 +29,19 @@ registrations:
                   pattern: ^application/vnd.reflective-dk.object\+json$
               fundamental: true
             class:
+              description: Class of this object ('class:<module-id>:<class-id>')
               type: simple
               dataType: urn
             actor:
+              description: Actor responsible for the recorded information
               type: simple
-              dataType: uuid
+              dataType:
+                type: relation
+                target: class:core:object
+          definitions:
+            uuid:
+              type: json
+              schema:
+                type: string
+                pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
 ...

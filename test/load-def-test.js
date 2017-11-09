@@ -32,6 +32,14 @@ describe('Test definition loading', function() {
             'registrations[0].validity[0].input.extends': 'class:core:object'
         });
     });
+    it('should load class:core:schema-validation', function() {
+        bootstrap.objects()['class:core:schema-validation'].should.nested.deep.include({
+            'registrations[0].validity[0].input.module': { id: moduleId },
+            'registrations[0].validity[0].input.class': 'class:core:class',
+            'registrations[0].validity[0].input.classId': 'class:core:schema-validation',
+            'registrations[0].validity[0].input.extends': 'class:core:object'
+        });
+    });
     it('should reload definitions on every instantiation', function() {
         bootstrap.objects()['class:core:class'].extraneous = true;
         bootstrap.objects()['class:core:class'].should.not.include({

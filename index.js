@@ -4,7 +4,12 @@ var path = require('path');
 var requireyml = require('require-yml');
 var defloc = path.join(path.dirname(require.resolve('./index')), 'definitions');
 
-var urns = [ 'class:core:object', 'class:core:module', 'class:core:class' ];
+var urns = [
+    'class:core:object',
+    'class:core:module',
+    'class:core:class',
+    'class:core:schema-validation'
+];
 
 module.exports = Bootstrap;
 
@@ -28,4 +33,3 @@ function loadDef(urn, moduleId) {
 function clone(o) {
     return JSON.parse(JSON.stringify(o));
 }
-

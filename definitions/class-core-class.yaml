@@ -8,24 +8,87 @@ registrations:
       - input:
           # Authoritative module - module: { id: module.id }
           # Responsible actor - actor: { id: actor.id }
+          # This class is its own class
           class: class:core:class
           classId: class:core:class
+          # It extends the Object class
           extends: class:core:object
           properties:
             module:
+              description: Relation to the module owning this class
               type: simple
               dataType:
                 type: relation
                 target: class:core:module
             classId:
+              description: A class has an id (\'class:<module-id>:<class-id>\')
               type: simple
-              dataType: urn
+              dataType:
+                type: definition
+                definition: classUrn
             extends:
+              description: A class may explicitly extend another class (if not it extends the Object class)
               type: simple
-              dataType: urn
+              dataType:
+                type: definition
+                definition: classUrn
             properties:
+              description: Properties of this class (in addition to any inherited properties)
               type: map
               dataType:
-                type: json
-                schema: {} # TODO: Specify valid properties
+                type: definition
+                definition: propertyType
+            definitions:
+              description: Convenience data type declarations
+              type: map
+              dataType:
+                type: definition
+                definition: dataType
+          definitions:
+            classUrn:
+              type: json
+              schema:
+                type: string
+                pattern: ^class:[^:]+:[^:]+$
+            propertyType:
+              type: json
+              schema:
+                type: object
+                properties:
+                  description: { type: 'string' }
+                  type: { type: 'string', enum: [ 'simple', 'map' ] }
+                  dataType:
+                    oneOf:
+                      - type: string
+                        enum: [ 'string', 'number', 'boolean', 'dateTime' ]
+                      - type: object    # dataType: relation
+                        properties:
+                          type: { type: 'string', pattern: 'relation' }
+                          target: { type: 'string', pattern: '^class:[^:]+:[^:]+$' }
+                      - type: object    # dataType: definition
+                        properties:
+                          type: { type: 'string', pattern: 'definition' }
+                          definition: { type: 'string' }
+                      - type: object    # dataType: json
+                        properties:
+                          type: { type: 'string', pattern: 'json' }
+                          schema: { type: 'object' }
+            dataType:
+              type: json
+              schema:
+                oneOf:
+                  - type: string
+                    enum: [ 'string', 'number', 'boolean', 'dateTime' ]
+                  - type: object    # dataType: relation
+                    properties:
+                      type: { type: 'string', pattern: 'relation' }
+                      target: { type: 'string', pattern: '^class:[^:]+:[^:]+$' }
+                  - type: object    # dataType: definition
+                    properties:
+                      type: { type: 'string', pattern: 'definition' }
+                      definition: { type: 'string' }
+                  - type: object    # dataType: json
+                    properties:
+                      type: { type: 'string', pattern: 'json' }
+                      schema: { type: 'object' }
 ...

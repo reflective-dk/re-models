@@ -12,12 +12,22 @@ registrations:
           classId: class:core:module
           extends: class:core:object
           properties:
-            name:
+            moduleId:
+              description: A module has an id (\'module:<module-id>\')
               type: simple
-              dataType: string
+              dataType:
+                type: definition
+                definition: classUrn
             dependencies:
+              description: Relations to other modules this module depends on
               type: map
               dataType:
                 type: relation
                 target: class:core:module
+          definitions:
+            moduleUrn:
+              type: json
+              schema:
+                type: string
+                pattern: ^module:[^:]+$
 ...

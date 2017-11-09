@@ -13,26 +13,33 @@ registrations:
           extends: class:core:object
           properties:
             subject:
+              description: Object that has been validated
               type: simple
               dataType:
                 type: relation
                 target: class:core:object
             subjectClass:
+              description: Class id from the validated object snapshot
               type: simple
               dataType: urn
             subjectKnownOn:
+              description: \'Known on\' from the validated object snapshot
               type: simple
               dataType: dateTime
             subjectValidOn:
+              description: \'Valid on\' from the validated object snapshot
               type: simple
               dataType: dateTime
             validationTime:
+              description: Time at which the validation was carried out
               type: simple
               dataType: dateTime
             valid:
+              description: Indicates whether the object snapshot was valid
               type: simple
               dataType: boolean
             error:
+              description: Error output (if any) from the validation process
               type: simple
               dataType:
                 type: json
