@@ -60,7 +60,7 @@ registrations:
                   dataType:
                     oneOf:
                       - type: string
-                        enum: [ 'string', 'number', 'boolean', 'dateTime' ]
+                        enum: [ 'string', 'integer', 'float', 'boolean', 'dateTime' ]
                       - type: object    # dataType: relation
                         properties:
                           type: { type: 'string', pattern: 'relation' }
