@@ -4,13 +4,14 @@
   "description": "Bootstrap definitions for the type and rule system on the Reflective Platform",
   "main": "index.js",
   "scripts": {
-    "predeploy": "npm run build",
-    "deploy": "echo 'deploy'",
+    "deploy:home": "npm run deploy -- home",
+    "deploy:test": "npm run deploy -- test",
+    "predeploy": "npm run build; re tenant -t dry-run",
+    "deploy": "re context -d base -c bootstrap -e bootstrap; re tenant -t",
+    "postdeploy": "re drop; re add -j build/objects.json",
     "prebuild": "npm run clean; mkdir ./build",
-    "build": "npm run convert; npm run move",
-    "convert": "find ./definitions/*.yaml -type f -exec yaml2json {} --pretty --save \\;",
-    "move": "mv ./definitions/*.json ./build",
-    "clean": "rm -Rf ./build; rm -f ./definitions/*.json",
+    "build": "./scripts/build-objects.js",
+    "clean": "rm -Rf ./build",
     "test": "mocha --recursive"
   },
   "repository": {
@@ -33,7 +34,6 @@
     "chai": "^4.1.2",
     "mocha": "^4.0.1",
     "re-core-cli": "git+ssh://git@github.com:reflective-dk/re-core-cli.git",
-    "uuid": "^3.1.0",
-    "yamljs": "^0.3.0"
+    "uuid": "^3.1.0"
   }
 }
