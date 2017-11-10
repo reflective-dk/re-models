@@ -10,7 +10,7 @@ registrations:
           class: class:core:class
           classId: class:core:schema-validation
           extends: class:core:object
-          description:
+          description: >-
             This class defines the properties of a schema validation. A schema
             validation is the result of validating an object snapshot against a
             schema generated from the class of that object at the time of the
