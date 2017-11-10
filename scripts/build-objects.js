@@ -16,4 +16,7 @@ var objects = [ module ];
 Object.keys(map).forEach(function(k) {
     objects.push(map[k]);
 });
-fs.writeFileSync(path.join('build', 'objects.json'), JSON.stringify(objects, null, 2));
+// TODO: Remove requirement for object.type = 'application/json'
+objects.forEach(function(o) { o.type = 'application/json'; });
+var output = JSON.stringify({ objects: objects }, null, 2);
+fs.writeFileSync(path.join('build', 'objects.json'), output);

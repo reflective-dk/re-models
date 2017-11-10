@@ -8,7 +8,7 @@
     "deploy:test": "npm run deploy -- test",
     "predeploy": "npm run build; re tenant -t dry-run",
     "deploy": "re context -d base -c bootstrap -e bootstrap; re tenant -t",
-    "postdeploy": "re drop; re add -j build/objects.json",
+    "postdeploy": "re drop -c bootstrap -e bootstrap; re add -j build/objects.json",
     "prebuild": "npm run clean; mkdir ./build",
     "build": "./scripts/build-objects.js",
     "clean": "rm -Rf ./build",
