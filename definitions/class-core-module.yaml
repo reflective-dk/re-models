@@ -18,6 +18,10 @@ registrations:
               dataType:
                 type: definition
                 definition: moduleUrn
+            description:
+              description: A brief description of the purpose of this module
+              type: simple
+              dataType: string
             dependencies:
               description: Relations to other modules this module depends on
               type: map
