@@ -8,10 +8,11 @@
     "deploy:test": "npm run deploy -- test",
     "predeploy": "npm run build; re tenant -t dry-run",
     "deploy": "re context -d base -c bootstrap -e bootstrap; re tenant -t",
-    "postdeploy": "re drop -c bootstrap -e bootstrap; re add -j build/objects.json",
+    "postdeploy": "re drop -c bootstrap -e bootstrap; re add -j build/objects.json > deployment-result.json",
+    "verify": "mocha test-deployed/deployment-test.js",
     "prebuild": "npm run clean; mkdir ./build",
     "build": "./scripts/build-objects.js",
-    "clean": "rm -Rf ./build",
+    "clean": "rm -Rf ./build; rm -f deployment-result.json",
     "test": "mocha --recursive"
   },
   "repository": {
@@ -32,8 +33,13 @@
   },
   "devDependencies": {
     "chai": "^4.1.2",
+    "chai-as-promised": "^7.1.1",
+    "chai-things": "^0.2.0",
+    "chai-uuid": "^1.0.6",
     "mocha": "^4.0.1",
     "re-core-cli": "git+ssh://git@github.com:reflective-dk/re-core-cli.git",
+    "request": "^2.83.0",
+    "request-promise": "^4.2.2",
     "uuid": "^3.1.0"
   }
 }
