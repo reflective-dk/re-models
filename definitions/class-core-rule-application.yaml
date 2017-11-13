@@ -11,13 +11,18 @@ registrations:
           class: class:core:class
           classId: class:core:rule-application
           extends: class:core:object
+          description: >-
+            This class activates a specific set of rules by assigning them to a
+            set of object types
           properties:
             rules:
+              description: The rules to apply
               type: map
               dataType:
                 type: relation
                 target: class:core:rule
             types:
+              description: The types for which to apply the rules
               type: map
               dataType:
                 type: relation
