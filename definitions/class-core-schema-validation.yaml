@@ -25,7 +25,9 @@ registrations:
             subjectClass:
               description: Class id from the validated object snapshot
               type: simple
-              dataType: urn
+              dataType:
+                type: definition
+                definition: classUrn
             subjectKnownOn:
               description: \'Known on\' from the validated object snapshot
               type: simple
@@ -48,4 +50,10 @@ registrations:
               dataType:
                 type: json
                 schema: {}
+          definitions:
+            classUrn:
+              type: json
+              schema:
+                type: string
+                pattern: ^class:[^:]+:[^:]+$
 ...
