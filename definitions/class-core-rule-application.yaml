@@ -8,18 +8,18 @@ registrations:
       - input:
           # Authoritative module - module: { id: module.id }
           # Responsible actor - actor: { id: actor.id }
-          class: urn:core:class
-          classId: urn:core:rule-application
-          extends: urn:core:object
+          class: class:core:class
+          classId: class:core:rule-application
+          extends: class:core:object
           properties:
             rules:
               type: map
               dataType:
                 type: relation
-                target: urn:core:rule
+                target: class:core:rule
             types:
               type: map
               dataType:
                 type: relation
-                target: urn:core:class
+                target: class:core:class
 ...
