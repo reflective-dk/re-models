@@ -1,14 +1,14 @@
 {
   "name": "re-type-bootstrap",
   "version": "0.0.1",
-  "description": "Bootstrap definitions for the type and rule system on the Reflective Platform",
+  "description": "Metamodel for the type and rule system on the Reflective Platform",
   "main": "index.js",
   "scripts": {
     "deploy:home": "npm run deploy -- home",
     "deploy:test": "npm run deploy -- test",
     "predeploy": "npm run build; re tenant -t dry-run",
-    "deploy": "re context -d base -c bootstrap -e bootstrap; re tenant -t",
-    "postdeploy": "re drop -c bootstrap -e bootstrap; re add -j build/objects.json > deployment-result.json",
+    "deploy": "re context -d base -c reflective-metamodel -e reflective-metamodel; re tenant -t",
+    "postdeploy": "re drop -c reflective-metamodel -e reflective-metamodel; re add -j build/objects.json > deployment-result.json",
     "validate": "mocha test-deployed/deployment-test.js",
     "prebuild": "npm run clean; mkdir ./build",
     "build": "./scripts/build-objects.js",
@@ -23,7 +23,7 @@
     "reflective",
     "type",
     "system",
-    "bootstrap"
+    "metamodel"
   ],
   "author": "Reflective Code <code@reflective.dk>",
   "license": "UNLICENSED",

@@ -9,9 +9,8 @@ var rp = require('request-promise');
 var path = require('path');
 var deploymentResult = require('../deployment-result.json');
 
-var bootstrap = new (require('../index.js'))();
 var serviceUrl = 'http://35.187.86.158:8080'; // Type service on test.reflective.dk
-var context = '{"domain": "base", "chain": "bootstrap", "extension": "bootstrap"}';
+var context = '{"domain": "base", "chain": "reflective-metamodel", "extension": "reflective-metamodel"}';
 var headers = {
     'Content-type': 'application/json',
     context: context
