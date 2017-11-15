@@ -9,7 +9,7 @@
     "predeploy": "npm run build; re tenant -t dry-run",
     "deploy": "re context -d base -c bootstrap -e bootstrap; re tenant -t",
     "postdeploy": "re drop -c bootstrap -e bootstrap; re add -j build/objects.json > deployment-result.json",
-    "verify": "mocha test-deployed/deployment-test.js",
+    "validate": "mocha test-deployed/deployment-test.js",
     "prebuild": "npm run clean; mkdir ./build",
     "build": "./scripts/build-objects.js",
     "clean": "rm -Rf ./build; rm -f deployment-result.json",
