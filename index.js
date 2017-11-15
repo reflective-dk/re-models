@@ -9,6 +9,8 @@ var urns = [
     'class:core:object',
     'class:core:model',
     'class:core:class',
+    'class:core:rule',
+    'class:core:rule-application',
     'class:core:schema-validation'
 ];
 

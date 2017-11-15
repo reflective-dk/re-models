@@ -38,6 +38,22 @@ describe('Test definition loading', function() {
             'registrations[0].validity[0].input.extends': 'class:core:object'
         });
     });
+    it('should load class:core:rule', function() {
+        metamodel.objects(modelId)['class:core:rule'].should.nested.deep.include({
+            'registrations[0].validity[0].input.model': { id: modelId },
+            'registrations[0].validity[0].input.class': 'class:core:class',
+            'registrations[0].validity[0].input.classId': 'class:core:rule',
+            'registrations[0].validity[0].input.extends': 'class:core:object'
+        });
+    });
+    it('should load class:core:rule-application', function() {
+        metamodel.objects(modelId)['class:core:rule-application'].should.nested.deep.include({
+            'registrations[0].validity[0].input.model': { id: modelId },
+            'registrations[0].validity[0].input.class': 'class:core:class',
+            'registrations[0].validity[0].input.classId': 'class:core:rule-application',
+            'registrations[0].validity[0].input.extends': 'class:core:object'
+        });
+    });
     it('should load class:core:schema-validation', function() {
         metamodel.objects(modelId)['class:core:schema-validation'].should.nested.deep.include({
             'registrations[0].validity[0].input.model': { id: modelId },
