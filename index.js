@@ -12,16 +12,16 @@ var urns = [
     'class:core:schema-validation'
 ];
 
-module.exports = Bootstrap;
+module.exports = Metamodel;
 
-function Bootstrap() {
+function Metamodel() {
 }
 
-Bootstrap.prototype.model = function() {
+Metamodel.prototype.model = function() {
     return loadDef(modelUrn);
 };
 
-Bootstrap.prototype.objects = function(modelId) {
+Metamodel.prototype.objects = function(modelId) {
     var map = {};
     urns.forEach(function(urn) { map[urn] = loadDef(urn, modelId); });
     return map;

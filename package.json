@@ -1,6 +1,6 @@
 {
-  "name": "re-type-bootstrap",
-  "version": "0.0.1",
+  "name": "re-metamodel",
+  "version": "0.1.0",
   "description": "Metamodel for the type and rule system on the Reflective Platform",
   "main": "index.js",
   "scripts": {
@@ -18,7 +18,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/reflective-dk/re-type-bootstrap.git"
+    "url": "git+ssh://git@github.com/reflective-dk/re-metamodel.git"
   },
   "keywords": [
     "reflective",

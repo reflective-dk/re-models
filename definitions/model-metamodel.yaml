@@ -9,7 +9,7 @@ registrations:
           class: class:core:model
           modelId: model:metamodel
           description: >-
-            This model provides the core definitions to bootstrap the type and
+            This model provides the core definitions for the type and
             rule system on the Reflective Platform
           dependencies: {}
 ...
