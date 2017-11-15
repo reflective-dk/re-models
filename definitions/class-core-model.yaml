@@ -19,6 +19,10 @@ registrations:
               dataType:
                 type: definition
                 definition: modelUrn
+            name:
+              description: The name of this model
+              type: simple
+              dataType: string
             description:
               description: A brief description of the purpose of this model
               type: simple
