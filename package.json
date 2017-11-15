@@ -4,15 +4,16 @@
   "description": "Metamodel for the type and rule system on the Reflective Platform",
   "main": "index.js",
   "scripts": {
-    "deploy:home": "npm run deploy -- home",
-    "deploy:test": "npm run deploy -- test",
-    "predeploy": "npm run build; re tenant -t dry-run",
-    "deploy": "re context -d base -c reflective-metamodel -e reflective-metamodel; re tenant -t",
-    "postdeploy": "re drop -c reflective-metamodel -e reflective-metamodel; re add -j build/objects.json > deployment-result.json",
-    "validate": "mocha test-deployed/deployment-test.js",
+    "setcontext": "re context -r; re context -d base -e reflective-metamodel",
+    "predeploy": "npm run build",
+    "deploy": "npm run setcontext; re tenant -r; re tenant -t",
+    "postdeploy": "npm run drop; npm run create; sleep 1; npm run validate",
+    "drop": "re drop -e reflective-metamodel | jq '.'",
+    "create": "re add -j build/objects.json | jq '.objects | .[] | { id: .id }'",
+    "validate": "echo '{ \"query\": { \"match\": { \"context.extension\": \"reflective-metamodel\" } } }' | re search -j - | re validate -j - | jq '.objects | .[] | { id: .snapshot.subject.id, valid: .snapshot.valid, error: .snapshot.error }'",
     "prebuild": "npm run clean; mkdir ./build",
     "build": "./scripts/build-objects.js",
-    "clean": "rm -Rf ./build; rm -f deployment-result.json",
+    "clean": "rm -Rf ./build",
     "test": "mocha --recursive"
   },
   "repository": {
