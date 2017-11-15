@@ -10,6 +10,7 @@ registrations:
           class: class:core:class
           classId: class:core:rule
           extends: class:core:object
+          name: Rule
           description: This class defines the properties of a rule
           properties:
             model:

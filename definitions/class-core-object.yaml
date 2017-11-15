@@ -9,6 +9,7 @@ registrations:
           # Responsible actor - actor: { id: actor.id }
           class: class:core:class
           classId: class:core:object
+          name: Object
           description: >-
             This class defines the properties of any object on the platform. It is
             the fundamental class at the root of the class hierarchy, so it does

@@ -11,6 +11,7 @@ registrations:
           class: class:core:class
           classId: class:core:rule-application
           extends: class:core:object
+          name: RuleApplication
           description: >-
             This class activates a specific set of rules by assigning them to a
             set of object types

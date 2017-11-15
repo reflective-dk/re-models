@@ -8,6 +8,7 @@ registrations:
           # Responsible actor - actor: { id: actor.id }
           class: class:core:model
           modelId: model:metamodel
+          name: ReflectiveMetamodel
           description: >-
             This model provides the core definitions for the type and
             rule system on the Reflective Platform

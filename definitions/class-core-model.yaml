@@ -10,6 +10,7 @@ registrations:
           class: class:core:class
           classId: class:core:model
           extends: class:core:object
+          name: Model
           description: This class defines the properties of a model
           properties:
             modelId:

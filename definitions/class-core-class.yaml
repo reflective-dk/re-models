@@ -12,6 +12,7 @@ registrations:
           classId: class:core:class
           # It extends the Object class
           extends: class:core:object
+          name: Class
           description: This class defines the properties of any class (itself included)
           properties:
             model:
@@ -32,6 +33,10 @@ registrations:
               dataType:
                 type: definition
                 definition: classUrn
+            name:
+              description: The name of this class
+              type: simple
+              dataType: string
             description:
               description: A brief description of the purpose of this class
               type: simple
