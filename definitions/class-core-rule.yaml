@@ -5,21 +5,21 @@ mimeType: application/vnd.reflective-dk.object+json
 registrations:
   - validity:
       - input:
-          # Authoritative module - module: { id: module.id }
+          # Authoritative model - model: { id: model.id }
           # Responsible actor - actor: { id: actor.id }
           class: class:core:class
           classId: class:core:rule
           extends: class:core:object
           description: This class defines the properties of a rule
           properties:
-            module:
-              description: Relation to the module owning this rule
+            model:
+              description: Relation to the model that owns this rule
               type: simple
               dataType:
                 type: relation
-                target: class:core:module
+                target: class:core:model
             ruleId:
-              description: A rule has an id (\'rule:<module-id>:<rule-id>\')
+              description: A rule has an id (\'rule:<model-id>:<rule-id>\')
               type: simple
               dataType:
                 type: definition

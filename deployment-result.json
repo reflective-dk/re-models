@@ -5,12 +5,12 @@
         {
           "severity": "info",
           "message": "Object added",
-          "id": "05c4bfe7-21f1-4f91-814c-b7702e16a9f0"
+          "id": "d85ef6ee-0aa7-4d71-9509-67fc6d1d2406"
         },
         {
           "severity": "warning",
           "message": "No input schema validation since no schema specified for object",
-          "id": "05c4bfe7-21f1-4f91-814c-b7702e16a9f0"
+          "id": "d85ef6ee-0aa7-4d71-9509-67fc6d1d2406"
         }
       ],
       "mimeType": "application/vnd.reflective-dk.object+json",
@@ -19,33 +19,33 @@
           "validity": [
             {
               "input": {
-                "class": "class:core:module",
-                "moduleId": "module:core",
-                "description": "This module provides the core definitions to bootstrap the type and rule system on the platform",
+                "class": "class:core:model",
+                "modelId": "model:metamodel",
+                "description": "This model provides the core definitions to bootstrap the type and rule system on the Reflective Platform",
                 "dependencies": {}
               }
             }
           ],
-          "timestamp": "2017-11-13T14:19:57.116Z",
-          "id": "4590fc4f-3788-4c35-9344-173c0a4aee11",
+          "timestamp": "2017-11-15T09:35:31.827Z",
+          "id": "30513f08-0d9c-4837-b4f4-0517d3c60114",
           "operation": "add"
         }
       ],
-      "id": "05c4bfe7-21f1-4f91-814c-b7702e16a9f0",
+      "id": "d85ef6ee-0aa7-4d71-9509-67fc6d1d2406",
       "type": "application/json",
-      "registrationTime": "2017-11-13T14:19:57.117Z"
+      "registrationTime": "2017-11-15T09:35:31.828Z"
     },
     {
       "status": [
         {
           "severity": "info",
           "message": "Object added",
-          "id": "c3bc0b9a-2a8e-4131-ade8-14dcd5148356"
+          "id": "29f2e669-9180-45ef-8939-931b686a8bd5"
         },
         {
           "severity": "warning",
           "message": "No input schema validation since no schema specified for object",
-          "id": "c3bc0b9a-2a8e-4131-ade8-14dcd5148356"
+          "id": "29f2e669-9180-45ef-8939-931b686a8bd5"
         }
       ],
       "mimeType": "application/vnd.reflective-dk.object+json",
@@ -80,7 +80,7 @@
                     "fundamental": true
                   },
                   "class": {
-                    "description": "Class of this object ('class:<module-id>:<class-id>')",
+                    "description": "Class of this object ('class:<model-id>:<class-id>')",
                     "type": "simple",
                     "dataType": {
                       "type": "definition",
@@ -112,32 +112,32 @@
                     }
                   }
                 },
-                "module": {
-                  "id": "05c4bfe7-21f1-4f91-814c-b7702e16a9f0"
+                "model": {
+                  "id": "d85ef6ee-0aa7-4d71-9509-67fc6d1d2406"
                 }
               }
             }
           ],
-          "timestamp": "2017-11-13T14:19:57.117Z",
-          "id": "4f45ed9e-215d-4826-b8cb-e38f96fc922f",
+          "timestamp": "2017-11-15T09:35:31.829Z",
+          "id": "e6c88c28-90e2-48a7-9d01-8499b5aa37a0",
           "operation": "add"
         }
       ],
       "type": "application/json",
-      "id": "c3bc0b9a-2a8e-4131-ade8-14dcd5148356",
-      "registrationTime": "2017-11-13T14:19:57.120Z"
+      "id": "29f2e669-9180-45ef-8939-931b686a8bd5",
+      "registrationTime": "2017-11-15T09:35:31.829Z"
     },
     {
       "status": [
         {
           "severity": "info",
           "message": "Object added",
-          "id": "4f3f158a-c33c-4b77-8419-53332659b47e"
+          "id": "6616a3d9-a549-43af-bd92-3fb048044843"
         },
         {
           "severity": "warning",
           "message": "No input schema validation since no schema specified for object",
-          "id": "4f3f158a-c33c-4b77-8419-53332659b47e"
+          "id": "6616a3d9-a549-43af-bd92-3fb048044843"
         }
       ],
       "mimeType": "application/vnd.reflective-dk.object+json",
@@ -147,67 +147,67 @@
             {
               "input": {
                 "class": "class:core:class",
-                "classId": "class:core:module",
+                "classId": "class:core:model",
                 "extends": "class:core:object",
-                "description": "This class defines the properties of a module",
+                "description": "This class defines the properties of a model",
                 "properties": {
-                  "moduleId": {
-                    "description": "A module has an id (\\'module:<module-id>\\')",
+                  "modelId": {
+                    "description": "A model has an id (\\'model:<model-id>\\')",
                     "type": "simple",
                     "dataType": {
                       "type": "definition",
-                      "definition": "moduleUrn"
+                      "definition": "modelUrn"
                     }
                   },
                   "description": {
-                    "description": "A brief description of the purpose of this module",
+                    "description": "A brief description of the purpose of this model",
                     "type": "simple",
                     "dataType": "string"
                   },
                   "dependencies": {
-                    "description": "Relations to other modules this module depends on",
+                    "description": "Relations to other models this model depends on",
                     "type": "map",
                     "dataType": {
                       "type": "relation",
-                      "target": "class:core:module"
+                      "target": "class:core:model"
                     }
                   }
                 },
                 "definitions": {
-                  "moduleUrn": {
+                  "modelUrn": {
                     "type": "json",
                     "schema": {
                       "type": "string",
-                      "pattern": "^module:[^:]+$"
+                      "pattern": "^model:[^:]+$"
                     }
                   }
                 },
-                "module": {
-                  "id": "05c4bfe7-21f1-4f91-814c-b7702e16a9f0"
+                "model": {
+                  "id": "d85ef6ee-0aa7-4d71-9509-67fc6d1d2406"
                 }
               }
             }
           ],
-          "timestamp": "2017-11-13T14:19:57.121Z",
-          "id": "2551e8eb-5a40-42ed-a92b-816abf76d4ac",
+          "timestamp": "2017-11-15T09:35:31.830Z",
+          "id": "743fea68-344a-49e4-a28a-56c0449265f2",
           "operation": "add"
         }
       ],
       "type": "application/json",
-      "id": "4f3f158a-c33c-4b77-8419-53332659b47e",
-      "registrationTime": "2017-11-13T14:19:57.122Z"
+      "id": "6616a3d9-a549-43af-bd92-3fb048044843",
+      "registrationTime": "2017-11-15T09:35:31.830Z"
     },
     {
       "status": [
         {
           "severity": "info",
           "message": "Object added",
-          "id": "e963460c-d67c-4dc2-bfe7-972dd789eb98"
+          "id": "8b23c7a5-79f6-4156-9877-89abf373b0a0"
         },
         {
           "severity": "warning",
           "message": "No input schema validation since no schema specified for object",
-          "id": "e963460c-d67c-4dc2-bfe7-972dd789eb98"
+          "id": "8b23c7a5-79f6-4156-9877-89abf373b0a0"
         }
       ],
       "mimeType": "application/vnd.reflective-dk.object+json",
@@ -221,16 +221,16 @@
                 "extends": "class:core:object",
                 "description": "This class defines the properties of any class (itself included)",
                 "properties": {
-                  "module": {
-                    "description": "Relation to the module owning this class",
+                  "model": {
+                    "description": "Relation to the model that owns this class",
                     "type": "simple",
                     "dataType": {
                       "type": "relation",
-                      "target": "class:core:module"
+                      "target": "class:core:model"
                     }
                   },
                   "classId": {
-                    "description": "A class has an id (\\'class:<module-id>:<class-id>\\')",
+                    "description": "A class has an id (\\'class:<model-id>:<class-id>\\')",
                     "type": "simple",
                     "dataType": {
                       "type": "definition",
@@ -404,32 +404,32 @@
                     }
                   }
                 },
-                "module": {
-                  "id": "05c4bfe7-21f1-4f91-814c-b7702e16a9f0"
+                "model": {
+                  "id": "d85ef6ee-0aa7-4d71-9509-67fc6d1d2406"
                 }
               }
             }
           ],
-          "timestamp": "2017-11-13T14:19:57.122Z",
-          "id": "b2359846-a9ba-4850-adb7-3645a03fa4f9",
+          "timestamp": "2017-11-15T09:35:31.831Z",
+          "id": "aae95b6f-4d6c-433c-b0f0-68bb856c5d07",
           "operation": "add"
         }
       ],
       "type": "application/json",
-      "id": "e963460c-d67c-4dc2-bfe7-972dd789eb98",
-      "registrationTime": "2017-11-13T14:19:57.124Z"
+      "id": "8b23c7a5-79f6-4156-9877-89abf373b0a0",
+      "registrationTime": "2017-11-15T09:35:31.832Z"
     },
     {
       "status": [
         {
           "severity": "info",
           "message": "Object added",
-          "id": "6f5dfe77-4a39-4238-a302-05846c7b460e"
+          "id": "b1e8c5f5-84ce-49b9-b0d0-b1bb1ce65551"
         },
         {
           "severity": "warning",
           "message": "No input schema validation since no schema specified for object",
-          "id": "6f5dfe77-4a39-4238-a302-05846c7b460e"
+          "id": "b1e8c5f5-84ce-49b9-b0d0-b1bb1ce65551"
         }
       ],
       "mimeType": "application/vnd.reflective-dk.object+json",
@@ -497,23 +497,23 @@
                     }
                   }
                 },
-                "module": {
-                  "id": "05c4bfe7-21f1-4f91-814c-b7702e16a9f0"
+                "model": {
+                  "id": "d85ef6ee-0aa7-4d71-9509-67fc6d1d2406"
                 }
               }
             }
           ],
-          "timestamp": "2017-11-13T14:19:57.124Z",
-          "id": "5f6bf9b0-f119-46ed-8692-c135f98fe2cb",
+          "timestamp": "2017-11-15T09:35:31.832Z",
+          "id": "76a2a612-6280-49d0-bb0c-3c0487efc813",
           "operation": "add"
         }
       ],
       "type": "application/json",
-      "id": "6f5dfe77-4a39-4238-a302-05846c7b460e",
-      "registrationTime": "2017-11-13T14:19:57.126Z"
+      "id": "b1e8c5f5-84ce-49b9-b0d0-b1bb1ce65551",
+      "registrationTime": "2017-11-15T09:35:31.833Z"
     }
   ],
   "commit": {
-    "id": "166f1331-78bf-43ba-b6fe-b2c42f76574c"
+    "id": "30437080-edff-4093-8b5c-0369a216def1"
   }
 }

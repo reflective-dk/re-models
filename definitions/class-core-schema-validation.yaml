@@ -5,7 +5,7 @@ mimeType: application/vnd.reflective-dk.object+json
 registrations:
   - validity:
       - input:
-          # Authoritative module - module: { id: module.id }
+          # Authoritative model - model: { id: model.id }
           # Responsible actor - actor: { id: actor.id }
           class: class:core:class
           classId: class:core:schema-validation

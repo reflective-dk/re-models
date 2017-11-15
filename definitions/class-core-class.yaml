@@ -5,7 +5,7 @@ mimeType: application/vnd.reflective-dk.object+json
 registrations:
   - validity:
       - input:
-          # Authoritative module - module: { id: module.id }
+          # Authoritative model - model: { id: model.id }
           # Responsible actor - actor: { id: actor.id }
           # This class is its own class
           class: class:core:class
@@ -14,14 +14,14 @@ registrations:
           extends: class:core:object
           description: This class defines the properties of any class (itself included)
           properties:
-            module:
-              description: Relation to the module owning this class
+            model:
+              description: Relation to the model that owns this class
               type: simple
               dataType:
                 type: relation
-                target: class:core:module
+                target: class:core:model
             classId:
-              description: A class has an id (\'class:<module-id>:<class-id>\')
+              description: A class has an id (\'class:<model-id>:<class-id>\')
               type: simple
               dataType:
                 type: definition

@@ -5,7 +5,7 @@ mimeType: application/vnd.reflective-dk.object+json
 registrations:
   - validity:
       - input:
-          # Authoritative module - module: { id: module.id }
+          # Authoritative model - model: { id: model.id }
           # Responsible actor - actor: { id: actor.id }
           class: class:core:class
           classId: class:core:object
@@ -32,7 +32,7 @@ registrations:
                   pattern: ^application/vnd.reflective-dk.object\+json$
               fundamental: true
             class:
-              description: Class of this object ('class:<module-id>:<class-id>')
+              description: Class of this object ('class:<model-id>:<class-id>')
               type: simple
               dataType:
                 type: definition

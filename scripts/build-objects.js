@@ -6,13 +6,13 @@ var fs = require('fs');
 var path = require('path');
 var uuid = require('uuid');
 var bootstrap = new (require('../index.js'))();
-var module = bootstrap.module();
-/* Set the module id ahead of time in order to set the relation to the module in
+var model = bootstrap.model();
+/* Set the model id ahead of time in order to set the relation to the model in
  * the other objects. The other objects will have their ids set by the platform
  */
-module.id = uuid.v4();
-var map = bootstrap.objects(module.id);
-var objects = [ module ];
+model.id = uuid.v4();
+var map = bootstrap.objects(model.id);
+var objects = [ model ];
 Object.keys(map).forEach(function(k) {
     objects.push(map[k]);
 });

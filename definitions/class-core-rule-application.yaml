@@ -6,7 +6,7 @@ mimeType: application/vnd.reflective-dk.object+json
 registrations:
   - validity:
       - input:
-          # Authoritative module - module: { id: module.id }
+          # Authoritative model - model: { id: model.id }
           # Responsible actor - actor: { id: actor.id }
           class: class:core:class
           classId: class:core:rule-application
@@ -15,6 +15,12 @@ registrations:
             This class activates a specific set of rules by assigning them to a
             set of object types
           properties:
+            model:
+              description: Relation to the model that owns this rule application
+              type: simple
+              dataType:
+                type: relation
+                target: class:core:model
             rules:
               description: The rules to apply
               type: map
