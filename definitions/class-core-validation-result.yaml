@@ -36,11 +36,11 @@ registrations:
                 type: definition
                 definition: validation
             snapshotKnownOn:
-              description: \'Known on\' from the snapshot time
+              description: "'Known on' from the snapshot time"
               type: simple
               dataType: dateTime
             snapshotValidOn:
-              description: \'Valid on\' from the snapshot time
+              description: "'Valid on' from the snapshot time"
               type: simple
               dataType: dateTime
             timestamp:
