@@ -25,6 +25,10 @@ registrations:
               dataType:
                 type: definition
                 definition: ruleUrn
+            name:
+              description: The name of this rule
+              type: simple
+              dataType: string
             description:
               description: A brief description of the purpose of this rule
               type: simple
