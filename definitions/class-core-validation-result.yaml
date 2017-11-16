@@ -61,12 +61,12 @@ registrations:
                 pattern: ^class:[^:]+:[^:]+$
             severity:
               type: json
-              schema: { type: 'string', enum: [ 'fatal', 'error', 'warning', 'info' ] }
+              schema: { type: 'string', enum: [ 'fatal', 'error', 'warning', 'info', 'none' ] }
             validation:
               type: json
               schema:
                 type: object
                 properties:
-                  severity: { type: 'string', enum: [ 'fatal', 'error', 'warning', 'info' ] }
+                  severity: { type: 'string', enum: [ 'fatal', 'error', 'warning', 'info', 'none' ] }
                   error: {}
 ...
