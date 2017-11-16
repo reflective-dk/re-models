@@ -40,10 +40,10 @@ describe('Test definition loading', function() {
             'registrations[0].validity[0].input.extends': 'class:core:object'
         });
     });
-    it('should load class:core:rule-application', function() {
-        metamodel.objects()['class:core:rule-application'].should.nested.deep.include({
+    it('should load class:core:rule-activation', function() {
+        metamodel.objects()['class:core:rule-activation'].should.nested.deep.include({
             'registrations[0].validity[0].input.class': 'class:core:class',
-            'registrations[0].validity[0].input.classId': 'class:core:rule-application',
+            'registrations[0].validity[0].input.classId': 'class:core:rule-activation',
             'registrations[0].validity[0].input.extends': 'class:core:object'
         });
     });
@@ -52,6 +52,17 @@ describe('Test definition loading', function() {
             'registrations[0].validity[0].input.class': 'class:core:class',
             'registrations[0].validity[0].input.classId': 'class:core:validation-result',
             'registrations[0].validity[0].input.extends': 'class:core:object'
+        });
+    });
+    it('should load rule:core:model-must-exist', function() {
+        metamodel.objects()['rule:core:model-must-exist'].should.nested.deep.include({
+            'registrations[0].validity[0].input.class': 'class:core:rule',
+            'registrations[0].validity[0].input.ruleId': 'rule:core:model-must-exist'
+        });
+    });
+    it('should load activation:core:model-must-exist', function() {
+        metamodel.objects()['activation:core:model-must-exist'].should.nested.deep.include({
+            'registrations[0].validity[0].input.class': 'class:core:rule-activation'
         });
     });
     it('should reload definitions on every instantiation', function() {

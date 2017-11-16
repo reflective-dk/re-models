@@ -1,0 +1,26 @@
+# ModelMustExist Rule
+---
+id: db45a0ec-18da-4bd8-91c4-6ceb76fac2af
+mimeType: application/vnd.reflective-dk.object+json
+registrations:
+  - validity:
+      - input:
+          model: { id: 'd341451b-d971-4656-bac2-1783776f8efe' }
+          # Responsible actor - actor: { id: actor.id }
+          class: class:core:rule
+          ruleId: rule:core:model-must-exist
+          name: Model must exist
+          description: This object must be assigned to a model
+          partitioning:
+            type: none
+          filter:
+            type: boolean
+            value: true
+          condition:
+            type: boolean
+            value: true
+          implication:
+            type: pathExists
+            path:
+              - model
+...

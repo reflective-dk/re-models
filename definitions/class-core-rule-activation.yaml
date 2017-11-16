@@ -1,4 +1,4 @@
-# Rule Application Class
+# Rule Activation Class
 ---
 id: cb70fe97-13bd-4471-8f5f-a050c7f463bb
 mimeType: application/vnd.reflective-dk.object+json
@@ -8,15 +8,15 @@ registrations:
           model: { id: 'd341451b-d971-4656-bac2-1783776f8efe' }
           # Responsible actor - actor: { id: actor.id }
           class: class:core:class
-          classId: class:core:rule-application
+          classId: class:core:rule-activation
           extends: class:core:object
-          name: RuleApplication
+          name: RuleActivation
           description: >-
             This class activates a specific set of rules by assigning them to a
             set of object types
           properties:
             model:
-              description: Relation to the model that owns this rule application
+              description: Relation to the model that owns this rule activation
               type: simple
               dataType:
                 type: relation

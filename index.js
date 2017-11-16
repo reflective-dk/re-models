@@ -10,8 +10,10 @@ var urns = [
     'class:core:model',
     'class:core:class',
     'class:core:rule',
-    'class:core:rule-application',
-    'class:core:validation-result'
+    'class:core:rule-activation',
+    'class:core:validation-result',
+    'rule:core:model-must-exist',
+    'activation:core:model-must-exist'
 ];
 
 module.exports = Metamodel;
