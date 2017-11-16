@@ -11,7 +11,7 @@ var urns = [
     'class:core:class',
     'class:core:rule',
     'class:core:rule-application',
-    'class:core:schema-validation'
+    'class:core:validation-result'
 ];
 
 module.exports = Metamodel;

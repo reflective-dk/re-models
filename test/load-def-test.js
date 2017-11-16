@@ -54,11 +54,11 @@ describe('Test definition loading', function() {
             'registrations[0].validity[0].input.extends': 'class:core:object'
         });
     });
-    it('should load class:core:schema-validation', function() {
-        metamodel.objects(modelId)['class:core:schema-validation'].should.nested.deep.include({
+    it('should load class:core:validation-result', function() {
+        metamodel.objects(modelId)['class:core:validation-result'].should.nested.deep.include({
             'registrations[0].validity[0].input.model': { id: modelId },
             'registrations[0].validity[0].input.class': 'class:core:class',
-            'registrations[0].validity[0].input.classId': 'class:core:schema-validation',
+            'registrations[0].validity[0].input.classId': 'class:core:validation-result',
             'registrations[0].validity[0].input.extends': 'class:core:object'
         });
     });
