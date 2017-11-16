@@ -23,16 +23,13 @@ Metamodel.prototype.model = function() {
     return loadDef(modelUrn);
 };
 
-Metamodel.prototype.objects = function(modelId) {
+Metamodel.prototype.objects = function() {
     var map = {};
-    urns.forEach(function(urn) { map[urn] = loadDef(urn, modelId); });
+    urns.forEach(function(urn) { map[urn] = loadDef(urn); });
     return map;
 };
 
-function loadDef(urn, modelId) {
+function loadDef(urn) {
     var obj = requireyml(path.join(defloc, urn.replace(/:/g, '-')));
-    if (modelId) {
-        obj.registrations[0].validity[0].input.model = { id: modelId };
-    }
     return obj;
 }
