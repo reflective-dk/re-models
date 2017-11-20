@@ -5,13 +5,11 @@ mimeType: application/vnd.reflective-dk.object+json
 registrations:
   - validity:
       - input:
-          model: { id: 'd341451b-d971-4656-bac2-1783776f8efe' }
+          model: { id: d341451b-d971-4656-bac2-1783776f8efe, name: ReflectiveMetamodel }
           # Responsible actor - actor: { id: actor.id }
           # This class is its own class
-          class: class:core:class
-          classId: class:core:class
-          # It extends the Object class
-          extends: class:core:object
+          class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
+          extends: { id: c4315fa9-3765-40c0-ba45-ef821c416f83, name: Object }
           name: Class
           description: This class defines the properties of any class (itself included)
           properties:
@@ -20,19 +18,13 @@ registrations:
               type: simple
               dataType:
                 type: relation
-                target: class:core:model
-            classId:
-              description: A class has an id (\'class:<model-id>:<class-id>\')
-              type: simple
-              dataType:
-                type: definition
-                definition: classUrn
+                target: { id: 54985140-62ec-49fd-b05a-661e090c405f, name: Model }
             extends:
               description: A class may explicitly extend another class (if not it extends the Object class)
               type: simple
               dataType:
-                type: definition
-                definition: classUrn
+                type: relation
+                target: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
             name:
               description: The name of this class
               type: simple
@@ -54,11 +46,6 @@ registrations:
                 type: definition
                 definition: dataType
           definitions:
-            classUrn:
-              type: json
-              schema:
-                type: string
-                pattern: ^class:[^:]+:[^:]+$
             propertyType:
               type: json
               schema:

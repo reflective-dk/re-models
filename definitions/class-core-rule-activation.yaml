@@ -5,14 +5,13 @@ mimeType: application/vnd.reflective-dk.object+json
 registrations:
   - validity:
       - input:
-          model: { id: 'd341451b-d971-4656-bac2-1783776f8efe' }
+          model: { id: d341451b-d971-4656-bac2-1783776f8efe, name: ReflectiveMetamodel }
           # Responsible actor - actor: { id: actor.id }
-          class: class:core:class
-          classId: class:core:rule-activation
-          extends: class:core:object
+          class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
+          extends: { id: c4315fa9-3765-40c0-ba45-ef821c416f83, name: Object }
           name: RuleActivation
           description: >-
-            This class activates a specific set of rules by assigning them to a
+            This class enables a specific set of rules by assigning them to a
             set of object types
           properties:
             model:
@@ -20,19 +19,19 @@ registrations:
               type: simple
               dataType:
                 type: relation
-                target: class:core:model
+                target: { id: 54985140-62ec-49fd-b05a-661e090c405f, name: Model }
             rules:
               description: The rules to apply
               type: map
               dataType:
                 type: relation
-                target: class:core:rule
+                target: { id: 69c26015-0e44-4315-a5d9-343a5308dfef, name: Rule }
             types:
               description: The types for which to apply the rules
               type: map
               dataType:
                 type: relation
-                target: class:core:class
+                target: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
             severity:
               description: Severity of this rule activation
               type: simple

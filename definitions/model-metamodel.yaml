@@ -6,8 +6,7 @@ registrations:
   - validity:
       - input:
           # Responsible actor - actor: { id: actor.id }
-          class: class:core:model
-          modelId: model:metamodel
+          class: { id: 54985140-62ec-49fd-b05a-661e090c405f, name: Model }
           name: ReflectiveMetamodel
           description: >-
             This model provides the core definitions for the type and

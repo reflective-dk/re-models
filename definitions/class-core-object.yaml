@@ -5,10 +5,9 @@ mimeType: application/vnd.reflective-dk.object+json
 registrations:
   - validity:
       - input:
-          model: { id: 'd341451b-d971-4656-bac2-1783776f8efe' }
+          model: { id: d341451b-d971-4656-bac2-1783776f8efe, name: ReflectiveMetamodel }
           # Responsible actor - actor: { id: actor.id }
-          class: class:core:class
-          classId: class:core:object
+          class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
           name: Object
           description: >-
             This class defines the properties of any object on the platform. It is
@@ -33,26 +32,21 @@ registrations:
                   pattern: ^application/vnd.reflective-dk.object\+json$
               fundamental: true
             class:
-              description: Class of this object ('class:<model-id>:<class-id>')
+              description: Class of this object
               type: simple
               dataType:
-                type: definition
-                definition: classUrn
+                type: relation
+                target: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
             actor:
               description: Actor responsible for the recorded information
               type: simple
               dataType:
                 type: relation
-                target: class:core:object
+                target: { id: c4315fa9-3765-40c0-ba45-ef821c416f83, name: Object }
           definitions:
             uuid:
               type: json
               schema:
                 type: string
                 pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
-            classUrn:
-              type: json
-              schema:
-                type: string
-                pattern: ^class:[^:]+:[^:]+$
 ...

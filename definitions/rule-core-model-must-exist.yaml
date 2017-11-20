@@ -5,11 +5,10 @@ mimeType: application/vnd.reflective-dk.object+json
 registrations:
   - validity:
       - input:
-          model: { id: 'd341451b-d971-4656-bac2-1783776f8efe' }
+          model: { id: d341451b-d971-4656-bac2-1783776f8efe, name: ReflectiveMetamodel }
           # Responsible actor - actor: { id: actor.id }
-          class: class:core:rule
-          ruleId: rule:core:model-must-exist
-          name: Model must exist
+          class: { id: 69c26015-0e44-4315-a5d9-343a5308dfef, name: Rule }
+          name: ModelMustExist
           description: This object must be assigned to a model
           partitioning:
             type: none

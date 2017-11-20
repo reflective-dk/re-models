@@ -5,11 +5,10 @@ mimeType: application/vnd.reflective-dk.object+json
 registrations:
   - validity:
       - input:
-          model: { id: 'd341451b-d971-4656-bac2-1783776f8efe' }
+          model: { id: d341451b-d971-4656-bac2-1783776f8efe, name: ReflectiveMetamodel }
           # Responsible actor - actor: { id: actor.id }
-          class: class:core:class
-          classId: class:core:validation-result
-          extends: class:core:object
+          class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
+          extends: { id: c4315fa9-3765-40c0-ba45-ef821c416f83, name: Object }
           name: ValidationResult
           description: >-
             This class defines the properties of a validation result. A validation
@@ -23,13 +22,13 @@ registrations:
               type: simple
               dataType:
                 type: relation
-                target: class:core:object
+                target: { id: c4315fa9-3765-40c0-ba45-ef821c416f83, name: Object }
             subjectClass:
               description: Class of the subject at snapshot time
               type: simple
               dataType:
-                type: definition
-                definition: classUrn
+                type: relation
+                target: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
             validations:
               type: map
               dataType:
@@ -54,11 +53,6 @@ registrations:
                 type: definition
                 definition: severity
           definitions:
-            classUrn:
-              type: json
-              schema:
-                type: string
-                pattern: ^class:[^:]+:[^:]+$
             severity:
               type: json
               schema: { type: 'string', enum: [ 'fatal', 'error', 'warning', 'info', 'none' ] }
