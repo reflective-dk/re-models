@@ -4,16 +4,16 @@ var path = require('path');
 var requireyml = require('require-yml');
 var defloc = path.join(path.dirname(require.resolve('./index')), 'definitions');
 
-var modelUrn = 'model:metamodel';
-var urns = [
-    'class:core:object',
-    'class:core:model',
-    'class:core:class',
-    'class:core:rule',
-    'class:core:rule-activation',
-    'class:core:validation-result',
-    'rule:core:model-must-exist',
-    'activation:core:model-must-exist'
+var modelName = 'model-re-metamodel';
+var names = [
+    'class-re-object',
+    'class-re-model',
+    'class-re-class',
+    'class-re-rule',
+    'class-re-activation',
+    'class-re-validation-result',
+    'rule-model-must-exist',
+    'activation-model-must-exist'
 ];
 
 module.exports = Metamodel;
@@ -22,16 +22,16 @@ function Metamodel() {
 }
 
 Metamodel.prototype.model = function() {
-    return loadDef(modelUrn);
+    return loadDef(modelName);
 };
 
 Metamodel.prototype.objects = function() {
     var map = {};
-    urns.forEach(function(urn) { map[urn] = loadDef(urn); });
+    names.forEach(function(name) { map[name] = loadDef(name); });
     return map;
 };
 
-function loadDef(urn) {
-    var obj = requireyml(path.join(defloc, urn.replace(/:/g, '-')));
+function loadDef(name) {
+    var obj = requireyml(path.join(defloc, name));
     return obj;
 }
