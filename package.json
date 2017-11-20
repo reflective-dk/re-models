@@ -4,13 +4,13 @@
   "description": "Metamodel for the type and rule system on the Reflective Platform",
   "main": "index.js",
   "scripts": {
-    "setcontext": "re context -r; re context -d base -e reflective-metamodel",
+    "setcontext": "re context -r; re context -d base -e re-metamodel",
     "predeploy": "npm run build",
     "deploy": "npm run setcontext; re tenant -r; re tenant -t",
     "postdeploy": "npm run drop; npm run create; sleep 1; npm run validate; npm run savevalidations; sleep 1; npm run validate; npm run showvalidations",
-    "drop": "re drop -e reflective-metamodel | jq '.'",
+    "drop": "re drop -e re-metamodel | jq '.'",
     "create": "cat build/objects.json | jq '.objects[].type = \"application/json\"' | re add -j - | jq '.objects | .[].id'",
-    "validate": "echo '{ \"query\": { \"match\": { \"context.extension\": \"reflective-metamodel\" } } }' | re search -j - | re validate -j - > build/validation-results.json",
+    "validate": "echo '{ \"query\": { \"match\": { \"context.extension\": \"re-metamodel\" } } }' | re search -j - | re validate -j - > build/validation-results.json",
     "savevalidations": "cat build/validation-results.json | jq '.objects[].type = \"application/json\"' | re add -j -",
     "showvalidations": "cat build/validation-results.json | jq '.objects | .[].registrations[0].validity[0].input | { subjectId: .subject.id, subjectClass: .subjectClass, severity: .severity, validations: .validations }'",
     "prebuild": "npm run clean; mkdir ./build",
@@ -24,6 +24,7 @@
   },
   "keywords": [
     "reflective",
+    "rule",
     "type",
     "system",
     "metamodel"
