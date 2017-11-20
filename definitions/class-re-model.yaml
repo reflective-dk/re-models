@@ -1,15 +1,15 @@
-# Model Class
+# ReModel Class
 ---
 id: 54985140-62ec-49fd-b05a-661e090c405f
 mimeType: application/vnd.reflective-dk.object+json
 registrations:
   - validity:
       - input:
-          model: { id: d341451b-d971-4656-bac2-1783776f8efe, name: ReflectiveMetamodel }
+          model: { id: d341451b-d971-4656-bac2-1783776f8efe, name: ReMetamodel }
           # Responsible actor - actor: { id: actor.id }
-          class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
-          extends: { id: c4315fa9-3765-40c0-ba45-ef821c416f83, name: Object }
-          name: Model
+          class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: ReClass }
+          extends: { id: c4315fa9-3765-40c0-ba45-ef821c416f83, name: ReObject }
+          name: ReModel
           description: This class defines the properties of a model
           properties:
             name:
@@ -25,5 +25,5 @@ registrations:
               type: map
               dataType:
                 type: relation
-                target: { id: 54985140-62ec-49fd-b05a-661e090c405f, name: Model }
+                target: { id: 54985140-62ec-49fd-b05a-661e090c405f, name: ReModel }
 ...
