@@ -84,4 +84,15 @@ describe('Test definition loading', function() {
             extraneous: true
         });
     });
+    it('should provide generic objects map', function() {
+        metamodel.objects[metamodel.model.id].should.equal(metamodel.model);
+        metamodel.objects[metamodel.classes.model.id].should.equal(metamodel.classes.model);
+        metamodel.objects[metamodel.classes.object.id].should.equal(metamodel.classes.object);
+        metamodel.objects[metamodel.classes.class.id].should.equal(metamodel.classes.class);
+        metamodel.objects[metamodel.classes.rule.id].should.equal(metamodel.classes.rule);
+        metamodel.objects[metamodel.classes.activation.id].should.equal(metamodel.classes.activation);
+        metamodel.objects[metamodel.classes.validationResult.id].should.equal(metamodel.classes.validationResult);
+        metamodel.objects[metamodel.rules.modelMustExist.id].should.equal(metamodel.rules.modelMustExist);
+        metamodel.objects[metamodel.activations.modelMustExist.id].should.equal(metamodel.activations.modelMustExist);
+    });
 });

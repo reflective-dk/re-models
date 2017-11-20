@@ -22,9 +22,24 @@ function Metamodel() {
     this.activations = {
         modelMustExist: loadDef('activation-model-must-exist')
     };
+    this.objects = merge([
+        this.classes, this.rules, this.activations, { model: this.model }
+    ]);
 }
 
 function loadDef(name) {
     var obj = requireyml(path.join(defloc, name));
     return obj;
+}
+
+function merge(sets) {
+    var objects = {};
+    Object.keys(sets).forEach(function(setkey) {
+        var set = sets[setkey];
+        Object.keys(set).forEach(function(k) {
+            var object = set[k];
+            objects[object.id] = object;
+        });
+    });
+    return objects;
 }
