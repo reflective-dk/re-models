@@ -61,7 +61,7 @@ registrations:
                         properties:
                           type: { type: 'string', pattern: 'relation' }
                           target:
-                            type: object,
+                            type: object
                             properties:
                               id:
                                 type: string
