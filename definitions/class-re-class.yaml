@@ -87,7 +87,13 @@ registrations:
                   - type: object    # dataType: relation
                     properties:
                       type: { type: 'string', pattern: 'relation' }
-                      target: { type: 'string', pattern: '^class:[^:]+:[^:]+$' }
+                      target:
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                            pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
+                        additionalProperties: true
                     additionalProperties: false
                   - type: object    # dataType: definition
                     properties:
