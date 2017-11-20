@@ -33,4 +33,14 @@ registrations:
               dataType:
                 type: relation
                 target: class:core:class
+            severity:
+              description: Severity of this rule activation
+              type: simple
+              dataType:
+                type: definition
+                definition: severity
+          definitions:
+            severity:
+              type: json
+              schema: { type: 'string', enum: [ 'fatal', 'error', 'warning', 'info', 'none' ] }
 ...

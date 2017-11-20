@@ -17,4 +17,5 @@ registrations:
             rule: { id: 69c26015-0e44-4315-a5d9-343a5308dfef }
             rule-activation: { id: cb70fe97-13bd-4471-8f5f-a050c7f463bb }
             validation-result: { id: 8b153e6f-2f65-417c-9249-2f9ab4c9ebf0 }
+          severity: warning
 ...
