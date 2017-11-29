@@ -1,7 +1,7 @@
 {
-  "name": "re-metamodel",
+  "name": "re-models",
   "version": "0.1.0",
-  "description": "Metamodel for the type and rule system on the Reflective Platform",
+  "description": "Various models for the Reflective Platform",
   "main": "index.js",
   "scripts": {
     "setcontext": "re context -r; re context -d base -e re-metamodel",
@@ -22,14 +22,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/reflective-dk/re-metamodel.git"
+    "url": "git@bitbucket.org:iteration2/re-models.git"
   },
   "keywords": [
     "reflective",
     "rule",
     "type",
-    "system",
-    "metamodel"
+    "models"
   ],
   "author": "Reflective Code <code@reflective.dk>",
   "license": "UNLICENSED",
@@ -38,13 +37,6 @@
     "require-yml": "^1.3.1"
   },
   "devDependencies": {
-    "chai": "^4.1.2",
-    "chai-as-promised": "^7.1.1",
-    "chai-things": "^0.2.0",
-    "chai-uuid": "^1.0.6",
-    "mocha": "^4.0.1",
-    "re-core-cli": "git+ssh://git@github.com:reflective-dk/re-core-cli.git",
-    "request": "^2.83.0",
-    "request-promise": "^4.2.2"
+    "re-core-cli": "git+ssh://git@github.com:reflective-dk/re-core-cli.git"
   }
 }
