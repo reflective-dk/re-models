@@ -1,0 +1,108 @@
+# OpusEmployee Class
+---
+id: 16eeb8d9-b2f7-486c-96a5-2a75d4ea983d
+mimeType: application/vnd.reflective-dk.object+json
+registrations:
+  - validity:
+      - input:
+          model: { id: 513421bc-7994-4ee5-a67b-4f29a903d7da, name: OpusIntegration }
+          # Responsible actor - actor: { id: actor.id }
+          class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: ReClass }
+          extends: { id: c4315fa9-3765-40c0-ba45-ef821c416f83, name: ReObject }
+          name: OpusEmployee
+          description: An employee as represented by KMD Opus
+          properties:
+            employeeId:
+              type: simple
+              dataType: string
+            client:
+              type: simple
+              dataType: string
+            lastChanged:
+              type: simple
+              dataType: string
+            entryDate:
+              type: simple
+              dataType: string
+            leaveDate:
+              type: simple
+              dataType: string
+            cpr:
+              type: simple
+              dataType: string
+            cprSupId:
+              type: simple
+              dataType: string
+            firstName:
+              type: simple
+              dataType: string
+            lastName:
+              type: simple
+              dataType: string
+            address:
+              type: simple
+              dataType: string
+            addressSupplement:
+              type: simple
+              dataType: string
+            postalCode:
+              type: simple
+              dataType: string
+            city:
+              type: simple
+              dataType: string
+            country:
+              type: simple
+              dataType: string
+            workPhone:
+              type: simple
+              dataType: string
+            workContract:
+              type: simple
+              dataType: string
+            workContractText:
+              type: simple
+              dataType: string
+            positionId:
+              type: simple
+              dataType: string
+            position:
+              type: simple
+              dataType: string
+            positionShort:
+              type: simple
+              dataType: string
+            invoiceRecipient:
+              type: simple
+              dataType: string
+            productionNumber:
+              type: simple
+              dataType: string
+            isManager:
+              type: simple
+              dataType: string
+            superiorLevel:
+              type: simple
+              dataType: string
+            subordinateLevel:
+              type: simple
+              dataType: string
+            orgUnit:
+              type: simple
+              dataType: string
+            payGradeText:
+              type: simple
+              dataType: string
+            numerator:
+              type: simple
+              dataType: string
+            denominator:
+              type: simple
+              dataType: string
+            initialEntry:
+              type: simple
+              dataType: string
+            entryIntoGroup:
+              type: simple
+              dataType: string
+...

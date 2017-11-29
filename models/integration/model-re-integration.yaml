@@ -1,0 +1,15 @@
+# Generic model for integrating Reflective with data from external systems
+---
+id: 855ad3bd-d62a-407c-8a33-8f49bbcc8995
+mimeType: application/vnd.reflective-dk.object+json
+registrations:
+  - validity:
+      - input:
+          # Responsible actor - actor: { id: actor.id }
+          class: { id: 54985140-62ec-49fd-b05a-661e090c405f, name: ReModel }
+          name: ReIntegration
+          description: >-
+            This model provides the core definitions for integrating Reflective
+            with data from external systems
+          dependencies: {}
+...

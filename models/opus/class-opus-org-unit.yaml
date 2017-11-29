@@ -1,0 +1,72 @@
+# OpusOrgUnit Class
+---
+id: 40864bd7-2ac2-468d-80a5-68aefa018524
+mimeType: application/vnd.reflective-dk.object+json
+registrations:
+  - validity:
+      - input:
+          model: { id: 513421bc-7994-4ee5-a67b-4f29a903d7da, name: OpusIntegration }
+          # Responsible actor - actor: { id: actor.id }
+          class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: ReClass }
+          extends: { id: c4315fa9-3765-40c0-ba45-ef821c416f83, name: ReObject }
+          name: OpusOrgUnit
+          description: An organizational unit as represented by KMD Opus
+          properties:
+            orgUnitId:
+              type: simple
+              dataType: string
+            client:
+              type: simple
+              dataType: string
+            lastChanged:
+              type: simple
+              dataType: string
+            startDate:
+              type: simple
+              dataType: string
+            endDate:
+              type: simple
+              dataType: string
+            parentOrgUnit:
+              type: simple
+              dataType: string
+            shortName:
+              type: simple
+              dataType: string
+            longName:
+              type: simple
+              dataType: string
+            street:
+              type: simple
+              dataType: string
+            zipCode:
+              type: simple
+              dataType: string
+            city:
+              type: simple
+              dataType: string
+            phoneNumber:
+              type: simple
+              dataType: string
+            cvrNr:
+              type: simple
+              dataType: string
+            eanNr:
+              type: simple
+              dataType: string
+            seNr:
+              type: simple
+              dataType: string
+            pNr:
+              type: simple
+              dataType: string
+            costCenter:
+              type: simple
+              dataType: string
+            orgType:
+              type: simple
+              dataType: string
+            orgTypeTxt:
+              type: simple
+              dataType: string
+...

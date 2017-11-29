@@ -1,0 +1,12 @@
+# Reflective Organization model
+---
+id: 17960fc5-7a6d-4e0b-95d8-f20934493819
+mimeType: application/vnd.reflective-dk.object+json
+registrations:
+  - validity:
+      - input:
+          # Responsible actor - actor: { id: actor.id }
+          class: { id: 54985140-62ec-49fd-b05a-661e090c405f, name: ReModel }
+          name: ReflectiveOrganization
+          description: This model defines types and rules for Reflective Organization
+...

@@ -1,0 +1,13 @@
+# Opus model for integrating Reflective with data from external systems
+---
+id: 513421bc-7994-4ee5-a67b-4f29a903d7da
+mimeType: application/vnd.reflective-dk.object+json
+registrations:
+  - validity:
+      - input:
+          # Responsible actor - actor: { id: actor.id }
+          class: { id: 54985140-62ec-49fd-b05a-661e090c405f, name: ReModel }
+          name: OpusIntegration
+          description: >-
+            This model defines types and rules for the KMD Opus integration model
+...
