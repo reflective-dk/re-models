@@ -4,12 +4,12 @@
 
 var fs = require('fs');
 var path = require('path');
-var metamodel = new (require('../index.js'))();
-var model = metamodel.model;
-var map = metamodel.objects;
-var objects = [ model ];
-Object.keys(map).forEach(function(k) {
-    objects.push(map[k]);
+var requireyml = require('require-yml');
+var loc = path.join(path.dirname(require.resolve('../package.json')), 'models');
+
+var models = requireyml(loc);
+Object.keys(models).forEach(function(key) {
+    var model = models[key];
+    var output = JSON.stringify({ objects: model }, null, 2);
+    fs.writeFileSync(path.join('build', key + '.json'), output);
 });
-var output = JSON.stringify({ objects: objects }, null, 2);
-fs.writeFileSync(path.join('build', 'objects.json'), output);
