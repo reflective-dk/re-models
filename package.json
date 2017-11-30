@@ -1,7 +1,7 @@
 {
-  "name": "re-models",
+  "name": "re-integration-models",
   "version": "0.1.0",
-  "description": "Various models for the Reflective Platform",
+  "description": "Integration models for the Reflective Platform",
   "main": "index.js",
   "scripts": {
     "tenant": "re tenant -r; re tenant -t",
@@ -22,7 +22,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@bitbucket.org:iteration2/re-models.git"
+    "url": "git://github.com/reflective-dk/re-integration-models.git"
   },
   "keywords": [
     "reflective",
