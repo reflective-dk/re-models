@@ -1,0 +1,12 @@
+# KLE model
+---
+id: dc3b4db1-efef-4a88-acd9-d85f4dac2179
+mimeType: application/vnd.reflective-dk.object+json
+registrations:
+  - validity:
+      - input:
+          # Responsible actor - actor: { id: actor.id }
+          class: { id: 54985140-62ec-49fd-b05a-661e090c405f, name: ReModel }
+          name: KLE
+          description: This model defines types and rules for KLE
+...

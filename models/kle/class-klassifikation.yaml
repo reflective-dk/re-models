@@ -1,0 +1,13 @@
+# Klassifikation Class
+---
+id: 94e29bbc-09eb-4b8c-98e0-944bf63a85a9
+mimeType: application/vnd.reflective-dk.object+json
+registrations:
+  - validity:
+      - input:
+          model: { id: dc3b4db1-efef-4a88-acd9-d85f4dac2179, name: KLE Model }
+          # Responsible actor - actor: { id: actor.id }
+          class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: ReClass }
+          name: KLE Klassifikation
+          description: A KLE klassifikation
+...
