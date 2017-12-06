@@ -42,13 +42,15 @@ registrations:
                 type: relation
                 # TODO - klassifikation
                 target: { id: , name: }
-            areasOfResponsibility:
+            expertise:
+              description: Areas of responsibility from KLE
               type: map
               dataType:
                 type: relation
                 # TODO - klassifikation over til KLE (ansvarsområder)
                 target: { id: , name: }
-            areasOfInterest:
+            interests:
+              description: Areas of interest from KLE
               type: map
               dataType:
                 type: relation
