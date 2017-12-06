@@ -21,6 +21,5 @@ registrations:
               type: map
               dataType:
                 type: relation
-                # TODO klassifikation
-                target: { id: , name:  }
+                target: { id: f5155ea0-3e2f-4dcf-832a-c0fc99f2fbb4, name: Responsibility }
 ...
