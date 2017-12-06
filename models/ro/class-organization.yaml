@@ -12,9 +12,6 @@ registrations:
           name: Organization
           description: An organization
           properties:
-            name:
-              type: simple
-              dataType: string
             cvrNr:
               type: simple
               dataType: string

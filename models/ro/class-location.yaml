@@ -12,16 +12,7 @@ registrations:
           name: Unit
           description: A location
           properties:
-            name:
-              type: simple
-              dataType: string
             pNr:
               type: simple
               dataType: string
 ...
-
-
-Generic for all objects
-
-            activeFrom
-            activeTo
