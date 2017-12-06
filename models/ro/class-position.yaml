@@ -8,7 +8,7 @@ registrations:
           model: { id: 17960fc5-7a6d-4e0b-95d8-f20934493819, name: ReflectiveOrganization }
           # Responsible actor - actor: { id: actor.id }
           class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: ReClass }
-          extends: { id: c4315fa9-3765-40c0-ba45-ef821c416f83, name: ReObject }
+          extends: { id: 2da6e709-3f63-47d9-a197-bda06fb86936, name: Entity }
           name: Position
           description: A position
           properties:
