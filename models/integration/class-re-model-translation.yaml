@@ -14,6 +14,10 @@ registrations:
             A translation from one model to another, typically in the context of
             data integration with external systems.
           properties:
+            description:
+              description: A brief description of the model translation
+              type: simple
+              dataType: string
             sourceModel:
               description: Model of the data before translation
               type: simple
