@@ -26,10 +26,10 @@ registrations:
                 type: relation
                 target: { id: 5fa95ccd-a801-4cbb-9400-e7e1ee7cee44, name: Organization }
             ean:
-              type: mapped
+              type: map
               dataType: string
             locations:
-              type: mapped
+              type: map
               dataType:
                 type: relation
                 target: { id: cfd8d4db-96cd-45e2-8de7-0b257b63a4e7, name: Location }
@@ -37,19 +37,19 @@ registrations:
               type: simple
               dataType: string
             tasks:
-              type: mapped
+              type: map
               dataType:
                 type: relation
                 # TODO - klassifikation
                 target: { id: , name: }
             areasOfResponsibility:
-              type: mapped
+              type: map
               dataType:
                 type: relation
                 # TODO - klassifikation over til KLE (ansvarsområder)
                 target: { id: , name: }
             areasOfInterest:
-              type: mapped
+              type: map
               dataType:
                 type: relation
                 # TODO - klassifikation over til KLE (ansvarsområder)
@@ -61,7 +61,7 @@ registrations:
                 schema: { /* TODO [ '1', '2', '3', '4' ] */ }
             aliases:
               description: Fx. losShortName, losLongName, etc.
-              type: mapped
+              type: map
               dataType: string
             unitType:
               type: simple

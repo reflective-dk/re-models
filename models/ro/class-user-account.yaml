@@ -23,13 +23,13 @@ registrations:
                 type: relation
                 target: { id: 025dfd36-f7a6-41e3-aa0c-64fe0376d3b7, name: Role }
             areasOfResponsibility:
-              type: mapped
+              type: map
               dataType:
                 type: relation
                 # TODO - klassifikation over til KLE (ansvarsområder)
                 target: { id: , name: }
             areasOfInterest:
-              type: mapped
+              type: map
               dataType:
                 type: relation
                 # TODO - klassifikation over til KLE (ansvarsområder)

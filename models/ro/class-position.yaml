@@ -23,7 +23,7 @@ registrations:
                 type: relation
                 target: { id: 5cad9972-6560-4136-a9d5-40c2d109be9b, name: Unit }
             workingAt:
-              type: mapped
+              type: map
               dataType:
                 type: relation
                 target: { id: 5cad9972-6560-4136-a9d5-40c2d109be9b, name: Unit }

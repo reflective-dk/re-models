@@ -13,13 +13,13 @@ registrations:
           description: A process
           properties:
             roleTypes:
-              type: mapped
+              type: map
               dataType:
                 type: relation
                 # TODO klassifikation
                 target: { id: , name:  }
             responsibilities:
-              type: mapped
+              type: map
               dataType:
                 type: relation
                 # TODO klassifikation
@@ -30,7 +30,7 @@ registrations:
               dataType: binary
             userForms:
               description: Form elements used to capture user input
-              type: mapped
+              type: map
               dataType:
                 type: relation
                 target: { id: 6c54bdcc-691a-4190-8b50-4c5a6e4679dc, name: UserForm }
