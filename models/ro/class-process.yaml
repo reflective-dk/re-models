@@ -1,0 +1,40 @@
+# Process Class
+---
+id: efec2048-b4f3-4ffd-a7ba-b6698d412bbc
+mimeType: application/vnd.reflective-dk.object+json
+registrations:
+  - validity:
+      - input:
+          model: { id: 17960fc5-7a6d-4e0b-95d8-f20934493819, name: ReflectiveOrganization }
+          # Responsible actor - actor: { id: actor.id }
+          class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: ReClass }
+          extends: { id: 2da6e709-3f63-47d9-a197-bda06fb86936, name: Entity }
+          name: Process
+          description: A process
+          properties:
+            roleTypes:
+              type: mapped
+              dataType:
+                type: relation
+                # TODO klassifikation
+                target: { id: , name:  }
+            responsibilities:
+              type: mapped
+              dataType:
+                type: relation
+                # TODO klassifikation
+                target: { id: , name: }
+            bpmn:
+              description: Multihash pointing to the BPMN object
+              type: simple
+              dataType: binary
+            userForms:
+              description: Form elements used to capture user input
+              type: mapped
+              dataType:
+                type: relation
+                target: { id: 6c54bdcc-691a-4190-8b50-4c5a6e4679dc, name: UserForm }
+            diagram:
+              description: Pre-rendered diagram
+              type: binary
+...

@@ -40,13 +40,19 @@ registrations:
               type: mapped
               dataType:
                 type: relation
-                // TODO - klassifikation
+                # TODO - klassifikation
                 target: { id: , name: }
             areasOfResponsibility:
               type: mapped
               dataType:
                 type: relation
-                // TODO - klassifikation over til KLE (ansvarsområder)
+                # TODO - klassifikation over til KLE (ansvarsområder)
+                target: { id: , name: }
+            areasOfInterest:
+              type: mapped
+              dataType:
+                type: relation
+                # TODO - klassifikation over til KLE (ansvarsområder)
                 target: { id: , name: }
             sensitivity:
               type: simple
@@ -61,7 +67,7 @@ registrations:
               type: simple
               dataType:
                 type: relation
-                // TODO - klassifikation
+                # TODO - klassifikation
                 target: { id: , name: }
             costCenter:
               type: simple

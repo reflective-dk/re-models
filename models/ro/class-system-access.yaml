@@ -1,0 +1,26 @@
+# System Access
+---
+id: 1938d89b-a935-412d-a23c-02709fe63c0c
+mimeType: application/vnd.reflective-dk.object+json
+registrations:
+  - validity:
+      - input:
+          model: { id: 17960fc5-7a6d-4e0b-95d8-f20934493819, name: ReflectiveOrganization }
+          # Responsible actor - actor: { id: actor.id }
+          class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: ReClass }
+          extends: { id: 2da6e709-3f63-47d9-a197-bda06fb86936, name: Entity }
+          name: System Access
+          description: An access into an external IT system
+          properties:
+            system:
+              type: simple
+              dataType:
+                type: relation
+                target: { id: e8bc40c5-e542-4bab-b6fc-64b2339ffa15, name: System }
+            roleTypes:
+              type: mapped
+              dataType:
+                type: relation
+                # TODO klassifikation
+                target: { id: , name:  }
+...

@@ -1,6 +1,6 @@
-# Position Class
+# User Account Class
 ---
-id: 06c495eb-fcef-4c09-996f-63fd2dfea427
+id: 8b0390d1-74b9-48a2-a4cf-406e934ea120
 mimeType: application/vnd.reflective-dk.object+json
 registrations:
   - validity:
@@ -9,34 +9,34 @@ registrations:
           # Responsible actor - actor: { id: actor.id }
           class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: ReClass }
           extends: { id: 2da6e709-3f63-47d9-a197-bda06fb86936, name: Entity }
-          name: Position
-          description: A position
+          name: User Account
+          description: A user account
           properties:
-            employee:
+            system:
               type: simple
               dataType:
                 type: relation
-                target: { id: 66d33a37-f73c-4723-8dca-5feb9cf420e4, name: Person }
-            employedAt:
+                target: { id: e8bc40c5-e542-4bab-b6fc-64b2339ffa15, name: System }
+            role:
               type: simple
               dataType:
                 type: relation
-                target: { id: 5cad9972-6560-4136-a9d5-40c2d109be9b, name: Unit }
-            workingAt:
+                target: { id: 025dfd36-f7a6-41e3-aa0c-64fe0376d3b7, name: Role }
+            areasOfResponsibility:
               type: mapped
               dataType:
                 type: relation
-                target: { id: 5cad9972-6560-4136-a9d5-40c2d109be9b, name: Unit }
-            positionType:
-              type: simple
+                # TODO - klassifikation over til KLE (ansvarsområder)
+                target: { id: , name: }
+            areasOfInterest:
+              type: mapped
               dataType:
                 type: relation
-                # TODO - klassifikation
+                # TODO - klassifikation over til KLE (ansvarsområder)
                 target: { id: , name: }
-            employmentType:
+            sensitivity:
               type: simple
               dataType:
-                type: relation
-                # TODO - klassifikation
-                target: { id: , name: }
+                type: json
+                schema: { /* TODO [ '1', '2', '3', '4' ] */ }
 ...

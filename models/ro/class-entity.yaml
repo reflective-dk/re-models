@@ -12,6 +12,12 @@ registrations:
           name: Entity
           description: A generic entity in the Reflective Organization model
           properties:
+            name:
+              type: simple
+              dataType: string
+            description:
+              type: simple
+              dataType: string
             activeFrom:
               type: simple
               dataType: dateTime

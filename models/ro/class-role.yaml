@@ -16,7 +16,7 @@ registrations:
               type: simple
               dataType:
                 type: relation
-                // TODO - klassifikation
+                # TODO - klassifikation
                 target: { id: , name: }
             position:
               type: simple
@@ -27,8 +27,25 @@ registrations:
               type: mapped
               dataType:
                 type: relation
-                // TODO - klassifikation
+                # TODO - klassifikation
                 target: { id: , name: }
+            areasOfResponsibility:
+              type: mapped
+              dataType:
+                type: relation
+                # TODO - klassifikation over til KLE (ansvarsområder)
+                target: { id: , name: }
+            areasOfInterest:
+              type: mapped
+              dataType:
+                type: relation
+                # TODO - klassifikation over til KLE (ansvarsområder)
+                target: { id: , name: }
+            sensitivity:
+              type: simple
+              dataType:
+                type: json
+                schema: { /* TODO [ '1', '2', '3', '4' ] */ }
             propagateFrom:
               type: simple
               dataType:
