@@ -1,0 +1,69 @@
+# Unit Class
+---
+id: 5cad9972-6560-4136-a9d5-40c2d109be9b
+mimeType: application/vnd.reflective-dk.object+json
+registrations:
+  - validity:
+      - input:
+          model: { id: 17960fc5-7a6d-4e0b-95d8-f20934493819, name: ReflectiveOrganization }
+          # Responsible actor - actor: { id: actor.id }
+          class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: ReClass }
+          extends: { id: c4315fa9-3765-40c0-ba45-ef821c416f83, name: ReObject }
+          name: Unit
+          description: An organizational unit
+          properties:
+            name:
+              type: simple
+              dataType: string
+            parent:
+              type: simple
+              dataType:
+                type: relation
+                target: { id: 5cad9972-6560-4136-a9d5-40c2d109be9b, name: Unit }
+            owner:
+              type: simple
+              dataType:
+                type: relation
+                target: { id: 5fa95ccd-a801-4cbb-9400-e7e1ee7cee44, name: Organization }
+            ean:
+              type: mapped
+              dataType: string
+            locations:
+              type: mapped
+              dataType:
+                type: relation
+                target: { id: cfd8d4db-96cd-45e2-8de7-0b257b63a4e7, name: Location }
+            seNr:
+              type: simple
+              dataType: string
+            tasks:
+              type: mapped
+              dataType:
+                type: relation
+                // TODO - klassifikation
+                target: { id: , name: }
+            areasOfResponsibility:
+              type: mapped
+              dataType:
+                type: relation
+                // TODO - klassifikation over til KLE (ansvarsområder)
+                target: { id: , name: }
+            sensitivity:
+              type: simple
+              dataType:
+                type: json
+                schema: { /* TODO [ '1', '2', '3', '4' ] */ }
+            aliases:
+              description: Fx. losShortName, losLongName, etc.
+              type: mapped
+              dataType: string
+            unitType:
+              type: simple
+              dataType:
+                type: relation
+                // TODO - klassifikation
+                target: { id: , name: }
+            costCenter:
+              type: simple
+              dataType: string
+...

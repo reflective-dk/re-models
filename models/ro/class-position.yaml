@@ -1,0 +1,42 @@
+# Position Class
+---
+id: 06c495eb-fcef-4c09-996f-63fd2dfea427
+mimeType: application/vnd.reflective-dk.object+json
+registrations:
+  - validity:
+      - input:
+          model: { id: 17960fc5-7a6d-4e0b-95d8-f20934493819, name: ReflectiveOrganization }
+          # Responsible actor - actor: { id: actor.id }
+          class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: ReClass }
+          extends: { id: c4315fa9-3765-40c0-ba45-ef821c416f83, name: ReObject }
+          name: Position
+          description: A position
+          properties:
+            employee:
+              type: simple
+              dataType:
+                type: relation
+                target: { id: 66d33a37-f73c-4723-8dca-5feb9cf420e4, name: Person }
+            employedAt:
+              type: simple
+              dataType:
+                type: relation
+                target: { id: 5cad9972-6560-4136-a9d5-40c2d109be9b, name: Unit }
+            workingAt:
+              type: mapped
+              dataType:
+                type: relation
+                target: { id: 5cad9972-6560-4136-a9d5-40c2d109be9b, name: Unit }
+            positionType:
+              type: simple
+              dataType:
+                type: relation
+                // TODO - klassifikation
+                target: { id: , name: }
+            employmentType:
+              type: simple
+              dataType:
+                type: relation
+                // TODO - klassifikation
+                target: { id: , name: }
+...
