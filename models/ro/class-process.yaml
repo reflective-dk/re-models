@@ -12,12 +12,6 @@ registrations:
           name: Process
           description: A process
           properties:
-            roleTypes:
-              type: map
-              dataType:
-                type: relation
-                # TODO klassifikation
-                target: { id: , name:  }
             responsibilities:
               type: map
               dataType:
