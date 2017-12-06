@@ -30,7 +30,7 @@ registrations:
             cpr:
               type: simple
               dataType: string
-            cprSupId:
+            cprSuppId:
               type: simple
               dataType: string
             firstName:
