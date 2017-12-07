@@ -11,4 +11,15 @@ registrations:
           extends: { id: 2da6e709-3f63-47d9-a197-bda06fb86936, name: Entity }
           name: Responsibility
           description: A Responsibility
+          properties:
+            parent:
+              type: simple
+              dataType:
+                type: relation
+                target: { id: f5155ea0-3e2f-4dcf-832a-c0fc99f2fbb4, name: Responsibility }
+            owner:
+              type: simple
+              dataType:
+                type: relation
+                target: { id: c4be5a95-1320-4996-b219-e2f6f7cef8dd, name: Role Type }
 ...
