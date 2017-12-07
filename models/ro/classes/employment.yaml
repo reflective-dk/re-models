@@ -27,16 +27,9 @@ registrations:
               dataType:
                 type: relation
                 target: { id: 5cad9972-6560-4136-a9d5-40c2d109be9b, name: Unit }
-            positionType:
+            position:
               type: simple
               dataType:
                 type: relation
-                # TODO - klassifikation
-                target: { id: , name: }
-            employmentType:
-              type: simple
-              dataType:
-                type: relation
-                # TODO - klassifikation
-                target: { id: , name: }
+                target: { id: add5e887-841f-4f36-bb7e-0676d67c494f, name: Position }
 ...
