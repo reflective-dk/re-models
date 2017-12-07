@@ -1,0 +1,12 @@
+# Standard responsibility instances
+---
+id: 5ef17eb5-b59e-4194-a844-7d2b730482a8
+mimeType: application/vnd.reflective-dk.object+json
+registrations:
+  - validity:
+      - input:
+          model: { id: f5155ea0-3e2f-4dcf-832a-c0fc99f2fbb4, name: Responsibility }
+          # Responsible actor - actor: { id: actor.id }
+          type: role
+          name: Administrator
+...
