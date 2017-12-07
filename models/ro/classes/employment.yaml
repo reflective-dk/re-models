@@ -1,4 +1,4 @@
-# Position Class
+# Employment Class
 ---
 id: 06c495eb-fcef-4c09-996f-63fd2dfea427
 mimeType: application/vnd.reflective-dk.object+json
@@ -9,8 +9,8 @@ registrations:
           # Responsible actor - actor: { id: actor.id }
           class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: ReClass }
           extends: { id: 2da6e709-3f63-47d9-a197-bda06fb86936, name: Entity }
-          name: Position
-          description: A position
+          name: Employment
+          description: An employment (Danish: 'Engagement')
           properties:
             employee:
               type: simple
