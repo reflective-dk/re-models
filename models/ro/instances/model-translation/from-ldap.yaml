@@ -6,7 +6,7 @@ registrations:
   - validity:
       - input:
           # Responsible actor - actor: { id: actor.id }
-          class: { id: b712918b-a13f-4d7c-9bc7-ff3ef9dd60b1, name: ReModelTranslation }
+          class: { id: b712918b-a13f-4d7c-9bc7-ff3ef9dd60b1, name: ModelTranslation }
           description: Translation from the KMD LOS integration model to Reflective Organization
           sourceModel: { id: cba08993-bdd6-496e-b6f2-436162fe68aa, name: LdapIntegration }
           targetModel: { id: 17960fc5-7a6d-4e0b-95d8-f20934493819, name: ReflectiveOrganization }
