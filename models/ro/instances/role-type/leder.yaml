@@ -5,8 +5,7 @@ mimeType: application/vnd.reflective-dk.object+json
 registrations:
   - validity:
       - input:
-          model: { id: f5155ea0-3e2f-4dcf-832a-c0fc99f2fbb4, name: Responsibility }
+          class: { id: c4be5a95-1320-4996-b219-e2f6f7cef8dd, name: Role Type }
           # Responsible actor - actor: { id: actor.id }
-          type: role
           name: Leder
 ...
