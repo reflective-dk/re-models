@@ -12,11 +12,16 @@ registrations:
           name: Role
           description: A role
           properties:
-            position:
+            employment:
               type: simple
               dataType:
                 type: relation
-                target: { id: 06c495eb-fcef-4c09-996f-63fd2dfea427, name: Position }
+                target: { id: 06c495eb-fcef-4c09-996f-63fd2dfea427, name: Employment }
+            roleType:
+              type: simple
+              dataType:
+                type: relation
+                target: { id: c4be5a95-1320-4996-b219-e2f6f7cef8dd, name: Role Type }
             responsibilities:
               type: map
               dataType:
