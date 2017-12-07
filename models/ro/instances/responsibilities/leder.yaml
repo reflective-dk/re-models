@@ -1,12 +1,12 @@
 # Standard responsibility instances
 ---
-id: 06984d4f-f388-494e-99b8-308f0dd4c3f7
+id: 910b5480-71b1-4b57-a713-6c7dfa6566d1
 mimeType: application/vnd.reflective-dk.object+json
 registrations:
   - validity:
       - input:
           model: { id: f5155ea0-3e2f-4dcf-832a-c0fc99f2fbb4, name: Responsibility }
           # Responsible actor - actor: { id: actor.id }
-          name: Medarbejderkort
-          parent: fc84d682-69fd-4a56-a15b-252769b7c132
+          type: role
+          name: Leder
 ...
