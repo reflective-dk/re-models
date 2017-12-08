@@ -8,6 +8,6 @@ registrations:
           # Responsible actor - actor: { id: actor.id }
           class: { id: b712918b-a13f-4d7c-9bc7-ff3ef9dd60b1, name: Model Translation }
           description: Translation from raw integration data to the LDAP integration model
-          sourceModel: { id: 0d0a5f04-3828-4b90-b848-1ec593077e50, name: ReRawIntegration }
-          targetModel: { id: cba08993-bdd6-496e-b6f2-436162fe68aa, name: LdapIntegration }
+          sourceModel: { id: 0d0a5f04-3828-4b90-b848-1ec593077e50, name: Raw Model }
+          targetModel: { id: cba08993-bdd6-496e-b6f2-436162fe68aa, name: LDAP Model }
 ...

@@ -5,7 +5,7 @@ mimeType: application/vnd.reflective-dk.object+json
 registrations:
   - validity:
       - input:
-          model: { id: 0d0a5f04-3828-4b90-b848-1ec593077e50, name: ReRawIntegration }
+          model: { id: 0d0a5f04-3828-4b90-b848-1ec593077e50, name: Raw Model }
           # Responsible actor - actor: { id: actor.id }
           class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
           extends: { id: c4315fa9-3765-40c0-ba45-ef821c416f83, name: Object }

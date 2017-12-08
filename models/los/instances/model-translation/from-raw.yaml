@@ -8,6 +8,6 @@ registrations:
           # Responsible actor - actor: { id: actor.id }
           class: { id: b712918b-a13f-4d7c-9bc7-ff3ef9dd60b1, name: Model Translation }
           description: Translation from raw integration data to the KMD LOS integration model
-          sourceModel: { id: 0d0a5f04-3828-4b90-b848-1ec593077e50, name: ReRawIntegration }
+          sourceModel: { id: 0d0a5f04-3828-4b90-b848-1ec593077e50, name: Raw Model }
           targetModel: { id: 8c03d19e-764c-45cd-a8bb-406b961deb84, name: LosIntegration }
 ...
