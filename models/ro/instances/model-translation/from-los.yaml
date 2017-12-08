@@ -8,6 +8,6 @@ registrations:
           # Responsible actor - actor: { id: actor.id }
           class: { id: b712918b-a13f-4d7c-9bc7-ff3ef9dd60b1, name: Model Translation }
           description: Translation from the KMD LOS integration model to Reflective Organization
-          sourceModel: { id: 8c03d19e-764c-45cd-a8bb-406b961deb84, name: LosIntegration }
+          sourceModel: { id: 8c03d19e-764c-45cd-a8bb-406b961deb84, name: KMD LOS Model }
           targetModel: { id: 17960fc5-7a6d-4e0b-95d8-f20934493819, name: Reflective Organization }
 ...
