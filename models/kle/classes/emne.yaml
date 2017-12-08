@@ -1,6 +1,6 @@
-# Klassifikation Class
+# Emne Class
 ---
-id: 94e29bbc-09eb-4b8c-98e0-944bf63a85a9
+id: aa6b2598-47c2-4a80-8bf0-bfa83e6afae8
 mimeType: application/vnd.reflective-dk.object+json
 registrations:
   - validity:
@@ -8,6 +8,6 @@ registrations:
           model: { id: dc3b4db1-efef-4a88-acd9-d85f4dac2179, name: KLE Model }
           # Responsible actor - actor: { id: actor.id }
           class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
-          name: KLE Klassifikation
-          description: A KLE klassifikation
+          name: KLE Emne
+          description: A KLE Emne
 ...
