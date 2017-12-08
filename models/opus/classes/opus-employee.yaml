@@ -7,8 +7,8 @@ registrations:
       - input:
           model: { id: 513421bc-7994-4ee5-a67b-4f29a903d7da, name: OpusIntegration }
           # Responsible actor - actor: { id: actor.id }
-          class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: ReClass }
-          extends: { id: c4315fa9-3765-40c0-ba45-ef821c416f83, name: ReObject }
+          class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
+          extends: { id: c4315fa9-3765-40c0-ba45-ef821c416f83, name: Object }
           name: OpusEmployee
           description: An employee as represented by KMD Opus
           properties:

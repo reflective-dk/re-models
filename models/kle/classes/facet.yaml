@@ -7,7 +7,7 @@ registrations:
       - input:
           model: { id: dc3b4db1-efef-4a88-acd9-d85f4dac2179, name: KLE Model }
           # Responsible actor - actor: { id: actor.id }
-          class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: ReClass }
+          class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
           name: KLE Facet
           description: A KLE facet
 ...
