@@ -1,11 +1,11 @@
 ---
-id: e775f11e-4fba-4e5f-b491-d330ab68b9ef
+id: 3057d6bf-dd6f-4767-91ca-78671905c2d1
 mimeType: application/vnd.reflective-dk.object+json
 registrations:
   - validity:
       - input:
           class: { id: f5155ea0-3e2f-4dcf-832a-c0fc99f2fbb4, name: Responsibility }
           # Responsible actor - actor: { id: actor.id }
-          name: Lønbehandling
-          owner: { id: fc84d682-69fd-4a56-a15b-252769b7c132 }
+          name: Personale
+          owner: { id: 910b5480-71b1-4b57-a713-6c7dfa6566d1 }
 ...
