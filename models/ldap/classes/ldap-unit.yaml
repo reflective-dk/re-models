@@ -1,0 +1,16 @@
+# LDAP Unit Class
+---
+id: 08a0245f-50d2-446b-914a-1b91d00f1891
+mimeType: application/vnd.reflective-dk.object+json
+registrations:
+  - validity:
+      - input:
+          model: { id: cba08993-bdd6-496e-b6f2-436162fe68aa, name: LDAP Model }
+          # Responsible actor - actor: { id: actor.id }
+          class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
+          extends: { id: 71ae7b76-c13d-4f0e-bcbf-5b9fc77c7a00, name: LDAP Object }
+          name: LDAP Unit
+          description: >-
+            An LDAP organizational unit that can be referenced through the
+            Organizational Unit (OU) attribute of entries and other units
+...

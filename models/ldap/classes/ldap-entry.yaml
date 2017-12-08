@@ -1,0 +1,18 @@
+# LDAP Entry Class
+---
+id: cc15f5a8-c50a-4bfd-9313-9cbbde31d133
+mimeType: application/vnd.reflective-dk.object+json
+registrations:
+  - validity:
+      - input:
+          model: { id: cba08993-bdd6-496e-b6f2-436162fe68aa, name: LDAP Model }
+          # Responsible actor - actor: { id: actor.id }
+          class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
+          extends: { id: 71ae7b76-c13d-4f0e-bcbf-5b9fc77c7a00, name: LDAP Object }
+          name: LDAP Entry
+          description: An LDAP entry with a Common Name (CN) attribute
+          properties:
+            cn:
+              type: simple
+              dataType: string
+...
