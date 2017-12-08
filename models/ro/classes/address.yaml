@@ -12,5 +12,19 @@ registrations:
           name: Address
           description: An address
           properties:
-            street
+            streetAddress:
+              type: simple
+              dataType: string
+            streetAddress2:
+              type: simple
+              dataType: string
+            postalCode:
+              type: simple
+              dataType: string
+            city:
+              type: simple
+              dataType: string
+            country:
+              type: simple
+              dataType: string
 ...
