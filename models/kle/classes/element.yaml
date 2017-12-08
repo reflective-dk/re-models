@@ -9,8 +9,8 @@ registrations:
           # Responsible actor - actor: { id: actor.id }
           class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
           extends: { id: c4315fa9-3765-40c0-ba45-ef821c416f83, name: Object }
-          name: KLE Emneplan Element
-          description: An element in  KLE Emneplan
+          name: KLE Element
+          description: An element in KLE Emneplan or Handlingsfacetter
           properties:
             elementnr:
               type: simple
@@ -38,7 +38,7 @@ registrations:
               type: map
               dataType:
                 type: relation
-                target: { id: , name: KLE Element }
+                target: { id: 5ea08fe4-35c6-434f-a15a-a84eb766ca71, name: KLE Element }
             # Filter
             filterTitel:
               type: map
