@@ -17,4 +17,7 @@ registrations:
             description:
               type: simple
               dataType: string
+            udgivelsesdato:
+              type: simple
+              dataType: dateTime
 ...

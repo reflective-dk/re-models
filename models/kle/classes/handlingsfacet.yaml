@@ -1,6 +1,6 @@
-# KLE Hovedgruppe Class
+# KLE Handlingsfacet Class
 ---
-id: 94e29bbc-09eb-4b8c-98e0-944bf63a85a9
+id: 343fcd74-b73a-486d-b81f-7eb52d809915
 mimeType: application/vnd.reflective-dk.object+json
 registrations:
   - validity:
@@ -9,6 +9,6 @@ registrations:
           # Responsible actor - actor: { id: actor.id }
           class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
           extends: { id: 5ea08fe4-35c6-434f-a15a-a84eb766ca71, name: KLE Element }
-          name: KLE Hovedgruppe
-          description: A KLE Hovedgruppe
+          name: KLE Handlingsfacet
+          description: A KLE Handlingsfacet
 ...

@@ -9,4 +9,5 @@ registrations:
           class: { id: 4b9eae81-6872-442c-8662-4c23f112df86, name: KLE Klassifikation }
           name: KLE Emneplan
           description: KLE Emneplan med Hovedgrupper, Grupper og Emner
+          udgivelsesdato: 2017-11-01T00:00:00.000Z
 ...

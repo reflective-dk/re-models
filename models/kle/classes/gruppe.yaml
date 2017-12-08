@@ -1,4 +1,4 @@
-# Gruppe Class
+# KLE Gruppe Class
 ---
 id: b75866ec-eea1-451b-8ca3-88aebc98e020
 mimeType: application/vnd.reflective-dk.object+json
@@ -8,6 +8,23 @@ registrations:
           model: { id: dc3b4db1-efef-4a88-acd9-d85f4dac2179, name: KLE Model }
           # Responsible actor - actor: { id: actor.id }
           class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
+          extends: { id: 5ea08fe4-35c6-434f-a15a-a84eb766ca71, name: KLE Element }
           name: KLE Gruppe
           description: A KLE Gruppe
+          properties:
+            hovedgruppe:
+              type: simple
+              dataType:
+                type: relation
+                target: { id: 94e29bbc-09eb-4b8c-98e0-944bf63a85a9, name: KLE Hovedgruppe }
+            # Retskilde
+            retskildeTitel:
+              type: map
+              dataType: string
+            paragrafEllerKapitel:
+              type: map
+              dataType: string
+            retsinfoAccessionsnr:
+              type: map
+              dataType: string
 ...
