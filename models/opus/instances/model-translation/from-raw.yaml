@@ -6,7 +6,7 @@ registrations:
   - validity:
       - input:
           # Responsible actor - actor: { id: actor.id }
-          class: { id: b712918b-a13f-4d7c-9bc7-ff3ef9dd60b1, name: ReModelTranslation }
+          class: { id: b712918b-a13f-4d7c-9bc7-ff3ef9dd60b1, name: Model Translation }
           description: Translation from raw integration data to the KMD Opus integration model
           sourceModel: { id: 0d0a5f04-3828-4b90-b848-1ec593077e50, name: ReRawIntegration }
           targetModel: { id: 513421bc-7994-4ee5-a67b-4f29a903d7da, name: OpusIntegration }

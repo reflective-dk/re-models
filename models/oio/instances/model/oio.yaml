@@ -6,7 +6,7 @@ registrations:
   - validity:
       - input:
           # Responsible actor - actor: { id: actor.id }
-          class: { id: 54985140-62ec-49fd-b05a-661e090c405f, name: ReModel }
+          class: { id: 54985140-62ec-49fd-b05a-661e090c405f, name: Model }
           name: OioIntegration
           description: Model for OIO integration
 ...

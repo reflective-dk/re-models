@@ -1,4 +1,4 @@
-# ReModelTranslation Class
+# Model Translation Class
 ---
 id: b712918b-a13f-4d7c-9bc7-ff3ef9dd60b1
 mimeType: application/vnd.reflective-dk.object+json
@@ -9,7 +9,7 @@ registrations:
           # Responsible actor - actor: { id: actor.id }
           class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: ReClass }
           extends: { id: c4315fa9-3765-40c0-ba45-ef821c416f83, name: ReObject }
-          name: ReModelTranslation
+          name: Model Translation
           description: >-
             A translation from one model to another, typically in the context of
             data integration with external systems.
@@ -23,11 +23,11 @@ registrations:
               type: simple
               dataType:
                 type: relation
-                target: { id: 54985140-62ec-49fd-b05a-661e090c405f, name: ReModel }
+                target: { id: 54985140-62ec-49fd-b05a-661e090c405f, name: Model }
             targetModel:
               description: Model of the data after translation
               type: simple
               dataType:
                 type: relation
-                target: { id: 54985140-62ec-49fd-b05a-661e090c405f, name: ReModel }
+                target: { id: 54985140-62ec-49fd-b05a-661e090c405f, name: Model }
 ...

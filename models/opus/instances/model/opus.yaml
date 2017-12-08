@@ -6,7 +6,7 @@ registrations:
   - validity:
       - input:
           # Responsible actor - actor: { id: actor.id }
-          class: { id: 54985140-62ec-49fd-b05a-661e090c405f, name: ReModel }
+          class: { id: 54985140-62ec-49fd-b05a-661e090c405f, name: Model }
           name: OpusIntegration
           description: >-
             This model defines types and rules for the KMD Opus integration model
