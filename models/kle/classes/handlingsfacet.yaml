@@ -11,4 +11,38 @@ registrations:
           extends: { id: 5ea08fe4-35c6-434f-a15a-a84eb766ca71, name: KLE Element }
           name: KLE Handlingsfacet
           description: A KLE Handlingsfacet
+          properties:
+            kategori:
+              type: simple
+              dataType:
+                type: relation
+                target: { id: be5b2541-8b70-4f5a-bcff-e0653ec15409, name: KLE Handlingsfacetkategori }
+            # Retskilde
+            retskildeTitel:
+              type: map
+              dataType: string
+            paragrafEllerKapitel:
+              type: map
+              dataType: string
+            retsinfoAccessionsnr:
+              type: map
+              dataType: string
+            bevaringJaevnfoerArkivloven:
+              type: simple
+              dataType: string
+            sletningJaevnfoerPersondataloven:
+              type: simple
+              dataType: string
+            # EmneOgHandlingsfacetStikord
+            emneOghandlingsfacetStikordOrden:
+              type: simple
+              dataType: string
+            emneOghandlingsfacetStikordTekst:
+              type: simple
+              dataType: string
+            emne:
+              type: simple
+              dataType:
+                type: relation
+                target: { id: aa6b2598-47c2-4a80-8bf0-bfa83e6afae8, name: KLE Emne }
 ...

@@ -1,0 +1,14 @@
+# KLE Handlingsfacetkategori Class
+---
+id: be5b2541-8b70-4f5a-bcff-e0653ec15409
+mimeType: application/vnd.reflective-dk.object+json
+registrations:
+  - validity:
+      - input:
+          model: { id: dc3b4db1-efef-4a88-acd9-d85f4dac2179, name: KLE Model }
+          # Responsible actor - actor: { id: actor.id }
+          class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
+          extends: { id: 5ea08fe4-35c6-434f-a15a-a84eb766ca71, name: KLE Element }
+          name: KLE Handlingsfacetkategori
+          description: A KLE Handlingsfacetkategori
+...

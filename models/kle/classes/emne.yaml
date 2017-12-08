@@ -34,10 +34,10 @@ registrations:
               type: simple
               dataType: string
             # EmneOgHandlingsfacetStikord
-            handlingsfacetStikordOrden:
+            emneOghandlingsfacetStikordOrden:
               type: simple
               dataType: string
-            handlingsfacetStikordTekst:
+            emneOghandlingsfacetStikordTekst:
               type: simple
               dataType: string
             handlingsfacet:
