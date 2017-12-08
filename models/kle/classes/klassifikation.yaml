@@ -1,0 +1,20 @@
+# KLE Klassifikation Class
+---
+id: 4b9eae81-6872-442c-8662-4c23f112df86
+mimeType: application/vnd.reflective-dk.object+json
+registrations:
+  - validity:
+      - input:
+          model: { id: dc3b4db1-efef-4a88-acd9-d85f4dac2179, name: KLE Model }
+          # Responsible actor - actor: { id: actor.id }
+          class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
+          name: KLE Klassifikation
+          description: A KLE Klassifikation such as Emneplan or Handlingsfacetter
+          properties:
+            name:
+              type: simple
+              dataType: string
+            description:
+              type: simple
+              dataType: string
+...
