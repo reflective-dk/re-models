@@ -1,0 +1,25 @@
+# Import Class
+---
+id: 568d6451-bf4d-408c-9165-87f94f700b0a
+mimeType: application/vnd.reflective-dk.object+json
+registrations:
+  - validity:
+      - input:
+          model: { id: 855ad3bd-d62a-407c-8a33-8f49bbcc8995, name: Integration Model }
+          # Responsible actor - actor: { id: actor.id }
+          class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
+          extends: { id: c4315fa9-3765-40c0-ba45-ef821c416f83, name: Object }
+          name: Import
+          description: A metadata object tracking data for integration
+          properties:
+            mimeType:
+              description: MIME type of the integration data
+              type: simple
+              dataType: string
+            data:
+              description: Multihash pointing to the integration data
+              type: simple
+              dataType: binary
+            importTime:
+              description: Timestamp of when the data was pulled in from the external system
+...

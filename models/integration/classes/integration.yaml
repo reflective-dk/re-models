@@ -1,0 +1,45 @@
+# Integration Class
+---
+id: 0b436737-7dbe-443d-9d73-d9240ce4b17e
+mimeType: application/vnd.reflective-dk.object+json
+registrations:
+  - validity:
+      - input:
+          model: { id: 855ad3bd-d62a-407c-8a33-8f49bbcc8995, name: Integration Model }
+          # Responsible actor - actor: { id: actor.id }
+          class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
+          extends: { id: c4315fa9-3765-40c0-ba45-ef821c416f83, name: Object }
+          name: Integration
+          description: Represents an integration from a specific system for a specific tenant
+          properties:
+            tenant:
+              description: Tenant that owns the integration
+              type: simple
+              dataType:
+                type: relation
+                target: { id: 41e0ef9b-01f3-41fd-aa39-6bcb40374704, name: Tenant }
+            system:
+              description: External system data is integrated from
+              type: simple
+              dataType:
+                type: relation
+                target: { id: e8bc40c5-e542-4bab-b6fc-64b2339ffa15, name: System }
+            fetch:
+              description: Meta-object tracking imported data
+              type: simple
+              dataType:
+                type: relation
+                target: { id: 568d6451-bf4d-408c-9165-87f94f700b0a, name: Import }
+            staging:
+              description: Translation from imported data to staging model
+              type: simple
+              dataType:
+                type: relation
+                target: { id: b712918b-a13f-4d7c-9bc7-ff3ef9dd60b1, name: Translation }
+            incorporation:
+              description: Translation from staging model to final model
+              type: simple
+              dataType:
+                type: relation
+                target: { id: b712918b-a13f-4d7c-9bc7-ff3ef9dd60b1, name: Translation }
+...
