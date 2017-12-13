@@ -1,4 +1,4 @@
-# User Account Class
+# System Allocation Class
 ---
 id: 8b0390d1-74b9-48a2-a4cf-406e934ea120
 mimeType: application/vnd.reflective-dk.object+json
@@ -9,8 +9,8 @@ registrations:
           # Responsible actor - actor: { id: actor.id }
           class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
           extends: { id: 2da6e709-3f63-47d9-a197-bda06fb86936, name: Entity }
-          name: User Account
-          description: A user account
+          name: System Allocation
+          description: Allocates a specific System to a specific Role instance
           properties:
             system:
               type: simple
