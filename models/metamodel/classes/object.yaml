@@ -1,0 +1,52 @@
+# ReObject Class
+---
+id: c4315fa9-3765-40c0-ba45-ef821c416f83
+mimeType: application/vnd.reflective-dk.object+json
+registrations:
+  - validity:
+      - input:
+          model: { id: d341451b-d971-4656-bac2-1783776f8efe, name: ReMetamodel }
+          # Responsible actor - actor: { id: actor.id }
+          class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: ReClass }
+          name: ReObject
+          description: >-
+            This class defines the properties of any object on the platform. It is
+            the fundamental class at the root of the class hierarchy, so it does
+            not extend any other class. Any other class, that does not explicitly
+            declare a superclass, implicitly extends this ReObject class.
+          properties:
+            id:
+              description: An object has an id (must be a uuid)
+              type: simple
+              dataType:
+                type: definition
+                definition: uuid
+              fundamental: true
+            mimeType:
+              description: "fixed mime type: 'application/vnd.reflective-dk.object+json'"
+              type: simple
+              dataType:
+                type: json
+                schema:
+                  type: string
+                  pattern: ^application/vnd.reflective-dk.object\+json$
+              fundamental: true
+            class:
+              description: Class of this object
+              type: simple
+              dataType:
+                type: relation
+                target: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: ReClass }
+            actor:
+              description: Actor responsible for the recorded information
+              type: simple
+              dataType:
+                type: relation
+                target: { id: c4315fa9-3765-40c0-ba45-ef821c416f83, name: ReObject }
+          definitions:
+            uuid:
+              type: json
+              schema:
+                type: string
+                pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
+...

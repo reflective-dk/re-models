@@ -1,0 +1,21 @@
+# Activation of rule ModelMustExist
+---
+id: 61717642-3520-4cbb-99c1-d3e6337576c8
+mimeType: application/vnd.reflective-dk.object+json
+registrations:
+  - validity:
+      - input:
+          model: { id: d341451b-d971-4656-bac2-1783776f8efe, name: ReMetamodel }
+          # Responsible actor - actor: { id: actor.id }
+          class: { id: cb70fe97-13bd-4471-8f5f-a050c7f463bb, name: ReActivation }
+          rules:
+            model-must-exist: { id: db45a0ec-18da-4bd8-91c4-6ceb76fac2af }
+          types:
+            re-class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: ReClass }
+            re-model: { id: 54985140-62ec-49fd-b05a-661e090c405f, name: ReModel }
+            re-object: { id: c4315fa9-3765-40c0-ba45-ef821c416f83, name: ReObject }
+            re-rule: { id: 69c26015-0e44-4315-a5d9-343a5308dfef, name: ReRule }
+            re-activation: { id: cb70fe97-13bd-4471-8f5f-a050c7f463bb, name: ReActivation }
+            re-validation-result: { id: 8b153e6f-2f65-417c-9249-2f9ab4c9ebf0, name: ReValidationResult }
+          severity: warning
+...

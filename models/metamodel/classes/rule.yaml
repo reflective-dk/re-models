@@ -1,0 +1,57 @@
+# ReRule Class
+---
+id: 69c26015-0e44-4315-a5d9-343a5308dfef
+mimeType: application/vnd.reflective-dk.object+json
+registrations:
+  - validity:
+      - input:
+          model: { id: d341451b-d971-4656-bac2-1783776f8efe, name: ReMetamodel }
+          # Responsible actor - actor: { id: actor.id }
+          class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: ReClass }
+          extends: { id: c4315fa9-3765-40c0-ba45-ef821c416f83, name: ReObject }
+          name: ReRule
+          description: This class defines the properties of a rule
+          properties:
+            model:
+              description: Relation to the model that owns this rule
+              type: simple
+              dataType:
+                type: relation
+                target: { id: 54985140-62ec-49fd-b05a-661e090c405f, name: ReModel }
+            name:
+              description: The name of this rule
+              type: simple
+              dataType: string
+            description:
+              description: A brief description of the purpose of this rule
+              type: simple
+              dataType: string
+            partitioning:
+              description: Determines how to group the objects this rule is applied to
+              type: simple
+              dataType:
+                type: json
+                schema: {} # TODO: Specify valid properties
+            filter:
+              description: A predicate indicating whether to include each object
+              type: simple
+              dataType:
+                type: definition
+                definition: predicate
+            condition:
+              description: A predicate indicating whether this rule applies to each object
+              type: simple
+              dataType:
+                type: definition
+                definition: predicate
+            implication:
+              description: A predicate indicating whether each object honors this rule
+              type: simple
+              dataType:
+                type: definition
+                definition: predicate
+          definitions:
+            predicate:
+              type: json
+              schema: {} # TODO: Specify valid properties
+...
