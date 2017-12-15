@@ -1,4 +1,4 @@
-# Model Translation Class
+# Translation Class
 ---
 id: b712918b-a13f-4d7c-9bc7-ff3ef9dd60b1
 mimeType: application/vnd.reflective-dk.object+json
@@ -9,25 +9,23 @@ registrations:
           # Responsible actor - actor: { id: actor.id }
           class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
           extends: { id: c4315fa9-3765-40c0-ba45-ef821c416f83, name: Object }
-          name: Model Translation
-          description: >-
-            A translation from one model to another, typically in the context of
-            data integration with external systems.
+          name: Translation
+          description: A translation from one set of objects to another
           properties:
-            description:
-              description: A brief description of the model translation
-              type: simple
-              dataType: string
-            sourceModel:
-              description: Model of the data before translation
-              type: simple
+            sources:
+              description: The source objects of the translation
+              type: map
               dataType:
                 type: relation
-                target: { id: 54985140-62ec-49fd-b05a-661e090c405f, name: Model }
-            targetModel:
-              description: Model of the data after translation
-              type: simple
+                target: { id: c4315fa9-3765-40c0-ba45-ef821c416f83, name: Object }
+            targets:
+              description: The target objects of the translation
+              type: map
               dataType:
                 type: relation
-                target: { id: 54985140-62ec-49fd-b05a-661e090c405f, name: Model }
+                target: { id: c4315fa9-3765-40c0-ba45-ef821c416f83, name: Object }
+            translationTime:
+              description: Timestamp of when the translation occurred
+              type: simple
+              dataType: dateTime
 ...
