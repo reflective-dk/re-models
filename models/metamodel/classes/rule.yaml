@@ -1,15 +1,15 @@
-# ReRule Class
+# Rule Class
 ---
 id: 69c26015-0e44-4315-a5d9-343a5308dfef
 mimeType: application/vnd.reflective-dk.object+json
 registrations:
   - validity:
       - input:
-          model: { id: d341451b-d971-4656-bac2-1783776f8efe, name: ReMetamodel }
+          model: { id: d341451b-d971-4656-bac2-1783776f8efe, name: Metamodel }
           # Responsible actor - actor: { id: actor.id }
-          class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: ReClass }
-          extends: { id: c4315fa9-3765-40c0-ba45-ef821c416f83, name: ReObject }
-          name: ReRule
+          class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
+          extends: { id: c4315fa9-3765-40c0-ba45-ef821c416f83, name: Object }
+          name: Rule
           description: This class defines the properties of a rule
           properties:
             model:
@@ -17,7 +17,7 @@ registrations:
               type: simple
               dataType:
                 type: relation
-                target: { id: 54985140-62ec-49fd-b05a-661e090c405f, name: ReModel }
+                target: { id: 54985140-62ec-49fd-b05a-661e090c405f, name: Model }
             name:
               description: The name of this rule
               type: simple

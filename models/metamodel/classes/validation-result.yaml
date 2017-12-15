@@ -1,15 +1,15 @@
-# ReValidationResult Class
+# Validation Result Class
 ---
 id: 8b153e6f-2f65-417c-9249-2f9ab4c9ebf0
 mimeType: application/vnd.reflective-dk.object+json
 registrations:
   - validity:
       - input:
-          model: { id: d341451b-d971-4656-bac2-1783776f8efe, name: ReMetamodel }
+          model: { id: d341451b-d971-4656-bac2-1783776f8efe, name: Metamodel }
           # Responsible actor - actor: { id: actor.id }
-          class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: ReClass }
-          extends: { id: c4315fa9-3765-40c0-ba45-ef821c416f83, name: ReObject }
-          name: ReValidationResult
+          class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
+          extends: { id: c4315fa9-3765-40c0-ba45-ef821c416f83, name: Object }
+          name: Validation Result
           description: >-
             This class defines the properties of a validation result. A validation
             result is the result of validating an object against its class schema
@@ -18,17 +18,17 @@ registrations:
             specified snapshot time (defaults to a 'now' snapshot).
           properties:
             subject:
-              description: ReObject that was validated
+              description: Object that was validated
               type: simple
               dataType:
                 type: relation
-                target: { id: c4315fa9-3765-40c0-ba45-ef821c416f83, name: ReObject }
+                target: { id: c4315fa9-3765-40c0-ba45-ef821c416f83, name: Object }
             subjectClass:
               description: Class of the subject at snapshot time
               type: simple
               dataType:
                 type: relation
-                target: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: ReClass }
+                target: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
             validations:
               type: map
               dataType:
