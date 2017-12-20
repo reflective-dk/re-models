@@ -1,0 +1,14 @@
+---
+id: ffc32fa0-75f4-459f-8fcf-d49fa01fb2d9
+mimeType: application/vnd.reflective-dk.object+json
+registrations:
+  - validity:
+      - input:
+          class: { id: 0b436737-7dbe-443d-9d73-d9240ce4b17e, name: Integration }
+          # Responsible actor - actor: { id: actor.id }
+          tenant: { id: 0b529eb0-bf13-4133-8552-584db24b98ac, name: Thisted }
+          system: { id: b722c7ca-2461-4d85-95ac-acb577908266, name: Active Directory }
+          fetch: { id: 0377eb2d-aab4-4db3-9f65-7d36011146d6 }
+          staging: { id: 73e3e52c-f1f1-451f-ad6c-103cab3a15d4 }
+          incorporation: { id: 824ac908-ac5c-464e-aebb-bf708aebd69c }
+...
