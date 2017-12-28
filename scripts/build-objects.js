@@ -4,10 +4,8 @@
 
 var fs = require('fs');
 var path = require('path');
-var requireyml = require('require-yml');
-var loc = path.join(path.dirname(require.resolve('../package.json')), 'models');
 
-var models = requireyml(loc);
+var models = require('../index');
 var objects = [];
 Object.keys(models).forEach(function(m) {
     var model = models[m];
