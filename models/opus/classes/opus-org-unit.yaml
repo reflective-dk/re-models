@@ -1,4 +1,4 @@
-# OpusOrgUnit Class
+# Opus Org Unit Class
 ---
 id: 40864bd7-2ac2-468d-80a5-68aefa018524
 mimeType: application/vnd.reflective-dk.object+json
@@ -9,7 +9,7 @@ registrations:
           # Responsible actor - actor: { id: actor.id }
           class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
           extends: { id: c4315fa9-3765-40c0-ba45-ef821c416f83, name: Object }
-          name: OpusOrgUnit
+          name: Opus Org Unit
           description: An organizational unit as represented by KMD Opus
           properties:
             orgUnitId:

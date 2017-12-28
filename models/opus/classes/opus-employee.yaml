@@ -1,4 +1,4 @@
-# OpusEmployee Class
+# Opus Employee Class
 ---
 id: 16eeb8d9-b2f7-486c-96a5-2a75d4ea983d
 mimeType: application/vnd.reflective-dk.object+json
@@ -9,7 +9,7 @@ registrations:
           # Responsible actor - actor: { id: actor.id }
           class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
           extends: { id: c4315fa9-3765-40c0-ba45-ef821c416f83, name: Object }
-          name: OpusEmployee
+          name: Opus Employee
           description: An employee as represented by KMD Opus
           properties:
             employeeId:
