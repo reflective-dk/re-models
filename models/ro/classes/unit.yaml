@@ -59,10 +59,6 @@ registrations:
               dataType:
                 type: json
                 schema: { /* TODO [ '1', '2', '3', '4' ] */ }
-            aliases:
-              description: Fx. losShortName, losLongName, etc.
-              type: map
-              dataType: string
             unitType:
               type: simple
               dataType:

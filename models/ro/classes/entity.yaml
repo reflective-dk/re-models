@@ -24,4 +24,8 @@ registrations:
             activeTo:
               type: simple
               dataType: dateTime
+            aliases:
+              description: Fx. losShortName, losLongName, etc.
+              type: map
+              dataType: string
 ...

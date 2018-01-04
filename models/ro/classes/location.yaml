@@ -9,10 +9,15 @@ registrations:
           # Responsible actor - actor: { id: actor.id }
           class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
           extends: { id: 2da6e709-3f63-47d9-a197-bda06fb86936, name: Entity }
-          name: Unit
+          name: Location
           description: A location
           properties:
             pNr:
               type: simple
               dataType: string
+            address:
+              type: map
+              dataType:
+                type: relation
+                target: { id: 6ec80fc8-4ba4-49e2-88bf-e31032cca129, name: Address }
 ...
