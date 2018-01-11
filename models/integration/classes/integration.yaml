@@ -12,6 +12,10 @@ registrations:
           name: Integration
           description: Represents an integration from a specific system for a specific tenant
           properties:
+            name:
+              description: Name used to identify this integration
+              type: simple
+              dataType: string
             tenant:
               description: Tenant that owns the integration
               type: simple

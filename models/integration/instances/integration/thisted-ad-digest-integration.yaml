@@ -6,6 +6,7 @@ registrations:
       - input:
           class: { id: 0b436737-7dbe-443d-9d73-d9240ce4b17e, name: Integration }
           # Responsible actor - actor: { id: actor.id }
+          name: Thisted AD Digest Integration
           tenant: { id: 0b529eb0-bf13-4133-8552-584db24b98ac, name: Thisted }
           system: { id: b722c7ca-2461-4d85-95ac-acb577908266, name: Active Directory }
           fetcher:

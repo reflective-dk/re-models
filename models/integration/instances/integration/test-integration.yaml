@@ -6,7 +6,8 @@ registrations:
       - input:
           class: { id: 0b436737-7dbe-443d-9d73-d9240ce4b17e, name: Integration }
           # Responsible actor - actor: { id: actor.id }
-          tenant: { id: 0b529eb0-bf13-4133-8552-584db24b98ac, name: Thisted }
+          name: Test Integration
+          tenant: { id: 7857db3f-1929-4100-86ea-a971369bd1a5, name: Test Tenant }
           system: { id: 96600be1-f12a-4841-8c90-7a3cdfed0edf, name: Test System }
           fetcher: { id: f98575e7-332d-45ae-ac67-f3e920793842, Test Fetcher }
           stager: { id: 2fb2ad57-160e-4d65-8819-4914c990b239, Test Stager }
