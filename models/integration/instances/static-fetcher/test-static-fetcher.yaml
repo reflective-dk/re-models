@@ -7,7 +7,7 @@ registrations:
           class: { id: 513d235b-5778-499d-a71a-a2e239e35d5c, name: Static Fetcher }
           # Responsible actor - actor: { id: actor.id }
           name: Test Static Fetcher
-          mimeType: text/json
+          mimeType: text/xml
           data:
             hash: QmAMockHashUsedForTesting000000000000000000000
             name: A mock hash
