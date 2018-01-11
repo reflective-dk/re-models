@@ -10,7 +10,9 @@ registrations:
           class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
           extends: { id: c4315fa9-3765-40c0-ba45-ef821c416f83, name: Object }
           name: Stager
-          description: Mechanism for staging data
+          description: >-
+            Mechanism for staging data. This class is abstract and should be
+            extended by specialized classes
           properties:
             name:
               type: simple
