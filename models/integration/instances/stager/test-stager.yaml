@@ -1,0 +1,11 @@
+---
+id: d27786ff-8f49-4775-8475-45c1cafb7b37
+mimeType: application/vnd.reflective-dk.object+json
+registrations:
+  - validity:
+      - input:
+          class: { id: 05f1c11b-da14-49c1-8f8a-7b5e48bc6c04, name: Stager }
+          # Responsible actor - actor: { id: actor.id }
+          name: Test Stager
+          targetModel: { id: 96600be1-f12a-4841-8c90-7a3cdfed0edf, name: Test System }
+...
