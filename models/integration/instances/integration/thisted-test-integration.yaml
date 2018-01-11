@@ -8,7 +8,6 @@ registrations:
           # Responsible actor - actor: { id: actor.id }
           tenant: { id: 0b529eb0-bf13-4133-8552-584db24b98ac, name: Thisted }
           system: { id: 96600be1-f12a-4841-8c90-7a3cdfed0edf, name: Test System }
-          fetch: { id: 8cdf2da2-91f6-49f3-89c4-65b498fbccc1 }
-          staging: { id: aa9016d3-d244-4463-ae95-7f671573c6c2 }
-          incorporation: { id: bfa58829-355f-4fc5-b6c6-bb3fbc520ca6 }
+          fetcher: { id: f98575e7-332d-45ae-ac67-f3e920793842, Test Fetcher }
+          stager: { id: 2fb2ad57-160e-4d65-8819-4914c990b239, Test Stager }
 ...

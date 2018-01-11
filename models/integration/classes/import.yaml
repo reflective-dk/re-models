@@ -12,6 +12,12 @@ registrations:
           name: Import
           description: A metadata object tracking data for integration
           properties:
+            integration:
+              description: The integration that led to this import
+              type: simple
+              dataType:
+                type: relation
+                target: { id: 0b436737-7dbe-443d-9d73-d9240ce4b17e, name: Integration }
             mimeType:
               description: MIME type of the integration data
               type: simple

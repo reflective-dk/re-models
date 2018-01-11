@@ -1,0 +1,20 @@
+# Fetcher Class
+---
+id: a28e7d85-66a0-48bf-986b-a90ece6b87d5
+mimeType: application/vnd.reflective-dk.object+json
+registrations:
+  - validity:
+      - input:
+          model: { id: 855ad3bd-d62a-407c-8a33-8f49bbcc8995, name: Integration Model }
+          # Responsible actor - actor: { id: actor.id }
+          class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
+          extends: { id: c4315fa9-3765-40c0-ba45-ef821c416f83, name: Object }
+          name: Fetcher
+          description: >-
+            Mechanism for fetching data. This class is abstract and should be
+            extended by specialized classes
+          properties:
+            name:
+              type: simple
+              dataType: string
+...

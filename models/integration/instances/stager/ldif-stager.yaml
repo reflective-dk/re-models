@@ -1,0 +1,11 @@
+---
+id: 9315e56c-2b9e-4f83-bc97-5e3580f4be9c
+mimeType: application/vnd.reflective-dk.object+json
+registrations:
+  - validity:
+      - input:
+          class: { id: 05f1c11b-da14-49c1-8f8a-7b5e48bc6c04, name: Stager }
+          # Responsible actor - actor: { id: actor.id }
+          name: LDIF Stager
+          targetModel: { id: cba08993-bdd6-496e-b6f2-436162fe68aa, name: LDAP Model }
+...

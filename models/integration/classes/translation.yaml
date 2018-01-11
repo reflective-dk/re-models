@@ -12,6 +12,18 @@ registrations:
           name: Translation
           description: A translation from one set of objects to another
           properties:
+            integration:
+              description: The integration that led to this translation
+              type: simple
+              dataType:
+                type: relation
+                target: { id: 0b436737-7dbe-443d-9d73-d9240ce4b17e, name: Integration }
+            targetModel:
+              description: The model targeted by this translation
+              type: simple
+              dataType:
+                type: relation
+                target: { id: 54985140-62ec-49fd-b05a-661e090c405f, name: Model }
             sources:
               description: The source objects of the translation
               type: map

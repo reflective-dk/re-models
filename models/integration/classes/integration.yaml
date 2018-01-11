@@ -24,22 +24,22 @@ registrations:
               dataType:
                 type: relation
                 target: { id: e8bc40c5-e542-4bab-b6fc-64b2339ffa15, name: System }
-            fetch:
-              description: Meta-object tracking imported data
+            fetcher:
+              description: Mechanism used to fetch imported data
               type: simple
               dataType:
                 type: relation
-                target: { id: 568d6451-bf4d-408c-9165-87f94f700b0a, name: Import }
-            staging:
-              description: Translation from imported data to staging model
+                target: { id: a28e7d85-66a0-48bf-986b-a90ece6b87d5, name: Fetcher }
+            stager:
+              description: Mechanism used to stage imported data
               type: simple
               dataType:
                 type: relation
-                target: { id: b712918b-a13f-4d7c-9bc7-ff3ef9dd60b1, name: Translation }
-            incorporation:
-              description: Translation from staging model to final model
-              type: simple
+                target: { id: 05f1c11b-da14-49c1-8f8a-7b5e48bc6c04, name: Stager }
+            typeMaps:
+              description: Maps used to incorporate staged data into target model
+              type: map
               dataType:
                 type: relation
-                target: { id: b712918b-a13f-4d7c-9bc7-ff3ef9dd60b1, name: Translation }
+                target: { id: efefe41d-805b-478f-8e4d-841085cb7dfa, name: Type Map }
 ...
