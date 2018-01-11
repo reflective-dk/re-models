@@ -9,6 +9,6 @@ registrations:
           name: Test Integration
           tenant: { id: 7857db3f-1929-4100-86ea-a971369bd1a5, name: Test Tenant }
           system: { id: 96600be1-f12a-4841-8c90-7a3cdfed0edf, name: Test System }
-          fetcher: { id: f98575e7-332d-45ae-ac67-f3e920793842, Test Fetcher }
-          stager: { id: 2fb2ad57-160e-4d65-8819-4914c990b239, Test Stager }
+          fetcher: { id: e42e5f7d-3b2a-4f36-8230-4bc78631be5c, name: Test Static Fetcher }
+          stager: { id: d27786ff-8f49-4775-8475-45c1cafb7b37, name: Test Stager }
 ...
