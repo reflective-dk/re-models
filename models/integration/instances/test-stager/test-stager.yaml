@@ -4,8 +4,8 @@ mimeType: application/vnd.reflective-dk.object+json
 registrations:
   - validity:
       - input:
-          class: { id: 05f1c11b-da14-49c1-8f8a-7b5e48bc6c04, name: Stager }
+          class: { id: ed816777-12cf-4101-8cf3-037c4b87008e, name: Test Stager }
           # Responsible actor - actor: { id: actor.id }
-          name: Test Stager
+          name: Test Stager Singleton
           targetModel: { id: 96600be1-f12a-4841-8c90-7a3cdfed0edf, name: Test System }
 ...
