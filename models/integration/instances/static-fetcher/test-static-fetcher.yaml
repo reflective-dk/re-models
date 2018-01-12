@@ -9,6 +9,6 @@ registrations:
           name: Test Static Fetcher
           mimeType: text/xml
           data:
-            hash: QmAMockHashUsedForTesting000000000000000000000
-            name: A mock hash
+            hash: QmYKP28FgJyLcFnDjg1RD666rcV82nc7Vw1D6yXdDEW6oN
+            name: A mock hash used for testing
 ...
