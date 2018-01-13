@@ -37,7 +37,7 @@ registrations:
                 type: relation
                 target: { id: c4315fa9-3765-40c0-ba45-ef821c416f83, name: Object }
             errors:
-              description: >
+              description: >-
                 Reports of any errors that occurred while trying to effectuate
                 the translation. Even a single error is enough to abandon the
                 entire translation, so the \'errors\' attribute will never appear
