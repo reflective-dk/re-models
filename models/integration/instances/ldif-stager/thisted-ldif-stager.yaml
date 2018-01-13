@@ -8,6 +8,6 @@ registrations:
           # Responsible actor - actor: { id: actor.id }
           name: Thisted LDIF Stager
           targetModel: { id: cba08993-bdd6-496e-b6f2-436162fe68aa, name: LDAP Model }
-          customAttributes:
+          extraAttributes:
             todo: addSomeAttributes
 ...
