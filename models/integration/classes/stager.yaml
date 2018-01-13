@@ -23,4 +23,14 @@ registrations:
               dataType:
                 type: relation
                 target: { id: 54985140-62ec-49fd-b05a-661e090c405f, name: Model }
+            includeAll:
+              description: >-
+                Indicates whether to include all object attributes in the staging
+                process
+              type: simple
+              dataType: boolean
+            extraAttributes:
+              description: A specific set of object attributes to include
+              type: map
+              dataType: string
 ...

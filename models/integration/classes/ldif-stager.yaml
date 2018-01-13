@@ -11,8 +11,4 @@ registrations:
           extends: { id: 05f1c11b-da14-49c1-8f8a-7b5e48bc6c04, name: Stager }
           name: LDIF Stager
           description: Mechanism for staging LDAP Entries from LDIF input
-          properties:
-            customAttributes:
-              type: map
-              dataType: string
 ...
