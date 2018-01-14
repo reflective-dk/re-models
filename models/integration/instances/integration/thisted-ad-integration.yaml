@@ -10,5 +10,5 @@ registrations:
           tenant: { id: 0b529eb0-bf13-4133-8552-584db24b98ac, name: Thisted }
           system: { id: b722c7ca-2461-4d85-95ac-acb577908266, name: Active Directory }
           fetcher: { id: a2e2091f-5dab-4196-9aae-812d4ff61ff2, name: Thisted LDIF Fetcher }
-          stager: { id: 9315e56c-2b9e-4f83-bc97-5e3580f4be9c, name: LDIF Stager }
+          stager: { id: 9315e56c-2b9e-4f83-bc97-5e3580f4be9c, name: Thisted LDIF Stager }
 ...
