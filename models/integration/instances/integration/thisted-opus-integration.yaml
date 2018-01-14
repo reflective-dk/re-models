@@ -1,0 +1,14 @@
+---
+id: 0326ae32-6c2e-4f69-84e6-6cc5b44aefbe
+mimeType: application/vnd.reflective-dk.object+json
+registrations:
+  - validity:
+      - input:
+          class: { id: 0b436737-7dbe-443d-9d73-d9240ce4b17e, name: Integration }
+          # Responsible actor - actor: { id: actor.id }
+          name: Thisted Opus Integration
+          tenant: { id: 0b529eb0-bf13-4133-8552-584db24b98ac, name: Thisted }
+          system: { id: 513421bc-7994-4ee5-a67b-4f29a903d7da, name: Opus }
+          fetcher: { id: 3f39cbae-e3f1-40b9-89fc-ad6dd531b40c, name: Thisted Opus Fetcher }
+          stager: { id: 5e3b6b2c-66e9-42a6-99e4-47d9df065edd, name: Thisted Opus Stager }
+...
