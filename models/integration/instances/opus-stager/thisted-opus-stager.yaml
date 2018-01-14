@@ -1,0 +1,13 @@
+---
+id: 5e3b6b2c-66e9-42a6-99e4-47d9df065edd
+mimeType: application/vnd.reflective-dk.object+json
+registrations:
+  - validity:
+      - input:
+          class: { id: 06f2dfc7-3f34-4c90-992a-54796009bd78, name: Opus Stager }
+          # Responsible actor - actor: { id: actor.id }
+          name: Thisted Opus Stager
+          targetModel: { id: 513421bc-7994-4ee5-a67b-4f29a903d7da, name: Opus Model }
+          extraAttributes:
+            todo: addSomeAttributes
+...
