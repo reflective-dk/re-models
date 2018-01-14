@@ -8,6 +8,4 @@ registrations:
           # Responsible actor - actor: { id: actor.id }
           name: Thisted Opus Stager
           targetModel: { id: 513421bc-7994-4ee5-a67b-4f29a903d7da, name: Opus Model }
-          extraAttributes:
-            todo: addSomeAttributes
 ...
