@@ -11,4 +11,29 @@ registrations:
           system: { id: 513421bc-7994-4ee5-a67b-4f29a903d7da, name: Opus }
           fetcher: { id: 3f39cbae-e3f1-40b9-89fc-ad6dd531b40c, name: Thisted Opus Fetcher }
           stager: { id: 5e3b6b2c-66e9-42a6-99e4-47d9df065edd, name: Thisted Opus Stager }
+          typeMaps:
+            person:
+              id: 8b4263b7-ded0-4286-9528-d226bf45e136
+              name: Opus Employee -> RO Person
+            personAddress:
+              id: 72eff6a5-7bb3-48c2-8f83-1e77f99895e8
+              name: Opus Employee -> RO Person Address
+            employment:
+              id: aec2bb3e-65db-4a59-a2c6-f13e8ec786ba
+              name: Opus Employee -> RO Employment
+            role:
+              id: 8cc67066-a549-4df4-b783-8db54b4d61dd
+              name: Opus Employee -> RO Role
+            unit:
+              id: 1d5ceb6d-21df-4b44-84e5-f6e38d28fc38
+              name: Opus Org Unit -> RO Unit
+            location:
+              id: 47686cf0-7d51-497a-b156-d27a241e2492
+              name: Opus Org Unit -> RO Location
+            locationAddress:
+              id: bb91645c-c6e0-4a48-977c-646c23a84adc
+              name: Opus Org Unit -> RO Location Address
+            organization:
+              id: 0611c611-263c-4f84-a944-9a171163fb3e
+              name: Opus Org Unit -> RO Organization
 ...
