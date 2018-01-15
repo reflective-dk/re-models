@@ -12,6 +12,19 @@ registrations:
           name: Type Map
           description: Map used to translate information from one type to another
           properties:
+            sourceType:
+              type: simple
+              dataType:
+                type: relation
+                target: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
+            targetType:
+              type: simple
+              dataType:
+                type: relation
+                target: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
+            idSeed:
+              type: simple
+              dataType: string
             mappings:
               description: Set of mappings for translation between types
               type: map
