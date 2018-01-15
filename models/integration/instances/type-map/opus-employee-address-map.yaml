@@ -10,8 +10,17 @@ registrations:
           sourceType: { id: 16eeb8d9-b2f7-486c-96a5-2a75d4ea983d, name: Opus Employee }
           targetType: { id: 6ec80fc8-4ba4-49e2-88bf-e31032cca129, name: Address }
           idSeed: employeeId
-          # TODO - mappings:
-          #   :
-          #     sourceAttribute: 
-          #     targetAttribute: 
+          mappings:
+            streetAddress:
+              sourceAttribute: address
+              targetAttribute: streetAddress
+            postalCode:
+              sourceAttribute: postalCode
+              targetAttribute: postalCode
+            city:
+              sourceAttribute: city
+              targetAttribute: city
+            country:
+              sourceAttribute: country
+              targetAttribute: country
 ...

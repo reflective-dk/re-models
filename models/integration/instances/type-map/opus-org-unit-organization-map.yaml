@@ -9,9 +9,9 @@ registrations:
           name: Opus Org Unit -> RO Organization
           sourceType: { id: 40864bd7-2ac2-468d-80a5-68aefa018524, name: Opus Org Unit }
           targetType: { id: 5fa95ccd-a801-4cbb-9400-e7e1ee7cee44, name: Organization }
-          idSeed: orgUnitId
-          # TODO - mappings:
-          #   :
-          #     sourceAttribute: 
-          #     targetAttribute: 
+          idSeed: cvrNr
+          mappings:
+            cvrNr:
+              sourceAttribute: cvrNr
+              targetAttribute: cvrNr
 ...
