@@ -17,6 +17,11 @@ registrations:
               dataType:
                 type: relation
                 target: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
+            targetModel:
+              type: simple
+              dataType:
+                type: relation
+                target: { id: 54985140-62ec-49fd-b05a-661e090c405f, name: Model }
             targetType:
               type: simple
               dataType:

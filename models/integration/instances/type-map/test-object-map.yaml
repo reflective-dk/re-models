@@ -7,6 +7,7 @@ registrations:
           class: { id: efefe41d-805b-478f-8e4d-841085cb7dfa, name: Type Map }
           # Responsible actor - actor: { id: actor.id }
           sourceType: { id: 0db384a1-b44f-4151-83a4-f8cd927b7202, name: Test Object }
+          targetModel: { id: 855ad3bd-d62a-407c-8a33-8f49bbcc8995, name: Integration Model }
           targetType: { id: 0db384a1-b44f-4151-83a4-f8cd927b7202, name: Test Object }
           idSeed: id
           mappings:
