@@ -20,6 +20,7 @@ registrations:
             position:
               sourceAttribute: positionId
               targetAttribute: position
+              transform:
                 type: relation
                 target: { id: add5e887-841f-4f36-bb7e-0676d67c494f, name: Position }
             employee:
