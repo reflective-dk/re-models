@@ -58,7 +58,7 @@ registrations:
               type: simple
               dataType:
                 type: json
-                schema: { /* TODO [ '1', '2', '3', '4' ] */ }
+                schema: {} # TODO [ '1', '2', '3', '4' ]
             unitType:
               type: simple
               dataType:

@@ -43,7 +43,7 @@ registrations:
               type: simple
               dataType:
                 type: json
-                schema: { /* TODO [ '1', '2', '3', '4' ] */ }
+                schema: {} # TODO [ '1', '2', '3', '4' ]
             propagateFrom:
               type: simple
               dataType:

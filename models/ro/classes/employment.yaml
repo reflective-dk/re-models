@@ -10,7 +10,7 @@ registrations:
           class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
           extends: { id: 2da6e709-3f63-47d9-a197-bda06fb86936, name: Entity }
           name: Employment
-          description: An employment (Danish: 'Engagement')
+          description: "An employment (Danish: 'Engagement')"
           properties:
             employee:
               type: simple
