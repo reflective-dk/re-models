@@ -18,4 +18,9 @@ registrations:
             description:
               type: simple
               dataType: string
+            parent:
+              type: simple
+              dataType:
+                type: relation
+                target: { id: 0db384a1-b44f-4151-83a4-f8cd927b7202, name: Test Object }
 ...
