@@ -20,6 +20,8 @@ registrations:
             position:
               sourceAttribute: positionId
               targetAttribute: position
+                type: relation
+                target: { id: add5e887-841f-4f36-bb7e-0676d67c494f, name: Position }
             employee:
               sourceAttribute: employeeId
               targetAttribute: employee
@@ -32,4 +34,10 @@ registrations:
               transform:
                 type: relation
                 target: { id: 5cad9972-6560-4136-a9d5-40c2d109be9b, name: Unit }
+            employeeId:
+              sourceAttribute: employeeId
+              targetAttribute: aliases.employeeId
+            orgUnit:
+              sourceAttribute: orgUnit
+              targetAttribute: aliases.orgUnit
 ...

@@ -1,0 +1,22 @@
+---
+id: a76f8bf5-b389-4cfe-a7b1-5f12e092d1ab
+mimeType: application/vnd.reflective-dk.object+json
+registrations:
+  - validity:
+      - input:
+          # Responsible actor - actor: { id: actor.id }
+          class: { id: efefe41d-805b-478f-8e4d-841085cb7dfa, name: Type Map }
+          name: Opus Employee -> RO Position
+          sourceType: { id: 16eeb8d9-b2f7-486c-96a5-2a75d4ea983d, name: Opus Employee }
+          targetType: { id: add5e887-841f-4f36-bb7e-0676d67c494f, name: Position }
+          idSeed: employeeId
+          mappings:
+            name:
+              sourceAttribute: positionId
+              targetAttribute: name
+            positionId:
+              sourceAttribute: positionId
+              targetAttribute: aliases.positionId
+                type: relation
+                target: { id: add5e887-841f-4f36-bb7e-0676d67c494f, name: Position }
+...

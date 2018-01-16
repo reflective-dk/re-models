@@ -21,6 +21,9 @@ registrations:
             employment:
               id: aec2bb3e-65db-4a59-a2c6-f13e8ec786ba
               name: Opus Employee -> RO Employment
+            position:
+              id: a76f8bf5-b389-4cfe-a7b1-5f12e092d1ab
+              name: Opus Employee -> RO Position
             role:
               id: 8cc67066-a549-4df4-b783-8db54b4d61dd
               name: Opus Employee -> RO Role
