@@ -32,6 +32,9 @@ registrations:
             address:
               sourceAttribute: employeeId
               targetAttribute: address
+              condition:
+                type: mustExist
+                attribute: address
               transform:
                 type: relation
                 target: { id: 6ec80fc8-4ba4-49e2-88bf-e31032cca129, name: Address }
