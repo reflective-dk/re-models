@@ -28,6 +28,12 @@ registrations:
             idSeed:
               type: simple
               dataType: string
+            condition:
+              description: Controls whether to record information for the target
+              type: simple
+              dataType:
+                type: json
+                schema: {}
             mappings:
               description: Set of mappings for translation between types
               type: map
