@@ -36,12 +36,6 @@ registrations:
             seNr:
               type: simple
               dataType: string
-            # tasks:
-            #   type: map
-            #   dataType:
-            #     type: relation
-            #     # TODO - klassifikation
-            #     target: { id: , name: }
             expertise:
               description: Areas of responsibility from KLE
               type: map
