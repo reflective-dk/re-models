@@ -9,9 +9,9 @@ registrations:
           name: LDAP Entry -> RO Position
           sourceType: { id: cc15f5a8-c50a-4bfd-9313-9cbbde31d133, name: LDAP Entry }
           targetType: { id: add5e887-841f-4f36-bb7e-0676d67c494f, name: Position }
-          idSeed: attributes.title
+          idSeed: attributes.title.value
           mappings:
             name:
-              sourceAttribute: attributes.title
+              sourceAttribute: attributes.title.value
               targetAttribute: name
 ...
