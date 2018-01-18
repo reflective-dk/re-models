@@ -1,0 +1,25 @@
+# Asset Allocation Class
+---
+id: 2b078502-873a-4a2d-8def-76cb80fcfb95
+mimeType: application/vnd.reflective-dk.object+json
+registrations:
+  - validity:
+      - input:
+          model: { id: 17960fc5-7a6d-4e0b-95d8-f20934493819, name: Reflective Organization }
+          # Responsible actor - actor: { id: actor.id }
+          class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
+          extends: { id: 2da6e709-3f63-47d9-a197-bda06fb86936, name: Entity }
+          name: Asset Allocation
+          description: An asset allocation
+          properties:
+            employments:
+              type: map
+              dataType:
+                type: relation
+                target: { id: 06c495eb-fcef-4c09-996f-63fd2dfea427, name: Employment }
+            assets:
+              type: map
+              dataType:
+                type: relation
+                target: { id: 6409095a-44a1-4033-a072-21460ae9f95a, name: Asset }
+...
