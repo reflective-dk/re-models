@@ -34,6 +34,12 @@ registrations:
               dataType:
                 type: json
                 schema: {}
+            transform:
+              description: Controls how to transform the seed before id generation
+              type: simple
+              dataType:
+                type: json
+                schema: {}
             mappings:
               description: Set of mappings for translation between types
               type: map
