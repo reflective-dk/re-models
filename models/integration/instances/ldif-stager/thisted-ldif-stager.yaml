@@ -9,5 +9,20 @@ registrations:
           name: Thisted LDIF Stager
           targetModel: { id: cba08993-bdd6-496e-b6f2-436162fe68aa, name: LDAP Model }
           extraAttributes:
-            todo: addSomeAttributes
+            company: company
+            displayName: displayName
+            extensionAttribute13: extensionAttribute13
+            extensionAttribute14: extensionAttribute14
+            givenName: givenName
+            homeDirectory: homeDirectory
+            homeDrive: homeDrive
+            homePhone: homePhone
+            initials: initials
+            mail: mail
+            postOfficeBox: postOfficeBox
+            sAMAccountName: sAMAccountName
+            sn: sn
+            st: st
+            telephoneNumber: telephoneNumber
+            title: title
 ...
