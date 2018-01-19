@@ -5,10 +5,10 @@
   "main": "index.js",
   "scripts": {
     "tenant": "re tenant -r; re tenant -t",
-    "context": "re context -r; re context -d base -c model -e e40facec-2b51-4c8c-9a6b-918f7f245475",
+    "context": "re context -r; re context -d base -c model -e e40facec-2b51-4c8c-9a6b-918f7f245475; re context -d",
     "predeploy": "npm run build",
-    "deploy": "npm run context; npm run drop; npm run create",
-    "postdeploy": "sleep 1; npm run validate; npm run showvalidations",
+    "deploy": "npm run context",
+    "postdeploy": "npm run create; sleep 1; npm run validate; npm run showvalidations",
     "drop": "re drop -c model | jq '.'; re drop -e e40facec-2b51-4c8c-9a6b-918f7f245475 | jq '.'",
     "create": "cat build/objects.json | jq '.objects[].type = \"application/json\"' | re add -j - | jq '.objects | .[].id'",
     "validate": "re affected | re validate -j - > build/validation-results.json",
