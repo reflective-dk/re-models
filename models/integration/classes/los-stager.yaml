@@ -11,10 +11,4 @@ registrations:
           extends: { id: 05f1c11b-da14-49c1-8f8a-7b5e48bc6c04, name: Stager }
           name: LOS Stager
           description: Mechanism for staging Opus Entries from LOS data (CSV)
-          properties:
-            unitOwner:
-              type: simple
-              dataType:
-                type: relation
-                target: { id: 5fa95ccd-a801-4cbb-9400-e7e1ee7cee44, name: Organization }
 ...
