@@ -32,4 +32,11 @@ registrations:
               dataType:
                 type: relation
                 target: { id: add5e887-841f-4f36-bb7e-0676d67c494f, name: Position }
+            emailAddresses:
+              type: map
+              dataType:
+                type: json
+                schema:
+                  type: string
+                  pattern: "[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"
 ...

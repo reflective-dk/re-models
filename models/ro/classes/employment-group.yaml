@@ -1,0 +1,50 @@
+# Employment Group Class
+---
+id: 727617ce-57f5-4f41-8833-23d97c3446a8
+mimeType: application/vnd.reflective-dk.object+json
+registrations:
+  - validity:
+      - input:
+          model: { id: 17960fc5-7a6d-4e0b-95d8-f20934493819, name: Reflective Organization }
+          # Responsible actor - actor: { id: actor.id }
+          class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
+          extends: { id: 2da6e709-3f63-47d9-a197-bda06fb86936, name: Entity }
+          name: Employment Group
+          description: >-
+            Defines a group of employments, either directly or by association
+            through Units or User Accounts. This may for example be used to
+            maintain email distribution lists. Employment Groups may be organized
+            in a graph for reuse, through the 'memberOf' relational attribute
+          properties:
+            emailAddresses:
+              description: >-
+                Email addresses for this group as a whole, i.e. not the email
+                addresses of the members of the group
+              type: map
+              dataType:
+                type: json
+                schema:
+                  type: string
+                  pattern: "[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"
+            memberOf:
+              description: May be organized in a graph for reuse
+              type: map
+              dataType:
+                type: relation
+                target: { id: 727617ce-57f5-4f41-8833-23d97c3446a8, name: Employment Group }
+            employments:
+              type: map
+              dataType:
+                type: relation
+                target: { id: 06c495eb-fcef-4c09-996f-63fd2dfea427, name: Employment }
+            units:
+              type: map
+              dataType:
+                type: relation
+                target: { id: 5cad9972-6560-4136-a9d5-40c2d109be9b, name: Unit }
+            userAccounts:
+              type: map
+              dataType:
+                type: relation
+                target: { id: 38df45c2-f4e2-4ffd-b91f-bc509ce8bcbf, name: User Account }
+...
