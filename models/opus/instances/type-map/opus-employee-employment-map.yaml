@@ -14,6 +14,12 @@ registrations:
             type: mustExist
             attribute: orgUnit
           mappings:
+            name:
+              sourceAttribute: employeeId
+              targetAttribute: name
+              transform:
+                type: prefix
+                prefix: "Opus: "
             activeFrom:
               sourceAttribute: entryDate
               targetAttribute: activeFrom
