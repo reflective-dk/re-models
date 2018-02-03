@@ -12,6 +12,9 @@ registrations:
           name: Position
           description: A position such as Janitor, Teacher or CEO
           properties:
+            shortName:
+              type: simple
+              dataType: string
             parent:
               type: simple
               dataType:
