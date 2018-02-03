@@ -40,7 +40,7 @@ registrations:
               dataType:
                 type: json
                 schema: {}
-            translationTime:
+            timestamp:
               description: Timestamp of when the translation occurred
               type: simple
               dataType: dateTime
