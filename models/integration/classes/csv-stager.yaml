@@ -12,6 +12,11 @@ registrations:
           name: CSV Stager
           description: Mechanism for staging generic Entries from CSV input
           properties:
+            targetType:
+              type: simple
+              dataType:
+                type: relation
+                target: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
             fieldSeparator:
               type: simple
               dataType: string
