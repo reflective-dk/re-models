@@ -53,12 +53,11 @@ registrations:
               dataType:
                 type: json
                 schema: {} # TODO [ '1', '2', '3', '4' ]
-            # unitType:
-            #   type: simple
-            #   dataType:
-            #     type: relation
-            #     # TODO - klassifikation
-            #     target: { id: , name: }
+            unitType:
+              type: simple
+              dataType:
+                type: relation
+                target: { id: acdce88a-ec17-4d39-a850-a083d64c28ac, name: Unit Type }
             costCenter:
               type: simple
               dataType: string
