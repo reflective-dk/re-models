@@ -27,7 +27,12 @@ registrations:
                 target: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
             idSeed:
               type: simple
-              dataType: string
+              dataType:
+                type: json
+                schema:
+                  oneOf:
+                    - { type: string }
+                    - { type: array, items: { type: string } }
             condition:
               description: Controls whether to record information for the target
               type: simple
