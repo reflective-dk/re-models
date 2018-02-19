@@ -1,4 +1,4 @@
-# Role Class
+# Role Assignment Class
 ---
 id: 025dfd36-f7a6-41e3-aa0c-64fe0376d3b7
 mimeType: application/vnd.reflective-dk.object+json
@@ -9,19 +9,19 @@ registrations:
           # Responsible actor - actor: { id: actor.id }
           class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
           extends: { id: 2da6e709-3f63-47d9-a197-bda06fb86936, name: Entity }
-          name: Role
-          description: A role
+          name: Role Assignment
+          description: An assignment of a role to a specific employment
           properties:
             employment:
               type: simple
               dataType:
                 type: relation
                 target: { id: 06c495eb-fcef-4c09-996f-63fd2dfea427, name: Employment }
-            roleType:
+            role:
               type: simple
               dataType:
                 type: relation
-                target: { id: c4be5a95-1320-4996-b219-e2f6f7cef8dd, name: Role Type }
+                target: { id: c4be5a95-1320-4996-b219-e2f6f7cef8dd, name: Role }
             responsibilities:
               type: map
               dataType:
