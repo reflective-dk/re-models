@@ -1,4 +1,4 @@
-# Role Type Class
+# Role Class
 ---
 id: c4be5a95-1320-4996-b219-e2f6f7cef8dd
 mimeType: application/vnd.reflective-dk.object+json
@@ -9,6 +9,6 @@ registrations:
           # Responsible actor - actor: { id: actor.id }
           class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
           extends: { id: 2da6e709-3f63-47d9-a197-bda06fb86936, name: Entity }
-          name: Role Type
-          description: A Role Type comprises a hierarchy of responsibilities
+          name: Role
+          description: A role represents a hierarchy of responsibilities
 ...
