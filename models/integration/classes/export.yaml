@@ -12,12 +12,12 @@ registrations:
           name: Export
           description: A metadata object tracking exported data
           properties:
-            extraction:
-              description: The extraction that led to this export
+            spec:
+              description: The extraction spec that led to this export
               type: simple
               dataType:
                 type: relation
-                target: { id: 48c3b7b9-dc7a-42ae-9759-b65336f12b36, name: Extraction }
+                target: { id: 48c3b7b9-dc7a-42ae-9759-b65336f12b36, name: Extraction Spec }
             mimeType:
               description: MIME type of the exported data
               type: simple
