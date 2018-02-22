@@ -1,4 +1,4 @@
-# Extraction Class
+# Extraction Spec Class
 ---
 id: 48c3b7b9-dc7a-42ae-9759-b65336f12b36
 mimeType: application/vnd.reflective-dk.object+json
@@ -9,13 +9,13 @@ registrations:
           # Responsible actor - actor: { id: actor.id }
           class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
           extends: { id: c4315fa9-3765-40c0-ba45-ef821c416f83, name: Object }
-          name: Extraction
+          name: Extraction Spec
           description: >-
-            Represents an extraction of data that targets a specific system and
+            Specifies an extraction of data targeting a specific system and
             tenant
           properties:
             name:
-              description: Name of extraction
+              description: Name of the extraction spec
               type: simple
               dataType: string
             tenant:
