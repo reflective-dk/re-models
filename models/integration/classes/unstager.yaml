@@ -1,0 +1,41 @@
+# Unstager Class
+---
+id: 8b5bcbb1-6970-463b-b93e-d2f6ad2bfeb2
+mimeType: application/vnd.reflective-dk.object+json
+registrations:
+  - validity:
+      - input:
+          model: { id: 855ad3bd-d62a-407c-8a33-8f49bbcc8995, name: Integration Model }
+          # Responsible actor - actor: { id: actor.id }
+          class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
+          extends: { id: c4315fa9-3765-40c0-ba45-ef821c416f83, name: Object }
+          name: Unstager
+          description: >-
+            Mechanism for unstaging data, i.e. serializing data for an external
+            target system. This class is abstract and should be extended by
+            specialized classes
+          properties:
+            name:
+              type: simple
+              dataType: string
+            sourceModel:
+              description: The model consumed by this unstager
+              type: simple
+              dataType:
+                type: relation
+                target: { id: 54985140-62ec-49fd-b05a-661e090c405f, name: Model }
+            includeAll:
+              description: >-
+                Indicates whether to include all object attributes in the
+                unstaging process
+              type: simple
+              dataType: boolean
+            extraAttributes:
+              description: >-
+                This map specifies a set of extra object attributes to
+                include. The keys of the map correspond to the names of the
+                attributes in the input, the values of the map to the names in
+                the unstaged output
+              type: map
+              dataType: string
+...

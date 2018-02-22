@@ -1,0 +1,31 @@
+# Export Class
+---
+id: f4765b64-6cc6-4ef8-9245-e8efb8b00300
+mimeType: application/vnd.reflective-dk.object+json
+registrations:
+  - validity:
+      - input:
+          model: { id: 855ad3bd-d62a-407c-8a33-8f49bbcc8995, name: Integration Model }
+          # Responsible actor - actor: { id: actor.id }
+          class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
+          extends: { id: c4315fa9-3765-40c0-ba45-ef821c416f83, name: Object }
+          name: Export
+          description: A metadata object tracking exported data
+          properties:
+            extraction:
+              description: The extraction that led to this export
+              type: simple
+              dataType:
+                type: relation
+                target: { id: 48c3b7b9-dc7a-42ae-9759-b65336f12b36, name: Extraction }
+            mimeType:
+              description: MIME type of the exported data
+              type: simple
+              dataType: string
+            data:
+              description: Multihash pointing to the exported data
+              type: simple
+              dataType: binary
+            timestamp:
+              description: Timestamp of when the data was exported
+...

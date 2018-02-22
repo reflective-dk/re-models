@@ -1,0 +1,49 @@
+# Extraction Class
+---
+id: 48c3b7b9-dc7a-42ae-9759-b65336f12b36
+mimeType: application/vnd.reflective-dk.object+json
+registrations:
+  - validity:
+      - input:
+          model: { id: 855ad3bd-d62a-407c-8a33-8f49bbcc8995, name: Integration Model }
+          # Responsible actor - actor: { id: actor.id }
+          class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
+          extends: { id: c4315fa9-3765-40c0-ba45-ef821c416f83, name: Object }
+          name: Extraction
+          description: >-
+            Represents an extraction of data that targets a specific system and
+            tenant
+          properties:
+            name:
+              description: Name of extraction
+              type: simple
+              dataType: string
+            tenant:
+              description: Tenant for whom data is extracted
+              type: simple
+              dataType:
+                type: relation
+                target: { id: 41e0ef9b-01f3-41fd-aa39-6bcb40374704, name: Tenant }
+            system:
+              description: External system targeted by the extraction
+              type: simple
+              dataType:
+                type: relation
+                target: { id: e8bc40c5-e542-4bab-b6fc-64b2339ffa15, name: System }
+            extraction:
+              description: >-
+                Type Maps used to prepare the data for export. This typically
+                reverses the incorporation stage of the integration process by
+                updating the target system\'s staging model with information from
+                the RO model
+              type: map
+              dataType:
+                type: relation
+                target: { id: efefe41d-805b-478f-8e4d-841085cb7dfa, name: Type Map }
+            unstager:
+              description: Mechanism used to serialize data from the staging model
+              type: simple
+              dataType:
+                type: relation
+                target: { id: 8b5bcbb1-6970-463b-b93e-d2f6ad2bfeb2, name: Unstager }
+...
