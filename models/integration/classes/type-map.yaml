@@ -25,6 +25,14 @@ registrations:
               dataType:
                 type: relation
                 target: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
+            query:
+              description: >-
+                A query used for extraction type maps to provide the set of
+                objects to extract
+              type: simple
+              dataType:
+                type: json
+                schema: {}
             idSeed:
               type: simple
               dataType:
