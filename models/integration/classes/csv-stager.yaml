@@ -20,6 +20,9 @@ registrations:
             fieldSeparator:
               type: simple
               dataType: string
+            idSeed:
+              type: simple
+              dataType: string
             nameField:
               description: Optional field to use for naming the staged objects
               type: simple
