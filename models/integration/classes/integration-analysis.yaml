@@ -12,12 +12,12 @@ registrations:
           name: Integration Analysis
           description: An analysis of the impact of an integration
           properties:
-            integration:
-              description: The integration under analysis
+            spec:
+              description: Specification of the integration under analysis
               type: simple
               dataType:
                 type: relation
-                target: { id: 0b436737-7dbe-443d-9d73-d9240ce4b17e, name: Integration }
+                target: { id: 0b436737-7dbe-443d-9d73-d9240ce4b17e, name: Integration Spec }
             targetExtension:
               description: >-
                 When analyzing an integration, the resulting impact is written to

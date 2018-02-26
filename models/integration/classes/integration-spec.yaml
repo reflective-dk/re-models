@@ -1,4 +1,4 @@
-# Integration Class
+# Integration Spec Class
 ---
 id: 0b436737-7dbe-443d-9d73-d9240ce4b17e
 mimeType: application/vnd.reflective-dk.object+json
@@ -8,26 +8,10 @@ registrations:
           model: { id: 855ad3bd-d62a-407c-8a33-8f49bbcc8995, name: Integration Model }
           # Responsible actor - actor: { id: actor.id }
           class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
-          extends: { id: c4315fa9-3765-40c0-ba45-ef821c416f83, name: Object }
+          extends: { id: b2310272-ced2-4966-bba4-de0737ef01f8, name: Connection Spec }
           name: Integration
-          description: Represents an integration from a specific system for a specific tenant
+          description: Specifies an integration of data from a specific system and tenant
           properties:
-            name:
-              description: Name used to identify this integration
-              type: simple
-              dataType: string
-            tenant:
-              description: Tenant that owns the integration
-              type: simple
-              dataType:
-                type: relation
-                target: { id: 41e0ef9b-01f3-41fd-aa39-6bcb40374704, name: Tenant }
-            system:
-              description: External system data is integrated from
-              type: simple
-              dataType:
-                type: relation
-                target: { id: e8bc40c5-e542-4bab-b6fc-64b2339ffa15, name: System }
             fetcher:
               description: Mechanism used to fetch imported data
               type: simple
@@ -40,8 +24,8 @@ registrations:
               dataType:
                 type: relation
                 target: { id: 05f1c11b-da14-49c1-8f8a-7b5e48bc6c04, name: Stager }
-            typeMaps:
-              description: Maps used to incorporate staged data into target model
+            incorporation:
+              description: Type Maps used to incorporate staged data into target model
               type: map
               dataType:
                 type: relation

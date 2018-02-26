@@ -8,28 +8,12 @@ registrations:
           model: { id: 855ad3bd-d62a-407c-8a33-8f49bbcc8995, name: Integration Model }
           # Responsible actor - actor: { id: actor.id }
           class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
-          extends: { id: c4315fa9-3765-40c0-ba45-ef821c416f83, name: Object }
+          extends: { id: b2310272-ced2-4966-bba4-de0737ef01f8, name: Connection Spec }
           name: Extraction Spec
           description: >-
             Specifies an extraction of data targeting a specific system and
             tenant
           properties:
-            name:
-              description: Name of the extraction spec
-              type: simple
-              dataType: string
-            tenant:
-              description: Tenant for whom data is extracted
-              type: simple
-              dataType:
-                type: relation
-                target: { id: 41e0ef9b-01f3-41fd-aa39-6bcb40374704, name: Tenant }
-            system:
-              description: External system targeted by the extraction
-              type: simple
-              dataType:
-                type: relation
-                target: { id: e8bc40c5-e542-4bab-b6fc-64b2339ffa15, name: System }
             extraction:
               description: >-
                 Type Maps used to prepare the data for export. This typically

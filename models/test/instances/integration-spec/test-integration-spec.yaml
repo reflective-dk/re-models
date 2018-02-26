@@ -4,13 +4,13 @@ mimeType: application/vnd.reflective-dk.object+json
 registrations:
   - validity:
       - input:
-          class: { id: 0b436737-7dbe-443d-9d73-d9240ce4b17e, name: Integration }
+          class: { id: 0b436737-7dbe-443d-9d73-d9240ce4b17e, name: Integration Spec }
           # Responsible actor - actor: { id: actor.id }
-          name: Test Integration
+          name: Test Integration Spec
           tenant: { id: 7857db3f-1929-4100-86ea-a971369bd1a5, name: Test Tenant }
           system: { id: 96600be1-f12a-4841-8c90-7a3cdfed0edf, name: Test System }
           fetcher: { id: e42e5f7d-3b2a-4f36-8230-4bc78631be5c, name: Test Static Fetcher }
           stager: { id: d27786ff-8f49-4775-8475-45c1cafb7b37, name: Test Stager }
-          typeMaps:
+          incorporation:
             testMap: { id: 3b48bb9a-4bb3-4020-8725-68d3e74db23a }
 ...

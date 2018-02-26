@@ -12,12 +12,12 @@ registrations:
           name: Translation
           description: A translation from one set of objects to another
           properties:
-            integration:
-              description: The integration that led to this translation
+            spec:
+              description: Specification of the integration/extraction
               type: simple
               dataType:
                 type: relation
-                target: { id: 0b436737-7dbe-443d-9d73-d9240ce4b17e, name: Integration }
+                target: { id: b2310272-ced2-4966-bba4-de0737ef01f8, name: Connection Spec }
             sources:
               description: The source objects of the translation
               type: map

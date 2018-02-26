@@ -12,18 +12,18 @@ registrations:
           name: Import
           description: A metadata object tracking data for integration
           properties:
-            integration:
-              description: The integration that led to this import
+            spec:
+              description: Specification of the integration
               type: simple
               dataType:
                 type: relation
-                target: { id: 0b436737-7dbe-443d-9d73-d9240ce4b17e, name: Integration }
+                target: { id: 0b436737-7dbe-443d-9d73-d9240ce4b17e, name: Integration Spec }
             mimeType:
-              description: MIME type of the integration data
+              description: MIME type of the fetched data
               type: simple
               dataType: string
             data:
-              description: Multihash pointing to the integration data
+              description: Multihash pointing to the fetched data
               type: simple
               dataType: binary
             timestamp:

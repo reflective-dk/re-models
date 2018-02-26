@@ -1,0 +1,31 @@
+# Connection Spec Class
+---
+id: b2310272-ced2-4966-bba4-de0737ef01f8
+mimeType: application/vnd.reflective-dk.object+json
+registrations:
+  - validity:
+      - input:
+          model: { id: 855ad3bd-d62a-407c-8a33-8f49bbcc8995, name: Integration Model }
+          # Responsible actor - actor: { id: actor.id }
+          class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
+          extends: { id: c4315fa9-3765-40c0-ba45-ef821c416f83, name: Object }
+          name: Connection Spec
+          description: Specifies a connection with an external system
+          properties:
+            name:
+              description: Name of the connection spec
+              type: simple
+              dataType: string
+            tenant:
+              description: Tenant that owns the data
+              type: simple
+              dataType:
+                type: relation
+                target: { id: 41e0ef9b-01f3-41fd-aa39-6bcb40374704, name: Tenant }
+            system:
+              description: External system that we connect to
+              type: simple
+              dataType:
+                type: relation
+                target: { id: e8bc40c5-e542-4bab-b6fc-64b2339ffa15, name: System }
+...
