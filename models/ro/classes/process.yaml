@@ -12,6 +12,9 @@ registrations:
           name: Process
           description: A process
           properties:
+            userStartable:
+              type: simple
+              dataType: boolean
             system:
               type: simple
               dataType:
