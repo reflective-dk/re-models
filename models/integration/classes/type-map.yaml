@@ -41,6 +41,15 @@ registrations:
                   oneOf:
                     - { type: string }
                     - { type: array, items: { type: string } }
+            warmUps:
+              description: >-
+                Queries used to prefetch collections of objects in order to avoid
+                larger numbers of single-object queries going to the backend
+                during the mapping process
+              type: map
+              dataType:
+                type: json
+                schema: {}
             condition:
               description: Controls whether to record information for the target
               type: simple
