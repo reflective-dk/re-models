@@ -1,4 +1,5 @@
 var models = require(__dirname + '/../index');
+const Promise = require('bluebird');
 
 module.exports = function generator () {
   var objects = [];
