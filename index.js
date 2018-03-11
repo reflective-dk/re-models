@@ -7,4 +7,4 @@ var dataLoc = path.join(rootLoc, 'data');
 
 var confUtil = require('re-conf-util');
 
-module.exports = confUtil.prepareConf(confLoc, dataLoc, 'model',);
+module.exports = confUtil.prepareConf(confLoc, dataLoc, 'model');
