@@ -83,7 +83,7 @@ registrations:
               schema:
                 oneOf:
                   - type: string
-                    enum: [ 'string', 'number', 'boolean', 'dateTime', 'binary' ]
+                    enum: [ 'string', 'integer', 'float', 'boolean', 'dateTime', 'binary' ]
                   - type: object    # dataType: relation
                     properties:
                       type: { type: 'string', pattern: 'relation' }
