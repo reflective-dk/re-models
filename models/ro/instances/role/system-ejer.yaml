@@ -1,0 +1,10 @@
+---
+id: 1a9a0e36-0992-493a-b03f-655f52795ff3
+mimeType: application/vnd.reflective-dk.object+json
+registrations:
+  - validity:
+      - input:
+          class: { id: c4be5a95-1320-4996-b219-e2f6f7cef8dd, name: Role }
+          # Responsible actor - actor: { id: actor.id }
+          name: System Ejer
+...

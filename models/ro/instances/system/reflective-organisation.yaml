@@ -1,0 +1,10 @@
+---
+id: 3bb3bfa1-5a4c-45c8-9955-055270c069e3
+mimeType: application/vnd.reflective-dk.object+json
+registrations:
+  - validity:
+      - input:
+          class: { id: e8bc40c5-e542-4bab-b6fc-64b2339ffa15, name: System }
+          # Responsible actor - actor: { id: actor.id }
+          name: Reflective Organisation
+...

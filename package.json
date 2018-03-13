@@ -35,7 +35,8 @@
   "license": "UNLICENSED",
   "private": true,
   "dependencies": {
-    "re-conf-util": "git+ssh://git@github.com/reflective-dk/re-conf-util.git"
+    "re-conf-util": "git+ssh://git@github.com/reflective-dk/re-conf-util.git",
+    "require-yaml": "0.0.1"
   },
   "devDependencies": {
     "re-core-cli": "git+ssh://git@github.com:reflective-dk/re-core-cli.git"
