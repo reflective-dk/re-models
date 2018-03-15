@@ -6,5 +6,5 @@ registrations:
       - input:
           class: { id: e8bc40c5-e542-4bab-b6fc-64b2339ffa15, name: System }
           # Responsible actor - actor: { id: actor.id }
-          name: Reflective Organisation
+          name: Reflective Organization
 ...
