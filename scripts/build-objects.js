@@ -4,9 +4,11 @@
 
 var fs = require('fs');
 var path = require('path');
-var models = require('../index');
+var confUtil = require('re-conf-util');
 
-models.resolve().then(cnf => {
-    var output = JSON.stringify({ objects: cnf.state['model'] }, null, 2);
+var conf = require('../index');
+
+confUtil.buildObjects(conf).then(function(objects) {
+    var output = JSON.stringify({ objects: objects }, null, 2);
     fs.writeFileSync(path.join('build', 'objects.json'), output);
 });
