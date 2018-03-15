@@ -6,5 +6,5 @@ registrations:
       - input:
           class: { id: c4be5a95-1320-4996-b219-e2f6f7cef8dd, name: Role }
           # Responsible actor - actor: { id: actor.id }
-          name: System Ejer
+          name: Systemejer
 ...
