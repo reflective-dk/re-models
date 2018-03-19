@@ -17,12 +17,11 @@ registrations:
             name:
               type: simple
               dataType: string
-            targetModel:
-              description: The model targeted by this stager
+            targetType:
               type: simple
               dataType:
                 type: relation
-                target: { id: 54985140-62ec-49fd-b05a-661e090c405f, name: Model }
+                target: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
             includeAll:
               description: >-
                 Indicates whether to include all object attributes in the staging
