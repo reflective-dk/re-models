@@ -12,6 +12,11 @@ registrations:
           name: User Form
           description: A form element used to capture user input
           properties:
+            responsibility:
+              type: simple
+              dataType:
+                type: relation
+                target: { id: f5155ea0-3e2f-4dcf-832a-c0fc99f2fbb4, name: Responsibility }
             definition:
               description: Multihash pointing to the user form definition
               type: simple
