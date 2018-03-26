@@ -23,10 +23,16 @@ registrations:
               dataType: string
             entryDate:
               type: simple
-              dataType: string
+              dataType: dateTime
             leaveDate:
               type: simple
-              dataType: string
+              dataType: dateTime
+            activeFrom:
+              type: map
+              dataType: dateTime
+            activeTo:
+              type: map
+              dataType: dateTime
             cpr:
               type: simple
               dataType: string
@@ -90,6 +96,11 @@ registrations:
             orgUnit:
               type: simple
               dataType: string
+            employedAt:
+              type: simple
+              dataType:
+                type: relation
+                target: { id: 40864bd7-2ac2-468d-80a5-68aefa018524, name: Opus Org Unit }
             payGradeText:
               type: simple
               dataType: string

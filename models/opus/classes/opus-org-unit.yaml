@@ -23,13 +23,24 @@ registrations:
               dataType: string
             startDate:
               type: simple
-              dataType: string
+              dataType: dateTime
             endDate:
               type: simple
-              dataType: string
+              dataType: dateTime
+            activeFrom:
+              type: map
+              dataType: dateTime
+            activeTo:
+              type: map
+              dataType: dateTime
             parentOrgUnit:
               type: simple
               dataType: string
+            parent:
+              type: simple
+              dataType:
+                type: relation
+                target: { id: 40864bd7-2ac2-468d-80a5-68aefa018524, name: Opus Org Unit }
             shortName:
               type: simple
               dataType: string
