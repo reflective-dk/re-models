@@ -20,7 +20,7 @@ registrations:
               dataType: string
             lastChanged:
               type: simple
-              dataType: string
+              dataType: dateTime
             startDate:
               type: simple
               dataType: dateTime

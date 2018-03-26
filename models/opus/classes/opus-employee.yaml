@@ -20,7 +20,7 @@ registrations:
               dataType: string
             lastChanged:
               type: simple
-              dataType: string
+              dataType: dateTime
             entryDate:
               type: simple
               dataType: dateTime
@@ -112,8 +112,8 @@ registrations:
               dataType: string
             initialEntry:
               type: simple
-              dataType: string
+              dataType: dateTime
             entryIntoGroup:
               type: simple
-              dataType: string
+              dataType: dateTime
 ...
