@@ -10,5 +10,11 @@ registrations:
           class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
           extends: { id: 2da6e709-3f63-47d9-a197-bda06fb86936, name: Entity }
           name: Role
-          description: A role represents a hierarchy of responsibilities
+          description: A role such as 'CEO' that identifies a set of responsibilities
+          properties:
+            responsibilities:
+              type: map
+              dataType:
+                type: relation
+                target: { id: f5155ea0-3e2f-4dcf-832a-c0fc99f2fbb4, name: Responsibility }
 ...
