@@ -15,7 +15,7 @@ registrations:
             pNr:
               type: simple
               dataType: string
-            address:
+            addresses:
               type: map
               dataType:
                 type: relation
