@@ -7,6 +7,11 @@
     "list-integrations": "list-integrations",
     "build": "build-objects",
     "clean": "rm -Rf ./build",
+    "deploy": "re add -j build/objects.json",
+    "validate": "re validate -j build/objects.json > build/validation-results.json",
+    "postvalidate": "npm run showvalidationlist; npm run showvalidationresult",
+    "showvalidationlist": "cat build/validation-results.json | jq -c '.objects | .[].registrations[0].validity[0].input | { subjectId: .subject.id, subjectClass: (.subjectClass.id + \" (\" +.subjectClass.name + \")\"), severity: .severity, validations: .validations }'",
+    "showvalidationresult": "cat build/validation-results.json | jq '.objects | [ .[].registrations[0].validity[0].input.validations | .[].severity ] | unique | if (. == [ \"none\" ]) then \"=== validation ok ===\" else \"=== VALIDATION FAILED: \" + (. | tostring) + \" ===\"end'",
     "test": "mocha --recursive"
   },
   "repository": {
