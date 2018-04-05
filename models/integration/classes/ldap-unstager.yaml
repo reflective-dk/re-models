@@ -12,7 +12,10 @@ registrations:
           name: LDAP Unstager
           description: Mechanism for provisioning LDAP Entries to an LDAP server
           properties:
-            ldapUrl:
+            credentials:
+              type: simple
+              dataType: string
+            url:
               type: simple
               dataType: string
             username:
@@ -21,4 +24,7 @@ registrations:
             password:
               type: simple
               dataType: string
+            dryrun:
+              type: simple
+              dataType: boolean
 ...
