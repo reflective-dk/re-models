@@ -7,5 +7,4 @@ registrations:
           class: { id: f5155ea0-3e2f-4dcf-832a-c0fc99f2fbb4, name: Responsibility }
           # Responsible actor - actor: { id: actor.id }
           name: Medarbejderkort
-          owner: { id: fc84d682-69fd-4a56-a15b-252769b7c132 }
 ...

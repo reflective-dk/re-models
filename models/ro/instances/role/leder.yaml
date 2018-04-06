@@ -7,4 +7,14 @@ registrations:
           class: { id: c4be5a95-1320-4996-b219-e2f6f7cef8dd, name: Role }
           # Responsible actor - actor: { id: actor.id }
           name: Leder
+          responsibilities:
+            0:
+              id: c73e8559-79fa-4498-b56c-460e6372626d
+              name: Faglig
+            1:
+              id: 3057d6bf-dd6f-4767-91ca-78671905c2d1
+              name: Økonomi
+            2:
+              id: 87341d78-23db-4d78-94cf-5fd02b73060a
+              name: Personale
 ...
