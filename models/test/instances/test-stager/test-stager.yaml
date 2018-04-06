@@ -7,5 +7,4 @@ registrations:
           class: { id: ed816777-12cf-4101-8cf3-037c4b87008e, name: Test Stager }
           # Responsible actor - actor: { id: actor.id }
           name: Test Stager Singleton
-          targetModel: { id: 96600be1-f12a-4841-8c90-7a3cdfed0edf, name: Test System }
 ...
