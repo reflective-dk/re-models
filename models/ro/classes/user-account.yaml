@@ -17,6 +17,12 @@ registrations:
             username:
               type: simple
               dataType: string
+            salt:
+              type: simple
+              dataType: string
+            hash:
+              type: simple
+              dataType: string
             employments:
               type: map
               dataType:
