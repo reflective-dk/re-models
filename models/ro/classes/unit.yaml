@@ -33,6 +33,16 @@ registrations:
               dataType:
                 type: relation
                 target: { id: cfd8d4db-96cd-45e2-8de7-0b257b63a4e7, name: Location }
+            emailAddresses:
+              type: map
+              dataType:
+                type: json
+                schema:
+                  type: string
+                  pattern: "[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"
+            phoneNumbers:
+              type: map
+              dataType: string
             seNr:
               type: simple
               dataType: string

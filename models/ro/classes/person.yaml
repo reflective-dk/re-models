@@ -21,12 +21,16 @@ registrations:
             cprNr:
               type: simple
               dataType: string
-            phone:
-              type: simple
+            phoneNumbers:
+              type: map
               dataType: string
-            email:
-              type: simple
-              dataType: string
+            emailAddresses:
+              type: map
+              dataType:
+                type: json
+                schema:
+                  type: string
+                  pattern: "[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"
             address:
               type: simple
               dataType:

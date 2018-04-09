@@ -20,7 +20,7 @@ registrations:
               dataType:
                 type: relation
                 target: { id: 6ec80fc8-4ba4-49e2-88bf-e31032cca129, name: Address }
-            phone:
-              type: simple
+            phoneNumbers:
+              type: map
               dataType: string
 ...
