@@ -27,4 +27,10 @@ registrations:
             dryrun:
               type: simple
               dataType: boolean
+            searchString:
+              type: simple
+              dataType: string
+            filterString:
+              type: simple
+              dataType: string
 ...
