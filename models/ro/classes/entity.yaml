@@ -15,12 +15,11 @@ registrations:
             name:
               type: simple
               dataType: string
-            foreignId:
+            foreignIds:
               description: >-
-                This secondary id is used when an object has been integrated from
-                an external system, and its primary id was therefore generated as
-                a v5 uuid.
-              type: simple
+                This collection of secondary ids is used when an object is
+                integrated from one or more external systems
+              type: map
               dataType: string
             description:
               type: simple
