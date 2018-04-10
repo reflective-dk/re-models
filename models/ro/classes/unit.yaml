@@ -12,7 +12,7 @@ registrations:
           name: Unit
           description: An organizational unit
           properties:
-            name:
+            shortName:
               type: simple
               dataType: string
             parent:
