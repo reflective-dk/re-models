@@ -17,6 +17,12 @@ registrations:
             username:
               type: simple
               dataType: string
+            homeDirectory:
+              type: simple
+              dataType: string
+            homeDrive:
+              type: simple
+              dataType: string
             salt:
               type: simple
               dataType: string
