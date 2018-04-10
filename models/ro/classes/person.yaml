@@ -18,6 +18,9 @@ registrations:
             familyName:
               type: simple
               dataType: string
+            initials:
+              type: simple
+              dataType: string
             cprNr:
               type: simple
               dataType: string
