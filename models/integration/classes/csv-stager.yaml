@@ -13,9 +13,15 @@ registrations:
           description: Mechanism for staging generic Entries from CSV input
           properties:
             fieldSeparator:
+              description: "Character used to separate field values (default: ',')"
+              type: simple
+              dataType: string
+            fieldWrap:
+              description: "Character used to wrap field values (default: '\"')"
               type: simple
               dataType: string
             idSeed:
+              description: Fields used to generate id of target object
               type: simple
               dataType: string
             nameField:
