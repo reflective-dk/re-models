@@ -9,7 +9,7 @@ registrations:
           # Responsible actor - actor: { id: actor.id }
           class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
           extends: { id: b2310272-ced2-4966-bba4-de0737ef01f8, name: Connection Spec }
-          name: Integration
+          name: Integration Spec
           description: Specifies an integration of data from a specific system and tenant
           properties:
             fetcher:
