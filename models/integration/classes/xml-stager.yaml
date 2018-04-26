@@ -20,4 +20,8 @@ registrations:
               description: Optional field to use for naming the staged objects
               type: simple
               dataType: string
+            elementNames:
+              description: Optional field to control chunking by XML element
+              type: map
+              dataType: string
 ...
