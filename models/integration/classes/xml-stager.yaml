@@ -1,0 +1,23 @@
+# XML Stager Class
+---
+id: 34daf476-b11f-4e56-8e2b-5c76dcff52f2
+mimeType: application/vnd.reflective-dk.object+json
+registrations:
+  - validity:
+      - input:
+          model: { id: 855ad3bd-d62a-407c-8a33-8f49bbcc8995, name: Integration Model }
+          # Responsible actor - actor: { id: actor.id }
+          class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
+          extends: { id: 05f1c11b-da14-49c1-8f8a-7b5e48bc6c04, name: Stager }
+          name: XML Stager
+          description: Mechanism for staging generic Entries from XML input
+          properties:
+            idSeed:
+              description: Fields used to generate id of target object
+              type: simple
+              dataType: string
+            nameField:
+              description: Optional field to use for naming the staged objects
+              type: simple
+              dataType: string
+...
