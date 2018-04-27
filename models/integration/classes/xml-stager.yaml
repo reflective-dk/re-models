@@ -28,4 +28,12 @@ registrations:
               description: Optional field to specify child elements to exclude
               type: map
               dataType: string
+            projectElements:
+              description: Optional field to specify reduction of child elements
+              type: map
+              dataType:
+                type: json
+                schema:
+                  type: array
+                  items: { type: string }
 ...
