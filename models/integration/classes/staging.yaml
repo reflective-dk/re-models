@@ -12,9 +12,9 @@ registrations:
           name: Staging
           description: A translation result from the staging process
           properties:
-            stager:
-              description: The stager that created this staging
-              type: simple
+            stagers:
+              description: The stagers that created this staging
+              type: map
               dataType:
                 type: relation
                 target: { id: 05f1c11b-da14-49c1-8f8a-7b5e48bc6c04, name: Stager }
