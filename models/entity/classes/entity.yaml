@@ -15,6 +15,9 @@ registrations:
             name:
               type: simple
               dataType: string
+            shortName:
+              type: simple
+              dataType: string
             foreignIds:
               description: >-
                 This collection of secondary ids is used when an object is

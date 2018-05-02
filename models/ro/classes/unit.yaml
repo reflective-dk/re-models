@@ -12,9 +12,6 @@ registrations:
           name: Unit
           description: An organizational unit
           properties:
-            shortName:
-              type: simple
-              dataType: string
             parent:
               type: simple
               dataType:
