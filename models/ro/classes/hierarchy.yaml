@@ -10,6 +10,18 @@ registrations:
           class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
           extends: { id: 2da6e709-3f63-47d9-a197-bda06fb86936, name: Entity }
           name: Hierarchy
-          description: A hierarchy of objects
-          # TODO - add metadata to specify hierarchy structure
+          description: A generic hierarchy of objects
+          properties:
+            rootQuery:
+              type: simple
+              dataType: json
+              schema: {}
+            rootFilter:
+              type: map
+              dataType: string
+            pathElements:
+              type: map
+              dataType:
+                type: json
+                schema: {}
 ...
