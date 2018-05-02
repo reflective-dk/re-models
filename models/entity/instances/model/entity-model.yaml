@@ -1,0 +1,12 @@
+# Entity model
+---
+id: 99aab70a-b294-44ca-a979-9c80ebe2997d
+mimeType: application/vnd.reflective-dk.object+json
+registrations:
+  - validity:
+      - input:
+          # Responsible actor - actor: { id: actor.id }
+          class: { id: 54985140-62ec-49fd-b05a-661e090c405f, name: Model }
+          name: Entity Model
+          description: A generic entity model
+...

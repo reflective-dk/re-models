@@ -1,16 +1,16 @@
-# Generic RO Entity Class
+# Entity Class
 ---
 id: 2da6e709-3f63-47d9-a197-bda06fb86936
 mimeType: application/vnd.reflective-dk.object+json
 registrations:
   - validity:
       - input:
-          model: { id: 17960fc5-7a6d-4e0b-95d8-f20934493819, name: Reflective Organization }
+          model: { id: 99aab70a-b294-44ca-a979-9c80ebe2997d, name: Entity Model }
           # Responsible actor - actor: { id: actor.id }
           class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
           extends: { id: c4315fa9-3765-40c0-ba45-ef821c416f83, name: Object }
           name: Entity
-          description: A generic entity in the Reflective Organization model
+          description: A generic entity with common properties
           properties:
             name:
               type: simple
