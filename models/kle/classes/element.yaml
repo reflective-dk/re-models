@@ -8,7 +8,7 @@ registrations:
           model: { id: dc3b4db1-efef-4a88-acd9-d85f4dac2179, name: KLE Model }
           # Responsible actor - actor: { id: actor.id }
           class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
-          extends: { id: c4315fa9-3765-40c0-ba45-ef821c416f83, name: Object }
+          extends: { id: 2da6e709-3f63-47d9-a197-bda06fb86936, name: Entity }
           name: KLE Element
           description: An element in KLE Emneplan or Handlingsfacetter
           properties:
@@ -26,7 +26,9 @@ registrations:
               type: simple
               dataType: dateTime
             rettetDato:
-              type: map
+              # rettetDato is defined as a map in the KLE schema but in practice,
+              # it is always just a simple date
+              type: simple
               dataType: dateTime
             udgaaetDato:
               type: simple
