@@ -14,8 +14,9 @@ registrations:
           properties:
             rootQuery:
               type: simple
-              dataType: json
-              schema: {}
+              dataType:
+                type: json
+                schema: {}
             rootFilter:
               type: map
               dataType: string
