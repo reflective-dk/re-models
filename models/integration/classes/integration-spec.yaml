@@ -18,9 +18,9 @@ registrations:
               dataType:
                 type: relation
                 target: { id: a28e7d85-66a0-48bf-986b-a90ece6b87d5, name: Fetcher }
-            stager:
+            stagers:
               description: Mechanism used to stage imported data
-              type: simple
+              type: map
               dataType:
                 type: relation
                 target: { id: 05f1c11b-da14-49c1-8f8a-7b5e48bc6c04, name: Stager }
