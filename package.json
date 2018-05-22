@@ -5,6 +5,8 @@
   "main": "index.js",
   "scripts": {
     "list-integrations": "list-integrations",
+    "generate-forms": "generate-forms",
+    "prebuild": "npm run generate-forms",
     "build": "build-objects",
     "clean": "rm -Rf ./build",
     "predeploy": "npm run upload",
