@@ -1,0 +1,35 @@
+
+webix.ui({
+  rows:[
+  {
+    id: "demouser_email",
+    name: "demouser_email",
+    view: "text",
+    required: true,
+    width: 480,
+    label: "Username:",
+    labelAlign: "right",
+    labelWidth: 180,
+  }, {
+    view: "combo",
+    required: true,
+    id: "demouser_domain",
+    name: "demouser_domain",
+    label: "Domain",
+    width: 480,
+    labelWidth: "180",
+    labelAlign: "right",
+  }, {
+    id: "demouser_active_days",
+    name: "demouser_active_days",
+    view: "counter",
+    required: true,
+    label: "Active in days:",
+    labelAlign: "right",
+    labelWidth: 180,
+    step: 1,
+    value: 7,
+    min: 1,
+  }
+  ]
+});

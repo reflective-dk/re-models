@@ -1,0 +1,22 @@
+---
+  id: ec4a7a94-46a0-44d8-8ed9-b4aa4cd62665
+  registrations:
+    - validity:
+        - input:
+            class:
+              id: efec2048-b4f3-4ffd-a7ba-b6698d412bbc
+              name: Process
+            name: Administration of RO units
+            userStartable: true
+            system:
+              id: 9374800d-1ba6-5a9e-ae4a-d6da16e7e9df
+            userForms:
+              ro-unit-admin:
+                id: 89aedc6c-08e5-4005-91e3-ff643a0de0af
+              ro-approve:
+                id: ea44dece-8720-4613-ab72-501a6a7b8bd6
+            roles:
+              unit-admin:
+                id: 910b5480-71b1-4b57-a713-6c7dfa6566d1
+            bpmn: { hash: ro-unit-admin.bpmn }
+...

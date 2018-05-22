@@ -1,0 +1,64 @@
+{cols:[
+  {rows:[
+    {
+      id: "unitadmin_filter",
+    	view:"text",
+    },
+    {
+      id: "unitadmin_tree",
+      view:"tree",
+      select:true,
+      template:function(obj, common){
+        var value = "<span>"+obj.value+"</span>";
+        if (obj.newInput)
+          value = '<span style="font-weight:bold">'+obj.newInput.name+"</span>";
+        return common.icon(obj, common) + common.folder(obj, common) + value;
+      }
+    }
+  ]},{
+    view: "resizer"
+  },{rows:[
+    {cols:[
+      {
+        id: "unitadmin_new",
+        view: "button",
+        type: "form",
+        label: "Opret",
+        width: 60
+      },
+      {
+        id: "unitadmin_end",
+        view: "button",
+        type: "danger",
+        label: "Luk",
+        disabled: true,
+        width: 60
+      },
+      {},
+      {
+        id: "unitadmin_update",
+        view: "button",
+        label: "Opdatere",
+        disabled: true,
+        width: 80
+      },
+
+    ]},
+    {view:"property", id:"unitadmin_properties", width:350, nameWidth: 120, autoheight: true, liveEdit: true,
+      elements:[
+        {id: "name", label: "Navn", type: "text", required: true},
+        {id: "shortName", label: "Kort navn", type: "text"},
+        {id: "unitType", label: "Type", type: "select", options:[]},
+        {id: "phoneNumbers", label: "Telefon nr.", type: "multitext", rule: webix.rules.isPhoneNumber},
+        {id: "emailAddresses", label: "E-mail", type: "multitext", rule: webix.rules.isEmail},
+        {id: "seNr", label: "SE-nummer", type:"text", rule: webix.rules.isCvrSeNumber},
+        {id: "ean", label: "EAN-nummer", type: "text", rule: webix.rules.isEanNumber},
+        {id: "costCenter", label: "Omkostningssted", type: "text", rule: webix.rules.isCostCenter},
+        {id: "parent", label: "Overordnet", type: "hierarchy", required: true},
+        {id: "activeFrom", label: "Aktiv fra", type: "date"},
+        {id: "activeTo", label: "Aktiv til", type: "date"},
+      ],
+    },
+    {}
+  ]}
+]}
