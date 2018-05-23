@@ -1,0 +1,13 @@
+---
+id: d44cd906-74a3-47da-bcc9-3a541c2da364
+registrations:
+  - validity:
+      - input:
+          class:
+            id: 6c54bdcc-691a-4190-8b50-4c5a6e4679dc
+            name: User Form
+          name: Review error from process
+          description: User form for looking at error data
+          definition:
+            hash: ro-review.js
+...
