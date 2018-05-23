@@ -62,6 +62,18 @@ registrations:
               dataType:
                 type: json
                 schema: {}
+            validFrom:
+              description: Controls the validity interval of the recorded data
+              type: simple
+              dataType:
+                type: json
+                schema: {}
+            validTo:
+              description: Controls the validity interval of the recorded data
+              type: simple
+              dataType:
+                type: json
+                schema: {}
             mappings:
               description: Set of mappings for translation between types
               type: map
