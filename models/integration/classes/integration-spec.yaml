@@ -12,9 +12,9 @@ registrations:
           name: Integration Spec
           description: Specifies an integration of data from a specific system and tenant
           properties:
-            fetcher:
+            fetchers:
               description: Mechanism used to fetch imported data
-              type: simple
+              type: map
               dataType:
                 type: relation
                 target: { id: a28e7d85-66a0-48bf-986b-a90ece6b87d5, name: Fetcher }
