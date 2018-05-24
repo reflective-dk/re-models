@@ -1,330 +1,254 @@
-/* global $$, promise */
-/**
- * expects argument with function getUnits
- **/
 (args) => {
+  webixExtensions(); // not needed when reflective webix module
+
   return {
     render: function (view) {
-     var API = function() {
-       this.data = {};
-       this.show = function(id) {
-         // Show the changed unit
-       }
-       this.enable = function () {
-//         $$("unitadmin").enable();
-       };
-       this.disable = function () {
-//         $$("unitadmin").disable();
-       };
-       this.bindData = function (snapshot) {
-         this.data = snapshot;
-       };
-       this.syncData = function () {
-         // this.data contain modified objects
-         return this.data;
-       };
-       this.suggestions = [
+      var API = function() {
+        this.show = function(id) {
+           // Show the changed unit
+        }
+        this.enable = function() {
+  //         $$("unitadmin").enable();
+        };
+        this.disable = function() {
+  //         $$("unitadmin").disable();
+        };
+        this.bindData = function(snapshots) {
+console.log("DEBUG: bindData() snapshots=",snapshots);
+  //         data = snapshot;
+        };
+        this.syncData = function() {
+          var objects = [];
 
-         promise.resolve()
-         .then(() => {
-           return createTreeData().then(function (data) {
-             console.log(data);
-             // get tree
-             $$("unitadmin_tree").define("data", {data: data});
-             // get unit types
-             $$('unitadmin_properties').getItem('unitType').options = createSelectData();
-           });
-         })
-       ];
-     };
+          // this.data contain modified snapshots
+          var snapshots = this.data;
 
-     setupEditors(); // not needed when reflective webix module
-     view.addView({cols:[
-  {rows:[
-    {
-      id: "unitadmin_filter",
-    	view:"text",
-    },
-    {
-      id: "unitadmin_tree",
-      view:"tree",
-      select:true,
-      template:function(obj, common){
-        var value = "<span>"+obj.value+"</span>";
-        if (obj.newInput)
-          value = '<span style="font-weight:bold">'+obj.newInput.name+"</span>";
-        return common.icon(obj, common) + common.folder(obj, common) + value;
-      }
-    }
-  ]},{
-    view: "resizer"
-  },{rows:[
-    {cols:[
-      {
-        id: "unitadmin_new",
-        view: "button",
-        type: "form",
-        label: "Opret",
-        width: 60
-      },
-      {
-        id: "unitadmin_end",
-        view: "button",
-        type: "danger",
-        label: "Luk",
-        disabled: true,
-        width: 60
-      },
-      {},
-      {
-        id: "unitadmin_update",
-        view: "button",
-        label: "Opdatere",
-        disabled: true,
-        width: 80
-      },
+          Object.keys(snapshots).forEach(function(id) {
+            var input = snapshots[id];
+            delete input.id;
 
-    ]},
-    {view:"property", id:"unitadmin_properties", width:350, nameWidth: 120, autoheight: true, liveEdit: true,
-      elements:[
-        {id: "name", label: "Navn", type: "text", required: true},
-        {id: "shortName", label: "Kort navn", type: "text"},
-        {id: "unitType", label: "Type", type: "select", options:[]},
-        {id: "phoneNumbers", label: "Telefon nr.", type: "multitext", rule: webix.rules.isPhoneNumber},
-        {id: "emailAddresses", label: "E-mail", type: "multitext", rule: webix.rules.isEmail},
-        {id: "seNr", label: "SE-nummer", type:"text", rule: webix.rules.isCvrSeNumber},
-        {id: "ean", label: "EAN-nummer", type: "text", rule: webix.rules.isEanNumber},
-        {id: "costCenter", label: "Omkostningssted", type: "text", rule: webix.rules.isCostCenter},
-        {id: "parent", label: "Overordnet", type: "hierarchy", required: true},
-        {id: "activeFrom", label: "Aktiv fra", type: "date"},
-        {id: "activeTo", label: "Aktiv til", type: "date"},
-      ],
-    },
-    {}
-  ]}
-]}
-);
+            var vtStr = $$("vt").getValue();
+            var validFrom = toISOString(vtStr);
 
-     // Bind events
-     var filter = $$("unitadmin_filter");
-     var tree = $$("unitadmin_tree");
-     var properties = $$("unitadmin_properties");
-     var updateButton = $$("unitadmin_update");
-     var newButton = $$("unitadmin_new");
-     var endButton = $$("unitadmin_end");
+            objects.push({id:id, registrations:[{validity:[{from: validFrom, input: input}]}]});
+          });
+           // Wrap data in object metadata, using vt as validity from
+          return {objects: objects};
+        }
+        this.suggestions = [
+
+          createTreeData().then(function (data) {
+            $$("unitadmin_tree").define("data", {data: data});
+          }),
+          createSelectData().then(function (options) {
+            $$('unitadmin_properties').getItem('unitType').options = options;
+          })
+        ];
+      };
+      var api = new API();
+      api.data = {};
+
+      view.addView({ro-unit-admin.webix});
+
+      // Bind events
+      var filter = $$("unitadmin_filter");
+      var tree = $$("unitadmin_tree");
+      var properties = $$("unitadmin_properties");
+      var updateButton = $$("unitadmin_update");
+      var newButton = $$("unitadmin_new");
 
       // bind filter
       filter.attachEvent("onTimedKeyPress",function() {
-			  tree.filter("#value#",this.getValue());
-			});
+        tree.filter("#value#",this.getValue());
+      });
 
-     // On tree item select
-     tree.attachEvent("onItemClick", function (id,e,n) {
-       updateButton.disable();
-       var item = tree.getItem(id);
+      // On tree item select
+      tree.attachEvent("onBeforeSelect", function (id,e,n) {
+        updateButton.disable();
+        var item = tree.getItem(id);
 
-       // create draft versions of data: dates, emails, phone numbers
-       const def = {name:"",shortName:"",unitType:"",phoneNumbers:"",emailAddresses:"",seNr:"",ean:"",costCenter:"",activeFrom:"",activeTo:""};
-       var draftInput = Object.assign(def,item.snapshot);
-       if (item.newInput)
-         draftInput = Object.assign(def,item.newInput);
-       draftInput.phoneNumbers = asList(draftInput.phoneNumbers);
-       draftInput.emailAddresses = asList(draftInput.emailAddresses);
-       draftInput.parent = draftInput.parent.id;
-       console.log('before');
-       properties.getItem('parent').data = createTreeData();
-       console.log('after');
-       // Remove error markings
-       Object.keys(properties.getValues()).forEach((key) => {
-         properties.getItem(key).css='';
-       });
-       endButton.enable();
-       properties.setValues(draftInput);
-       properties.refresh();
-     });
+        // create draft versions of data: dates, emails, phone numbers
+        const def = {name:"",shortName:"",unitType:"",phoneNumbers:"",emailAddresses:"",seNr:"",ean:"",costCenter:"",activeFrom:"",activeTo:""};
+        var draftInput = Object.assign(def,item.snapshot);
+        if (item.newInput)
+          draftInput = Object.assign(def,item.newInput);
+        draftInput.phoneNumbers = asList(draftInput.phoneNumbers);
+        draftInput.emailAddresses = asList(draftInput.emailAddresses);
+        draftInput.parent = draftInput.parent.id;
+        draftInput.unitType = draftInput.unitType.id;
 
-     // Has properties changed? Errors?
-     properties.attachEvent("onAfterEditStop", function(state, editor, ignoreUpdate) {
-       var selectedId = tree.getSelectedId();
-       var snap = {};
-       if (selectedId != 0) {
-         snap = tree.getItem(selectedId).snapshot;
-       }
+        properties.getItem('parent').data = createTreeData();
 
-       // Get values, do they validate and has they been changed?
-       var errors = false;
-       var changed = false;
-       Object.keys(properties.getValues()).forEach((key) => {
-         var item = properties.getItem(key);
-         item.css='';
-
-         // Only validate inline text fields with rule. Popups use rule for validation
-         if (item && item.rule && item.type === 'text' && item.rule(item.value) === false) {
-           errors = true;
-           item.css="webix_confirm_error";
-         }
-         if (item.required && item.value == 0) {
-           errors = true;
-           item.css="webix_confirm_error";
-         }
-
-         if (hasChanged(item.value,snap[key],key)) {
-           changed = true;
-         }
-       });
-       if (changed && !errors) {
-         updateButton.enable();
-       } else {
-         updateButton.disable();
-       }
-     });
-
-     // Update button
-     updateButton.attachEvent("onItemClick", function() {
-
-       // Close open editor
-       properties.editStop();
-       var prop = properties.getValues();
-
-       // Add new registration to changed object, ready for use with task complete
-       var item = $$("unitadmin_tree").getSelectedItem();
-
-       // New unit?
-       if (item === undefined) {
-         item = {id: uuid.v4(), value: prop.name};
-         $$("unitadmin_tree").add(item, 0, prop.parent);
-       }
-
-       saveProperties(prop, item, this.data);
-
-       // Refresh tree, so new change is rendered
-       properties.setValues({});
-       tree.unselectAll();
-       tree.refresh();
-       endButton.disable();
-       this.disable();
-     });
-
-     // new button
-     newButton.attachEvent("onItemClick", function() {
-
-       // Add data
-       properties.setValues({});
-
-       // Remove error markings and mark required
-       Object.keys(properties.getValues()).forEach((key) => {
-         var item = properties.getItem(key);
-         item.css='';
-
-         if (item.required && item.value == 0) {
-           item.css="webix_confirm_error";
-         }
-       });
-
-       properties.refresh();
-       tree.unselectAll();
-
-       // init data for parent popup
-       console.log('here');
-       properties.getItem('parent').data = createTreeData();
-     });
-
-     // end button
-     endButton.attachEvent("onItemClick", function() {
-       // Modal dialog with end time
-       webix.ui(
-        {
-          id:"unitadmin_endWindow",
-          view:"window",
-          modal:false,
-          head: {
-            view:"toolbar", margin:-4, cols:[
-						{ view:"label", label: "Luk virkningsperioden" }
-						]
-					},
-          position:"center",
-          width: 300,
-          height: 170,
-          body:{
-            rows:[
-             {
-              template: "<span style='font-size:14px;font-style:italic'>Nodens virkning sættes til at slutte midnat d. #vt#</span>",
-              data: {vt: webix.Date.dateToStr("%d-%m-%Y")($$('vt').getValue())},
-              height: 45,
-             },
-             {cols:[
-              {},
-              {
-                view: "button",
-                label: "Upfør",
-                width: 80,
-                on: {onItemClick: endUnit}
-              },
-              {
-                view: "button",
-                label: "Annuler",
-                width: 80,
-                click:"$$('unitadmin_endWindow').close();"
-              },
-              {}
-            ]},
-            ]
+        // Show dates as DD-MM-YYYY if not oo then use blank
+        const format = webix.Date.dateToStr("%d-%m-%Y");
+        var activeFromDate = new Date(draftInput.activeFrom);
+        if (activeFromDate.getFullYear() < 1950) {
+          draftInput.activeFrom = "";
+        } else {
+          if (typeof draftInput.activeFrom === 'string') {
+            draftInput.activeFrom=format(activeFromDate);
+          } else {
+            draftInput.activeFrom=activeFromDate;
           }
         }
-       ).show();
-     });
-    function endUnit() {
-      var item = $$("unitadmin_tree").getSelectedItem();
+        var activeToDate = new Date(draftInput.activeTo);
+        if (activeToDate.getFullYear() > 2500) {
+          draftInput.activeTo = "";
+        } else {
+          draftInput.activeTo=activeToDate;
+        }
 
-      // Save properties
-      properties.editStop();
-      saveProperties($$("unitadmin_properties").getValues(), item, this.data);
+        // Remove error markings
+        Object.keys(properties.getValues()).forEach((key) => {
+          properties.getItem(key).css='';
+        });
 
-      // Set end time
-      var vt = new Date($$('vt').getValue());
-      var activeTo = new Date(vt.getTime());
-      activeTo.setUTCHours(0,0,0,0);
-      item.newInput.activeTo = activeTo.toISOString();
+        delete properties.getItem('activeFrom').required;
+        delete properties.getItem('activeFrom').type;  // Cannot edit
+        properties.setValues(draftInput);
+        properties.enable();
+        properties.refresh();
+      });
 
-      $$("unitadmin_endWindow").close();
-      $$("unitadmin_end").disable();
-      $$("unitadmin_properties").setValues({});
-      $$("unitadmin_properties").refresh();
-      $$("unitadmin_tree").unselectAll();
-    }
+      // Has properties changed? Errors?
+      properties.attachEvent("onAfterEditStop", function(state, editor, ignoreUpdate) {
+        var selectedId = tree.getSelectedId();
+        var snap = {};
+        if (selectedId != 0) {
+          snap = tree.getItem(selectedId).snapshot;
+        }
+        if (!snap) snap = {};
 
-     // Rule validation for inline property fields editors with rules
-     properties.attachEvent("onTimedKeyPress", function(code,e) {
-       var editor = properties.getEditor();
-       var noErrors = true;
-       if (editor && editor.config.rule && editor.config.type === 'text') {
-         noErrors = editor.config.rule(editor.getValue());
-       }
-       if (editor && editor.config.required && editor.getValue() == 0) {
-         noErrors = false;
-       }
+        // Get values, do they validate and has they been changed?
+        var errors = false;
+        var changed = false;
+        Object.keys(properties.getValues()).forEach((key) => {
+          var prop = properties.getItem(key);
+          prop.css='';
 
-       if (noErrors) {
-         delete editor.config.css;
-       } else {
-         editor.config.css = "webix_confirm_error";
-       }
-       properties.refresh();
-     });
+          // Only validate inline text fields with rule. Popups use rule for validation
+          if (prop && prop.rule && prop.type === 'text' && prop.rule(prop.value) === false) {
+            errors = true;
+            prop.css="webix_confirm_error";
+          }
+          if (prop.required && prop.value == 0) {
+            errors = true;
+            prop.css="webix_confirm_error";
+          }
+          if (hasChanged(prop.value,snap[key],key)) {
+            changed = true;
+            prop.changed = true;
+          }
+        });
+        if (changed && !errors) {
+          updateButton.enable();
+        } else {
+          updateButton.disable();
+        }
+      });
 
-     // Show unit name based on ref id
-     properties.on_render["hierarchy"] = function(id, config){
-       if (id.length != 0) {
-         var treeItem = tree.getItem(id);
-         var value = treeItem.value;
-         if (treeItem.newInput) value = treeItem.newInput.name;
-         return value;
-       }
-       return "";
-     }
-     return new API();
-    }
+      // Update button
+      updateButton.attachEvent("onItemClick", function() {
+        // Close open editor
+        properties.editStop();
+        var prop = properties.getValues();
+
+        // Add new registration to changed object, ready for use with task complete
+        var item = $$("unitadmin_tree").getSelectedItem();
+
+        // New unit?
+        if (item === undefined) {
+          item = {id: uuid.v4(), value: prop.name};
+          $$("unitadmin_tree").add(item, 0, prop.parent);
+        }
+
+        saveProperties(properties, item, api.data);
+
+        // Refresh tree, so new change is rendered
+        properties.setValues({});
+        properties.disable();
+        tree.unselectAll();
+        tree.refresh();
+        this.disable();
+      });
+
+      // new button
+      newButton.attachEvent("onItemClick", function() {
+        // Add data
+        properties.enable();
+        properties.setValues({});
+        properties.getItem('activeFrom').required = true;
+        properties.getItem('activeFrom').type="date";
+
+        // Remove error markings and mark required
+        Object.keys(properties.getValues()).forEach((key) => {
+          var item = properties.getItem(key);
+          item.css='';
+
+          if (item.required && item.value == 0) {
+            item.css="webix_confirm_error";
+          }
+        });
+
+        properties.refresh();
+        tree.unselectAll();
+
+        // init data for parent popup
+        properties.getItem('parent').data = createTreeData();
+      });
+
+      // Rule validation for inline property fields editors with rules
+      properties.attachEvent("onTimedKeyPress", function(code,e) {
+        var editor = properties.getEditor();
+        var noErrors = true;
+        if (editor && editor.config.rule && editor.config.type === 'text') {
+          noErrors = editor.config.rule(editor.getValue());
+        }
+        if (editor && editor.config.required && editor.getValue() == 0) {
+          noErrors = false;
+        }
+        if (noErrors) {
+          if (editor.config) delete editor.config.css;
+        } else {
+          editor.config.css = "webix_confirm_error";
+        }
+        properties.refresh();
+      });
+
+      // Show unit name based on ref id
+      properties.on_render["hierarchy"] = function(id, config) {
+        if (id.length != 0) {
+          var treeItem = tree.getItem(id);
+          var value = treeItem.value;
+          if (treeItem.newInput) value = treeItem.newInput.name;
+          return value;
+        }
+        return "";
+      }
+      properties.on_render["select"] = function(id, config) {
+        if (id && id.length != 0) {
+          var option = config.options.filter(option => option.id === id);
+          return option.length === 1 ? option[0].value : "- Unknown type -";
+        }
+        return "";
+      }
+
+      return api;
+    } // render
   };
+
+  function createSelectData(data) {
+    return args.getUnitTypes().then(function (data) {
+      var items = [];
+      data.objects.forEach(function(obj) {
+      items.push({
+          id: obj.id,
+          value: obj.snapshot.name
+        });
+      });
+      return promise.resolve(items);
+    });
+  }
 
   // Transform query response to webix tree data, where the snapshot is added/stored in the thee items
   function createTreeData() {
@@ -370,16 +294,33 @@
       return promise.resolve([root]);
     });
   }
+
 };
 
+function saveProperties(properties, item, data) {
 
-function saveProperties(prop, item, data) {
    var tree = $$("unitadmin_tree");
+   var prop = properties.getValues();
 
    // convert data to RO
    var parentId = prop.parent;
+   var unitTypeId = prop.unitType;
    item.newInput = prop;
    item.newInput.parent = {id: parentId};
+   item.newInput.unitType = {id: unitTypeId};
+
+   // Convert dates back to ISO UTC
+   if (prop.activeFrom == 0) {
+     item.newInput.activeFrom = '1900-01-01T00:00:00.000Z';
+   } else {
+     item.newInput.activeFrom = toISOString(item.newInput.activeFrom);
+   }
+   if (prop.activeTo == 0) {
+     item.newInput.activeTo = '9999-12-31T00:00:00.000Z';
+     if (item.snapshot) item.newInput.activeTo = item.snapshot.activeTo;
+   } else {
+     item.newInput.activeTo = toISOString(item.newInput.activeTo);
+   }
 
    // Create phone and emails RO structure
    item.newInput.phoneNumbers = item.newInput.phoneNumbers.split(',').reduce(function(map, obj) {
@@ -397,6 +338,15 @@ function saveProperties(prop, item, data) {
    }
    tree.open(item.newInput.parent.id, true);
 
+   if (item.snapshot === undefined) {
+     item.newInput.class = {id: '5cad9972-6560-4136-a9d5-40c2d109be9b', name: 'Unit'};
+   }
+
+   // Prune newInput properties that has not been changed
+   Object.keys(prop).forEach(function(key) {
+     if (properties.getItem(key) && !properties.getItem(key).changed) delete item.newInput[key];
+   });
+
    // Add reference in process control object
    data[item.id] = item.newInput;
 }
@@ -411,17 +361,55 @@ function hasChanged(v1,v2,id) {
   }
 
   switch (id) {
+    case 'activeFrom':
+    case 'activeTo':
+      if (v1 == 0) return false;
+
+      // convert v1 to ISO ÚTC date
+      v1 = toISOString(v1);
+      break;
+    case 'parent':
+      return v1 !== v2.id;
     case 'phoneNumbers':
     case 'emailAddresses':
       var values = v1.split(',');
-      var keys = Object.keys(v2);
-      if (keys.length !== values.length) return false;
-      for (var i = 0; i < keys.length; i++) {
-        if (values[i].trim() !== v2[keys[i]]) return false;
+      if (v1.trim() == 0) {
+        // if empty string, then values.length should be 0
+        values = [];
       }
-      return true;
+      var keys = Object.keys(v2);
+      if (keys.length !== values.length) {
+        return true;
+      }
+      for (var i = 0; i < keys.length; i++) {
+        if (values[i].trim() !== v2[keys[i]]) {
+          return true;
+        }
+      }
+      return false;
   }
   return v1 !== v2;
+}
+
+function toISOString(v) {
+  var date = v;
+  if (typeof v === 'string') {
+    var parse = webix.Date.strToDate("%d-%m-%Y");
+    date = parse(v);
+  }
+  return date.toISOString();
+}
+function asList(obj) {
+  var keys = Object.keys(obj);
+  var result = "";
+  keys.forEach(function(key) {
+    if (result.length > 0) {
+      result += ", ";
+    }
+    result += obj[key];
+  });
+
+  return result;
 }
 
 
@@ -430,8 +418,12 @@ function hasChanged(v1,v2,id) {
 
 
 
-function setupEditors() {
-  // XXX: move to reflective webix module: rebix.rules
+
+
+
+
+
+function webixExtensions() {
 
   // Reflective rules
   webix.rules.isPhoneNumber = function(value) {
@@ -594,6 +586,7 @@ function setupEditors() {
       var tree = this.getTreeView();
       // get from config - init from config
       tree.define("data", this.config.data);
+      tree.unselectAll();
       this.config.css=''; // clear required marking
 
   		this._is_string = this.config.stringResult || (value && typeof value == "string");
@@ -609,33 +602,6 @@ function setupEditors() {
   		return this.getPopup().getBody().getChildViews()[1].getChildViews()[1];
   	},
   }, webix.editors.popup);
+
 }
 
-
-
-
-
-
-
-
-
-
-
-
-function asList(obj) {
-  var keys = Object.keys(obj);
-  var result = "";
-  keys.forEach(function(key) {
-    if (result.length > 0) {
-      result += ", ";
-    }
-    result += obj[key];
-  });
-
-  return result;
-}
-
-function createSelectData(data) {
-var enhedstyper = [{"id":"Administrationsenhed","value":"Administrationsenhed"},{"id":"Forskningsenhed","value":"Forskningsenhed"},{"id":"Afdeling","value":"Afdeling"},{"id":"Institut","value":"Institut"},{"id":"Serviceenhed","value":"Serviceenhed"},{"id":"Fakultet","value":"Fakultet"},{"id":"Universitet","value":"Universitet"},{"id":"Center","value":"Center"},{"id":"Fællesadministration","value":"Fællesadministration"},{"id":"Skole","value":"Skole"},{"id":"Relationsskabende","value":"Relationsskabende"}];
-  return enhedstyper;
-}

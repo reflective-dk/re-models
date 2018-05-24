@@ -26,37 +26,28 @@
         label: "Opret",
         width: 60
       },
-      {
-        id: "unitadmin_end",
-        view: "button",
-        type: "danger",
-        label: "Luk",
-        disabled: true,
-        width: 60
-      },
       {},
       {
         id: "unitadmin_update",
         view: "button",
-        label: "Opdatere",
+        label: "Gem",
         disabled: true,
         width: 80
       },
-
     ]},
-    {view:"property", id:"unitadmin_properties", width:350, nameWidth: 120, autoheight: true, liveEdit: true,
+    {view:"property", id:"unitadmin_properties", width:350, nameWidth: 120, autoheight: true, liveEdit: true, disabled: true,
       elements:[
+        {id: "activeFrom", label: "Aktiv fra", type: "date", format:webix.i18n.dateFormatStr},
+        {id: "activeTo", label: "Aktiv indtil", type: "date",format:webix.i18n.dateFormatStr},
         {id: "name", label: "Navn", type: "text", required: true},
         {id: "shortName", label: "Kort navn", type: "text"},
         {id: "unitType", label: "Type", type: "select", options:[]},
-        {id: "phoneNumbers", label: "Telefon nr.", type: "multitext", rule: webix.rules.isPhoneNumber},
-        {id: "emailAddresses", label: "E-mail", type: "multitext", rule: webix.rules.isEmail},
+        {id: "parent", label: "Overordnet", type: "hierarchy", required: true},
         {id: "seNr", label: "SE-nummer", type:"text", rule: webix.rules.isCvrSeNumber},
         {id: "ean", label: "EAN-nummer", type: "text", rule: webix.rules.isEanNumber},
         {id: "costCenter", label: "Omkostningssted", type: "text", rule: webix.rules.isCostCenter},
-        {id: "parent", label: "Overordnet", type: "hierarchy", required: true},
-        {id: "activeFrom", label: "Aktiv fra", type: "date"},
-        {id: "activeTo", label: "Aktiv til", type: "date"},
+        {id: "phoneNumbers", label: "Telefon nr.", type: "multitext", rule: webix.rules.isPhoneNumber},
+        {id: "emailAddresses", label: "E-mail", type: "multitext", rule: webix.rules.isEmail},
       ],
     },
     {}
