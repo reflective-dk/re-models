@@ -106,6 +106,9 @@ console.log("DEBUG: syncData() objects=",JSON.stringify(objects));
 
         delete properties.getItem('activeFrom').required;
         delete properties.getItem('activeFrom').type;  // Cannot edit
+//        properties.getItem('activeFrom').css = {"font-style": "italic"};
+        properties.getItem('activeFrom').css = {"color": "#999999"};
+
         properties.setValues(draftInput);
         properties.enable();
         properties.refresh();
