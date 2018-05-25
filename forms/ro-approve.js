@@ -17,7 +17,8 @@
 
 console.log("DEBUG: result=",result);
             if (result) {
-              this.data = result.extension;
+              this.data.snapshots = result.extension.snapshots.objects;
+              this.data.registrations = result.extension.registrations.objects;
             }
 
             // Build changes overview
