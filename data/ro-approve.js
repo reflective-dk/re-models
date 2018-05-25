@@ -1,62 +1,68 @@
-/* global webix,$$,situ, wrapObject, promise */
+/* global $$ */
 () => {
   return {
     render: function (view) {
       var API = function() {
-        this.data = {person: {}, employment: {}};
-        this.enable = () => {};
-        this.disable = () => {};
-        this.bindData = (snapshot) => {};
-        this.syncData = () => {};
-        this.processes = [];
-        this.suggestions = [];
+          var self = this;
+          this.data = {udstyr: {}};
+
+          this.enable = () => {
+            $$("godkend").enable();
+          };
+          this.disable = () => {
+            $$("godkend").disable();
+          };
+          this.bindData = (snapshot) => {
+console.log("DEBUG: bindData()");
+            this.data = {};
+            if (snapshot) {
+              this.data = snapshot;
+            }
+            this.data.snapshots = [{"id":"8dd2bbb5-21fc-5e06-b2d7-3d03d0bbb47d","snapshot":[{"validity":[{"from":"2018-05-24T22:00:00.000Z","input":{"activeFrom":"2017-03-31T22:00:00.000Z","name":"Rektorat1","unitType":{"id":"e3a52ab7-77a2-54c6-a467-8259e4c81763"}}}]}]},{"id":"2a46f308-4227-52dd-b42c-f142e56f227c","registrations":[{"validity":[{"from":"2018-05-24T22:00:00.000Z","input":{"activeFrom":"2017-03-31T22:00:00.000Z","name":"Bestyrelse","unitType":{"id":"e3a52ab7-77a2-54c6-a467-8259e4c81763"},"parent":{"id":["56cc1fdc-9983-502a-b24f-6be3f7198913"]}}}]}]}];
+
+            this.data.objects = [{"id":"8dd2bbb5-21fc-5e06-b2d7-3d03d0bbb47d","registrations":[{"validity":[{"from":"2018-05-24T22:00:00.000Z","input":{"activeFrom":"2017-03-31T22:00:00.000Z","name":"Rektorat1","unitType":{"id":"e3a52ab7-77a2-54c6-a467-8259e4c81763"}}}]}]},{"id":"2a46f308-4227-52dd-b42c-f142e56f227c","registrations":[{"validity":[{"from":"2018-05-24T22:00:00.000Z","input":{"activeFrom":"2017-03-31T22:00:00.000Z","name":"Bestyrelse","unitType":{"id":"e3a52ab7-77a2-54c6-a467-8259e4c81763"},"parent":{"id":["56cc1fdc-9983-502a-b24f-6be3f7198913"]}}}]}]}];
+
+            // Build changes overview
+            this.data.objects.forEach(function(obj) {
+              $$("godkend_table").add({
+                godkend_rt: "20-05-2018",
+                godkend_status: 1,
+                godkend_user: "some user",
+                godkend_task: obj.registrations[0].validity[0].input,
+              });
+            });
+          };
+          this.syncData = () => {
+            return null;
+          };
+
+          this.processes = [];
+          this.suggestions = [];
       };
       var api = new API();
       view.addView({
+ id: "godkend",
  type: "clean",
- rows: [
-   {height:10},{
-   view: "template",
-   height: 30,
-   template: "<center><b>Ændringer med effekt fra og med: #vt# validerer imod modellen og er klar til at blive godkendt.</b></center>",
-   type: "clean",
-   data: {vt: "01-03-2018"}
-  },{
-
+ rows: [{
+  id: "godkend_table",
   view:"datatable",
     editable:false,
     spans:true,
+    select: true,
+    footer: true,
     columns:[
-    { id: "rt", header:"Tidspunkt", type:"date",adjust:"data"},
-    { id: "user", header:"Bruger",adjust:"data"},
-    { id: "unit", header: "Afdeling",adjust:"data"},
-    { id: "role", header: "Rolle",adjust:"data"},
-    { id: "old", header: "Før",adjust:"data"},
-    { id: "new", header: "Efter",adjust:"data"},
-    { id: "result", header: "Valid", template: "<span class='webix_icon fa-thumbs-up'></span>"},
+    { id: "godkend_rt", header:"Tidspunkt", type:"date",adjust:"data",footer: {text: "Ændringer med effekt fra og med: " + $$("vt").getValue() + " validerer og er klar til at blive godkendt",colspan: 4}},
+    { id: "godkend_status", header: "Status",adjust:"header",
+      template:function(obj) {
+   		  return "<span class='webix_icon "+(obj.status === 1 ? "fa-thumbs-up" : "fa-hourglass-half")+"'></span>"
+      }
+    },
+    { id: "godkend_user", header: "Bruger",adjust:"data"},
+    { id: "godkend_task", header: "Ændring",adjust:"data",fillspace:true},
   ],
-  data: {
-    data: [
-      { id:1, rt:"01-03-2018", user:"Biger Blair", unit:"Institut for Planlægning", role:"Leder", old:"133514", new:"255548", result:1},
-      { id:2, rt:"01-03-2018", user:"Biger Blair", unit:"Institut for Planlægning", role:"Leder", old:"S. Vindler", new:"Anton Hansen", result:1},
-      { id:3, rt:"01-03-2018", user:"Biger Blair", unit:"Klinisk Institut", role:"Adgangsmanager", old:"", new:"200341", result:1},
-      { id:4, rt:"01-03-2018", user:"Biger Blair", unit:"Klinisk Institut", role:"Adgangsmanager", old:"<i>ingen</i>", new:"Denis Dur", result:1},
-    ],
-    spans:[
-      [1, "rt", 1, 2],
-      [1, "user", 1, 2],
-      [1, "unit", 1, 2],
-      [1, "role", 1, 2],
-      [1, "result", 1, 2],
-      [3, "rt", 1, 2],
-      [3, "user", 1, 2],
-      [3, "unit", 1, 2],
-      [3, "role", 1, 2],
-      [3, "result", 1, 2],
-    ]
-  }
   }]
-});
+}
+);
       return api;
     }
   };

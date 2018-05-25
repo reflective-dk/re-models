@@ -1,5 +1,4 @@
 (args) => {
-  webixExtensions(); // not needed when reflective webix module
 
   return {
     render: function (view) {
@@ -32,7 +31,9 @@ console.log("DEBUG: bindData() snapshots=",snapshots);
 
             objects.push({id:id, registrations:[{validity:[{from: validFrom, input: input}]}]});
           });
+
            // Wrap data in object metadata, using vt as validity from
+console.log("DEBUG: syncData() objects=",JSON.stringify(objects));
           return {objects: objects};
         }
         this.suggestions = [
@@ -160,6 +161,9 @@ console.log("DEBUG: bindData() snapshots=",snapshots);
 
         delete properties.getItem('activeFrom').required;
         delete properties.getItem('activeFrom').type;  // Cannot edit
+//        properties.getItem('activeFrom').css = {"font-style": "italic"};
+        properties.getItem('activeFrom').css = {"color": "#999999"};
+
         properties.setValues(draftInput);
         properties.enable();
         properties.refresh();
@@ -425,6 +429,8 @@ function hasChanged(v1,v2,id) {
       break;
     case 'parent':
       return v1 !== v2.id;
+    case 'unitType':
+      return v1 !== v2.id;
     case 'phoneNumbers':
     case 'emailAddresses':
       var values = v1.split(',');
@@ -451,6 +457,8 @@ function toISOString(v) {
   if (typeof v === 'string') {
     var parse = webix.Date.strToDate("%d-%m-%Y");
     date = parse(v);
+    date.setDate(date.getDate()+1);
+    date.setUTCHours(0,0,0,0);
   }
   return date.toISOString();
 }
@@ -466,197 +474,3 @@ function asList(obj) {
 
   return result;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-function webixExtensions() {
-
-  // Reflective rules
-  webix.rules.isPhoneNumber = function(value) {
-    // [+##-]########, has to be a number
-    // XXX: internal numbers
-    return value.match("\^\(\\+45\-\)\?\\d\{8\}\$");
-  }
-  webix.rules.isCvrSeNumber = function(value) {
-    return value.match("\^\\d\{8\}\$");
-  }
-  webix.rules.isEanNumber = function(value) {
-    return value.match("\^\\d\{13\}\$");
-  }
-  webix.rules.isCostCenter = function(value) {
-    return value.match("\^\\d\{10\}\$");
-  }
-
-
-
-  // Reflective editors
-
-
-  // Define multitext popup type
-  webix.editors.$popup.multitext = {
-    view:"popup",
-    body:{
-      rows:[
-        { view:"text", hidden:true}, // InputNode
-        { view:"form", borderless:true, elements: [
-        ]}
-      ]
-    }
-  };
-
-  webix.editors.multitext = webix.extend({
-  	popupType: "multitext",
-    focus:function(){},
-    setValue:function(value) {
-      var formView = this.getFormView();
-
-      // use the property field rule for field validation if defined
-      var validate = undefined;
-      if (this.config.rule) {
-        validate = this.config.rule;
-      }
-      this.config.css=''; // clear required marking
-
-      // Remove existing views
-      var ids = [];
-      formView.getChildViews().forEach(function(view) {ids.push(view.config.id);});
-      ids.forEach(function(id) {formView.removeView(id);});
-
-      // setup multitext lines from property field value
-      var values = value.split(',');
-      formView.addView(
-        {cols:[ {view:"label",label:this.config.label,width: 90}, {name: 'text0', view:"text", width:230, validate, validateEvent:"key", value: values.length ? values[0] : "" },
-        {view:"button", type:"icon", icon: "plus-circle", width:28, on: {onItemClick:webix.editors.multitext._addLine(validate)} }]}
-      );
-      for (var i = 1; i < values.length; i++) {
-        var v = values[i];
-        this.getFormView().addView(
-          {cols:[ {width: 90}, {name: 'text'+i, view:"text", width:230, validate, validateEvent:"key", value: v.trim() },
-          {view:"button", type:"icon", icon: "minus-circle", width:28, on: {onItemClick:webix.editors.multitext._removeLine} }]}
-        );
-      }
-  		this._is_string = this.config.stringResult || (value && typeof value == "string");
-  		webix.editors.popup.setValue.call(this, value);
-  	},
-  	getValue:function(){
-  	  var value = "";
-      var formView = this.getFormView();
-
-  	  // Build value from popup inputs
-      formView.getChildViews().forEach(function(view) {
-        var textView = view.getChildViews()[1];
-        var v = textView.getValue();
-        // Only add values that validate
-        if (!textView.validate || textView.validate()) {
-
-          // Only lines that is not empty
-          if (v.trim().length) {
-            if (value.length) value += ", ";
-            value += v;
-          }
-        }
-      });
-      return value;
-  	},
-  	popupInit:function(popup) {
-  	},
-  	getInputNode:function() {
-  		return this.getPopup().getBody().getChildViews()[0];
-  	},
-  	getFormView:function() {
-  		return this.getPopup().getBody().getChildViews()[1];
-  	},
-  	_removeLine:function(id){
-      var lineId = $$(id).getParentView().config.id;
-  	  this.getFormView().removeView(lineId)
-  	},
-  	_addLine:function(validate){
-  	  return function(id) {
-        var view =
-          {cols:[ {width: 90}, {name: id, view:"text", width:230, validate, validateEvent:"key", value: "" },
-          {view:"button", type:"icon", icon: "minus-circle", width:28, on: {onItemClick:webix.editors.multitext._removeLine} }]};
-        this.getFormView().addView(view);
-  	  }
-  	}
-  }, webix.editors.popup);
-
-
-
-
-
-  // Define unit picker popup type
-  webix.editors.$popup.hierarchy = {
-    view:"popup",
-    body:{
-      rows:[
-        { view:"text", hidden:true}, // InputNode
-        { view:"form", borderless:true, elements: [
-						{
-							view:"text",
-              label:"Vælg ny overordnet enhed",
-							labelPosition:"top"
-						},
-						{
-							view:"tree",borderless:true,
-							select:true,
-						}
-					]
-				}
-      ]
-    }
-  };
-
-  webix.editors.hierarchy = webix.extend({
-  	popupType: "hierarchy",
-    focus:function() {
-    },
-  	popupInit:function(popup) {
-      var inputNode = popup.getChildViews()[0].getChildViews()[0];
-      var formView = popup.getChildViews()[0].getChildViews()[1];
-      var filterInputView = formView.getChildViews()[0];
-      var treeView = formView.getChildViews()[1];
-
-      // bind tree select to popup closure that close the popup
-      treeView.attachEvent("onSelectChange", function(ids) {
-        inputNode.setValue(ids);
-        webix.callEvent("onEditEnd",[ids]);
-      });
-
-      // bind filter
-      filterInputView.attachEvent("onTimedKeyPress",function() {
-				treeView.filter("#value#",this.getValue());
-			});
-
-  	},
-    setValue:function(value) {
-      var tree = this.getTreeView();
-      // get from config - init from config
-      tree.define("data", this.config.data);
-      tree.unselectAll();
-      this.config.css=''; // clear required marking
-
-  		this._is_string = this.config.stringResult || (value && typeof value == "string");
-  		webix.editors.popup.setValue.call(this, value);
-  	},
-  	getValue:function() {
-      return this.getInputNode().getValue();
-  	},
-  	getInputNode:function() {
-  		return this.getPopup().getBody().getChildViews()[0];
-  	},
-  	getTreeView:function() {
-  		return this.getPopup().getBody().getChildViews()[1].getChildViews()[1];
-  	},
-  }, webix.editors.popup);
-
-}
-

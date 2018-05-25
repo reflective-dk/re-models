@@ -3,20 +3,20 @@
  type: "clean",
  rows: [{
   id: "godkend_table",
-  view:"datatable",
+  view:"treetable",
     editable:false,
     spans:true,
     select: true,
     footer: true,
     columns:[
-    { id: "godkend_rt", header:"Tidspunkt", type:"date",adjust:"data",footer: {text: "Ændringer med effekt fra og med: " + $$("vt").getValue() + " validerer og er klar til at blive godkendt",colspan: 4}},
-    { id: "godkend_status", header: "Status",adjust:"header",
-      template:function(obj) {
-   		  return "<span class='webix_icon "+(obj.status === 1 ? "fa-thumbs-up" : "fa-hourglass-half")+"'></span>"
-      }
-    },
-    { id: "godkend_user", header: "Bruger",adjust:"data"},
-    { id: "godkend_task", header: "Ændring",adjust:"data",fillspace:true},
+    { id: "godkend_changes", header: "",adjust:"data",template:"{common.treetable()}"},
+    { id: "godkend_rt", header:"Tidspunkt", adjust:true,footer: {text: "Ændringer med effekt fra og med: " + $$("vt").getValue() + " validerer og er klar til at blive godkendt",colspan: 6}},
+    { id: "godkend_user", header: "Ændret af",adjust:"data"},
+    { id: "godkend_class", header: "Type",adjust:"data",fillspace:true},
+    { id: "godkend_object", header: "Objekt",adjust:"data",fillspace:true},
+    { id: "godkend_property", header: "Property",adjust:"data",fillspace:true},
+    { id: "godkend_before", header: "Før",adjust:"data",fillspace:true},
+    { id: "godkend_after", header: "Efter",adjust:"data",fillspace:true},
   ],
   }]
 }
