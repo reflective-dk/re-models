@@ -3,7 +3,7 @@
   <bpmn:collaboration id="_ec4a7a94-46a0-44d8-8ed9-b4aa4cd62665">
     <bpmn:participant id="Participant_1cmscbv" name="Unit Administartion" processRef="Rec4a7a94-46a0-44d8-8ed9-b4aa4cd62665" />
   </bpmn:collaboration>
-  <bpmn:process id="Rec4a7a94-46a0-44d8-8ed9-b4aa4cd62665" name="Unit Administartion" isExecutable="true" camunda:versionTag="1.0" camunda:taskPriority="1">
+  <bpmn:process id="Rec4a7a94-46a0-44d8-8ed9-b4aa4cd62665" name="Unit Administration" isExecutable="true" camunda:versionTag="1.0" camunda:taskPriority="1">
     <bpmn:laneSet>
       <bpmn:lane id="Lane_19ch5nt" name="anybody">
         <bpmn:flowNodeRef>R89aedc6c-08e5-4005-91e3-ff643a0de0af</bpmn:flowNodeRef>
