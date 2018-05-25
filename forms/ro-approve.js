@@ -12,16 +12,18 @@
           this.disable = () => {
             $$("godkend").disable();
           };
-          this.bindData = (promiseBindData) => {
+          this.bindData = (result) => {
             this.data = {snapshots:[],registrations:[]};
 
-            if (promiseBindData) promiseBindData.then(function(result) {
+console.log("DEBUG: result=",result);
+            if (result) {
               this.data = result.extension;
+            }
 
             // Build changes overview
             var treeData = [];
             this.data.snapshots.forEach(function(obj) {
-              var newReg = data.registrations.filter(reg => reg.id === obj.id)[0].registrations[0];
+              var newReg = self.data.registrations.filter(reg => reg.id === obj.id)[0].registrations[0];
               var rowData = {
                 id: obj.id,
                 godkend_user: "some user",
@@ -47,10 +49,9 @@
                 });
               });
             });
-
+console.log("DEBUG: treeData=",treeData);
             // Add data to treetable
             $$("godkend_table").parse(treeData,'json');
-            })
           };
           this.syncData = () => {
             return null;

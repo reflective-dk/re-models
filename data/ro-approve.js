@@ -12,25 +12,45 @@
           this.disable = () => {
             $$("godkend").disable();
           };
-          this.bindData = (snapshot) => {
-console.log("DEBUG: bindData()");
-            this.data = {};
-            if (snapshot) {
-              this.data = snapshot;
-            }
-            this.data.snapshots = [{"id":"8dd2bbb5-21fc-5e06-b2d7-3d03d0bbb47d","snapshot":[{"validity":[{"from":"2018-05-24T22:00:00.000Z","input":{"activeFrom":"2017-03-31T22:00:00.000Z","name":"Rektorat1","unitType":{"id":"e3a52ab7-77a2-54c6-a467-8259e4c81763"}}}]}]},{"id":"2a46f308-4227-52dd-b42c-f142e56f227c","registrations":[{"validity":[{"from":"2018-05-24T22:00:00.000Z","input":{"activeFrom":"2017-03-31T22:00:00.000Z","name":"Bestyrelse","unitType":{"id":"e3a52ab7-77a2-54c6-a467-8259e4c81763"},"parent":{"id":["56cc1fdc-9983-502a-b24f-6be3f7198913"]}}}]}]}];
+          this.bindData = (promiseBindData) => {
+            this.data = {snapshots:[],registrations:[]};
 
-            this.data.objects = [{"id":"8dd2bbb5-21fc-5e06-b2d7-3d03d0bbb47d","registrations":[{"validity":[{"from":"2018-05-24T22:00:00.000Z","input":{"activeFrom":"2017-03-31T22:00:00.000Z","name":"Rektorat1","unitType":{"id":"e3a52ab7-77a2-54c6-a467-8259e4c81763"}}}]}]},{"id":"2a46f308-4227-52dd-b42c-f142e56f227c","registrations":[{"validity":[{"from":"2018-05-24T22:00:00.000Z","input":{"activeFrom":"2017-03-31T22:00:00.000Z","name":"Bestyrelse","unitType":{"id":"e3a52ab7-77a2-54c6-a467-8259e4c81763"},"parent":{"id":["56cc1fdc-9983-502a-b24f-6be3f7198913"]}}}]}]}];
+            if (promiseBindData) promiseBindData.then(function(result) {
+              this.data = result.extension;
 
             // Build changes overview
-            this.data.objects.forEach(function(obj) {
-              $$("godkend_table").add({
-                godkend_rt: "20-05-2018",
-                godkend_status: 1,
+            var treeData = [];
+            this.data.snapshots.forEach(function(obj) {
+              var newReg = data.registrations.filter(reg => reg.id === obj.id)[0].registrations[0];
+              var rowData = {
+                id: obj.id,
                 godkend_user: "some user",
-                godkend_task: obj.registrations[0].validity[0].input,
+                godkend_class: obj.snapshot.class.name,
+                godkend_object: obj.snapshot.name,
+                data:[]
+              };
+              treeData.push(rowData);
+              Object.keys(newReg.validity[0].input).forEach(function(prop) {
+                var before = obj.snapshot[prop];
+                var after = newReg.validity[0].input[prop];
+                before = getPropertyValue(before);
+                after = getPropertyValue(after);
+
+                rowData.data.push({
+                  godkend_rt: "20-05-2018",
+                  godkend_user: "some user",
+                  godkend_class: obj.snapshot.class.name,
+                  godkend_object: obj.snapshot.name,
+                  godkend_property: prop,
+                  godkend_before: before,
+                  godkend_after: after,
+                });
               });
             });
+
+            // Add data to treetable
+            $$("godkend_table").parse(treeData,'json');
+            })
           };
           this.syncData = () => {
             return null;
@@ -45,20 +65,20 @@ console.log("DEBUG: bindData()");
  type: "clean",
  rows: [{
   id: "godkend_table",
-  view:"datatable",
+  view:"treetable",
     editable:false,
     spans:true,
     select: true,
     footer: true,
     columns:[
-    { id: "godkend_rt", header:"Tidspunkt", type:"date",adjust:"data",footer: {text: "Ændringer med effekt fra og med: " + $$("vt").getValue() + " validerer og er klar til at blive godkendt",colspan: 4}},
-    { id: "godkend_status", header: "Status",adjust:"header",
-      template:function(obj) {
-   		  return "<span class='webix_icon "+(obj.status === 1 ? "fa-thumbs-up" : "fa-hourglass-half")+"'></span>"
-      }
-    },
-    { id: "godkend_user", header: "Bruger",adjust:"data"},
-    { id: "godkend_task", header: "Ændring",adjust:"data",fillspace:true},
+    { id: "godkend_changes", header: "",adjust:"data",template:"{common.treetable()}"},
+    { id: "godkend_rt", header:"Tidspunkt", adjust:true,footer: {text: "Ændringer med effekt fra og med: " + $$("vt").getValue() + " validerer og er klar til at blive godkendt",colspan: 6}},
+    { id: "godkend_user", header: "Ændret af",adjust:"data"},
+    { id: "godkend_class", header: "Type",adjust:"data",fillspace:true},
+    { id: "godkend_object", header: "Objekt",adjust:"data",fillspace:true},
+    { id: "godkend_property", header: "Property",adjust:"data",fillspace:true},
+    { id: "godkend_before", header: "Før",adjust:"data",fillspace:true},
+    { id: "godkend_after", header: "Efter",adjust:"data",fillspace:true},
   ],
   }]
 }
@@ -66,5 +86,17 @@ console.log("DEBUG: bindData()");
       return api;
     }
   };
+
+  function getPropertyValue(prop) {
+    if (typeof prop === 'object') {
+      // relation?
+      if (prop.id) {
+        // XXX: get name
+        return prop.id;
+      }
+    } else {
+      return prop;
+    }
+  }
 };
 
