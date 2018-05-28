@@ -40,7 +40,7 @@ console.log("DEBUG: result=",result);
                 after = getPropertyValue(after);
 
                 rowData.data.push({
-                  godkend_rt: "20-05-2018",
+                  godkend_rt: newReg.timestamp,
                   godkend_user: "some user",
                   godkend_class: obj.snapshot.class.name,
                   godkend_object: obj.snapshot.name,
