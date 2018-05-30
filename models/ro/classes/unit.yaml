@@ -12,8 +12,8 @@ registrations:
           name: Unit
           description: An organizational unit
           properties:
-            parent:
-              type: simple
+            parents:
+              type: map
               dataType:
                 type: relation
                 target: { id: 5cad9972-6560-4136-a9d5-40c2d109be9b, name: Unit }
