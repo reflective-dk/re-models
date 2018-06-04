@@ -1,5 +1,6 @@
 (args) => {
 
+
   return {
     render: function (view) {
       var API = function() {
@@ -245,7 +246,7 @@ console.log("DEBUG: syncData() objects=",JSON.stringify(objects));
     return args.getUnitTypes().then(function (data) {
       var items = [];
       data.objects.forEach(function(obj) {
-      items.push({
+        items.push({
           id: obj.id,
           value: obj.snapshot.name
         });

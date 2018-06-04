@@ -29,7 +29,6 @@ console.log("DEBUG: result=",result);
                 id: obj.id,
                 godkend_user: "some user",
                 godkend_class: obj.snapshot.class.name,
-                godkend_object: obj.snapshot.name,
                 data:[]
               };
               treeData.push(rowData);
@@ -40,7 +39,7 @@ console.log("DEBUG: result=",result);
                 after = getPropertyValue(after);
 
                 rowData.data.push({
-                  godkend_rt: "20-05-2018",
+                  godkend_rt: newReg.timestamp,
                   godkend_user: "some user",
                   godkend_class: obj.snapshot.class.name,
                   godkend_object: obj.snapshot.name,
@@ -74,9 +73,9 @@ console.log("DEBUG: treeData=",treeData);
     footer: true,
     columns:[
     { id: "godkend_changes", header: "",adjust:"data",template:"{common.treetable()}"},
-    { id: "godkend_rt", header:"Tidspunkt", adjust:true,footer: {text: "Ændringer med effekt fra og med: " + $$("vt").getValue() + " validerer og er klar til at blive godkendt",colspan: 6}},
+    { id: "godkend_rt", header:"Tidspunkt", minWidth: 200, adjust:"data",footer: {text: "Ændringer med effekt fra og med: " + $$("vt").getValue() + " validerer og er klar til at blive godkendt",colspan: 6}},
     { id: "godkend_user", header: "Ændret af",adjust:"data"},
-    { id: "godkend_class", header: "Type",adjust:"data",fillspace:true},
+    { id: "godkend_class", header: "Objekt Type",adjust:"data",fillspace:true},
     { id: "godkend_object", header: "Objekt",adjust:"data",fillspace:true},
     { id: "godkend_property", header: "Property",adjust:"data",fillspace:true},
     { id: "godkend_before", header: "Før",adjust:"data",fillspace:true},
