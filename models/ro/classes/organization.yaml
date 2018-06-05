@@ -15,4 +15,7 @@ registrations:
             cvrNr:
               type: simple
               dataType: string
+            hierarchy:
+              type: relation
+              target: { id: a07908c1-883f-41e6-9beb-02981f48b067, name: Hierarchy }
 ...
