@@ -1,5 +1,6 @@
 /* global $$ */
-() => {
+(args) => {
+console.log("DEBUG: args=",args);
   return {
     render: function (view) {
       var API = function() {
@@ -14,38 +15,39 @@
           };
           this.bindData = (result) => {
 
-            // XXX: If class is blanket, then different
+            return getChanges(result.extension)
+            .then(function(changes) {
+              // Build changes tables
+              changes.forEach(function(change) {
+                var table;
+                if (change.class.id === 'blanket') {
 
-            var changes = getChanges(result.extension);
-console.log("DEBUG: changes=",JSON.stringify(changes,null,2));
-            // Build changes tables
-            changes.forEach(function(change) {
-              var table;
-              if (change.class.id === 'blanket') {
-
-                table = $$('godkend_blanket_table');
-                table.add({
-                  godkend_rt: change.timestamp,
-                  godkend_user: "some user",
-                  godkend_object: form.name,
-                });
-              } else {
-                table = $$('godkend_object_table');
-                change.properties.forEach(function(prop) {
-
+                  table = $$('godkend_blanket_table');
                   table.add({
                     godkend_rt: change.timestamp,
-                    godkend_user: change.user,
-                    godkend_class: change.class,
-                    godkend_object: change.name,
-                    godkend_property: prop.name,
-                    godkend_before: prop.before,
-                    godkend_after: prop.after,
+                    godkend_user: "some user",
+                    godkend_object: form.name,
                   });
-                });
-              }
-              table.show();
-            });
+                } else {
+                  table = $$('godkend_object_table');
+                  change.properties.forEach(function(prop) {
+
+                    table.add({
+                      godkend_rt: change.timestamp,
+                      godkend_user: change.user,
+                      godkend_class: change.class,
+                      godkend_object: change.name,
+                      godkend_property: prop.name,
+                      godkend_before: prop.before,
+                      godkend_after: prop.after,
+                    });
+                  });
+                }
+                table.show();
+                table.refresh();
+              });
+
+            })
           };
           this.syncData = () => {
             return null;
@@ -61,11 +63,12 @@ console.log("DEBUG: changes=",JSON.stringify(changes,null,2));
   };
 
   function getChanges(ext) {
+    var propertyNamePromises = [];
+    var propertyDestination = [];
     var changes = [];
 
     // Loop over registrations
     ext.registrations.objects.forEach((rObj) => {
-      var properties = [];
 
       // Find same snapshot object with same id
       var snap = ext.snapshots.objects.filter(snap => snap.id === rObj.id);
@@ -75,26 +78,57 @@ console.log("DEBUG: changes=",JSON.stringify(changes,null,2));
       }
       current = getSnapshots(snap[0], new Date(rObj.registrations[0].validity[0].from), new Date(rObj.registrations[0].timestamp))[0];
 
-      // List before / after for each changed property
+      // List before / after for each changed property, build array of promises
+      var properties = [];
       Object.keys(rObj.registrations[0].validity[0].input).forEach((key) => {
-        properties.push({
+        // Make promiese
+        propertyNamePromises.push(before ? getProperty(before.snapshot[key]) : promise.resolve(""));
+        propertyNamePromises.push(getProperty(rObj.registrations[0].validity[0].input[key]));
+
+        // Prepare property
+        var property = {
           name: key,
-          before: before ? before.snapshot[key] : "",
-          after: rObj.registrations[0].validity[0].input[key]
-        });
+          before: "",
+          after: ""
+        };
+        properties.push(property);
+        propertyDestination.push(property);
       });
-console.log("DEBUG: rObj.registrations[0]=",rObj.registrations[0]);
+
       changes.push({
         id: rObj.id,
         class: current.snapshot.class.name,
         name: current.snapshot.name,
-        timestamp: rObj.registrations[0].timestamp,
-        user: "what?", //rObj.registrations[0].user,
+        timestamp: webix.i18n.fullDateFormatStr(new Date(rObj.registrations[0].timestamp)),
+        user: rObj.registrations[0].author,
         properties: properties
       });
+
     });
 
-    return changes;
+    // Promise all
+    return promise.all(propertyNamePromises).then(function(result) {
+console.log("DEBUG: propertyDestination=",propertyDestination);
+console.log("DEBUG: result=",result);
+
+      for (var i = 0; i < propertyDestination.length; i++) {
+        propertyDestination[i].before = result[i*2];
+        propertyDestination[i].after = result[i*2+1];
+      }
+console.log("DEBUG: changes=",changes);
+
+      return changes;
+    });
+  }
+
+  // Call snapshot, and return promise
+  function getProperty(prop) {
+    if (prop.id !== undefined) {
+      return args.getSnapshots([prop.id]).then(function(result) {
+        return result.objects[0].snapshot.name;
+      });
+    }
+    return promise.resolve(prop);
   }
 
   // Get snapshots filterd on vt and rt. Return sorted on knownOn, latest first
@@ -103,7 +137,7 @@ console.log("DEBUG: rObj.registrations[0]=",rObj.registrations[0]);
     obj.snapshots.forEach((snap) => {
       var from = new Date(snap.from);
       var to = new Date(snap.to);
-      if (vt >= from && (to === undefined || vt < to) && snap.context.knownOn > rt) {
+      if (vt >= from && (snap.to === undefined || vt < to) && snap.context.knownOn > rt) {
         result.push(snap);
       }
     });
@@ -116,11 +150,11 @@ console.log("DEBUG: rObj.registrations[0]=",rObj.registrations[0]);
     if (obj && obj.snapshots) {
       obj.snapshots.forEach((snap) => {
         snap.from = new Date(snap.from);
-        snap.to = new Date(snap.to);
+        var to = new Date(snap.to);
         snap.context.knownOn = new Date(snap.context.knownOn);
 
         // Should be known at rt, and validTo should be before er at vt
-        if (snap.to !== undefined && snap.to <= vt && snap.context.knownOn >= rt) {
+        if (snap.to !== undefined && to <= vt && snap.context.knownOn >= rt) {
           result.push(snap);
         }
       });

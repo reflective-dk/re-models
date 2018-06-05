@@ -1,5 +1,6 @@
 (args) => {
 
+
   return {
     render: function (view) {
       var API = function() {
@@ -161,7 +162,6 @@ console.log("DEBUG: syncData() objects=",JSON.stringify(objects));
 
         delete properties.getItem('activeFrom').required;
         delete properties.getItem('activeFrom').type;  // Cannot edit
-//        properties.getItem('activeFrom').css = {"font-style": "italic"};
         properties.getItem('activeFrom').css = {"color": "#999999"};
 
         properties.setValues(draftInput);
@@ -217,7 +217,7 @@ console.log("DEBUG: syncData() objects=",JSON.stringify(objects));
 
         // New unit?
         if (item === undefined) {
-          item = {id: uuid.v4(), value: prop.name};
+          item = {id: args.uuid.v4(), value: prop.name};
           $$("unitadmin_tree").add(item, 0, prop.parent);
         }
 
@@ -300,7 +300,7 @@ console.log("DEBUG: syncData() objects=",JSON.stringify(objects));
     return args.getUnitTypes().then(function (data) {
       var items = [];
       data.objects.forEach(function(obj) {
-      items.push({
+        items.push({
           id: obj.id,
           value: obj.snapshot.name
         });

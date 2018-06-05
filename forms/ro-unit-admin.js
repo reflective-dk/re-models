@@ -14,7 +14,6 @@
   //         $$("unitadmin").disable();
         };
         this.bindData = function(snapshots) {
-console.log("DEBUG: bindData() snapshots=",snapshots);
   //         data = snapshot;
         };
         this.syncData = function() {
@@ -107,7 +106,6 @@ console.log("DEBUG: syncData() objects=",JSON.stringify(objects));
 
         delete properties.getItem('activeFrom').required;
         delete properties.getItem('activeFrom').type;  // Cannot edit
-//        properties.getItem('activeFrom').css = {"font-style": "italic"};
         properties.getItem('activeFrom').css = {"color": "#999999"};
 
         properties.setValues(draftInput);
@@ -157,13 +155,12 @@ console.log("DEBUG: syncData() objects=",JSON.stringify(objects));
         // Close open editor
         properties.editStop();
         var prop = properties.getValues();
-
         // Add new registration to changed object, ready for use with task complete
         var item = $$("unitadmin_tree").getSelectedItem();
 
         // New unit?
         if (item === undefined) {
-          item = {id: uuid.v4(), value: prop.name};
+          item = {id: args.uuid.v4(), value: prop.name};
           $$("unitadmin_tree").add(item, 0, prop.parent);
         }
 
