@@ -144,10 +144,14 @@ console.log("DEBUG: args=",args);
 
     // Promise all
     return promise.all(propertyNamePromises).then(function(result) {
+console.log("DEBUG: propertyDestination=",propertyDestination);
+console.log("DEBUG: result=",result);
+
       for (var i = 0; i < propertyDestination.length; i++) {
         propertyDestination[i].before = result[i*2];
         propertyDestination[i].after = result[i*2+1];
       }
+console.log("DEBUG: changes=",changes);
 
       return changes;
     });

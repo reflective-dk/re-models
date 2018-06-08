@@ -1,41 +1,35 @@
 (args) => {
 
-
   return {
     render: function (view) {
       var API = function() {
+        var self = this;
         this.show = function(id) {
            // Show the changed unit
         }
         this.enable = function() {
-  //         $$("unitadmin").enable();
+//          $$("unitadmin").enable();
         };
         this.disable = function() {
-  //         $$("unitadmin").disable();
+//          $$("unitadmin").disable();
         };
         this.bindData = function(snapshots) {
-console.log("DEBUG: bindData() snapshots=",snapshots);
-  //         data = snapshot;
+          // XXX: process current snapshots as changed data
+//          data = snapshot;
         };
         this.syncData = function() {
-          var objects = [];
-
-          // this.data contain modified snapshots
-          var snapshots = this.data;
-
-          Object.keys(snapshots).forEach(function(id) {
-            var input = snapshots[id];
-            delete input.id;
-
-            var vtStr = $$("vt").getValue();
-            var validFrom = toISOString(vtStr);
-
-            objects.push({id:id, registrations:[{validity:[{from: validFrom, input: input}]}]});
+          var inputs = [];
+          // this.data contain modified snapshots, as key/value => id/snapshot
+          Object.keys(self.data).forEach(function(id) {
+            var input = self.data[id];
+console.log("DEBUG: id=",id);
+            input.id = id;
+            inputs.push(input);
           });
 
            // Wrap data in object metadata, using vt as validity from
-console.log("DEBUG: syncData() objects=",JSON.stringify(objects));
-          return {objects: objects};
+console.log("DEBUG: syncData() inputs=",JSON.stringify(inputs));
+          return inputs;
         }
         this.suggestions = [
 
@@ -93,7 +87,7 @@ console.log("DEBUG: syncData() objects=",JSON.stringify(objects));
         {id: "activeTo", label: "Aktiv indtil", type: "date",format:webix.i18n.dateFormatStr},
         {id: "name", label: "Navn", type: "text", required: true},
         {id: "shortName", label: "Kort navn", type: "text"},
-        {id: "unitType", label: "Type", type: "select", options:[]},
+        {id: "unitType", label: "Type", type: "select", required: true, options:[]},
         {id: "parent", label: "Overordnet", type: "hierarchy", required: true},
         {id: "seNr", label: "SE-nummer", type:"text", rule: webix.rules.isCvrSeNumber},
         {id: "ean", label: "EAN-nummer", type: "text", rule: webix.rules.isEanNumber},
@@ -211,7 +205,6 @@ console.log("DEBUG: syncData() objects=",JSON.stringify(objects));
         // Close open editor
         properties.editStop();
         var prop = properties.getValues();
-
         // Add new registration to changed object, ready for use with task complete
         var item = $$("unitadmin_tree").getSelectedItem();
 
@@ -354,123 +347,112 @@ console.log("DEBUG: syncData() objects=",JSON.stringify(objects));
     });
   }
 
-};
+  function saveProperties(properties, item, data) {
 
-function saveProperties(properties, item, data) {
+     var tree = $$("unitadmin_tree");
+     var prop = properties.getValues();
 
-   var tree = $$("unitadmin_tree");
-   var prop = properties.getValues();
+     // convert data to RO
+     var parentId = prop.parent;
+     var unitTypeId = prop.unitType;
+     item.newInput = prop;
+     item.newInput.parent = {id: parentId};
+     item.newInput.unitType = {id: unitTypeId};
 
-   // convert data to RO
-   var parentId = prop.parent;
-   var unitTypeId = prop.unitType;
-   item.newInput = prop;
-   item.newInput.parent = {id: parentId};
-   item.newInput.unitType = {id: unitTypeId};
+     // Convert dates back to ISO UTC
+     if (prop.activeFrom == 0) {
+       item.newInput.activeFrom = '1900-01-01T00:00:00.000Z';
+     } else {
+       item.newInput.activeFrom = args.model.toISOString(item.newInput.activeFrom);
+     }
+     if (prop.activeTo == 0) {
+       item.newInput.activeTo = '9999-12-31T00:00:00.000Z';
+       if (item.snapshot) item.newInput.activeTo = item.snapshot.activeTo;
+     } else {
+       item.newInput.activeTo = args.model.toISOString(item.newInput.activeTo);
+     }
 
-   // Convert dates back to ISO UTC
-   if (prop.activeFrom == 0) {
-     item.newInput.activeFrom = '1900-01-01T00:00:00.000Z';
-   } else {
-     item.newInput.activeFrom = toISOString(item.newInput.activeFrom);
-   }
-   if (prop.activeTo == 0) {
-     item.newInput.activeTo = '9999-12-31T00:00:00.000Z';
-     if (item.snapshot) item.newInput.activeTo = item.snapshot.activeTo;
-   } else {
-     item.newInput.activeTo = toISOString(item.newInput.activeTo);
-   }
+     // Create phone and emails RO structure
+     item.newInput.phoneNumbers = item.newInput.phoneNumbers.split(',').reduce(function(map, obj) {
+       map[Object.keys(map).length] = obj.trim();
+       return map;
+     }, {});
+     item.newInput.emailAddresses = item.newInput.emailAddresses.split(',').reduce(function(map, obj) {
+       map[Object.keys(map).length] = obj.trim();
+       return map;
+     }, {});
 
-   // Create phone and emails RO structure
-   item.newInput.phoneNumbers = item.newInput.phoneNumbers.split(',').reduce(function(map, obj) {
-     map[Object.keys(map).length] = obj.trim();
-     return map;
-   }, {});
-   item.newInput.emailAddresses = item.newInput.emailAddresses.split(',').reduce(function(map, obj) {
-     map[Object.keys(map).length] = obj.trim();
-     return map;
-   }, {});
+     // Move unit if parent has changed
+     if (item.snapshot === undefined || item.newInput.parent.id !== item.snapshot.parent.id) {
+       tree.move(item.id,0,tree,{parent: item.newInput.parent.id});
+     }
+     tree.open(item.newInput.parent.id, true);
 
-   // Move unit if parent has changed
-   if (item.snapshot === undefined || item.newInput.parent.id !== item.snapshot.parent.id) {
-     tree.move(item.id,0,tree,{parent: item.newInput.parent.id});
-   }
-   tree.open(item.newInput.parent.id, true);
+     if (item.snapshot === undefined) {
+       item.newInput.class = {id: '5cad9972-6560-4136-a9d5-40c2d109be9b', name: 'Unit'};
+     }
 
-   if (item.snapshot === undefined) {
-     item.newInput.class = {id: '5cad9972-6560-4136-a9d5-40c2d109be9b', name: 'Unit'};
-   }
+     // Prune newInput properties that has not been changed
+     Object.keys(prop).forEach(function(key) {
+       if (properties.getItem(key) && !properties.getItem(key).changed) delete item.newInput[key];
+     });
 
-   // Prune newInput properties that has not been changed
-   Object.keys(prop).forEach(function(key) {
-     if (properties.getItem(key) && !properties.getItem(key).changed) delete item.newInput[key];
-   });
-
-   // Add reference in process control object
-   data[item.id] = item.newInput;
-}
-
-// Compare control values agains RO
-function hasChanged(v1,v2,id) {
-  if (v1 === undefined || v1 === null) {
-    v1 = '';
-  }
-  if (v2 === undefined || v2 === null) {
-    v2 = '';
+     // Add reference in process control object
+     data[item.id] = item.newInput;
   }
 
-  switch (id) {
-    case 'activeFrom':
-    case 'activeTo':
-      if (v1 == 0) return false;
+  // Compare control values agains RO
+  function hasChanged(v1,v2,id) {
+    if (v1 === undefined || v1 === null) {
+      v1 = '';
+    }
+    if (v2 === undefined || v2 === null) {
+      v2 = '';
+    }
 
-      // convert v1 to ISO ÚTC date
-      v1 = toISOString(v1);
-      break;
-    case 'parent':
-      return v1 !== v2.id;
-    case 'unitType':
-      return v1 !== v2.id;
-    case 'phoneNumbers':
-    case 'emailAddresses':
-      var values = v1.split(',');
-      if (v1.trim() == 0) {
-        // if empty string, then values.length should be 0
-        values = [];
-      }
-      var keys = Object.keys(v2);
-      if (keys.length !== values.length) {
-        return true;
-      }
-      for (var i = 0; i < keys.length; i++) {
-        if (values[i].trim() !== v2[keys[i]]) {
+    switch (id) {
+      case 'activeFrom':
+      case 'activeTo':
+        if (v1 == 0) return false;
+
+        // convert v1 to ISO ÚTC date
+        v1 = args.model.toISOString(v1);
+        break;
+      case 'parent':
+        return v1 !== v2.id;
+      case 'unitType':
+        return v1 !== v2.id;
+      case 'phoneNumbers':
+      case 'emailAddresses':
+        var values = v1.split(',');
+        if (v1.trim() == 0) {
+          // if empty string, then values.length should be 0
+          values = [];
+        }
+        var keys = Object.keys(v2);
+        if (keys.length !== values.length) {
           return true;
         }
-      }
-      return false;
-  }
-  return v1 !== v2;
-}
-
-function toISOString(v) {
-  var date = v;
-  if (typeof v === 'string') {
-    var parse = webix.Date.strToDate("%d-%m-%Y");
-    date = parse(v);
-    date.setDate(date.getDate()+1);
-    date.setUTCHours(0,0,0,0);
-  }
-  return date.toISOString();
-}
-function asList(obj) {
-  var keys = Object.keys(obj);
-  var result = "";
-  keys.forEach(function(key) {
-    if (result.length > 0) {
-      result += ", ";
+        for (var i = 0; i < keys.length; i++) {
+          if (values[i].trim() !== v2[keys[i]]) {
+            return true;
+          }
+        }
+        return false;
     }
-    result += obj[key];
-  });
+    return v1 !== v2;
+  }
 
-  return result;
-}
+  function asList(obj) {
+    var keys = Object.keys(obj);
+    var result = "";
+    keys.forEach(function(key) {
+      if (result.length > 0) {
+        result += ", ";
+      }
+      result += obj[key];
+    });
+
+    return result;
+  }
+};
