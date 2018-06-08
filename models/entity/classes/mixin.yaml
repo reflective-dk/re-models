@@ -1,0 +1,15 @@
+# Mixin Class
+---
+id: da53fe35-c03f-4d61-9e25-dbd9c2c2e56b
+mimeType: application/vnd.reflective-dk.object+json
+registrations:
+  - validity:
+      - input:
+          model: { id: 99aab70a-b294-44ca-a979-9c80ebe2997d, name: Entity Model }
+          # Responsible actor - actor: { id: actor.id }
+          class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
+          name: Mixin
+          description: >-
+            This class is primarily used by extending classes to declare the
+            intent for being used as mixins rather than stand-alone classes
+...

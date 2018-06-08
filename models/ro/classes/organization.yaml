@@ -9,15 +9,12 @@ registrations:
           # Responsible actor - actor: { id: actor.id }
           class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
           extends: { id: 2da6e709-3f63-47d9-a197-bda06fb86936, name: Entity }
+          mixins:
+            0: { id: 814ad71b-798a-4544-813c-f6b75231d00c, name: Hierarchy Owner }
           name: Organization
           description: An organization
           properties:
             cvrNr:
               type: simple
               dataType: string
-            hierarchy:
-              type: simple
-              dataType:
-                type: relation
-                target: { id: a07908c1-883f-41e6-9beb-02981f48b067, name: Hierarchy }
 ...

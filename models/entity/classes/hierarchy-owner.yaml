@@ -1,0 +1,22 @@
+# Hierarchy Owner Class
+---
+id: 814ad71b-798a-4544-813c-f6b75231d00c
+mimeType: application/vnd.reflective-dk.object+json
+registrations:
+  - validity:
+      - input:
+          model: { id: 99aab70a-b294-44ca-a979-9c80ebe2997d, name: Entity Model }
+          # Responsible actor - actor: { id: actor.id }
+          class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
+          extends: { id: da53fe35-c03f-4d61-9e25-dbd9c2c2e56b, name: Mixin }
+          name: Hierarchy Owner
+          description: >-
+            Add this mixin to a class to make it possible to identify its
+            instances as owners of a hierarchy
+          properties:
+            hierarchy:
+              type: simple
+              dataType:
+                type: relation
+                target: { id: a07908c1-883f-41e6-9beb-02981f48b067, name: Hierarchy }
+...
