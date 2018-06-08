@@ -25,6 +25,16 @@ registrations:
               dataType:
                 type: relation
                 target: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
+            mixins:
+              description: >-
+                A class may mix in any number of other classes, inheriting all of
+                their properties. This mechanism is very similar to extends,
+                except the classes being mixed in are usually written with that
+                purpose in mind.
+              type: map
+              dataType:
+                type: relation
+                target: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
             name:
               description: The name of this class
               type: simple
