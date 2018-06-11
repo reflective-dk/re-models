@@ -7,7 +7,7 @@ registrations:
             id: 6c54bdcc-691a-4190-8b50-4c5a6e4679dc
             name: User Form
           name: Unit administration
-          description: Aministartion of RO units
+          description: Aministration of RO units
           definition:
             hash: ro-unit-admin.js
 ...
