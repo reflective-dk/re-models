@@ -1,11 +1,11 @@
 {cols:[
   {rows:[
     {
-      id: "unitadmin_filter",
+      id: form.ids.filter,
     	view:"text",
     },
     {
-      id: "unitadmin_tree",
+      id: form.ids.tree,
       view:"tree",
       select:true,
       template:function(obj, common){
@@ -20,7 +20,7 @@
   },{rows:[
     {cols:[
       {
-        id: "unitadmin_new",
+        id: form.ids.newButton,
         view: "button",
         type: "form",
         label: "Opret",
@@ -28,14 +28,14 @@
       },
       {},
       {
-        id: "unitadmin_update",
+        id: form.ids.updateButton,
         view: "button",
         label: "Gem",
         disabled: true,
         width: 80
       },
     ]},
-    {view:"property", id:"unitadmin_properties", width:350, nameWidth: 120, autoheight: true, liveEdit: true, disabled: true,
+    {view:"property", id: form.ids.properties, width:350, nameWidth: 120, autoheight: true, liveEdit: true, disabled: true,
       elements:[
         {id: "activeFrom", label: "Aktiv fra", type: "date", format:webix.i18n.dateFormatStr},
         {id: "activeTo", label: "Aktiv indtil", type: "date",format:webix.i18n.dateFormatStr},
