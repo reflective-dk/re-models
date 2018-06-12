@@ -1,64 +1,47 @@
-/* global $$ */
-(args) => {
-  return {
-    render: function (view) {
-      var API = function() {
-          var self = this;
-          this.data = {udstyr: {}};
+define([
+  'common/promise', 'models/situ', 'utils', 'common/re-webix', 'views/ro/approve'
+], function(promise, situ, utils, reWebix, approveView) {
+    var form = {
+      data: {},
+      render: function (args) {
+        this.approveView = approveView({ form: form });
+        return this.approveView.add(args.view).then(function () {
+          return getChanges(args.task.data.extension)
+          .then(function(changes) {
+            // Build changes tables
+            changes.forEach(function(change) {
+              var table;
+              if (change.class.id === 'blanket') {
 
-          this.enable = () => {
-            $$("godkend").enable();
-          };
-          this.disable = () => {
-            $$("godkend").disable();
-          };
-          this.bindData = (result) => {
+                table = $$('godkend_blanket_table');
+                table.add({
+                  godkend_rt: change.timestamp,
+                  godkend_author: change.author,
+                  godkend_object: form.name,
+                });
+              } else {
+                table = $$('godkend_object_table');
+                change.properties.forEach(function(prop) {
 
-            return getChanges(result.extension)
-            .then(function(changes) {
-              // Build changes tables
-              changes.forEach(function(change) {
-                var table;
-                if (change.class.id === 'blanket') {
-
-                  table = $$('godkend_blanket_table');
                   table.add({
                     godkend_rt: change.timestamp,
-                    godkend_author: change.author,
-                    godkend_object: form.name,
+                    author: change.author,
+                    godkend_class: change.class,
+                    godkend_object: change.name,
+                    godkend_property: prop.name,
+                    godkend_before: prop.before,
+                    godkend_after: prop.after,
                   });
-                } else {
-                  table = $$('godkend_object_table');
-                  change.properties.forEach(function(prop) {
+                });
+              }
+              table.show();
+              table.refresh();
+            });
 
-                    table.add({
-                      godkend_rt: change.timestamp,
-                      author: change.author,
-                      godkend_class: change.class,
-                      godkend_object: change.name,
-                      godkend_property: prop.name,
-                      godkend_before: prop.before,
-                      godkend_after: prop.after,
-                    });
-                  });
-                }
-                table.show();
-                table.refresh();
-              });
-
-            })
-          };
-          this.syncData = () => {
-            return null;
-          };
-
-          this.processes = [];
-          this.suggestions = [];
-      };
-      var api = new API();
-      view.addView({ro-approve.webix});
-      return api;
-    }
+            return promise.resolve();
+          });
+        });
+      }
   };
 
   function getChanges(ext) {
@@ -157,5 +140,6 @@
     }
     return [undefined];
   }
-};
+  return form;
+});
 

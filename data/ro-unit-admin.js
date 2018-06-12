@@ -1,6 +1,16 @@
-(args) => {
+define([
+  'common/promise', 'models/situ', 'utils', 'common/re-webix'
+], function(promise, situ, utils, reWebix) {
 
-  return {
+  var form = {
+    ids: {
+      filter: webix.uid().toString(),
+      tree: webix.uid().toString(),
+      properties: webix.uid().toString(),
+      updateButton: webix.uid().toString(),
+      newButton: webix.uid().toString()
+    },
+    situ: situ,
     render: function (view) {
       var API = function() {
         var self = this;
@@ -22,22 +32,20 @@
           // this.data contain modified snapshots, as key/value => id/snapshot
           Object.keys(self.data).forEach(function(id) {
             var input = self.data[id];
-console.log("DEBUG: id=",id);
             input.id = id;
             inputs.push(input);
           });
 
            // Wrap data in object metadata, using vt as validity from
-console.log("DEBUG: syncData() inputs=",JSON.stringify(inputs));
           return inputs;
         }
         this.suggestions = [
 
           createTreeData().then(function (data) {
-            $$("unitadmin_tree").define("data", {data: data});
+            $$(form.ids.tree).define("data", {data: data});
           }),
           createSelectData().then(function (options) {
-            $$('unitadmin_properties').getItem('unitType').options = options;
+            $$(form.ids.properties).getItem('unitType').options = options;
           })
         ];
       };
@@ -47,11 +55,11 @@ console.log("DEBUG: syncData() inputs=",JSON.stringify(inputs));
       view.addView({cols:[
   {rows:[
     {
-      id: "unitadmin_filter",
+      id: form.ids.filter,
     	view:"text",
     },
     {
-      id: "unitadmin_tree",
+      id: form.ids.tree,
       view:"tree",
       select:true,
       template:function(obj, common){
@@ -66,7 +74,7 @@ console.log("DEBUG: syncData() inputs=",JSON.stringify(inputs));
   },{rows:[
     {cols:[
       {
-        id: "unitadmin_new",
+        id: form.ids.newButton,
         view: "button",
         type: "form",
         label: "Opret",
@@ -74,14 +82,14 @@ console.log("DEBUG: syncData() inputs=",JSON.stringify(inputs));
       },
       {},
       {
-        id: "unitadmin_update",
+        id: form.ids.updateButton,
         view: "button",
         label: "Gem",
         disabled: true,
         width: 80
       },
     ]},
-    {view:"property", id:"unitadmin_properties", width:350, nameWidth: 120, autoheight: true, liveEdit: true, disabled: true,
+    {view:"property", id: form.ids.properties, width:350, nameWidth: 120, autoheight: true, liveEdit: true, disabled: true,
       elements:[
         {id: "activeFrom", label: "Aktiv fra", type: "date", format:webix.i18n.dateFormatStr},
         {id: "activeTo", label: "Aktiv indtil", type: "date",format:webix.i18n.dateFormatStr},
@@ -102,11 +110,11 @@ console.log("DEBUG: syncData() inputs=",JSON.stringify(inputs));
 );
 
       // Bind events
-      var filter = $$("unitadmin_filter");
-      var tree = $$("unitadmin_tree");
-      var properties = $$("unitadmin_properties");
-      var updateButton = $$("unitadmin_update");
-      var newButton = $$("unitadmin_new");
+      var filter = $$(form.ids.filter);
+      var tree = $$(form.ids.tree);
+      var properties = $$(form.ids.properties);
+      var updateButton = $$(form.ids.updateButton);
+      var newButton = $$(form.ids.newButton);
 
       // bind filter
       filter.attachEvent("onTimedKeyPress",function() {
@@ -206,12 +214,12 @@ console.log("DEBUG: syncData() inputs=",JSON.stringify(inputs));
         properties.editStop();
         var prop = properties.getValues();
         // Add new registration to changed object, ready for use with task complete
-        var item = $$("unitadmin_tree").getSelectedItem();
+        var item = $$(form.ids.tree).getSelectedItem();
 
         // New unit?
         if (item === undefined) {
-          item = {id: args.uuid.v4(), value: prop.name};
-          $$("unitadmin_tree").add(item, 0, prop.parent);
+          item = {id: utils.uuid.v4(), value: prop.name};
+          $$(form.ids.tree).add(item, 0, prop.parent);
         }
 
         saveProperties(properties, item, api.data);
@@ -289,8 +297,10 @@ console.log("DEBUG: syncData() inputs=",JSON.stringify(inputs));
     } // render
   };
 
+  return form;
+
   function createSelectData(data) {
-    return args.getUnitTypes().then(function (data) {
+    return form.situ.getUnitTypes().then(function (data) {
       var items = [];
       data.objects.forEach(function(obj) {
         items.push({
@@ -304,7 +314,7 @@ console.log("DEBUG: syncData() inputs=",JSON.stringify(inputs));
 
   // Transform query response to webix tree data, where the snapshot is added/stored in the thee items
   function createTreeData() {
-    return args.getUnits().then(function (data) {
+    return form.situ.getUnits().then(function (data) {
       var possibleRoots = [];
       var allItems = {};
 
@@ -349,7 +359,7 @@ console.log("DEBUG: syncData() inputs=",JSON.stringify(inputs));
 
   function saveProperties(properties, item, data) {
 
-     var tree = $$("unitadmin_tree");
+     var tree = $$(form.ids.tree);
      var prop = properties.getValues();
 
      // convert data to RO
@@ -363,13 +373,13 @@ console.log("DEBUG: syncData() inputs=",JSON.stringify(inputs));
      if (prop.activeFrom == 0) {
        item.newInput.activeFrom = '1900-01-01T00:00:00.000Z';
      } else {
-       item.newInput.activeFrom = args.model.toISOString(item.newInput.activeFrom);
+       item.newInput.activeFrom = utils.toISOString(item.newInput.activeFrom);
      }
      if (prop.activeTo == 0) {
        item.newInput.activeTo = '9999-12-31T00:00:00.000Z';
        if (item.snapshot) item.newInput.activeTo = item.snapshot.activeTo;
      } else {
-       item.newInput.activeTo = args.model.toISOString(item.newInput.activeTo);
+       item.newInput.activeTo = utils.toISOString(item.newInput.activeTo);
      }
 
      // Create phone and emails RO structure
@@ -416,7 +426,7 @@ console.log("DEBUG: syncData() inputs=",JSON.stringify(inputs));
         if (v1 == 0) return false;
 
         // convert v1 to ISO ÚTC date
-        v1 = args.model.toISOString(v1);
+        v1 = utils.toISOString(v1);
         break;
       case 'parent':
         return v1 !== v2.id;
@@ -455,4 +465,5 @@ console.log("DEBUG: syncData() inputs=",JSON.stringify(inputs));
 
     return result;
   }
-};
+
+});

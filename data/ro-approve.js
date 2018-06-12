@@ -1,6 +1,5 @@
 /* global $$ */
 (args) => {
-console.log("DEBUG: args=",args);
   return {
     render: function (view) {
       var API = function() {
@@ -25,7 +24,7 @@ console.log("DEBUG: args=",args);
                   table = $$('godkend_blanket_table');
                   table.add({
                     godkend_rt: change.timestamp,
-                    godkend_user: "some user",
+                    godkend_author: change.author,
                     godkend_object: form.name,
                   });
                 } else {
@@ -34,7 +33,7 @@ console.log("DEBUG: args=",args);
 
                     table.add({
                       godkend_rt: change.timestamp,
-                      godkend_user: change.user,
+                      author: change.author,
                       godkend_class: change.class,
                       godkend_object: change.name,
                       godkend_property: prop.name,
@@ -136,28 +135,22 @@ console.log("DEBUG: args=",args);
         class: current.snapshot.class.name,
         name: current.snapshot.name,
         timestamp: webix.i18n.fullDateFormatStr(new Date(rObj.registrations[0].timestamp)),
-        user: rObj.registrations[0].author,
+        author: rObj.registrations[0].author,
         properties: properties
       });
-
     });
 
     // Promise all
     return promise.all(propertyNamePromises).then(function(result) {
-console.log("DEBUG: propertyDestination=",propertyDestination);
-console.log("DEBUG: result=",result);
-
       for (var i = 0; i < propertyDestination.length; i++) {
         propertyDestination[i].before = result[i*2];
         propertyDestination[i].after = result[i*2+1];
       }
-console.log("DEBUG: changes=",changes);
-
       return changes;
     });
   }
 
-  // Call snapshot, and return promise
+  // Call snapshot, and return promise, for convert refs ids to snapshot name
   function getProperty(prop) {
     if (prop.id !== undefined) {
       return args.getSnapshots([prop.id]).then(function(result) {
