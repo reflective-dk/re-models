@@ -10,7 +10,9 @@ registrations:
           class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
           extends: { id: 2da6e709-3f63-47d9-a197-bda06fb86936, name: Entity }
           name: System Allocation
-          description: Allocates a specific System to a specific Role Assignment
+          description: >-
+            A System Allocation associates a Role Assignment with a specific
+            external System. It also identifies System Profiles and Accesses
           properties:
             system:
               type: simple
@@ -22,6 +24,18 @@ registrations:
               dataType:
                 type: relation
                 target: { id: 025dfd36-f7a6-41e3-aa0c-64fe0376d3b7, name: Role Assignment }
+            systemProfiles:
+              description: Generic profiles assigned to this System Allocation
+              type: map
+              dataType:
+                type: relation
+                target: { id: a882353e-8b1b-4649-a759-ccf95b9c1fe3, name: System Profile }
+            systemAccesses:
+              description: Specific accesses assigned to this System Allocation
+              type: map
+              dataType:
+                type: relation
+                target: { id: 1938d89b-a935-412d-a23c-02709fe63c0c, name: System Access }
             expertise:
               description: Areas of responsibility from KLE
               type: map

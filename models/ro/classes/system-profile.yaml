@@ -1,0 +1,35 @@
+# System Profile Class
+---
+id: a882353e-8b1b-4649-a759-ccf95b9c1fe3
+mimeType: application/vnd.reflective-dk.object+json
+registrations:
+  - validity:
+      - input:
+          model: { id: 17960fc5-7a6d-4e0b-95d8-f20934493819, name: Reflective Organization }
+          # Responsible actor - actor: { id: actor.id }
+          class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
+          extends: { id: 2da6e709-3f63-47d9-a197-bda06fb86936, name: Entity }
+          name: System Profile
+          description: >-
+            A System Profile identifies a specific set of external System
+            Accesses. Each System Access may or may not be included in multiple
+            profiles
+          properties:
+            default:
+              description: >-
+                Indicates if this profile should by suggested as a default
+                profile when creating new System Allocations
+              type: simple
+              dataType: boolean
+            system:
+              type: simple
+              dataType:
+                type: relation
+                target: { id: e8bc40c5-e542-4bab-b6fc-64b2339ffa15, name: System }
+            systemAccesses:
+              description: The set of System Accesses given by this profile
+              type: map
+              dataType:
+                type: relation
+                target: { id: 1938d89b-a935-412d-a23c-02709fe63c0c, name: System Access }
+...
