@@ -12,6 +12,10 @@ registrations:
           name: Role
           description: A role such as 'CEO' that identifies a set of responsibilities
           properties:
+            propagates:
+              description: Indicates whether this role propagates down the unit hierarchy
+              type: simple
+              dataType: boolean
             responsibilities:
               type: map
               dataType:
