@@ -27,6 +27,14 @@ registrations:
               dataType:
                 type: relation
                 target: { id: f5155ea0-3e2f-4dcf-832a-c0fc99f2fbb4, name: Responsibility }
+            system:
+              description: >-
+                When the role assignment includes a system responsibility, this
+                relation should be used to indicate the intended system
+              type: simple
+              dataType:
+                type: relation
+                target: { id: e8bc40c5-e542-4bab-b6fc-64b2339ffa15, name: System }
             expertise:
               description: Areas of responsibility from KLE
               type: map

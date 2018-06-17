@@ -6,7 +6,6 @@ registrations:
   - validity:
       - input:
           model: { id: 17960fc5-7a6d-4e0b-95d8-f20934493819, name: Reflective Organization }
-          # Responsible actor - actor: { id: actor.id }
           class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
           extends: { id: 2da6e709-3f63-47d9-a197-bda06fb86936, name: Entity }
           name: Responsibility
@@ -14,4 +13,11 @@ registrations:
             A responsibility such as 'Hire/Fire' or 'System Allocation'.
             Responsibilities are not organized in any specific hierarchy and may
             be assigned to multiple roles
+          properties:
+            isSystemResponsibility:
+              description: >-
+                Indicates if the responsibility is a system responsibility,
+                intended for assignment with respect to a specific system
+              type: simple
+              dataType: boolean
 ...
