@@ -17,6 +17,10 @@ registrations:
               type: simple
               dataType: boolean
             responsibilities:
+              description: >-
+                When a role is assigned to a specific employment, the
+                responsibilities listed in the assignment must be a subset of
+                the responsibilities listed in the role itself
               type: map
               dataType:
                 type: relation
