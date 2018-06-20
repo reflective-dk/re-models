@@ -5,6 +5,7 @@ registrations:
   - validity:
       - input:
           class: { id: c4be5a95-1320-4996-b219-e2f6f7cef8dd, name: Role }
-          # Responsible actor - actor: { id: actor.id }
           name: Administrator
+          responsibilities:
+            system: { id: ac64ea7d-2c7f-46e3-b77d-131c9aca9eda, name: System }
 ...
