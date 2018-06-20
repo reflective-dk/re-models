@@ -1,0 +1,63 @@
+webix.ui(
+{
+  type:"wide",
+  cols:[
+    {
+      view:"datatable", id:"datatable1",
+      editable:true,
+      scroll:'y',
+      width: 300,
+      columns:[
+        { id:"system",header:"System", adjust:"data", fillspace:true, sort:true},
+        { id:"selected",header:"",editor:"checkbox",template:"{common.checkbox()}",css:{'text-align':'center'}},
+      ],
+      data: [
+        { "system":"SBSYS", "selected":true,},
+        { "system":"KMD OPUS", "selected":false,},
+        { "system":"Facit", "selected":true,},
+        { "system":"KMD Vagtplan", "selected":false,},
+	]
+    },
+    {
+      view:"treetable", id:"datatable1",
+   //   select:'cell',
+      editable:true,
+      scroll:true,
+      columnWidth:130,
+      columns:[
+        { "system":"KMD OPUS",},
+        { id:"role1.1",header:[{text:"Leder",colspan:3},"Personale"],adjust:"header", template:"{common.checkbox()}",adjust:"header",editor:"checkbox",template:"{common.checkbox()}",css:{'text-align':'center'}},
+        { id:"role1.2",header:[,"Økonomi"],adjust:"header", template:"{common.checkbox()}",adjust:"header",editor:"checkbox",template:"{common.checkbox()}",css:{'text-align':'center'}},
+        { id:"role1.3",header:[,"Faglig"],adjust:"header", template:"{common.checkbox()}",adjust:"header",editor:"checkbox",template:"{common.checkbox()}",css:{'text-align':'center'}},
+        { id:"role2.1",header:[{text:"Sagsbehandler",colspan:3},"Indberet"],adjust:"header",editor:"checkbox",template:"{common.checkbox()}",css:{'text-align':'center'}},
+        { id:"role2.2",header:[,"Forespørg"],adjust:"header", template:"{common.checkbox()}",adjust:"header",editor:"checkbox",template:"{common.checkbox()}",css:{'text-align':'center'}},
+        { id:"role2.3",header:[,"Løn"],adjust:"header", template:"{common.checkbox()}",adjust:"header",editor:"checkbox",template:"{common.checkbox()}",css:{'text-align':'center'}},
+        { id:"role3",header:["Administrator",""],adjust:"header",editor:"checkbox",template:"{common.checkbox()}",css:{'text-align':'center'}},
+        { id:"role4",header:["Systemejer",""],adjust:"header",editor:"checkbox",template:"{common.checkbox()}",css:{'text-align':'center'}},
+        { id:"role5",header:["Informationssøger",""], template:"{common.checkbox()}",adjust:"header",editor:"checkbox",template:"{common.checkbox()}",css:{'text-align':'center'}}
+      ],
+
+data: [
+    { "value":"SBSYS", "open":true, "role1.1":true,"role1.3":true,"role2.1":true,"role2.2":true,"role3":true,"role5":true,"data":[
+      { "value":"Leder", "role1.1":true, "role1.3":true},
+      { "value":"Sagsbehandler", "role2.1":true},
+      { "value":"Dagsordenansvarlig", "role2.1":true},
+      { "value":"Læseadgang", "role2.2":true,"role5":true },
+      { "value":"Administrator", "role2":" ", "role3":true }
+    ]},
+    { "value":"SAPA", "role2":" ", "data":[
+      { "value":"Part 1", "chapter":"alpha" },
+      { "value":"Part 2", "chapter":"beta" }
+    ]},
+    { "value":"SD Løn", "role1":"personale", "role1.1":true, "role2.3":true,"role3":true, "data":[
+      { "value":"Administrator", "role3":true },
+      { "value":"Personalesager", "role1.1":true,"role2":" " },
+      { "value":"Lønbehandling", "role2.3":true, },
+    ]},
+    { "value":"CURA", "role2":" ","data":[
+      { "value":"Part 1", "chapter":"alpha" },
+      { "value":"Part 2", "chapter":"beta" }
+    ]}
+  ]},
+]}
+)
