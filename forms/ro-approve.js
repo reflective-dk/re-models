@@ -99,10 +99,13 @@ console.log("DEBUG: args=",args);
   }
 
   // Call snapshot, and return promise, for convert refs ids to snapshot name
-  function getProperty(propertyIds, snapshots) {
-    return snapshots(propertyIds).then(function(result) {
-      return result.objects[0].snapshot.name;
-    });
+  function getProperty(prop) {
+    if (prop.id !== undefined) {
+      return form.situ.getSnapshots([prop.id]).then(function(result) {
+        return result.objects[0].snapshot.name;
+      });
+    }
+    return promise.resolve(prop);
   }
 
   // Get snapshots filterd on vt and rt. Return sorted on knownOn, latest first
