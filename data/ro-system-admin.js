@@ -46,9 +46,6 @@ console.log("DEBUG: result=",result);
 
           var vendors = utils.asObject(result[2].objects);
 
-          // Add all vendors, systems, owners and administrators to its respective selects
-
-
           // Populate datatable
           result[0].objects.forEach(function(system) {
             data.push({ vendor:"", name:system.snapshot.name, owner:"", department:"HR", administrator:"Rasmus Træls", systemroles:"" });

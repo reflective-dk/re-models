@@ -4,7 +4,6 @@ define([
 
   var form = {
     data: {},
-    situ: situ, //TODO other name? client?
 
     getInputs: function () {
       var inputs = [];
@@ -32,7 +31,7 @@ define([
   return form;
 
   function createSelectData(data) {
-    return form.situ.getUnitTypes().then(function (data) {
+    return situ.getUnitTypes().then(function (data) {
       var items = [];
       data.objects.forEach(function(obj) {
         items.push({
@@ -46,7 +45,7 @@ define([
 
   // Transform query response to webix tree data, where the snapshot is added/stored in the thee items
   function createTreeData() {
-    return form.situ.getUnits().then(function (data) {
+    return situ.getUnits().then(function (data) {
       var possibleRoots = [];
       var allItems = {};
 
