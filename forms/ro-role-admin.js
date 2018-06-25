@@ -2,8 +2,6 @@ define([
   'common/promise', 'models/situ', 'utils', 'views/ro/role-admin'
 ], function(promise, situ, utils, roleAdminView) {
 
-setup();
-
   var form = {
     data: {},
     situ: situ,
@@ -74,7 +72,7 @@ setup();
 });
 
 
-
+/*
 
 
 
@@ -203,7 +201,7 @@ function setup() {
         });
 
         // Add the empty first line
-        options.unshift({id:0,value:'Vælg ansvar og tilføj'});
+        options.unshift({id:0,value:'Vælg ansvar og tilføj (+)'});
 
         // set new options on editSelect
         editSelect.define({'options':options,value:0});
@@ -212,4 +210,7 @@ function setup() {
         editSelect.refresh();
       }
     }, webix.editors.popup);
+
+
 }
+*/

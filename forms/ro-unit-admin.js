@@ -1,12 +1,12 @@
 define([
-  'webix', 'common/promise', 'models/situ', 'utils', 'common/re-webix', 'views/ro/unit-admin'
-], function(webix, promise, situ, utils, reWebix, unitAdminView) {
+  'webix', 'common/promise', 'models/situ', 'utils', 'views/ro/unit-admin'
+], function(webix, promise, situ, utils, unitAdminView) {
 
   var form = {
     data: {},
     situ: situ,
 
-    getInputs: function () {
+    getStateAsObjects: function () {
       var inputs = [];
       // this.data contain modified snapshots, as key/value => id/snapshot
       Object.keys(form.data).forEach(function(id) {
