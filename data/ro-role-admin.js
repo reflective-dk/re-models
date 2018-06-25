@@ -2,13 +2,11 @@ define([
   'common/promise', 'models/situ', 'utils', 'views/ro/role-admin'
 ], function(promise, situ, utils, roleAdminView) {
 
-setup();
-
   var form = {
     data: {},
-    situ: situ, //TODO other name? client?
+    situ: situ,
 
-    getInputs: function () {
+    getStateAsObjects: function () {
       var inputs = [];
       // this.data contain modified snapshots, as key/value => id/snapshot
       Object.keys(form.data).forEach(function(id) {
@@ -24,7 +22,6 @@ setup();
       this.roleAdminView = roleAdminView({ form: form });
       this.roleAdminView.add(args.view).then(function () {
         createRoleResponsibiliesTree().then(form.roleAdminView.setTreeData);
-//        createResponsibiliesOptions().then(form.roleAdminView.setResponsibilityOptions);
       });
 
       return promise.resolve();
@@ -53,9 +50,8 @@ setup();
         if (role.snapshot.responsibilities) {
           Object.keys(role.snapshot.responsibilities).forEach(function(key) {
             var ref = role.snapshot.responsibilities[key];
-            var responsibilityItem = Object.assign({},allObjects[ref.id]);
-            delete responsibilityItem.id; // cannot use same id in a tree more than once
-            item.data.push(responsibilityItem);
+            var responsibilityRefItem = {refId: ref.id};  // cannot use id, since no double ids in tree
+            item.data.push(responsibilityRefItem);
           });
         }
         item.data = item.data.sort(function(a,b) {return a.value > b.value ? 1 : -1});
@@ -76,7 +72,7 @@ setup();
 });
 
 
-
+/*
 
 
 
@@ -102,9 +98,7 @@ function setup() {
       popupType: "multiselect",
       focus:function(){},
       setValue:function(value) {
-console.log("DEBUG: setValue() value=",value);
         var formView = this.getFormView();
-        var exclusive = this.config.Rexclusive;
 
         // Create values (id) of selected responsibilities
         var values = [];
@@ -122,15 +116,28 @@ console.log("DEBUG: setValue() value=",value);
 
         // setup multitext lines from property field value
         formView.addView(
-          {cols:[ {view:"label",label:this.config.label,width: 90}, {name: 'select0', view:"select", disabled: exclusive && values.length > 0, options: this.config.Roptions, width:230, value: values.length ? values[0] : "" },
-         {view:"button", type:"icon", icon: "plus-circle", width:28, on: {onItemClick:webix.editors.multiselect._addLine(this.config.Roptions, exclusive)} }]}
+          {cols:[ {view:"label",label:this.config.label,width: 90}, {name: 'select0', view:"select", width:230, options: [], value: '0' },
+          {view:"button", type:"icon", icon: "plus-circle", width:28, on: {onItemClick:webix.editors.multiselect._addLine(this.config.Roptions)} }]},
         );
-        for (var i = 1; i < values.length; i++) {
+        for (var i = 0; i < values.length; i++) {
           this.getFormView().addView(
-            {cols:[ {width: 90}, {name: 'select'+i, view:"select", disabled: exclusive, options: this.config.Roptions, width:230, value: values[i].trim() },
-            {view:"button", type:"icon", icon: "minus-circle", width:28, on: {onItemClick:webix.editors.multiselect._removeLine} }]}
+            {cols:[ {width: 90}, {name: 'select'+i, view:"select", disabled: true, options: this.config.Roptions, width:230, value: values[i].trim() },
+            {view:"button", type:"icon", icon: "minus-circle", width:28, on: {onItemClick:webix.editors.multiselect._removeLine(this.config.Roptions)} }]}
           );
         }
+        this._refresh(formView,this.config.Roptions);
+
+        // bind change event on add select
+        var editSelect = formView.getChildViews()[0].getChildViews()[1];
+        var addButton = formView.getChildViews()[0].getChildViews()[2];
+        editSelect.attachEvent("onChange", function(newv, oldv){
+          if (newv !== 0) {
+            addButton.enable();
+          } else {
+            addButton.disable();
+          }
+        });
+
         this._is_string = this.config.stringResult || (value && typeof value == "string");
         webix.editors.popup.setValue.call(this, value);
       },
@@ -143,9 +150,11 @@ console.log("DEBUG: setValue() value=",value);
           var selectView = view.getChildViews()[1];
           var v = selectView.getValue();
 
-          result[cnt++] = {id:v,name:options.filter(o => o.id === v)[0].value}
+          if (cnt > 0) {
+            result[cnt] = {id:v,name:options.filter(o => o.id === v)[0].value};
+          }
+          cnt++;
         });
-console.log("DEBUG: multiselect getValue() result=",result);
         return result;
       },
       popupInit:function(popup) {
@@ -156,40 +165,52 @@ console.log("DEBUG: multiselect getValue() result=",result);
       getFormView:function() {
         return this.getPopup().getBody().getChildViews()[1];
       },
-      _removeLine:function(id){
-        var lineId = webix.$$(id).getParentView().config.id;
-        this.getFormView().removeView(lineId);
-      },
-      _addLine:function(Roptions,exclusive){
+      _removeLine:function(Roptions){
+        var self = this;
         return function(id) {
-          var options = Object.assign(Roptions);
+          var lineId = webix.$$(id).getParentView().config.id;
+          this.getFormView().removeView(lineId);
+          self._refresh(this.getFormView(),Roptions);
+        };
+      },
+      _addLine:function(Roptions){
+        var self = this;
+        return function(id) {
+          var editSelect = this.getFormView().getChildViews()[0].getChildViews()[1];
 
-          // filter out options already in use and disable all selects except latest
-          if (exclusive) {
-            this.getFormView().getChildViews().forEach(function(view) {
-              var selectView = view.getChildViews()[1];
-              selectView.disable();
-              var v = selectView.getValue();
-
-              // remove values from options if exclusive
-              if (exclusive) {
-                options = options.filter(o => o.id !== v);
-              }
-            });
-          }
-          // if last option then disable [+] button
-          if (options.length === 1) {
-            // Label, select, [+] button
-            this.getFormView().getChildViews()[0].getChildViews()[2].disable();
-          } else {
-            this.getFormView().getChildViews()[0].getChildViews()[2].enable();
-          }
-
+          // Add the new line with the selected value from first line
           var view =
-            {cols:[ {width: 90}, {name: id, view:"select", width:230, options: options, value: "" },
+            {cols:[ {width: 90}, {name: id, view:"select", width:230, disabled: true, options: Roptions, value: editSelect.getValue() },
             {view:"button", type:"icon", icon: "minus-circle", width:28, on: {onItemClick:webix.editors.multiselect._removeLine} }]};
           this.getFormView().addView(view);
+          self._refresh(this.getFormView(),Roptions);
         };
+      },
+      _refresh:function(formView,Roptions) {
+        var editSelect = formView.getChildViews()[0].getChildViews()[1];
+        var options = Object.assign(Roptions);
+
+        // filter out options already in use and disable all selects except latest
+        formView.getChildViews().forEach(function(view) {
+          var selectView = view.getChildViews()[1];
+          selectView.disable();
+          var v = selectView.getValue();
+
+          // remove values from options if exclusive
+          options = options.filter(o => o.id !== v);
+        });
+
+        // Add the empty first line
+        options.unshift({id:0,value:'Vælg ansvar og tilføj (+)'});
+
+        // set new options on editSelect
+        editSelect.define({'options':options,value:0});
+        editSelect.enable();
+        formView.getChildViews()[0].getChildViews()[2].disable();
+        editSelect.refresh();
       }
     }, webix.editors.popup);
+
+
 }
+*/

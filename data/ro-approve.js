@@ -4,6 +4,7 @@ define([
     var form = {
       data: {},
       render: function (args) {
+console.log("DEBUG: args=",args);
         this.approveView = approveView({ form: form });
         return this.approveView.add(args.view).then(function () {
           return getChanges(args.task.data.extension)
@@ -58,7 +59,7 @@ define([
       if (snap.length !== 0) {
         before = getSnapshotsBefore(snap[0], new Date(rObj.registrations[0].validity[0].from), new Date(rObj.registrations[0].timestamp))[0];
       }
-      current = getSnapshots(snap[0], new Date(rObj.registrations[0].validity[0].from), new Date(rObj.registrations[0].timestamp))[0];
+      var current = getSnapshots(snap[0], new Date(rObj.registrations[0].validity[0].from), new Date(rObj.registrations[0].timestamp))[0];
 
       // List before / after for each changed property, build array of promises
       var properties = [];
@@ -100,7 +101,7 @@ define([
   // Call snapshot, and return promise, for convert refs ids to snapshot name
   function getProperty(prop) {
     if (prop.id !== undefined) {
-      return args.getSnapshots([prop.id]).then(function(result) {
+      return form.situ.getSnapshots([prop.id]).then(function(result) {
         return result.objects[0].snapshot.name;
       });
     }
