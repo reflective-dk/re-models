@@ -17,8 +17,9 @@ registrations:
               dataType:
                 type: relation
                 target: { id: 5cad9972-6560-4136-a9d5-40c2d109be9b, name: Unit }
-            owner:
-              type: simple
+            organizations:
+              description: The organizations that this unit is a member of
+              type: map
               dataType:
                 type: relation
                 target: { id: 5fa95ccd-a801-4cbb-9400-e7e1ee7cee44, name: Organization }
