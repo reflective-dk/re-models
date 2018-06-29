@@ -4,6 +4,7 @@ mimeType: application/vnd.reflective-dk.object+json
 registrations:
   - validity:
       - input:
+          model: { id: 92090f32-4539-47a7-a93e-ed185251802f, name: UI Model }
           class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
           name: Orgviewer Configuration
           description: >-
