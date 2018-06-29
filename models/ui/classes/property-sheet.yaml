@@ -8,6 +8,9 @@ registrations:
           name: Property Sheet
           description: A specification of a property sheet
           properties:
+            name:
+              type: simple
+              dataType: string
             sheetKey:
               type: simple
               dataType: string

@@ -10,6 +10,9 @@ registrations:
             A configuration of the orgviewer application which determines a
             specific set of property sheets
           properties:
+            name:
+              type: simple
+              dataType: string
             tenant:
               description: For use if this is a tenant-specific configuration
               type: simple
