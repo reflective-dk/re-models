@@ -1,0 +1,22 @@
+---
+id: 45485565-0e5a-4634-b209-f5f613adbf27
+mimeType: application/vnd.reflective-dk.object+json
+registrations:
+  - validity:
+      - input:
+          class: { id: fbf37f0d-f8ce-4cb8-80fc-edb8299c2be2, name: Orgviewer Configuration }
+          name: Default Orgviewer Configuration
+          propertySheets:
+            unit:
+              id: 3b0a013c-114d-4fc2-a522-2cdebabda4b6
+              name: Unit Properties
+            employment:
+              id: 49a32c2a-fb60-4a3a-8939-92aed0df1b60
+              name: Employment Properties
+            person:
+              id: b3476a1e-bae8-462c-8075-2f352c6ee00c
+              name: Person Properties
+            role:
+              id: 5974cf9d-b952-455a-bd83-b88b5491f69b
+              name: Role Properties
+...

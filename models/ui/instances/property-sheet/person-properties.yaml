@@ -1,0 +1,21 @@
+---
+id: b3476a1e-bae8-462c-8075-2f352c6ee00c
+mimeType: application/vnd.reflective-dk.object+json
+registrations:
+  - validity:
+      - input:
+          class: { id: e81c542d-76c9-4396-af3a-39c223c1a5a4, name: Property Sheet }
+          name: Person Properties
+          sheetKey: unit
+          language: da
+          elements:
+            0: { label: Person, type: label }
+            1: { label: Name, id: person.snapshot.name$ }
+            2: { label: Fornavn, id: person.snapshot.givenName }
+            3: { label: Efternavn, id: person.snapshot.familyName }
+            4: { label: Initialer, id: person.snapshot.initials }
+            5: { label: Anvendt Navn, id: person.snapshot.anvendtNavn }
+            6: { label: Telefon, id: person.snapshot.phoneNumbers$ }
+            7: { label: E-mail, id: person.snapshot.emailAddresses$ }
+            8: { label: Adresse, id: address.snapshot.name }
+...

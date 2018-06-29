@@ -1,0 +1,22 @@
+---
+id: e81c542d-76c9-4396-af3a-39c223c1a5a4
+mimeType: application/vnd.reflective-dk.object+json
+registrations:
+  - validity:
+      - input:
+          class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
+          name: Property Sheet
+          description: A specification of a property sheet
+          properties:
+            sheetKey:
+              type: simple
+              dataType: string
+            language:
+              type: simple
+              dataType: string
+            elements:
+              type: map
+              dataType:
+                type: json
+                schema: {}
+...

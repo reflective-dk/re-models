@@ -1,0 +1,23 @@
+---
+id: 3b0a013c-114d-4fc2-a522-2cdebabda4b6
+mimeType: application/vnd.reflective-dk.object+json
+registrations:
+  - validity:
+      - input:
+          class: { id: e81c542d-76c9-4396-af3a-39c223c1a5a4, name: Property Sheet }
+          name: Unit Properties
+          sheetKey: unit
+          language: da
+          elements:
+            0: { label: Ansættelse, type:label }
+            1: { label: Navn, id: name$ }
+            2: { label: Kort navn, id: shortName }
+            3: { label: Overordnet, id: parentName }
+            4: { label: Telefon, id: phoneNumbers.generic }
+            5: { label: E-mail, id: emailAddresses.generic }
+            6: { label: SE-Nummer, id: seNr }
+            7: { label: EAN-Nummer, id: ean }
+            8: { label: Eksternt enheds-id, id: foreignIds.ekstern }
+            9: { label: Aktiv fra, id: activeFrom$ }
+            10: { label: Aktiv til, id: activeTo$ }
+...

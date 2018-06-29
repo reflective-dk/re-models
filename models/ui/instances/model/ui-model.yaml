@@ -1,0 +1,9 @@
+---
+id: 92090f32-4539-47a7-a93e-ed185251802f
+mimeType: application/vnd.reflective-dk.object+json
+registrations:
+  - validity:
+      - input:
+          class: { id: 54985140-62ec-49fd-b05a-661e090c405f, name: Model }
+          name: UI Model
+...

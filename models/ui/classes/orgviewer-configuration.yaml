@@ -1,0 +1,25 @@
+---
+id: fbf37f0d-f8ce-4cb8-80fc-edb8299c2be2
+mimeType: application/vnd.reflective-dk.object+json
+registrations:
+  - validity:
+      - input:
+          class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
+          name: Orgviewer Configuration
+          description: >-
+            A configuration of the orgviewer application which determines a
+            specific set of property sheets
+          properties:
+            tenant:
+              description: For use if this is a tenant-specific configuration
+              type: simple
+              dataType:
+                type: relation
+                target: { id: 41e0ef9b-01f3-41fd-aa39-6bcb40374704, name: Tenant }
+            propertySheets:
+              description: Property Sheets to use for the Orgviewer
+              type: simple
+              dataType:
+                type: relation
+                target: { id: e81c542d-76c9-4396-af3a-39c223c1a5a4, name: Property Sheet }
+...
