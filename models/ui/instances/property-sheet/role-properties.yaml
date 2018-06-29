@@ -6,7 +6,7 @@ registrations:
       - input:
           class: { id: e81c542d-76c9-4396-af3a-39c223c1a5a4, name: Property Sheet }
           name: Role Properties
-          sheetKey: unit
+          sheetKey: role
           language: da
           elements:
             0: { label: Rolletildeling, type: label }
