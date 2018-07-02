@@ -3,8 +3,9 @@ define([
 ], function(promise, situ, utils, reWebix, approveView) {
     var form = {
       data: {},
+      situ: situ,
+
       render: function (args) {
-console.log("DEBUG: args=",args);
         this.approveView = approveView({ form: form });
         return this.approveView.add(args.view).then(function () {
           return getChanges(args.task.data.extension)
@@ -88,6 +89,11 @@ console.log("DEBUG: args=",args);
       });
     });
 
+
+    if (propertyNamePromises.length === 0) {
+     return promise.resolve([]);
+    }
+
     // Promise all
     return promise.all(propertyNamePromises).then(function(result) {
       for (var i = 0; i < propertyDestination.length; i++) {
@@ -100,9 +106,10 @@ console.log("DEBUG: args=",args);
 
   // Call snapshot, and return promise, for convert refs ids to snapshot name
   function getProperty(prop) {
-    if (prop.id !== undefined) {
+    // Get name for ref. properties
+    if (prop !== undefined && prop.id !== undefined) {
       return form.situ.getSnapshots([prop.id]).then(function(result) {
-        return result.objects[0].snapshot.name;
+        return result.json().objects[0].snapshot.name;
       });
     }
     return promise.resolve(prop);

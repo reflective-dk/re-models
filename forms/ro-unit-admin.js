@@ -7,22 +7,23 @@ define([
     situ: situ,
 
     getStateAsObjects: function () {
-      var inputs = [];
+      var objects = [];
       // this.data contain modified snapshots, as key/value => id/snapshot
       Object.keys(form.data).forEach(function(id) {
-        var input = form.data[id];
-        input.id = id;
-        inputs.push(input);
+        // Use time module for vt
+        objects.push({id: id, registrations:[{validity:[{input:form.data[id]}]}]});
       });
 
        // Wrap data in object metadata, using vt as validity from
-      return inputs;
+      return promise.resolve(objects);
     },
     render: function (args) {
       this.unitAdminView = unitAdminView({ form: form });
       this.unitAdminView.add(args.view).then(function () {
-        createTreeData().then(form.unitAdminView.setTreeData);
-        createSelectData().then(form.unitAdminView.setUnitTypes);
+        createOrganisationSelectData().then(form.unitAdminView.setHierachyData);
+        createUnitTypeSelectData().then(form.unitAdminView.setUnitTypes);
+
+        form.unitAdminView.setTreeDataFunction(createTreeData)
       });
 
       return promise.resolve();
@@ -31,10 +32,11 @@ define([
 
   return form;
 
-  function createSelectData(data) {
-    return form.situ.getUnitTypes().then(function (data) {
-      var items = [];
-      data.objects.forEach(function(obj) {
+  function createOrganisationSelectData() {
+    return form.situ.getOrganisations().then(function(hierarchies) {
+      var items = [{id:0,value:"Vælg Organisation"}];
+      hierarchies.forEach(function(obj) {
+console.log("DEBUG: hierachy obj=",obj);
         items.push({
           id: obj.id,
           value: obj.snapshot.name
@@ -44,48 +46,64 @@ define([
     });
   }
 
+  function createUnitTypeSelectData() {
+    return form.situ.getUnitTypes().then(function(types) {
+
+      return promise.resolve([]);
+    });
+  }
+
   // Transform query response to webix tree data, where the snapshot is added/stored in the thee items
-  function createTreeData() {
-    return form.situ.getUnits().then(function (data) {
-      var possibleRoots = [];
-      var allItems = {};
+  function createTreeData(hierarchyId) {
+    return form.situ.getSnapshots([hierarchyId]).then(function (hierarchyResult) {
+      var hierarchy = hierarchyResult.objects[0];
+      return form.situ.getUnits(hierarchy.id).then(function (data) {
+        var possibleRoots = [];
+        var allItems = {};
 
-      // create all items and hashify
-      data.objects.forEach(function(obj) {
-        var item = {
-          id: obj.id,
-          value: obj.snapshot.name,
-          snapshot: obj.snapshot,
-          data:[]
-        };
-        if (item.id !== 'cb299631-509a-5cc2-97bc-a147184cde58') {
-          if (item.snapshot.parents && item.snapshot.parents['tvaerfakultaert']) {
-            item.snapshot.parent = item.snapshot.parents['tvaerfakultaert'];
+        // create all items and hashify
+        data.forEach(function(obj) {
+          var item = {
+            id: obj.id,
+            value: obj.snapshot.name,
+            snapshot: obj.snapshot,
+            data:[]
+          };
+          allItems[obj.id] = item;
+        });
+
+        // arrange items into tree data structure
+        Object.keys(allItems).forEach(function(id) {
+          var child = allItems[id];
+
+          // Get parent object
+          // XXX: what if more than one, pathelements ? Try then one at a time?
+          var parent = child.snapshot;
+          var parentPath = hierarchy.snapshot.pathElements[0].relation.split('.');
+          parentPath.forEach(function(pp) {
+            if (parent) {
+  console.log("DEBUG: parent=",parent);
+              parent = parent[pp];
+            }
+          });
+          if (parent) {
+            child.snapshot.parent = parent; // Used by form when navigatibg tree
+            allItems[parent.id].data.push(child);
+          } else {
+            // Root
+            possibleRoots.push(child);
           }
-        }
-        allItems[obj.id] = item;
-      });
+        });
 
-      // arrange items into tree data structure
-      Object.keys(allItems).forEach(function(id) {
-        var item = allItems[id];
-        if (item.snapshot.parent) {
-          // Add to parents data array
-          allItems[item.snapshot.parent.id].data.push(item);
-        } else {
-          // Root
-          possibleRoots.push(item);
-        }
+        var root;
+        possibleRoots.forEach(function (possibleRoot) {
+          if (possibleRoot.data.length > 0) {
+            root = possibleRoot;
+            root.open = true;
+          }
+        });
+        return promise.resolve([root]);
       });
-
-      var root;
-      possibleRoots.forEach(function (possibleRoot) {
-        if (possibleRoot.data.length > 0) {
-          root = possibleRoot;
-          root.open = true;
-        }
-      });
-      return promise.resolve([root]);
     });
   }
 });
