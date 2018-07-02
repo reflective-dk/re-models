@@ -9,13 +9,13 @@ registrations:
           sheetKey: employment
           language: da
           elements:
-            0: { label: Ansættelse, type: label }
-            1: { label: Stilling, id: position.snapshot.name$ }
-            2: { label: Stilling (kort), id: position.snapshot.shortName }
-            3: { label: Aktiv fra, id: employment.snapshot.activeFrom$ }
-            4: { label: Aktiv til, id: employment.snapshot.activeTo$ }
-            5: { label: E-mail, id: employment.snapshot.emailAddresses$ }
-            6: { label: Telefon, id: employment.snapshot.phoneNumbers$ }
-            7: { label: Eksternt medarbejder-id, id: employment.snapshot.eksternId$ }
-            8: { label: AD Distinguished Name, id: employment.snapshot.foreignIds.dn }
+            e00: { label: Ansættelse, type: label }
+            e01: { label: Stilling, id: position.snapshot.name$ }
+            e02: { label: Stilling (kort), id: position.snapshot.shortName }
+            e03: { label: Aktiv fra, id: employment.snapshot.activeFrom$ }
+            e04: { label: Aktiv til, id: employment.snapshot.activeTo$ }
+            e05: { label: E-mail, id: employment.snapshot.emailAddresses$ }
+            e06: { label: Telefon, id: employment.snapshot.phoneNumbers$ }
+            e07: { label: Eksternt medarbejder-id, id: employment.snapshot.eksternId$ }
+            e08: { label: AD Distinguished Name, id: employment.snapshot.foreignIds.dn }
 ...

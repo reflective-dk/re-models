@@ -9,16 +9,16 @@ registrations:
           sheetKey: role
           language: da
           elements:
-            0: { label: Rolletildeling, type: label }
-            1: { label: Tildeling, id: assignment.snapshot.name$ }
-            2: { label: Rolle, id: role.snapshot.name }
-            3: { label: Aktiv fra, id: assignment.snapshot.activeFrom$ }
-            4: { label: Aktiv til, id: assignment.snapshot.activeTo$ }
+            e00: { label: Rolletildeling, type: label }
+            e01: { label: Tildeling, id: assignment.snapshot.name$ }
+            e02: { label: Rolle, id: role.snapshot.name }
+            e03: { label: Aktiv fra, id: assignment.snapshot.activeFrom$ }
+            e04: { label: Aktiv til, id: assignment.snapshot.activeTo$ }
             # For now, were displaying the _role_ responsibilities, not the
             # _role assignment_ responsibilities (which is potentially only a subset)
-            5: { label: Ansvar, id: role.snapshot.responsibilities$ }
-            6: { label: System, id: system.snapshot.name }
-            7: { label: Ekspertise, id: assignment.snapshot.expertise }
-            8: { label: Interesse, id: assignment.snapshot.interests }
-            9: { label: Følsomhed, id: assignment.snapshot.sensitivity }
+            e05: { label: Ansvar, id: role.snapshot.responsibilities$ }
+            e06: { label: System, id: system.snapshot.name }
+            e07: { label: Ekspertise, id: assignment.snapshot.expertise }
+            e08: { label: Interesse, id: assignment.snapshot.interests }
+            e09: { label: Følsomhed, id: assignment.snapshot.sensitivity }
 ...
