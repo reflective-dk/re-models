@@ -1,0 +1,13 @@
+---
+id: 30281529-c39e-4ab4-9a28-aadc4ae56d36
+registrations:
+  - validity:
+      - input:
+          class:
+            id: 6c54bdcc-691a-4190-8b50-4c5a6e4679dc
+            name: User Form
+          name: Role allocation administration
+          description: Aministration of RO role allocations
+          definition:
+            hash: ro-role-allocation-admin.js
+...

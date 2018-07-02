@@ -1,22 +1,22 @@
 ---
-  id: ec4a7a94-46a0-44d8-8ed9-b4aa4cd62665
+  id: c597999b-e5ec-40ed-8bf0-e9d8d6f08e23
   registrations:
     - validity:
         - input:
             class:
               id: efec2048-b4f3-4ffd-a7ba-b6698d412bbc
               name: Process
-            name: Administration af RO hierarkier
+            name: Administration af RO role allocationer
             userStartable: true
             system:
               id: 9374800d-1ba6-5a9e-ae4a-d6da16e7e9df
             userForms:
-              ro-unit-admin:
+              ro-role-allocation-admin:
                 id: 89aedc6c-08e5-4005-91e3-ff643a0de0af
               ro-approve:
                 id: ea44dece-8720-4613-ab72-501a6a7b8bd6
             roles:
-              unit-admin:
+              role-admin:
                 id: 5ef17eb5-b59e-4194-a844-7d2b730482a8
-            bpmn: { hash: ro-unit-admin.bpmn }
+            bpmn: { hash: ro-role-allocation-admin.bpmn }
 ...
