@@ -11,4 +11,9 @@ registrations:
           extends: { id: 2da6e709-3f63-47d9-a197-bda06fb86936, name: Entity }
           name: Tenant
           description: Represents a tenant
+          properties:
+            domains:
+              description: Domains associated with this tenant
+              type: map
+              dataType: string
 ...
