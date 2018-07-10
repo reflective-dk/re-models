@@ -109,7 +109,7 @@ define([
     // Get name for ref. properties
     if (prop !== undefined && prop.id !== undefined) {
       return form.situ.getSnapshots([prop.id]).then(function(result) {
-        return result.json().objects[0].snapshot.name;
+        return result.objects[0].snapshot.name;
       });
     }
     return promise.resolve(prop);

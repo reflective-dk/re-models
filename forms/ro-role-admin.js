@@ -11,6 +11,7 @@ define([
       // form.data contain modified snapshots, as key/value => id/snapshot
       Object.keys(form.data).forEach(function(id) {
         objects.push({id: id, registrations:[{validity:[{input:form.data[id]}]}]});
+console.log("DEBUG: getStateAsObjects() objects=",objects);
       });
 
        // Wrap data in object metadata, using vt as validity from
@@ -48,7 +49,7 @@ define([
         if (role.snapshot.responsibilities) {
           Object.keys(role.snapshot.responsibilities).forEach(function(key) {
             var ref = role.snapshot.responsibilities[key];
-            var responsibilityRefItem = {refId: ref.id};  // cannot use id, since no double ids in tree
+            var responsibilityRefItem = {refId: ref.id,index: key};  // cannot use id, since no double ids in tree
             item.data.push(responsibilityRefItem);
           });
         }
