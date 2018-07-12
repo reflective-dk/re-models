@@ -1,0 +1,20 @@
+---
+id: fe2a2f7b-2bf5-4358-8b80-53f62ac72c68
+mimeType: application/vnd.reflective-dk.object+json
+registrations:
+  - validity:
+      - input:
+          class: { id: e81c542d-76c9-4396-af3a-39c223c1a5a4, name: Property Sheet }
+          name: Location Properties
+          sheetKey: location
+          language: da
+          elements:
+            e00: { label: P-nummer, id: pNr }
+            e01: { label: Adresse, id: address.snapshot.streetAddress }
+            e02: { label: Stednavn, id: address.snapshot.streetAddress2 }
+            e03: { label: Postnummer, id: address.snapshot.postalCode }
+            e04: { label: By, id: address.snapshot.city }
+            e05: { label: Land, id: address.snapshot.country }
+            e06: { label: Aktiv fra, id: activeFrom$ }
+            e07: { label: Aktiv til, id: activeTo$ }
+...
