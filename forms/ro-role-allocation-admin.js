@@ -24,6 +24,18 @@ define([
         createRoleAllocOptions().then(form.roleAllocAdminView.setRoleAllocOptions);
         createEmploymentOptions().then(form.roleAllocAdminView.setEmploymentOptions);
         createTreeData('0b5ef848-9242-4f0f-8f80-dc79f9d898fe').then(form.roleAllocAdminView.setTreeData);
+
+          var data = [
+            { ansaettelse:"KMD", afdeling:"OPUS Løn", allokeretrolle:"Peter Andersen", rolle:"HR", ansvar:"Rasmus Træls" },
+            { ansaettelse:"Kombit", afdeling:"SAPA", allokeretrolle:"Peter Andersen", rolle:"HR", ansvar:"Hans DuPont" },
+            { ansaettelse:"Avaleo", afdeling:"Avaleo Analytics", allokeretrolle:"Kaj Nyborg", rolle:"Digitaliser", ansvar:"Pia Jensen" },
+            { ansaettelse:"Rambøll Informatik", afdeling:"Rambøll Care - Sundhed", allokeretrolle:"Peter Andersen", rolle:"HR", ansvar:"Orla Ibsen" },
+            { ansaettelse:"OS2", afdeling:"KiTOS", allokeretrolle:"Peter Andersen", rolle:"HR", ansvar:"Tommy " },
+            { ansaettelse:"EG Kommuneinformation A/S", afdeling:"NetForvaltning Børn & Unge", allokeretrolle:"Peter Andersen", rolle:"Børn & Unge", ansvar:"Rasmus Træls" },
+            { ansaettelse:"Brugerklubben SBSYS", afdeling:"SBSYS", allokeretrolle:"Peter Andersen", rolle:"HR", ansvar:"Rasmus Træls" },
+          ];
+          form.roleAllocAdminView.setTableData(data);
+
       });
 
       return promise.resolve();

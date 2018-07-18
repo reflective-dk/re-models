@@ -48,8 +48,7 @@ console.log("DEBUG: hierachy obj=",obj);
 
   function createUnitTypeSelectData() {
     return form.situ.getUnitTypes().then(function(types) {
-
-      return promise.resolve([]);
+      return promise.resolve(utils.asOptions(types));
     });
   }
 
@@ -82,12 +81,12 @@ console.log("DEBUG: hierachy obj=",obj);
           var parentPath = hierarchy.snapshot.pathElements[0].relation.split('.');
           parentPath.forEach(function(pp) {
             if (parent) {
-  console.log("DEBUG: parent=",parent);
               parent = parent[pp];
             }
           });
           if (parent) {
             child.snapshot.parent = parent; // Used by form when navigatibg tree
+console.log("DEBUG: allItems[parent.id]=",allItems[parent.id]);
             allItems[parent.id].data.push(child);
           } else {
             // Root

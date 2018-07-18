@@ -56,7 +56,7 @@ define([
 
       // Find same snapshot object with same id
       var snap = ext.snapshots.objects.filter(snap => snap.id === rObj.id);
-      var before = {};
+      var before;
       if (snap.length !== 0) {
         before = getSnapshotsBefore(snap[0], new Date(rObj.registrations[0].validity[0].from), new Date(rObj.registrations[0].timestamp))[0];
       }
@@ -71,7 +71,7 @@ define([
 
         // Prepare property
         var property = {
-          name: key,
+          key: key,
           before: "",
           after: ""
         };
@@ -89,7 +89,6 @@ define([
       });
     });
 
-
     if (propertyNamePromises.length === 0) {
      return promise.resolve([]);
     }
@@ -97,8 +96,35 @@ define([
     // Promise all
     return promise.all(propertyNamePromises).then(function(result) {
       for (var i = 0; i < propertyDestination.length; i++) {
-        propertyDestination[i].before = result[i*2];
-        propertyDestination[i].after = result[i*2+1];
+        var before = result[i*2];
+        var after = result[i*2+1];
+        switch (propertyDestination[i].key) {
+          case 'activeFrom':
+            propertyDestination[i].name = "Aktiv fra";
+            before = utils.toDateString(before);
+            after = utils.toDateString(after);
+            break;
+          case 'activeTo':
+            propertyDestination[i].name = "Aktiv til";
+            before = utils.toDateString(before);
+            after = utils.toDateString(after);
+            break;
+          case 'responsibilities':
+            propertyDestination[i].name = "Ansvar";
+            after = utils.toCommanListString(before,after);
+            before = utils.toCommanListString(before);
+            break;
+          case 'name':
+            propertyDestination[i].name = "Navn";
+            break;
+          case 'class':
+            // Class is only added in first registration
+            propertyDestination[i].name = "Type";
+            after = "Ny "+after.name;
+            break;
+        }
+        propertyDestination[i].before = before;
+        propertyDestination[i].after = after;
       }
       return changes;
     });
@@ -107,11 +133,11 @@ define([
   // Call snapshot, and return promise, for convert refs ids to snapshot name
   function getProperty(prop) {
     // Get name for ref. properties
-    if (prop !== undefined && prop.id !== undefined) {
-      return form.situ.getSnapshots([prop.id]).then(function(result) {
-        return result.objects[0].snapshot.name;
-      });
-    }
+//    if (prop !== undefined && prop.id !== undefined) {
+//      return form.situ.getSnapshots([prop.id]).then(function(result) {
+//        return result.objects[0].snapshot.name;
+//      });
+//    }
     return promise.resolve(prop);
   }
 
