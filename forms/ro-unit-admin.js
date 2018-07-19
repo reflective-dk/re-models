@@ -54,7 +54,7 @@ define([
 
   // Transform query response to webix tree data, where the snapshot is added/stored in the thee items
   function createTreeData(hierarchyId) {
-    return form.situ.getAllUnitTypeIds(hierarchyId).then(function (allTypes) {
+//    return form.situ.getAllUnitTypeIds(hierarchyId).then(function (allTypes) {
 
       return form.situ.getSnapshots([hierarchyId]).then(function (hierarchyResult) {
         var hierarchy = hierarchyResult.objects[0];
@@ -102,10 +102,10 @@ define([
               root.open = true;
             }
           });
-          root.allTypes = allTypes;
+//          root.allTypes = allTypes;
           return promise.resolve([root]);
         });
       });
-    });
+//    });
   }
 });
