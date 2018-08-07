@@ -21,15 +21,15 @@ define([
       this.roleAllocAdminView = roleAllocAdminView({ form: form });
       this.roleAllocAdminView.add(args.view).then(function () {
         createRoleOptions().then(form.roleAllocAdminView.setRoleOptions);
-        createRoleAllocOptions().then(form.roleAllocAdminView.setRoleAllocOptions);
         createEmploymentOptions().then(form.roleAllocAdminView.setEmploymentOptions);
-        createTreeData('0b5ef848-9242-4f0f-8f80-dc79f9d898fe').then(form.roleAllocAdminView.setTreeData);
+        createTreeData('0b5ef848-9242-4f0f-8f80-dc79f9d898fe').then(form.roleAllocAdminView.setTreeData)
+        .then(function() {
+          createRoleAllocData().then(form.roleAllocAdminView.setTableData);
+        });
       });
-
       return promise.resolve();
     } // render
   };
-
   return form;
 
   function createRoleOptions() {
@@ -46,23 +46,30 @@ define([
     });
   }
 
-  function createRoleAllocOptions() {
-    return form.situ.getRoleAllocations().then(function(roles) {
-      var items = []; //[{id:"0",value:"Vælg Allokeret Rolle"}];
-      roles.objects.forEach(function(obj) {
-        items.push({
-          id: obj.id,
-          value: obj.snapshot.name,
-          snapshot: obj.snapshot
+  // Create data for the datatable
+  function createRoleAllocData() {
+    return form.situ.getRoleAllocations().then(function(roleAllocations) {
+
+      var data = [];
+      roleAllocations.objects.forEach(function(ra) {
+        data.push({
+          activeFrom: utils.fromISOString(ra.snapshot.activeFrom),
+          activeTo: utils.fromISOString(ra.snapshot.activeTo),
+          name: ra.snapshot.name,
+          employment: ra.snapshot.employment ? ra.snapshot.employment.id : "",
+          propagateFrom: ra.snapshot.propagateFrom ? ra.snapshot.propagateFrom.id : "",
+          role: ra.snapshot.role ? ra.snapshot.role.id : "",
+          responsibilities: ra.snapshot.responsibilities ? ra.snapshot.responsibilities : {},
+          snapshot: ra.snapshot
         });
       });
-      return promise.resolve(items);
+      return promise.resolve(data);
     });
   }
 
   function createEmploymentOptions() {
     return form.situ.getEmployments().then(function(employments) {
-      var items = []; //[{id:"0",value:"Vælg Ansættelse"}];
+      var items = [];
       employments.objects.forEach(function(obj) {
         items.push({
           id: obj.id,
@@ -78,7 +85,6 @@ define([
   function createTreeData(hierarchyId) {
     return form.situ.getSnapshots([hierarchyId]).then(function (hierarchyResult) {
       var hierarchy = hierarchyResult.objects[0];
-console.log("DEBUG: getSnapshots=",JSON.stringify(hierarchy));
       return form.situ.getUnits(hierarchy.id).then(function (data) {
         var possibleRoots = [];
         var allItems = {};
