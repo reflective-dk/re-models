@@ -12,7 +12,7 @@ registrations:
           name: Position
           description: A position such as Janitor, Teacher or CEO
           properties:
-            group:
+            occupationalGroup:
               type: simple
               dataType:
                 type: relation

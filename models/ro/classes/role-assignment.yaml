@@ -35,6 +35,15 @@ registrations:
               dataType:
                 type: relation
                 target: { id: e8bc40c5-e542-4bab-b6fc-64b2339ffa15, name: System }
+            occupationalGroups:
+              description: >-
+                A role may be assigned with respect to specific occupational
+                groups; e.g. different managers for doctors and nurses within the
+                same tree of organizational units
+              type: map
+              dataType:
+                type: relation
+                target: { id: 677d4ec4-838c-44fa-a4fa-be1bd726fc57, name: Occupational Group }
             expertise:
               description: Areas of responsibility from KLE
               type: map
