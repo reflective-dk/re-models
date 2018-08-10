@@ -52,6 +52,7 @@ define([
 
       var data = [];
       roleAllocations.objects.forEach(function(ra) {
+        ra.snapshot.id = ra.id;
         data.push({
           activeFrom: utils.fromISOString(ra.snapshot.activeFrom),
           activeTo: utils.fromISOString(ra.snapshot.activeTo),

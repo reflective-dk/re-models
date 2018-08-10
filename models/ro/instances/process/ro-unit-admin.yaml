@@ -6,7 +6,7 @@
             class:
               id: efec2048-b4f3-4ffd-a7ba-b6698d412bbc
               name: Process
-            name: Administration af RO hierarkier
+            name: Administration af organisation
             userStartable: true
             system:
               id: 9374800d-1ba6-5a9e-ae4a-d6da16e7e9df
