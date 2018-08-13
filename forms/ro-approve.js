@@ -123,7 +123,12 @@ define([
             after = "Ny "+after.name;
             break;
           case 'phoneNumbers':
+            propertyDestination[i].name = "Telefon numre";
+            before = utils.asList(before);
+            after = utils.asList(after);
+            break;
           case 'emailAddresses':
+            propertyDestination[i].name = "E-mail adresser";
             before = utils.asList(before);
             after = utils.asList(after);
             break;
