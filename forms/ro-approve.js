@@ -101,13 +101,13 @@ define([
         switch (propertyDestination[i].key) {
           case 'activeFrom':
             propertyDestination[i].name = "Aktiv fra";
-            before = utils.toDateString(before);
-            after = utils.toDateString(after);
+            before = utils.fromISOString(before);
+            after = utils.fromISOString(after);
             break;
           case 'activeTo':
             propertyDestination[i].name = "Aktiv til";
-            before = utils.toDateString(before);
-            after = utils.toDateString(after);
+            before = utils.fromISOString(before);
+            after = utils.fromISOString(after);
             break;
           case 'responsibilities':
             propertyDestination[i].name = "Ansvar";
@@ -121,6 +121,16 @@ define([
             // Class is only added in first registration
             propertyDestination[i].name = "Type";
             after = "Ny "+after.name;
+            break;
+          case 'phoneNumbers':
+          case 'emailAddresses':
+            before = utils.asList(before);
+            after = utils.asList(after);
+            break;
+          default:
+console.log("DEBUG: unknown key=",propertyDestination[i].key);
+console.log("DEBUG: before=",before);
+console.log("DEBUG: after=",after);
             break;
         }
         propertyDestination[i].before = before;
