@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="1.11.3">
   <bpmn:collaboration id="_c597999b-e5ec-40ed-8bf0-e9d8d6f08e23">
-    <bpmn:participant id="Participant_1cmscbv" name="Role Administartion" processRef="Rc597999b-e5ec-40ed-8bf0-e9d8d6f08e23" />
+    <bpmn:participant id="Participant_1cmscbv" name="Administration af rolletildelinger" processRef="Rc597999b-e5ec-40ed-8bf0-e9d8d6f08e23" />
   </bpmn:collaboration>
-  <bpmn:process id="Rc597999b-e5ec-40ed-8bf0-e9d8d6f08e23" name="Role Allocation Administration" isExecutable="true" camunda:versionTag="1.0" camunda:taskPriority="1">
+  <bpmn:process id="Rc597999b-e5ec-40ed-8bf0-e9d8d6f08e23" name="Administration af rolletildelinger" isExecutable="true" camunda:versionTag="1.0" camunda:taskPriority="1">
     <bpmn:laneSet>
       <bpmn:lane id="Lane_19ch5nt" name="anybody">
         <bpmn:flowNodeRef>R30281529-c39e-4ab4-9a28-aadc4ae56d36</bpmn:flowNodeRef>
@@ -14,15 +14,15 @@
       </bpmn:lane>
     </bpmn:laneSet>
     <bpmn:sequenceFlow id="SequenceFlow_08rl4ek" sourceRef="R30281529-c39e-4ab4-9a28-aadc4ae56d36" targetRef="Rea44dece-8720-4613-ab72-501a6a7b8bd6" />
-    <bpmn:startEvent id="roroleallocationadminstart" name="Role Allocation Administration">
+    <bpmn:startEvent id="roroleallocationadminstart" name="Administration af rolletildelinger">
       <bpmn:outgoing>SequenceFlow_14zjcbt</bpmn:outgoing>
     </bpmn:startEvent>
-    <bpmn:userTask id="R30281529-c39e-4ab4-9a28-aadc4ae56d36" name="Role Allocation Administration" camunda:formKey="30281529-c39e-4ab4-9a28-aadc4ae56d36">
+    <bpmn:userTask id="R30281529-c39e-4ab4-9a28-aadc4ae56d36" name="Administration af rolletildelinger" camunda:formKey="30281529-c39e-4ab4-9a28-aadc4ae56d36">
       <bpmn:incoming>SequenceFlow_14zjcbt</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_08rl4ek</bpmn:outgoing>
     </bpmn:userTask>
     <bpmn:sequenceFlow id="SequenceFlow_14zjcbt" sourceRef="roroleallocationadminstart" targetRef="R30281529-c39e-4ab4-9a28-aadc4ae56d36" />
-    <bpmn:userTask id="Rea44dece-8720-4613-ab72-501a6a7b8bd6" name="Approve" camunda:formKey="ea44dece-8720-4613-ab72-501a6a7b8bd6">
+    <bpmn:userTask id="Rea44dece-8720-4613-ab72-501a6a7b8bd6" name="Godkend" camunda:formKey="ea44dece-8720-4613-ab72-501a6a7b8bd6">
       <bpmn:incoming>SequenceFlow_08rl4ek</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1syobs7</bpmn:outgoing>
     </bpmn:userTask>

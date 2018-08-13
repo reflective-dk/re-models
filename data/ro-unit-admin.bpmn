@@ -22,7 +22,7 @@
       <bpmn:outgoing>SequenceFlow_08rl4ek</bpmn:outgoing>
     </bpmn:userTask>
     <bpmn:sequenceFlow id="SequenceFlow_14zjcbt" sourceRef="rounitadminstart" targetRef="R89aedc6c-08e5-4005-91e3-ff643a0de0af" />
-    <bpmn:userTask id="Rea44dece-8720-4613-ab72-501a6a7b8bd6" name="Approve" camunda:formKey="ea44dece-8720-4613-ab72-501a6a7b8bd6">
+    <bpmn:userTask id="Rea44dece-8720-4613-ab72-501a6a7b8bd6" name="Godkend" camunda:formKey="ea44dece-8720-4613-ab72-501a6a7b8bd6">
       <bpmn:incoming>SequenceFlow_08rl4ek</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1syobs7</bpmn:outgoing>
     </bpmn:userTask>

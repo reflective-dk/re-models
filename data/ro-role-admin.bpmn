@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="1.11.3">
   <bpmn:collaboration id="_fa057c55-22c7-443a-bd71-856649a3a2fe">
-    <bpmn:participant id="Participant_1cmscbv" name="Role Administartion" processRef="Rfa057c55-22c7-443a-bd71-856649a3a2fe" />
+    <bpmn:participant id="Participant_1cmscbv" name="Administration af roller" processRef="Rfa057c55-22c7-443a-bd71-856649a3a2fe" />
   </bpmn:collaboration>
-  <bpmn:process id="Rfa057c55-22c7-443a-bd71-856649a3a2fe" name="Role Administration" isExecutable="true" camunda:versionTag="1.0" camunda:taskPriority="1">
+  <bpmn:process id="Rfa057c55-22c7-443a-bd71-856649a3a2fe" name="Administration af roller" isExecutable="true" camunda:versionTag="1.0" camunda:taskPriority="1">
     <bpmn:laneSet>
       <bpmn:lane id="Lane_19ch5nt" name="anybody">
         <bpmn:flowNodeRef>R7c49a304-ea65-4080-943b-5bf7646eb319</bpmn:flowNodeRef>
@@ -14,15 +14,15 @@
       </bpmn:lane>
     </bpmn:laneSet>
     <bpmn:sequenceFlow id="SequenceFlow_08rl4ek" sourceRef="R7c49a304-ea65-4080-943b-5bf7646eb319" targetRef="Rea44dece-8720-4613-ab72-501a6a7b8bd6" />
-    <bpmn:startEvent id="roroleadminstart" name="Role Administration">
+    <bpmn:startEvent id="roroleadminstart" name="Administration af roller">
       <bpmn:outgoing>SequenceFlow_14zjcbt</bpmn:outgoing>
     </bpmn:startEvent>
-    <bpmn:userTask id="R7c49a304-ea65-4080-943b-5bf7646eb319" name="Role Administration" camunda:formKey="7c49a304-ea65-4080-943b-5bf7646eb319">
+    <bpmn:userTask id="R7c49a304-ea65-4080-943b-5bf7646eb319" name="Administration af roller" camunda:formKey="7c49a304-ea65-4080-943b-5bf7646eb319">
       <bpmn:incoming>SequenceFlow_14zjcbt</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_08rl4ek</bpmn:outgoing>
     </bpmn:userTask>
     <bpmn:sequenceFlow id="SequenceFlow_14zjcbt" sourceRef="roroleadminstart" targetRef="R7c49a304-ea65-4080-943b-5bf7646eb319" />
-    <bpmn:userTask id="Rea44dece-8720-4613-ab72-501a6a7b8bd6" name="Approve" camunda:formKey="ea44dece-8720-4613-ab72-501a6a7b8bd6">
+    <bpmn:userTask id="Rea44dece-8720-4613-ab72-501a6a7b8bd6" name="Godkend" camunda:formKey="ea44dece-8720-4613-ab72-501a6a7b8bd6">
       <bpmn:incoming>SequenceFlow_08rl4ek</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1syobs7</bpmn:outgoing>
     </bpmn:userTask>

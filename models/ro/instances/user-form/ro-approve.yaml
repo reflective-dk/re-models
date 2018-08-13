@@ -6,7 +6,7 @@ registrations:
           class:
             id: 6c54bdcc-691a-4190-8b50-4c5a6e4679dc
             name: User Form
-          name: Overview of changed data
+          name: Godkend ændringer
           description: User form for listing changes made by the process
           definition:
             hash: ro-approve.js
