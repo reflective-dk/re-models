@@ -6,7 +6,7 @@ registrations:
           class:
             id: 6c54bdcc-691a-4190-8b50-4c5a6e4679dc
             name: User Form
-          name: Dan ændringsrapport
+          name: Ændringsrapport
           description: User form for creating change report
           definition:
             hash: ro-report.js

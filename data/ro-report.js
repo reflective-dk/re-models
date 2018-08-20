@@ -12,7 +12,6 @@ define([
       // Prepare parameters
       var fromDate = new Date();
 
-      if (args.parameters === undefined) args.parameters = {};
       if (args.parameters.validFrom) {
         fromDate = new Date(args.parameters.validFrom);
       }
