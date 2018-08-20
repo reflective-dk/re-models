@@ -7,17 +7,33 @@ define([
 
     render: function (args) {
       this.reportView = reportView({ form: form });
-      this.reportView.add(args.view).then(function () {
-        form.reportView.setCreateReportFunction(createReport);
+      this.reportView.setCreateReportFunction(createReport);
+
+      // Prepare parameters
+      var fromDate = new Date();
+
+      if (args.parameters.validFrom) {
+        fromDate = new Date(args.parameters.validFrom);
+      }
+      var toDate = new Date(fromDate);
+      toDate.setMonth(fromDate.getMonth()+3);
+
+      if (args.parameters.validTo) {
+        toDate = new Date(args.parameters.validTo);
+      }
+      args.parameters.validFrom = fromDate;
+      args.parameters.validTo = toDate;
+
+      this.reportView.add(args.view, args.parameters).then(function () {
       });
 
-    return promise.resolve();
+      return promise.resolve();
     }
   };
   return form;
 
-  function createReport(from,to) {
-    return form.situ.getUnits().then(function (data) {
+  function createReport(clazz, from, to) {
+    return form.situ.getObjects(clazz).then(function (data) {
       var allSnapshots = {};
       var allObjects = [];
       var allItems = [];
@@ -34,7 +50,7 @@ define([
         trace.objects.forEach(function(obj) {
           obj.registrations.forEach(function(reg) {
             reg.validity.forEach(function(val) {
-//              if (utils.toISOString(from) < reg.timestamp && reg.timestamp < utils.toISOString(to)) {
+              if (utils.toISOString(from) < val.from && val.from < utils.toISOString(to)) {
                 // Iterate over properties
                 var properties = getProperties(val.input);
                 properties.forEach(function(property) {
@@ -48,24 +64,27 @@ define([
                   };
                   allItems.push(item);
                 });
-//              }
+              }
             });
           });
         });
 
         // Get all missing id as snapshots and replace in values
-
-        var snapshotIds = [];
+        var snapshots = [];
         allItems.forEach(function(item) {
           if (item.propertyValue.id) {
-            snapshotIds.push(item.propertyValue);
+            snapshots.push(form.situ.getSnapshots(item.propertyValue));
           }
         });
-console.log("DEBUG: snapshotIds=",snapshotIds);
 
-        // XXX: Get snapshots of refs. at rt,vt
-        return form.situ.getSnapshots(snapshotIds).then(function(result) {
-          var snapMap = utils.asObject(result.objects);
+        // Get snapshots of refs. at vt
+        return Promise.all(snapshots).then(function(result) {
+          // Build snapMap of all objects in results
+          var snapMap = {};
+          result.forEach(function(res) {
+            snapMap = Object.assign(snapMap, utils.asObject(res.objects));
+          });
+
 
           // Match up ids and replace value with name/pnr/adress
           var addressItem;
@@ -89,38 +108,47 @@ console.log("DEBUG: snapshotIds=",snapshotIds);
             }
           });
 
-          // Get the address data
-          // XXX: add rt and vt
-          return form.situ.getSnapshots([addressItem.propertyValue.id]).then(function(result) {
-            var snapMap = utils.asObject(result.objects);
-            var address = snapMap[addressItem.propertyValue.id];
+          // Is there an address item ?
+          if (addressItem) {
 
-            // The result is the address object
-            addressItem.propertyValue = address.snapshot.streetAddress + ", " + address.snapshot.postalCode + " " +
-                                        address.snapshot.city + ", " + address.snapshot.country;
+            // Get the address data
+            // XXX: add rt and vt
+            return form.situ.getSnapshots([addressItem.propertyValue.id]).then(function(result) {
+              var snapMap = utils.asObject(result.objects);
+              var address = snapMap[addressItem.propertyValue.id];
 
-            allItems.push(addressItem);
+              // The result is the address object
+              addressItem.propertyValue = address.snapshot.streetAddress + ", " + address.snapshot.postalCode + " " +
+                                          address.snapshot.city + ", " + address.snapshot.country;
+              allItems.push(addressItem);
 
-            // Sort: object id -> property name -> validFrom
-            allItems.sort(function(a,b) {
-              if (a.objectId === b.objectId) {
-                if (a.propertyName === b.propertyName) {
-                  if (a.validFrom === b.validFrom) return 0;
-                  if (a.validFrom > b.validFrom) return 1;
-                  if (a.validFrom < b.validFrom) return -1;
-                }
-                if (a.propertyName > b.propertyName) return 1;
-                if (a.propertyName < b.propertyName) return -1;
-              }
-              if (a.objectId > b.objectId) return 1;
-              if (a.objectId < b.objectId) return -1;
+              return promise.resolve(sortItems(allItems));
             });
-
-            return promise.resolve(allItems);
-          });
+          } else {
+            return promise.resolve(sortItems(allItems));
+          }
         });
       });
     });
+  }
+
+  function sortItems(items) {
+    // Sort: object id -> property name -> validFrom
+    items.sort(function(a,b) {
+      if (a.objectId === b.objectId) {
+        if (a.propertyName === b.propertyName) {
+          if (a.validFrom === b.validFrom) return 0;
+          if (a.validFrom > b.validFrom) return 1;
+          if (a.validFrom < b.validFrom) return -1;
+        }
+        if (a.propertyName > b.propertyName) return 1;
+        if (a.propertyName < b.propertyName) return -1;
+      }
+      if (a.objectId > b.objectId) return 1;
+      if (a.objectId < b.objectId) return -1;
+    });
+
+    return items;
   }
 
   function getProperties(input) {

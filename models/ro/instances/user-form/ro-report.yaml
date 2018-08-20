@@ -1,0 +1,13 @@
+---
+id: 30127697-c258-4717-8dbe-49d1bf35f1f1
+registrations:
+  - validity:
+      - input:
+          class:
+            id: 6c54bdcc-691a-4190-8b50-4c5a6e4679dc
+            name: User Form
+          name: Dan ændringsrapport
+          description: User form for creating change report
+          definition:
+            hash: ro-report.js
+...
