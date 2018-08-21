@@ -12,6 +12,7 @@ define([
       // Prepare parameters
       var fromDate = new Date();
 
+      if (args.parameters === undefined) args.parameters = {};
       if (args.parameters.validFrom) {
         fromDate = new Date(args.parameters.validFrom);
       }
@@ -39,14 +40,15 @@ define([
       var allItems = [];
 
       // create all items and hashify
-      data.forEach(function(obj) {
+      data.objects.forEach(function(obj) {
         // Build list of object ids
         allObjects.push({id: obj.id});
         allSnapshots[obj.id] = obj;
       });
 
       // Get all traces
-      return form.situ.getTraces({objects: allObjects}).then(function(trace) {
+      situ.client.setContext({domain: situ.client.getContext().domain});
+      return form.situ.getTraces(allObjects).then(function(trace) {
         trace.objects.forEach(function(obj) {
           obj.registrations.forEach(function(reg) {
             reg.validity.forEach(function(val) {
@@ -73,7 +75,8 @@ define([
         var snapshots = [];
         allItems.forEach(function(item) {
           if (item.propertyValue.id) {
-            snapshots.push(form.situ.getSnapshots(item.propertyValue));
+            // XXX: validOn
+            snapshots.push(form.situ.getSnapshots([item.propertyValue]));
           }
         });
 
