@@ -1,5 +1,5 @@
 define([
-  'common/promise', 'models/situ', 'utils', 'views/ro/system-admin'
+  'common/promise', 'models/situ', 'common/utils', 'views/ro/system-admin'
 ], function(promise, situ, utils, systemAdminView) {
 
   var form = {

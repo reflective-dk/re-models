@@ -1,5 +1,5 @@
 define([
-  'webix', 'common/promise', 'models/situ', 'utils', 'views/ro/unit-admin'
+  'webix', 'common/promise', 'models/situ', 'common/utils', 'views/ro/unit-admin'
 ], function(webix, promise, situ, utils, unitAdminView) {
 
   var form = {

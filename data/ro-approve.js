@@ -1,6 +1,6 @@
 define([
-  'common/promise', 'models/situ', 'utils', 'common/re-webix', 'views/ro/approve'
-], function(promise, situ, utils, reWebix, approveView) {
+  'common/promise', 'models/situ', 'common/utils', 'views/ro/approve'
+], function(promise, situ, utils, approveView) {
     var form = {
       data: {},
       situ: situ,
