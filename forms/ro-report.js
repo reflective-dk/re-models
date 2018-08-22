@@ -47,7 +47,8 @@ define([
       });
 
       // Get all traces
-      situ.client.setContext({domain: situ.client.getContext().domain});
+      var snapshots = [];
+      form.situ.client.setContext({domain: form.situ.client.getContext().domain});
       return form.situ.getTraces(allObjects).then(function(trace) {
         trace.objects.forEach(function(obj) {
           obj.registrations.forEach(function(reg) {
@@ -65,19 +66,14 @@ define([
                     propertyValue: property.value,
                   };
                   allItems.push(item);
+
+                  if (item.propertyValue.id) {
+                    snapshots.push(form.situ.getSnapshots([item.propertyValue],val.from));
+                  }
                 });
               }
             });
           });
-        });
-
-        // Get all missing id as snapshots and replace in values
-        var snapshots = [];
-        allItems.forEach(function(item) {
-          if (item.propertyValue.id) {
-            // XXX: validOn
-            snapshots.push(form.situ.getSnapshots([item.propertyValue]));
-          }
         });
 
         // Get snapshots of refs. at vt
@@ -90,20 +86,23 @@ define([
 
 
           // Match up ids and replace value with name/pnr/adress
-          var addressItem;
+          var locations = [];
           allItems.forEach(function(item) {
             if (item.propertyValue.id) {
               var snap = snapMap[item.propertyValue.id];
               // Location?
               if (snap.snapshot.class.id === "cfd8d4db-96cd-45e2-8de7-0b257b63a4e7") {
+
                 // Add location p number and address as properties
                 item.propertyName = "Pnummer";
                 item.propertyValue = snap.snapshot.pNr;
                 // Prepare the address property
-                addressItem = Object.assign(item);
+                var addressItem = Object.assign(item);
                 addressItem.propertyName = "Adresse";
                 addressItem.propertyValue = snap.snapshot.address;
-                addressItem.propertyValue.vt = item.validFrom;
+
+                // Make a promise to get snapshot
+                locations.push(getLocation(addressItem,));
               } else {
                 // just add the name
                 item.propertyValue = snap.snapshot.name;
@@ -111,34 +110,31 @@ define([
             }
           });
 
-          // Is there an address item ?
-          if (addressItem) {
-
-            // Get the address data
-            // XXX: add rt and vt
-            return form.situ.getSnapshots([addressItem.propertyValue.id]).then(function(result) {
-              var snapMap = utils.asObject(result.objects);
-              var address = snapMap[addressItem.propertyValue.id];
-
-              // The result is the address object
-              addressItem.propertyValue = address.snapshot.streetAddress + ", " + address.snapshot.postalCode + " " +
-                                          address.snapshot.city + ", " + address.snapshot.country;
-              allItems.push(addressItem);
-
-              return promise.resolve(sortItems(allItems));
-            });
-          } else {
+          // Get all the locations
+          return Promise.all(locations).then(function() {
             return promise.resolve(sortItems(allItems));
-          }
+          });
         });
       });
     });
+
+    function getLocation(addressItem, validOn) {
+      return form.situ.getSnapshots([addressItem.propertyValue.id], validOn).then(function(result) {
+        var snapMap = utils.asObject(result.objects);
+        var address = snapMap[addressItem.propertyValue.id];
+
+        // The result is the address object
+        addressItem.propertyValue = address.snapshot.streetAddress + ", " + address.snapshot.postalCode + " " +
+                                    address.snapshot.city + ", " + address.snapshot.country;
+      });
+    }
   }
+
 
   function sortItems(items) {
     // Sort: object id -> property name -> validFrom
     items.sort(function(a,b) {
-      if (a.objectId === b.objectId) {
+      if (a.objectName === b.objectName) {
         if (a.propertyName === b.propertyName) {
           if (a.validFrom === b.validFrom) return 0;
           if (a.validFrom > b.validFrom) return 1;
@@ -147,8 +143,8 @@ define([
         if (a.propertyName > b.propertyName) return 1;
         if (a.propertyName < b.propertyName) return -1;
       }
-      if (a.objectId > b.objectId) return 1;
-      if (a.objectId < b.objectId) return -1;
+      if (a.objectName > b.objectName) return 1;
+      if (a.objectName < b.objectName) return -1;
     });
 
     return items;

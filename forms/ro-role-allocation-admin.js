@@ -1,5 +1,5 @@
 define([
-  'webix', 'common/promise', 'models/situ', 'utils', 'views/ro/role-allocation-admin'
+  'webix', 'common/promise', 'models/situ', 'common/utils', 'views/ro/role-allocation-admin'
 ], function(webix, promise, situ, utils, roleAllocAdminView) {
 
   var form = {

@@ -1,6 +1,6 @@
 define([
-  'common/promise', 'models/situ', 'utils', 'common/re-webix', 'views/ro/system-allocation-admin'
-], function(promise, situ, utils, reWebix, systemAllocationAdminView) {
+  'common/promise', 'models/situ', 'common/utils', 'views/ro/system-allocation-admin'
+], function(promise, situ, utils, systemAllocationAdminView) {
 
   var form = {
     data: {},

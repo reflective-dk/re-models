@@ -1,5 +1,5 @@
 define([
-  'webix', 'common/promise', 'models/situ', 'utils', 'views/ro/unit-admin'
+  'webix', 'common/promise', 'models/situ', 'common/utils', 'views/ro/unit-admin'
 ], function(webix, promise, situ, utils, unitAdminView) {
 
   var form = {
@@ -63,7 +63,7 @@ define([
           var allItems = {};
 
           // create all items and hashify
-          data.forEach(function(obj) {
+          data.objects.forEach(function(obj) {
             var item = {
               id: obj.id,
               value: obj.snapshot.name,
