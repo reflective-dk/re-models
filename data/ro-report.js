@@ -61,6 +61,7 @@ define([
                     registration: utils.fromISOString(reg.timestamp),
                     validFrom: utils.fromISOString(val.from),
                     class: allSnapshots[obj.id].snapshot.class.name,
+                    objectId: obj.id,
                     objectName: allSnapshots[obj.id].snapshot.name,
                     propertyName: property.name,
                     propertyValue: property.value,
@@ -130,11 +131,10 @@ define([
     }
   }
 
-
   function sortItems(items) {
     // Sort: object id -> property name -> validFrom
     items.sort(function(a,b) {
-      if (a.objectName === b.objectName) {
+      if (a.objectId === b.objectId) {
         if (a.propertyName === b.propertyName) {
           if (a.validFrom === b.validFrom) return 0;
           if (a.validFrom > b.validFrom) return 1;
