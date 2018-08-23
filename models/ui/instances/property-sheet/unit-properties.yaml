@@ -12,8 +12,8 @@ registrations:
             e00: { label: Navn, id: name$ }
             e01: { label: Kort navn, id: shortName }
             e02: { label: Overordnet, id: parentName }
-            e03: { label: Telefon, id: phoneNumbers.generic }
-            e04: { label: E-mail, id: emailAddresses.generic }
+            e03: { label: Telefon, id: phoneNumbers$ }
+            e04: { label: E-mail, id: emailAddresses$ }
             e05: { label: SE-Nummer, id: seNr }
             e06: { label: EAN-Nummer, id: ean }
             e07: { label: Eksternt enheds-id, id: foreignIds.ekstern }
