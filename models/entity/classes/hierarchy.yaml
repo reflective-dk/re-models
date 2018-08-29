@@ -25,4 +25,14 @@ registrations:
               dataType:
                 type: json
                 schema: {}
+            relatedTypes:
+              description: >-
+                This is a collection of types loosely connected to the hierarchy
+                without being directly involved in it. This may be used as an
+                indication of which objects to prefetch, if building a cache of
+                related information
+              type: map
+              dataType:
+                type: relation
+                target: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
 ...
