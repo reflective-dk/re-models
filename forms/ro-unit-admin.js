@@ -63,7 +63,7 @@ define([
           var allItems = {};
 
           // create all items and hashify
-          data.objects.forEach(function(obj) {
+          data.forEach(function(obj) {
             var item = {
               id: obj.id,
               value: obj.snapshot.name,
