@@ -19,11 +19,18 @@ define([
     },
     render: function (args) {
       this.unitAdminView = unitAdminView({ form: form });
-      this.unitAdminView.add(args.view).then(function () {
-        createOrganisationSelectData().then(form.unitAdminView.setHierachyData);
-        createUnitTypeSelectData().then(form.unitAdminView.setUnitTypes);
+      return this.unitAdminView.add(args.view).then(function () {
+        var promises = [];
 
-        form.unitAdminView.setTreeDataFunction(createTreeData)
+        var createDataPromise = createOrganisationSelectData().then(form.unitAdminView.setHierachyData);
+        var createUnitTypeDataPromise = createUnitTypeSelectData().then(form.unitAdminView.setUnitTypes);
+
+        promises.push(createDataPromise);
+        promises.push(createUnitTypeDataPromise);
+
+        form.unitAdminView.setTreeDataFunction(createTreeData);
+
+        return promise.all(promises);
       });
 
       return promise.resolve();
@@ -34,7 +41,7 @@ define([
 
   function createOrganisationSelectData() {
     return form.situ.getOrganisations().then(function(hierarchies) {
-      var items = [{id:0,value:"Vælg Organisation"}];
+      var items = [{id:0, value:"Vælg Organisation"}];
       hierarchies.forEach(function(obj) {
         items.push({
           id: obj.id,
@@ -63,7 +70,7 @@ define([
           var allItems = {};
 
           // create all items and hashify
-          data.forEach(function(obj) {
+          data.objects.forEach(function(obj) {
             var item = {
               id: obj.id,
               value: obj.snapshot.name,
