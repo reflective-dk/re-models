@@ -8,6 +8,8 @@ define([
     render: function (args) {
       this.reportView = reportView({ form: form });
       this.reportView.setCreateReportFunction(createReport);
+      createRecipients({id: "72316a2c-85cb-4a5c-ac92-e7d4e7c88c57", name: "SmartOrg administrator"}, {id: "55b52821-017c-4c18-a023-14e2b544a857", name: "Rapport generering"})
+      .then(this.reportView.setRecipients);
 
       // Prepare parameters
       var fromDate = new Date();
@@ -272,4 +274,58 @@ define([
 
     return properties;
   }
+
+  function createRecipients(role, responsibility) {
+    // Get role assignments that has the role and responsibilities
+    var employments = [];
+    var recipients = [];
+    return form.situ.getRoleAllocations().then(function(ras) {
+      // Filter on responsibilities, and create list of employments
+      ras.objects.forEach(function(ra) {
+        // The ra has to have the responsibility
+        if (ra.snapshot.class.id === "025dfd36-f7a6-41e3-aa0c-64fe0376d3b7" && ra.snapshot.role && ra.snapshot.role.id === role.id && ra.snapshot.responsibilities) Object.keys(ra.snapshot.responsibilities).forEach(function(key) {
+          var rsp = ra.snapshot.responsibilities[key];
+          if (rsp.id === responsibility.id) {
+            employments.push({id: ra.snapshot.employment.id});
+          }
+        });
+      });
+
+      // Get all employments
+      var persons = [];
+      return form.situ.getSnapshots({objects: employments}).then(function(result) {
+        result.objects.forEach(function(employment) {
+          if (employment.snapshot.class.id === "06c495eb-fcef-4c09-996f-63fd2dfea427") {
+            if (employment.snapshot.person) persons.push(employment.snapshot.person);
+
+            // Get first email
+            var keys = Object.keys(employment.snapshot.emailAddresses);
+            if (keys.length > 0) {
+              recipients.push({email: employment.snapshot.emailAddresses[keys[0]], person: employment.snapshot.person});
+            }
+          }
+        });
+
+        return form.situ.getSnapshots({objects: persons}).then(function(result) {
+          // Match up email and person name
+          result.objects.forEach(function(person) {
+            if (person.snapshot.class.id === "66d33a37-f73c-4723-8dca-5feb9cf420e4") {
+              recipients.forEach(function(recipient) {
+                if (recipient.person.id === person.id) {
+                  Object.assign(recipient.person, person.snapshot);
+                }
+              });
+            }
+          });
+
+          return promise.resolve({
+            role: role,
+            responsibility: responsibility,
+            recipients: recipients
+          });
+        });
+      });
+    });
+  }
+
 });

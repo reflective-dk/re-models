@@ -279,13 +279,14 @@ define([
     // Get role assignments that has the role and responsibilities
     var employments = [];
     var recipients = [];
-    return form.situ.getSnapshots(role.id).then(function(ras) {
+    return form.situ.getRoleAllocations().then(function(ras) {
       // Filter on responsibilities, and create list of employments
       ras.objects.forEach(function(ra) {
         // The ra has to have the responsibility
-        if (ra.snapshot.class.id === "025dfd36-f7a6-41e3-aa0c-64fe0376d3b7" && ra.snapshot.responsibilities) ra.snapshot.responsibilities.forEach(function(rsp) {
+        if (ra.snapshot.class.id === "025dfd36-f7a6-41e3-aa0c-64fe0376d3b7" && ra.snapshot.role && ra.snapshot.role.id === role.id && ra.snapshot.responsibilities) Object.keys(ra.snapshot.responsibilities).forEach(function(key) {
+          var rsp = ra.snapshot.responsibilities[key];
           if (rsp.id === responsibility.id) {
-            employments.push({id: rsp.employment.id});
+            employments.push({id: ra.snapshot.employment.id});
           }
         });
       });
