@@ -6,18 +6,23 @@ define([
     data: {},
     situ: situ,
     validOnUsed: true,
-    getStateAsObjects: function () {
+    validOnChanged: function (newDateTime, previousDateTime) {
+      situ.cacher.clearCache();
+      form.unitAdminView.refreshTree();
+    },
+    getStateAsObjects: function (validOn) {
       var objects = [];
       // this.data contain modified snapshots, as key/value => id/snapshot
       Object.keys(form.data).forEach(function(id) {
         // Use time module for vt
-        objects.push({id: id, registrations:[{validity:[{input:form.data[id]}]}]});
+        objects.push({id: id, registrations:[{validity:[{from: utils.toISOString(validOn), input:form.data[id]}]}]});
       });
 
        // Wrap data in object metadata, using vt as validity from
       return promise.resolve(objects);
     },
     render: function (args) {
+      situ.cacher.clearCache();
       form.data = {};
 
       this.unitAdminView = unitAdminView({ form: form });
