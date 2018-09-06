@@ -5,6 +5,7 @@ define([
   var form = {
     data: {},
     situ: situ,
+    validOnUsed: true,
     getStateAsObjects: function () {
       var objects = [];
       // this.data contain modified snapshots, as key/value => id/snapshot
@@ -17,6 +18,8 @@ define([
       return promise.resolve(objects);
     },
     render: function (args) {
+      form.data = {};
+
       this.unitAdminView = unitAdminView({ form: form });
       return this.unitAdminView.add(args.view).then(function () {
         var promises = [];
@@ -63,6 +66,7 @@ define([
     return form.situ.getSnapshots([hierarchyId]).then(function (hierarchyResult) {
       var hierarchy = hierarchyResult.objects[0];
       var parentPath = hierarchy.snapshot.pathElements[0].relation.split('.');
+      var type = hierarchy.snapshot.pathElements[0].parentType;
 
       return form.situ.getUnits(hierarchy.id).then(function (data) {
         var possibleRoots = [];
@@ -107,7 +111,7 @@ define([
             root.open = true;
           }
         });
-        return promise.resolve({ data: [root], parentPath: parentPath});
+        return promise.resolve({ data: [root], parentPath: parentPath, type});
       });
     });
   }

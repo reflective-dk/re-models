@@ -4,7 +4,7 @@ define([
     var form = {
       data: {},
       situ: situ,
-
+      actionButtonLabel: 'Godkend',
       render: function (args) {
         this.approveView = approveView({ form: form });
         return this.approveView.add(args.view).then(function () {
