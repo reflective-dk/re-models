@@ -11,13 +11,13 @@ define([
       // form.data contain modified snapshots, as key/value => id/snapshot
       Object.keys(form.data).forEach(function(id) {
         objects.push({id: id, registrations:[{validity:[{input:form.data[id]}]}]});
-console.log("DEBUG: getStateAsObjects() objects=",objects);
       });
 
        // Wrap data in object metadata, using vt as validity from
       return promise.resolve(objects);
     },
     render: function (args) {
+      situ.cacher.clearCache();
       this.roleAdminView = roleAdminView({ form: form });
       this.roleAdminView.add(args.view).then(function () {
         createRoleResponsibiliesTree().then(form.roleAdminView.setTreeData);
@@ -31,20 +31,20 @@ console.log("DEBUG: getStateAsObjects() objects=",objects);
 
   // Transform query response to webix tree data, where the snapshot is added/stored in the thee items
   function createRoleResponsibiliesTree() {
-
-    return promise.all([form.situ.getRoles(),form.situ.getResponsibilities()])
+    return promise.all([form.situ.getRoles(), form.situ.getResponsibilities()])
     .then(function (result) {
       var roles = result[0];
       var responsibilites = result[1];
 
       var allObjects = utils.asObject(roles.objects.concat(responsibilites.objects));
 
-      var rolesRoot = {id: "roles", value: "Roller", open:true, data:[]};
-      var responsibilitiesRoot = {id: "responsibilities", value: "Ansvar", open:true, data:[]};
+      var rolesRoot = {id: "roles", value: "Roller", open: true, data:[]};
+      var responsibilitiesRoot = {id: "responsibilities", value: "Ansvar", open: true, data:[]};
 
       // Add roles
       roles.objects.forEach(function(role) {
         var item = allObjects[role.id];
+        item.data = [];
         item.type = 'role';
         if (role.snapshot.responsibilities) {
           Object.keys(role.snapshot.responsibilities).forEach(function(key) {
@@ -65,7 +65,7 @@ console.log("DEBUG: getStateAsObjects() objects=",objects);
       });
       responsibilitiesRoot.data = responsibilitiesRoot.data.sort(function(a,b) {return a.value > b.value ? 1 : -1});
 
-      return promise.resolve([rolesRoot,responsibilitiesRoot]);
+      return promise.resolve([rolesRoot, responsibilitiesRoot]);
     });
   }
 });

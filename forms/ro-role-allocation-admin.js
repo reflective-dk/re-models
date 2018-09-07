@@ -18,6 +18,7 @@ define([
       return promise.resolve(objects);
     },
     render: function (args) {
+      situ.cacher.clearCache();
       this.roleAllocAdminView = roleAllocAdminView({ form: form });
       this.roleAllocAdminView.add(args.view).then(function () {
         createRoleOptions().then(form.roleAllocAdminView.setRoleOptions);
