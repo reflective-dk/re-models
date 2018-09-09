@@ -12,30 +12,19 @@ define([
           .then(function(changes) {
             // Build changes tables
             changes.forEach(function(change) {
-              var table;
-              if (change.class.id === 'blanket') {
+              var table = $$('godkend_object_table');
+              change.properties.forEach(function(prop) {
 
-                table = $$('godkend_blanket_table');
                 table.add({
                   godkend_rt: change.timestamp,
-                  godkend_author: change.author,
-                  godkend_object: form.name,
+                  author: change.author,
+                  godkend_class: change.class,
+                  godkend_object: change.name,
+                  godkend_property: prop.name,
+                  godkend_before: prop.before,
+                  godkend_after: prop.after,
                 });
-              } else {
-                table = $$('godkend_object_table');
-                change.properties.forEach(function(prop) {
-
-                  table.add({
-                    godkend_rt: change.timestamp,
-                    author: change.author,
-                    godkend_class: change.class,
-                    godkend_object: change.name,
-                    godkend_property: prop.name,
-                    godkend_before: prop.before,
-                    godkend_after: prop.after,
-                  });
-                });
-              }
+              });
               table.show();
               table.refresh();
             });
@@ -102,12 +91,16 @@ define([
           case 'activeFrom':
             propertyDestination[i].name = "Aktiv fra";
             before = utils.fromISOString(before);
+            before = utils.toDateString(before);
             after = utils.fromISOString(after);
+            after = utils.toDateString(after);
             break;
           case 'activeTo':
             propertyDestination[i].name = "Aktiv til";
             before = utils.fromISOString(before);
+            before = utils.toDateString(before);
             after = utils.fromISOString(after);
+            after = utils.toDateString(after);
             break;
           case 'responsibilities':
             propertyDestination[i].name = "Ansvar";
@@ -117,10 +110,33 @@ define([
           case 'name':
             propertyDestination[i].name = "Navn";
             break;
+          case 'shortName':
+            propertyDestination[i].name = "Kort navn";
+            break;
+          case 'seNr':
+            propertyDestination[i].name = "SE-nummer";
+            break;
+          case 'ean':
+            propertyDestination[i].name = "EAN-nummer";
+            break;
+          case 'costCenter':
+            propertyDestination[i].name = "Omkostningssted";
+            break;
           case 'class':
             // Class is only added in first registration
+            propertyDestination[i].name = "Objekt Type";
+            after = after.name;
+            break;
+          case 'unitType':
+            // Class is only added in first registration
             propertyDestination[i].name = "Type";
-            after = "Ny "+after.name;
+            before = before.name;
+            after = after.name;
+            break;
+          case 'parents':
+            // Class is only added in first registration
+            propertyDestination[i].name = "Overenhed";
+            after = after.name;
             break;
           case 'phoneNumbers':
             propertyDestination[i].name = "Telefon numre";
@@ -132,6 +148,17 @@ define([
             before = utils.asList(before);
             after = utils.asList(after);
             break;
+          case 'mailSuffixes':
+            propertyDestination[i].name = "Mail suffix";
+            before = utils.asList(before);
+            after = utils.asList(after);
+            break;
+          case 'aliases':
+            propertyDestination[i].name = "Aliases";
+            before = utils.asList(before);
+            after = utils.asList(after);
+            break;
+
           default:
 console.log("DEBUG: unknown key=",propertyDestination[i].key);
 console.log("DEBUG: before=",before);

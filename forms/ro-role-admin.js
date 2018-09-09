@@ -1,6 +1,6 @@
 define([
-  'common/promise', 'models/situ', 'common/utils', 'views/ro/role-admin'
-], function(promise, situ, utils, roleAdminView) {
+  'common/promise', 'models/situ', 'common/utils', 'time', 'views/ro/role-admin'
+], function(promise, situ, utils, time, roleAdminView) {
 
   var form = {
     data: {},
@@ -18,12 +18,13 @@ define([
     },
     render: function (args) {
       situ.cacher.clearCache();
-      this.roleAdminView = roleAdminView({ form: form });
-      this.roleAdminView.add(args.view).then(function () {
-        createRoleResponsibiliesTree().then(form.roleAdminView.setTreeData);
-      });
+      form.task = args.task;
+      form.object = utils.getFormObjectFromTask({ formName: form.name, task: args.task, validTime: time.getValidTime() });
 
-      return promise.resolve();
+      form.roleAdminView = new roleAdminView({ form: form });
+      form.roleAdminView.add(args.view, args.parameters);
+
+      return createRoleResponsibiliesTree().then(form.roleAdminView.setTreeData).then(form.roleAdminView.populate);
     } // render
   };
 
