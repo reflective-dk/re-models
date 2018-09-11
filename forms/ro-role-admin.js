@@ -1,44 +1,71 @@
 define([
-  'common/promise', 'models/situ', 'common/utils', 'time', 'views/ro/role-admin'
-], function(promise, situ, utils, time, roleAdminView) {
+  'webix', 'common/promise', 'models/situ', 'common/utils', 'time', 'forms/base', 'views/ro/role-admin'
+], function(webix, promise, situ, utils, time, BaseForm, roleAdminView) {
 
-  var form = {
-    data: {},
-    situ: situ,
+  function Form (args) {
+    if (!args) {
+      args = {};
+    }
 
-    getStateAsObjects: function () {
-      var objects = [];
-      // form.data contain modified snapshots, as key/value => id/snapshot
-      Object.keys(form.data).forEach(function(id) {
-        objects.push({id: id, registrations:[{validity:[{input:form.data[id]}]}]});
-      });
+    args.name = 'ro-role-admin';
+    args.actionButtonLabel = 'Send';
 
-       // Wrap data in object metadata, using vt as validity from
-      return promise.resolve(objects);
-    },
-    render: function (args) {
-      situ.cacher.clearCache();
-      form.task = args.task;
-      form.object = utils.getFormObjectFromTask({ formName: form.name, task: args.task, validTime: time.getValidTime() });
+    BaseForm.call(this, args);
 
-      form.roleAdminView = new roleAdminView({ form: form });
-      form.roleAdminView.add(args.view, args.parameters);
+    this.ids = {
+      approver: webix.uid().toString()
+    };
+    this.roleAdminView = new roleAdminView({ form: this });
+    this.data = {};
+  }
 
-      return createRoleResponsibiliesTree().then(form.roleAdminView.setTreeData).then(form.roleAdminView.populate);
-    } // render
+  Form.prototype = Object.create(BaseForm.prototype);
+  Form.prototype.constructor = Form;
+
+  Form.prototype.getStateAsObjects = function () {
+    var objects = [], form = this;
+    // form.data contain modified snapshots, as key/value => id/snapshot
+    Object.keys(this.data).forEach(function(id) {
+      objects.push({id: id, registrations:[{validity:[{input:form.data[id]}]}]});
+    });
+
+     // Wrap data in object metadata, using vt as validity from
+    return promise.resolve(objects);
   };
 
-  return form;
+  Form.prototype.render = function (args) {
+    this.task = args.task;
+    this.object = utils.getFormObjectFromTask({ formName: this.name, task: args.task, validTime: time.getValidTime() });
+
+    this.roleAdminView.add(args.view, args.parameters);
+
+    return this.createRoleResponsibiliesTree(args.task).then(this.roleAdminView.setTreeData).then(this.roleAdminView.populate);
+  };
 
   // Transform query response to webix tree data, where the snapshot is added/stored in the thee items
-  function createRoleResponsibiliesTree() {
-    return promise.all([form.situ.getRoles(), form.situ.getResponsibilities()])
+  Form.prototype.createRoleResponsibiliesTree = function (task) {
+    return promise.all([this.facilitator.getRoles(), this.facilitator.getResponsibilities()])
     .then(function (result) {
       var roles = result[0];
       var responsibilites = result[1];
 
       var allObjects = utils.asObject(roles.objects.concat(responsibilites.objects));
 
+      //set new input
+      if (task.data.extension) {
+        task.data.extension.registrations.objects.forEach(function (object) {
+          var fullobject = allObjects[object.id];
+
+          if (fullobject) {
+            object.registrations.forEach(function (registration) {
+              if (!fullobject.newInput) {
+                fullobject.newInput = {};
+              }
+              fullobject.newInput = Object.assign(fullobject.newInput, registration.validity[0].input);
+            });
+          }
+        });
+      }
       var rolesRoot = {id: "roles", value: "Roller", open: true, data:[]};
       var responsibilitiesRoot = {id: "responsibilities", value: "Ansvar", open: true, data:[]};
 
@@ -68,5 +95,7 @@ define([
 
       return promise.resolve([rolesRoot, responsibilitiesRoot]);
     });
-  }
+  };
+
+  return Form;
 });

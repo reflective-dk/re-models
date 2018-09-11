@@ -1,53 +1,62 @@
 define([
-  'webix', 'common/promise', 'models/situ', 'common/utils', 'views/ro/unit-admin'
-], function(webix, promise, situ, utils, unitAdminView) {
+  'webix', 'common/promise', 'models/situ', 'forms/base', 'common/utils', 'views/ro/unit-admin'
+], function(webix, promise, situ, BaseForm, utils, unitAdminView) {
 
-  var form = {
-    data: {},
-    situ: situ,
-    validOnUsed: true,
-    validOnChanged: function (newDateTime, previousDateTime) {
-      situ.cacher.clearCache();
-      form.unitAdminView.refreshTree();
-    },
-    getStateAsObjects: function (validOn) {
-      var objects = [];
-      // this.data contain modified snapshots, as key/value => id/snapshot
-      Object.keys(form.data).forEach(function(id) {
-        // Use time module for vt
-        objects.push({id: id, registrations:[{validity:[{from: utils.toISOString(validOn), input:form.data[id]}]}]});
-      });
+  function Form (args) {
+    if (!args) {
+      args = {};
+    }
 
-       // Wrap data in object metadata, using vt as validity from
-      return promise.resolve(objects);
-    },
-    render: function (args) {
-      situ.cacher.clearCache();
-      form.data = {};
+    args.name = 'ro-unit-admin';
+    args.actionButtonLabel = 'Send';
+    args.validOnUsed = true;
 
-      this.unitAdminView = unitAdminView({ form: form });
-      return this.unitAdminView.add(args.view).then(function () {
-        var promises = [];
+    BaseForm.call(this, args);
 
-        var createDataPromise = createOrganisationSelectData().then(form.unitAdminView.setHierachyData);
-        var createUnitTypeDataPromise = createUnitTypeSelectData().then(form.unitAdminView.setUnitTypes);
+    this.data = {};
+    this.changes = {};
+  }
 
-        promises.push(createDataPromise);
-        promises.push(createUnitTypeDataPromise);
+  Form.prototype = Object.create(BaseForm.prototype);
+  Form.prototype.constructor = Form;
 
-        form.unitAdminView.setTreeDataFunction(createTreeData);
+  Form.prototype.getStateAsObjects = function (validOn) {
+    var self = this;
+    var objects = [];
+    // this.data contain modified snapshots, as key/value => id/snapshot
+    Object.keys(this.data).forEach(function(id) {
+      // Use time module for vt
+      objects.push({id: id, registrations:[{validity:[{from: utils.toISOString(validOn), input:self.data[id]}]}]});
+    });
 
-        return promise.all(promises);
-      });
-
-      return promise.resolve();
-    } // render
+     // Wrap data in object metadata, using vt as validity from
+    return promise.resolve(objects);
   };
 
-  return form;
+  Form.prototype.render = function (args) {
+    var self = this;
+    this.data = {};
 
-  function createOrganisationSelectData() {
-    return form.situ.getOrganisations().then(function(hierarchies) {
+    this.unitAdminView = unitAdminView({ form: this });
+    return this.unitAdminView.add(args.view).then(function () {
+      var promises = [];
+
+      var createDataPromise = self.createOrganisationSelectData().then(self.unitAdminView.setHierachyData);
+      var createUnitTypeDataPromise = self.createUnitTypeSelectData().then(self.unitAdminView.setUnitTypes);
+
+      promises.push(createDataPromise);
+      promises.push(createUnitTypeDataPromise);
+
+      self.unitAdminView.setTreeDataFunction(function (hierarchyId) {
+        return self.createTreeData(hierarchyId);
+      });
+
+      return promise.all(promises);
+    });
+  };
+
+  Form.prototype.createOrganisationSelectData = function () {
+    return this.facilitator.getOrganisations().then(function(hierarchies) {
       var items = [{ id: 0, value: "Vælg Organisation" }];
       hierarchies.forEach(function(obj) {
         items.push({
@@ -57,23 +66,25 @@ define([
       });
       return promise.resolve(items);
     });
-  }
+  };
 
-  function createUnitTypeSelectData() {
-    return form.situ.getUnitTypes().then(function(types) {
+  Form.prototype.createUnitTypeSelectData = function () {
+    return this.facilitator.getUnitTypes().then(function(types) {
       return promise.resolve(utils.asOptions(types));
     });
-  }
+  };
 
 
   // Transform query response to webix tree data, where the snapshot is added/stored in the thee items
-  function createTreeData(hierarchyId) {
-    return form.situ.getSnapshots([hierarchyId]).then(function (hierarchyResult) {
+  Form.prototype.createTreeData = function (hierarchyId) {
+    var self = this;
+
+    return this.facilitator.getSnapshots([hierarchyId]).then(function (hierarchyResult) {
       var hierarchy = hierarchyResult.objects[0];
       var parentPath = hierarchy.snapshot.pathElements[0].relation.split('.');
       var type = hierarchy.snapshot.pathElements[0].parentType;
 
-      return form.situ.getUnits(hierarchy.id).then(function (data) {
+      return self.facilitator.getUnits(hierarchy.id).then(function (data) {
         var possibleRoots = [];
         var allItems = {};
 
@@ -119,5 +130,7 @@ define([
         return promise.resolve({ data: [root], parentPath: parentPath, type});
       });
     });
-  }
+  };
+
+  return Form;
 });
