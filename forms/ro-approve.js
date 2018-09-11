@@ -84,7 +84,7 @@ define([
 
       changes.push({
         id: rObj.id,
-        class: current.snapshot.class.name,
+        class: current.snapshot.class ? current.snapshot.class.name : 'no class',
         name: current.snapshot.name,
         timestamp: webix.i18n.fullDateFormatStr(new Date(rObj.registrations[0].timestamp)),
         author: rObj.registrations[0].author,
