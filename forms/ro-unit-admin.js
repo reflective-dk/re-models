@@ -1,6 +1,6 @@
 define([
-  'webix', 'common/promise', 'models/situ', 'forms/base', 'common/utils', 'views/ro/unit-admin'
-], function(webix, promise, situ, BaseForm, utils, unitAdminView) {
+  'webix', 'common/promise', 'models/situ', 'forms', 'forms/base', 'common/utils', 'views/ro/unit-admin'
+], function(webix, promise, situ, forms, BaseForm, utils, unitAdminView) {
 
   function Form (args) {
     if (!args) {
@@ -35,7 +35,7 @@ define([
 
   Form.prototype.render = function (args) {
     var self = this;
-    this.data = {};
+    this.task = args.task;
 
     this.unitAdminView = unitAdminView({ form: this });
     return this.unitAdminView.add(args.view).then(function () {
@@ -99,6 +99,7 @@ define([
           allItems[obj.id] = item;
         });
 
+        forms.populateFromDraft(self.task, allItems);
         // arrange items into tree data structure
         Object.keys(allItems).forEach(function(id) {
           var child = allItems[id];

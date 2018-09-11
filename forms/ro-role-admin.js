@@ -1,6 +1,6 @@
 define([
-  'webix', 'common/promise', 'models/situ', 'common/utils', 'time', 'forms/base', 'views/ro/role-admin'
-], function(webix, promise, situ, utils, time, BaseForm, roleAdminView) {
+  'webix', 'common/promise', 'models/situ', 'common/utils', 'time', 'forms', 'forms/base', 'views/ro/role-admin'
+], function(webix, promise, situ, utils, time, forms, BaseForm, roleAdminView) {
 
   function Form (args) {
     if (!args) {
@@ -51,21 +51,8 @@ define([
 
       var allObjects = utils.asObject(roles.objects.concat(responsibilites.objects));
 
-      //set new input
-      if (task.data.extension) {
-        task.data.extension.registrations.objects.forEach(function (object) {
-          var fullobject = allObjects[object.id];
+      forms.populateFromDraft(task, allObjects);
 
-          if (fullobject) {
-            object.registrations.forEach(function (registration) {
-              if (!fullobject.newInput) {
-                fullobject.newInput = {};
-              }
-              fullobject.newInput = Object.assign(fullobject.newInput, registration.validity[0].input);
-            });
-          }
-        });
-      }
       var rolesRoot = {id: "roles", value: "Roller", open: true, data:[]};
       var responsibilitiesRoot = {id: "responsibilities", value: "Ansvar", open: true, data:[]};
 
