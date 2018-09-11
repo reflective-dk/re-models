@@ -1,6 +1,6 @@
 define([
-  'webix', 'common/promise', 'models/situ', 'forms', 'forms/base', 'common/utils', 'views/ro/unit-admin'
-], function(webix, promise, situ, forms, BaseForm, utils, unitAdminView) {
+  'webix', 'common/promise', 'forms', 'forms/base', 'common/utils', 'views/ro/unit-admin'
+], function(webix, promise, forms, BaseForm, utils, unitAdminView) {
 
   function Form (args) {
     if (!args) {
@@ -15,6 +15,7 @@ define([
 
     this.data = {};
     this.changes = {};
+    this.validOnUsed = true;
   }
 
   Form.prototype = Object.create(BaseForm.prototype);
@@ -79,7 +80,7 @@ define([
   Form.prototype.createTreeData = function (hierarchyId) {
     var self = this;
 
-    return this.facilitator.getSnapshots([hierarchyId]).then(function (hierarchyResult) {
+    return this.facilitator.getSnapshots([{ id: hierarchyId }]).then(function (hierarchyResult) {
       var hierarchy = hierarchyResult.objects[0];
       var parentPath = hierarchy.snapshot.pathElements[0].relation.split('.');
       var type = hierarchy.snapshot.pathElements[0].parentType;

@@ -1,40 +1,55 @@
 define([
-  'webix', 'common/promise', 'models/situ', 'common/utils', 'views/ro/role-allocation-admin'
-], function(webix, promise, situ, utils, roleAllocAdminView) {
+  'webix', 'common/promise', 'forms', 'forms/base', 'common/utils', 'views/ro/role-allocation-admin'
+], function(webix, promise, utils, roleAllocAdminView) {
 
-  var form = {
-    data: {},
-    situ: situ,
+  function Form (args) {
+    if (!args) {
+      args = {};
+    }
 
-    getStateAsObjects: function () {
-      var objects = [];
-      // this.data contain modified snapshots, as key/value => id/snapshot
-      Object.keys(form.data).forEach(function(id) {
-        // Use time module for vt
-        objects.push({id: id, registrations:[{validity:[{input:form.data[id]}]}]});
-      });
+    args.name = 'ro-role-allocation';
+    args.actionButtonLabel = 'Send';
 
-       // Wrap data in object metadata, using vt as validity from
-      return promise.resolve(objects);
-    },
-    render: function (args) {
-      situ.cacher.clearCache();
-      this.roleAllocAdminView = roleAllocAdminView({ form: form });
-      this.roleAllocAdminView.add(args.view).then(function () {
-        createRoleOptions().then(form.roleAllocAdminView.setRoleOptions);
-        createEmploymentOptions().then(form.roleAllocAdminView.setEmploymentOptions);
-        createTreeData('0b5ef848-9242-4f0f-8f80-dc79f9d898fe').then(form.roleAllocAdminView.setTreeData)
-        .then(function() {
-          createRoleAllocData().then(form.roleAllocAdminView.setTableData);
-        });
-      });
-      return promise.resolve();
-    } // render
+    BaseForm.call(this, args);
+
+    this.ids = {
+      approver: webix.uid().toString()
+    };
+    this.roleAdminView = new roleAdminView({ form: this });
+    this.data = {};
+    this.validOnUsed = true;
+  }
+
+  Form.prototype.getStateAsObjects = function () {
+    var self = this;
+    var objects = [];
+    // this.data contain modified snapshots, as key/value => id/snapshot
+    Object.keys(this.data).forEach(function(id) {
+      // Use time module for vt
+      objects.push({id: id, registrations:[{validity:[{input:self.data[id]}]}]});
+    });
+
+     // Wrap data in object metadata, using vt as validity from
+    return promise.resolve(objects);
   };
-  return form;
 
-  function createRoleOptions() {
-    return form.situ.getRoles().then(function(roles) {
+  Form.prototype.render = function (args) {
+    var self = this;
+
+    this.roleAllocAdminView = roleAllocAdminView({ form: this });
+    this.roleAllocAdminView.add(args.view).then(function () {
+      self.createRoleOptions().then(self.roleAllocAdminView.setRoleOptions);
+      self.createEmploymentOptions().then(self.roleAllocAdminView.setEmploymentOptions);
+      self.createTreeData('0b5ef848-9242-4f0f-8f80-dc79f9d898fe').then(self.roleAllocAdminView.setTreeData)
+      .then(function() {
+        self.createRoleAllocData().then(self.roleAllocAdminView.setTableData);
+      });
+    });
+    return promise.resolve();
+  };
+
+  Form.prototype.createRoleOptions = function () {
+    return this.situ.getRoles().then(function(roles) {
       var items = []; //[{id:0,value:"Vælg Rolle"}];
       roles.objects.forEach(function(obj) {
         items.push({
@@ -45,11 +60,11 @@ define([
       });
       return promise.resolve(items);
     });
-  }
+  };
 
   // Create data for the datatable
-  function createRoleAllocData() {
-    return form.situ.getRoleAllocations().then(function(roleAllocations) {
+  Form.prototype.createRoleAllocData = function () {
+    return this.facilitator.getRoleAllocations().then(function(roleAllocations) {
 
       var data = [];
       roleAllocations.objects.forEach(function(ra) {
@@ -67,10 +82,10 @@ define([
       });
       return promise.resolve(data);
     });
-  }
+  };
 
-  function createEmploymentOptions() {
-    return form.situ.getEmployments().then(function(employments) {
+  Form.prototype.createEmploymentOptions = function () {
+    return this.facilitator.getEmployments().then(function(employments) {
       var items = [];
       employments.objects.forEach(function(obj) {
         items.push({
@@ -81,13 +96,15 @@ define([
       });
       return promise.resolve(items);
     });
-  }
+  };
 
   // Transform query response to webix tree data, where the snapshot is added/stored in the thee items
-  function createTreeData(hierarchyId) {
-    return form.situ.getSnapshots([hierarchyId]).then(function (hierarchyResult) {
+  Form.prototype.createTreeData = function (hierarchyId) {
+    var self = this;
+
+    return this.situ.getSnapshots([hierarchyId]).then(function (hierarchyResult) {
       var hierarchy = hierarchyResult.objects[0];
-      return form.situ.getUnits(hierarchy.id).then(function (data) {
+      return self.situ.getUnits(hierarchy.id).then(function (data) {
         var possibleRoots = [];
         var allItems = {};
 
@@ -134,5 +151,7 @@ define([
         return promise.resolve([root]);
       });
     });
-  }
+  };
+
+  return Form;
 });

@@ -1,38 +1,52 @@
 define([
-  'common/promise', 'models/situ', 'common/utils', 'views/ro/approve'
-], function(promise, situ, utils, approveView) {
-    var form = {
-      data: {},
-      situ: situ,
-      actionButtonLabel: 'Godkend',
-      render: function (args) {
-        this.approveView = approveView({ form: form });
-        return this.approveView.add(args.view).then(function () {
-          return getChanges(args.task.data.extension)
-          .then(function(changes) {
-            // Build changes tables
-            changes.forEach(function(change) {
-              var table = $$('godkend_object_table');
-              change.properties.forEach(function(prop) {
+  'webix', 'common/promise', 'forms', 'forms/base', 'common/utils', 'views/ro/approve'
+], function(webix, promise, forms, BaseForm, utils, approveView) {
 
-                table.add({
-                  godkend_rt: change.timestamp,
-                  author: change.author,
-                  godkend_class: change.class,
-                  godkend_object: change.name,
-                  godkend_property: prop.name,
-                  godkend_before: prop.before,
-                  godkend_after: prop.after,
-                });
-              });
-              table.show();
-              table.refresh();
+  function Form (args) {
+    if (!args) {
+      args = {};
+    }
+
+    args.name = 'ro-approve';
+    args.actionButtonLabel = 'Godkend';
+    args.validOnUsed = true;
+
+    BaseForm.call(this, args);
+
+    this.data = {};
+  }
+
+  Form.prototype = Object.create(BaseForm.prototype);
+  Form.prototype.constructor = Form;
+
+  Form.prototype.render = function (args) {
+    var self = this;
+    this.approveView = approveView({ form: this });
+    return this.approveView.add(args.view).then(function () {
+      return getChanges(args.task.data.extension)
+      .then(function(changes) {
+        // Build changes tables
+        changes.forEach(function(change) {
+          var table = $$('godkend_object_table');
+          change.properties.forEach(function(prop) {
+
+            table.add({
+              godkend_rt: change.timestamp,
+              author: change.author,
+              godkend_class: change.class,
+              godkend_object: change.name,
+              godkend_property: prop.name,
+              godkend_before: prop.before,
+              godkend_after: prop.after,
             });
-
-            return promise.resolve();
           });
+          table.show();
+          table.refresh();
         });
-      }
+
+        return promise.resolve();
+      });
+    });
   };
 
   function getChanges(ext) {
@@ -216,6 +230,6 @@ console.log("DEBUG: after=",after);
     }
     return [undefined];
   }
-  return form;
+  return Form;
 });
 

@@ -1,6 +1,6 @@
 define([
-  'webix', 'common/promise', 'models/situ', 'common/utils', 'time', 'forms', 'forms/base', 'views/ro/role-admin'
-], function(webix, promise, situ, utils, time, forms, BaseForm, roleAdminView) {
+  'webix', 'common/promise', 'common/utils', 'time', 'forms', 'forms/base', 'views/ro/role-admin'
+], function(webix, promise, utils, time, forms, BaseForm, roleAdminView) {
 
   function Form (args) {
     if (!args) {
@@ -17,6 +17,7 @@ define([
     };
     this.roleAdminView = new roleAdminView({ form: this });
     this.data = {};
+    this.validOnUsed = true;
   }
 
   Form.prototype = Object.create(BaseForm.prototype);
