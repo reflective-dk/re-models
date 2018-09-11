@@ -1,6 +1,6 @@
 define([
   'webix', 'common/promise', 'forms', 'forms/base', 'common/utils', 'views/ro/role-allocation-admin'
-], function(webix, promise, utils, roleAllocAdminView) {
+], function(webix, promise, forms, BaseForm, utils, roleAllocAdminView) {
 
   function Form (args) {
     if (!args) {
@@ -15,18 +15,17 @@ define([
     this.ids = {
       approver: webix.uid().toString()
     };
-    this.roleAdminView = new roleAdminView({ form: this });
     this.data = {};
     this.validOnUsed = true;
   }
 
-  Form.prototype.getStateAsObjects = function () {
+  Form.prototype.getStateAsObjects = function (validOn) {
     var self = this;
     var objects = [];
     // this.data contain modified snapshots, as key/value => id/snapshot
     Object.keys(this.data).forEach(function(id) {
       // Use time module for vt
-      objects.push({id: id, registrations:[{validity:[{input:self.data[id]}]}]});
+      objects.push({id: id, registrations:[{validity:[{from: utils.toISOString(validOn), input:self.data[id]}]}]});
     });
 
      // Wrap data in object metadata, using vt as validity from
@@ -118,6 +117,8 @@ define([
           };
           allItems[obj.id] = item;
         });
+
+        forms.populateFromDraft(self.task, allItems);
 
         // arrange items into tree data structure
         Object.keys(allItems).forEach(function(id) {
