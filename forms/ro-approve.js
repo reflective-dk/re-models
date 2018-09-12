@@ -14,6 +14,7 @@ define([
     BaseForm.call(this, args);
 
     this.data = {};
+    this.validOnUsed = true;
   }
 
   Form.prototype = Object.create(BaseForm.prototype);
@@ -32,6 +33,7 @@ define([
 
             table.add({
               godkend_rt: change.timestamp,
+              godkend_vt: change.from,
               author: change.author,
               godkend_class: change.class,
               godkend_object: change.name,
@@ -86,6 +88,7 @@ define([
         id: rObj.id,
         class: current.snapshot.class ? current.snapshot.class.name : 'no class',
         name: current.snapshot.name,
+        from: webix.i18n.dateFormatStr(new Date(rObj.registrations[0].validity[0].from)),
         timestamp: webix.i18n.fullDateFormatStr(new Date(rObj.registrations[0].timestamp)),
         author: rObj.registrations[0].author,
         properties: properties
