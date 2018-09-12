@@ -1,15 +1,31 @@
 define([
-  'common/promise', 'models/situ', 'common/utils', 'views/ro/report'
-], function(promise, situ, utils, reportView) {
-  var form = {
-    data: {},
-    situ: situ,
+  'webix', 'common/promise', 'common/utils', 'forms', 'forms/base', 'views/ro/report'
+], function(webix, promise, utils, forms, BaseForm, reportView) {
+  function Form (args) {
+    if (!args) {
+      args = {};
+    }
 
-    render: function (args) {
-      this.reportView = reportView({ form: form });
-      this.reportView.setCreateReportFunction(createReport);
-      createRecipients({id: "72316a2c-85cb-4a5c-ac92-e7d4e7c88c57", name: "SmartOrg administrator"}, {id: "55b52821-017c-4c18-a023-14e2b544a857", name: "Rapport generering"})
-      .then(this.reportView.setRecipients);
+    args.name = 'ro-report';
+    args.actionButtonLabel = 'Send';
+
+    BaseForm.call(this, args);
+
+    this.ids = {
+      approver: webix.uid().toString()
+    };
+    this.reportView = new reportView({ form: this });
+    this.data = {};
+    this.validOnUsed = true;
+  }
+
+  Form.prototype = Object.create(BaseForm.prototype);
+  Form.prototype.constructor = Form;
+
+  Form.prototype.render = function (args) {
+//    this.reportView.setCreateReportFunction(this.createReport);
+    this.createRecipients({id: "72316a2c-85cb-4a5c-ac92-e7d4e7c88c57", name: "SmartOrg administrator"}, {id: "55b52821-017c-4c18-a023-14e2b544a857", name: "Rapport generering"})
+    .then(this.reportView.setRecipients);
 
       // Prepare parameters
       var fromDate = new Date();
@@ -28,15 +44,14 @@ define([
       args.parameters.validTo = toDate;
 
       this.reportView.add(args.view, args.parameters).then(function () {
-      });
+    });
 
-      return promise.resolve();
-    }
+    return promise.resolve();
   };
-  return form;
 
-  function createReport(clazz, from, to) {
-    return form.situ.getObjects(clazz).then(function (data) {
+  Form.prototype.createReport = function(clazz, from, to) {
+    var self = this;
+    return this.facilitator.getObjects(clazz).then(function (data) {
       var allSnapshots = {};
       var allObjects = [];
       var allItems = [];
@@ -50,14 +65,14 @@ define([
 
       // Get all traces
       var snapshots = [];
-      form.situ.client.setContext({domain: form.situ.client.getContext().domain});
-      return form.situ.getTraces(allObjects).then(function(trace) {
+      self.facilitator.client.setContext({domain: self.facilitator.client.getContext().domain});
+      return self.facilitator.getTraces(allObjects).then(function(trace) {
         trace.objects.forEach(function(obj) {
           obj.registrations.forEach(function(reg) {
             reg.validity.forEach(function(val) {
               if (utils.toISOString(from) < val.from && val.from < utils.toISOString(to)) {
                 // Iterate over properties
-                var properties = getProperties(val.input);
+                var properties = self.getProperties(val.input);
                 properties.forEach(function(property) {
                   var item = {
                     registration: utils.fromISOString(reg.timestamp),
@@ -71,7 +86,7 @@ define([
                   allItems.push(item);
 
                   if (item.propertyValue.id) {
-                    snapshots.push(form.situ.getSnapshots([item.propertyValue],val.from));
+                    snapshots.push(self.facilitator.getSnapshots([item.propertyValue],val.from));
                   }
                 });
               }
@@ -86,7 +101,6 @@ define([
           result.forEach(function(res) {
             snapMap = Object.assign(snapMap, utils.asObject(res.objects));
           });
-
 
           // Match up ids and replace value with name/pnr/adress
           var locations = [];
@@ -105,7 +119,7 @@ define([
                 addressItem.propertyValue = snap.snapshot.address;
 
                 // Make a promise to get snapshot
-                locations.push(getLocation(addressItem,));
+                locations.push(self.getLocation(addressItem,));
               } else {
                 // just add the name
                 item.propertyValue = snap.snapshot.name;
@@ -115,25 +129,26 @@ define([
 
           // Get all the locations
           return Promise.all(locations).then(function() {
-            return promise.resolve(sortItems(allItems));
+            return promise.resolve(self.sortItems(allItems));
           });
         });
       });
     });
+  };
 
-    function getLocation(addressItem, validOn) {
-      return form.situ.getSnapshots([addressItem.propertyValue.id], validOn).then(function(result) {
-        var snapMap = utils.asObject(result.objects);
-        var address = snapMap[addressItem.propertyValue.id];
+  Form.prototype.getLocation = function (addressItem, validOn) {
+    return this.facilitator.getSnapshots([addressItem.propertyValue.id], validOn).then(function(result) {
+      var snapMap = utils.asObject(result.objects);
+      var address = snapMap[addressItem.propertyValue.id];
 
-        // The result is the address object
-        addressItem.propertyValue = address.snapshot.streetAddress + ", " + address.snapshot.postalCode + " " +
-                                    address.snapshot.city + ", " + address.snapshot.country;
-      });
-    }
-  }
+      // The result is the address object
+      addressItem.propertyValue = address.snapshot.streetAddress + ", " + address.snapshot.postalCode + " " +
+                                  address.snapshot.city + ", " + address.snapshot.country;
+    });
+  };
 
-  function sortItems(items) {
+
+  Form.prototype.sortItems = function (items) {
     // Sort: object id -> property name -> validFrom
     items.sort(function(a,b) {
       if (a.objectId === b.objectId) {
@@ -150,9 +165,9 @@ define([
     });
 
     return items;
-  }
+  };
 
-  function getProperties(input) {
+  Form.prototype.getProperties = function (input) {
     var properties = [];
 
     // return array of property key/values, formatted for display
@@ -273,13 +288,13 @@ define([
     });
 
     return properties;
-  }
+  };
 
-  function createRecipients(role, responsibility) {
+  Form.prototype.createRecipients = function (role, responsibility) {
     // Get role assignments that has the role and responsibilities
     var employments = [];
     var recipients = [];
-    return form.situ.getRoleAllocations().then(function(ras) {
+    return this.facilitator.getRoleAllocations().then(function(ras) {
       // Filter on responsibilities, and create list of employments
       ras.objects.forEach(function(ra) {
         // The ra has to have the responsibility
@@ -293,7 +308,7 @@ define([
 
       // Get all employments
       var persons = [];
-      return form.situ.getSnapshots({objects: employments}).then(function(result) {
+      return this.facilitator.getSnapshots({objects: employments}).then(function(result) {
         result.objects.forEach(function(employment) {
           if (employment.snapshot.class.id === "06c495eb-fcef-4c09-996f-63fd2dfea427") {
             if (employment.snapshot.person) persons.push(employment.snapshot.person);
@@ -306,7 +321,7 @@ define([
           }
         });
 
-        return form.situ.getSnapshots({objects: persons}).then(function(result) {
+        return this.facilitator.getSnapshots({objects: persons}).then(function(result) {
           // Match up email and person name
           result.objects.forEach(function(person) {
             if (person.snapshot.class.id === "66d33a37-f73c-4723-8dca-5feb9cf420e4") {
@@ -326,6 +341,7 @@ define([
         });
       });
     });
-  }
+  };
 
+  return Form;
 });
