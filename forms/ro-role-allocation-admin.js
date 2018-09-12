@@ -13,6 +13,7 @@ define([
     BaseForm.call(this, args);
 
     this.data = {};
+    this.changes = {};
     this.validOnUsed = true;
   }
 
@@ -37,12 +38,14 @@ define([
     var self = this;
 
     this.roleAllocAdminView = roleAllocAdminView({ form: this });
+
     this.roleAllocAdminView.add(args.view).then(function () {
+
       self.createRoleOptions().then(self.roleAllocAdminView.setRoleOptions);
       self.createEmploymentOptions().then(self.roleAllocAdminView.setEmploymentOptions);
       self.createTreeData('0b5ef848-9242-4f0f-8f80-dc79f9d898fe').then(self.roleAllocAdminView.setTreeData)
       .then(function() {
-        self.createRoleAllocData().then(self.roleAllocAdminView.setTableData);
+        self.createRoleAllocData(args.task).then(self.roleAllocAdminView.setTableData);
       });
     });
     return promise.resolve();
@@ -63,13 +66,14 @@ define([
   };
 
   // Create data for the datatable
-  Form.prototype.createRoleAllocData = function () {
+  Form.prototype.createRoleAllocData = function (task) {
     return this.facilitator.getRoleAllocations().then(function(roleAllocations) {
 
       var data = [];
+      var allObjects = {};
       roleAllocations.objects.forEach(function(ra) {
         ra.snapshot.id = ra.id;
-        data.push({
+        var item = {
           activeFrom: utils.fromISOString(ra.snapshot.activeFrom),
           activeTo: utils.fromISOString(ra.snapshot.activeTo),
           name: ra.snapshot.name,
@@ -78,8 +82,21 @@ define([
           role: ra.snapshot.role ? ra.snapshot.role.id : "",
           responsibilities: ra.snapshot.responsibilities ? ra.snapshot.responsibilities : {},
           snapshot: ra.snapshot
-        });
+        };
+        allObjects[ra.id] = item;
+        data.push(item);
       });
+      forms.populateFromDraft(task, allObjects);
+
+      // In datatable there is no newInput or draftInput, since the table data is the new input
+      data.forEach(function(item) {
+        if (item.newInput) {
+          // Set the new data on the item
+          Object.assign(item,item.newInput);
+          this.changes[item.id] = item; // Keep a list over changes
+        }
+      });
+
       return promise.resolve(data);
     });
   };
@@ -102,14 +119,14 @@ define([
   Form.prototype.createTreeData = function (hierarchyId) {
     var self = this;
 
-    return this.facilitator.getSnapshots([hierarchyId]).then(function (hierarchyResult) {
+    return this.facilitator.getSnapshots([{id: hierarchyId}]).then(function (hierarchyResult) {
       var hierarchy = hierarchyResult.objects[0];
       return self.facilitator.getUnits(hierarchy.id).then(function (data) {
         var possibleRoots = [];
         var allItems = {};
 
         // create all items and hashify
-        data.forEach(function(obj) {
+        data.objects.forEach(function(obj) {
           var item = {
             id: obj.id,
             value: obj.snapshot.name,
@@ -118,8 +135,6 @@ define([
           };
           allItems[obj.id] = item;
         });
-
-        forms.populateFromDraft(self.task, allItems);
 
         // arrange items into tree data structure
         Object.keys(allItems).forEach(function(id) {
