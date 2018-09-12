@@ -12,9 +12,6 @@ define([
 
     BaseForm.call(this, args);
 
-    this.ids = {
-      approver: webix.uid().toString()
-    };
     this.data = {};
     this.validOnUsed = true;
   }
@@ -48,7 +45,7 @@ define([
   };
 
   Form.prototype.createRoleOptions = function () {
-    return this.situ.getRoles().then(function(roles) {
+    return this.facilitator.getRoles().then(function(roles) {
       var items = []; //[{id:0,value:"Vælg Rolle"}];
       roles.objects.forEach(function(obj) {
         items.push({
@@ -101,9 +98,9 @@ define([
   Form.prototype.createTreeData = function (hierarchyId) {
     var self = this;
 
-    return this.situ.getSnapshots([hierarchyId]).then(function (hierarchyResult) {
+    return this.facilitator.getSnapshots([hierarchyId]).then(function (hierarchyResult) {
       var hierarchy = hierarchyResult.objects[0];
-      return self.situ.getUnits(hierarchy.id).then(function (data) {
+      return self.facilitator.getUnits(hierarchy.id).then(function (data) {
         var possibleRoots = [];
         var allItems = {};
 
