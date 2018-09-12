@@ -22,7 +22,11 @@ define([
     // this.data contain modified snapshots, as key/value => id/snapshot
     Object.keys(this.data).forEach(function(id) {
       // Use time module for vt
-      objects.push({id: id, registrations:[{validity:[{from: utils.toISOString(validOn), input:self.data[id]}]}]});
+      var validity = {input:self.data[id]};
+      if (validOn) {
+        validity.from = validOn;
+      }
+      objects.push({id: id, registrations:[{validity:[validity]}]});
     });
 
      // Wrap data in object metadata, using vt as validity from

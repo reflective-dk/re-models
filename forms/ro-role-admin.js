@@ -24,10 +24,16 @@ define([
   Form.prototype.constructor = Form;
 
   Form.prototype.getStateAsObjects = function (validOn) {
-    var objects = [], form = this;
-    // form.data contain modified snapshots, as key/value => id/snapshot
+    var self = this;
+    var objects = [];
+    // this.data contain modified snapshots, as key/value => id/snapshot
     Object.keys(this.data).forEach(function(id) {
-      objects.push({id: id, registrations:[{validity:[{from: utils.toISOString(validOn), input:form.data[id]}]}]});
+      // Use time module for vt
+      var validity = {input:self.data[id]};
+      if (validOn) {
+        validity.from = validOn;
+      }
+      objects.push({id: id, registrations:[{validity:[validity]}]});
     });
 
      // Wrap data in object metadata, using vt as validity from

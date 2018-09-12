@@ -27,7 +27,11 @@ define([
     // this.data contain modified snapshots, as key/value => id/snapshot
     Object.keys(this.data).forEach(function(id) {
       // Use time module for vt
-      objects.push({id: id, registrations:[{validity:[{from: utils.toISOString(validOn), input:self.data[id]}]}]});
+      var validity = {input:self.data[id]};
+      if (validOn) {
+        validity.from = validOn;
+      }
+      objects.push({id: id, registrations:[{validity:[validity]}]});
     });
 
      // Wrap data in object metadata, using vt as validity from
@@ -38,7 +42,7 @@ define([
     var self = this;
     this.task = args.task;
 
-    this.unitAdminView = unitAdminView({ form: this });
+    this.unitAdminView = unitAdminView({ form: this, validOn: args.task.data.variables.validOn });
     return this.unitAdminView.add(args.view).then(function () {
       var promises = [];
 
