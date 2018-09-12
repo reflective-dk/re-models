@@ -46,7 +46,7 @@ define([
 
     this.roleAdminView.add(args.view, args.parameters);
 
-    return this.createRoleResponsibiliesTree(args.task).then(this.roleAdminView.setTreeData).then(this.roleAdminView.populate);
+    return this.createRoleResponsibiliesTree(args.task).then(this.roleAdminView.setTreeData);
   };
 
   // Transform query response to webix tree data, where the snapshot is added/stored in the thee items
