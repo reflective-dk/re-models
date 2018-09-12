@@ -23,30 +23,21 @@ define([
   Form.prototype.constructor = Form;
 
   Form.prototype.render = function (args) {
-//    this.reportView.setCreateReportFunction(this.createReport);
-    this.createRecipients({id: "72316a2c-85cb-4a5c-ac92-e7d4e7c88c57", name: "SmartOrg administrator"}, {id: "55b52821-017c-4c18-a023-14e2b544a857", name: "Rapport generering"})
-    .then(this.reportView.setRecipients);
+    // Prepare parameters
+    var fromDate = new Date();
 
-      // Prepare parameters
-      var fromDate = new Date();
+    if (args.parameters === undefined) args.parameters = {};
+    if (args.parameters.validFrom) {
+      fromDate = new Date(args.parameters.validFrom);
+    }
+    var toDate = new Date(fromDate);
+    toDate.setMonth(fromDate.getMonth()+3);
+    args.parameters.validFrom = fromDate;
+    args.parameters.validTo = toDate;
 
-      if (args.parameters === undefined) args.parameters = {};
-      if (args.parameters.validFrom) {
-        fromDate = new Date(args.parameters.validFrom);
-      }
-      var toDate = new Date(fromDate);
-      toDate.setMonth(fromDate.getMonth()+3);
-
-      if (args.parameters.validTo) {
-        toDate = new Date(args.parameters.validTo);
-      }
-      args.parameters.validFrom = fromDate;
-      args.parameters.validTo = toDate;
-
-      this.reportView.add(args.view, args.parameters).then(function () {
-    });
-
-    return promise.resolve();
+    return this.createRecipients({id: "72316a2c-85cb-4a5c-ac92-e7d4e7c88c57", name: "SmartOrg administrator"}, {id: "55b52821-017c-4c18-a023-14e2b544a857", name: "Rapport generering"})
+    .then(this.reportView.setRecipients)
+    .then(this.reportView.add(args.view, args.parameters));
   };
 
   Form.prototype.createReport = function(clazz, from, to) {
@@ -119,7 +110,7 @@ define([
                 addressItem.propertyValue = snap.snapshot.address;
 
                 // Make a promise to get snapshot
-                locations.push(self.getLocation(addressItem,));
+                locations.push(self.getLocation(addressItem));
               } else {
                 // just add the name
                 item.propertyValue = snap.snapshot.name;
@@ -197,10 +188,6 @@ define([
         case 'shortName':
           name = "Kort navn";
           break;
-//        case 'class':
-//          name = "Type";
-//          value = value.name;
-//          break;
         case 'phoneNumbers':
           name = "Telefon numre";
           value = utils.asList(value);
@@ -280,17 +267,18 @@ define([
           break;
         default:
           name = undefined;
-  console.log("DEBUG: unknown key=",key);
-  console.log("DEBUG: unknown value=",value);
           break;
       }
-      if (name && value) properties.push({name: name, value: value !== null ? value : "-- SLETTET --"});
+      if (name && value) {
+        properties.push({name: name, value: value !== null ? value : "-- SLETTET --"});
+      }
     });
 
     return properties;
   };
 
   Form.prototype.createRecipients = function (role, responsibility) {
+    var self = this;
     // Get role assignments that has the role and responsibilities
     var employments = [];
     var recipients = [];
@@ -308,7 +296,7 @@ define([
 
       // Get all employments
       var persons = [];
-      return this.facilitator.getSnapshots({objects: employments}).then(function(result) {
+      return self.facilitator.getSnapshots({objects: employments}).then(function(result) {
         result.objects.forEach(function(employment) {
           if (employment.snapshot.class.id === "06c495eb-fcef-4c09-996f-63fd2dfea427") {
             if (employment.snapshot.person) persons.push(employment.snapshot.person);
@@ -321,7 +309,7 @@ define([
           }
         });
 
-        return this.facilitator.getSnapshots({objects: persons}).then(function(result) {
+        return self.facilitator.getSnapshots({objects: persons}).then(function(result) {
           // Match up email and person name
           result.objects.forEach(function(person) {
             if (person.snapshot.class.id === "66d33a37-f73c-4723-8dca-5feb9cf420e4") {
