@@ -1,42 +1,55 @@
 define([
-  'common/promise', 'models/situ', 'common/utils', 'views/ro/report'
-], function(promise, situ, utils, reportView) {
-  var form = {
-    data: {},
-    situ: situ,
+  'common/promise', 'forms', 'forms/base',, 'common/utils', 'views/ro/report'
+], function(promise, forms, BaseForm, utils, reportView) {
 
-    render: function (args) {
-      this.reportView = reportView({ form: form });
-      this.reportView.setCreateReportFunction(createReport);
-      createRecipients({id: "72316a2c-85cb-4a5c-ac92-e7d4e7c88c57", name: "SmartOrg administrator"}, {id: "55b52821-017c-4c18-a023-14e2b544a857", name: "Rapport generering"})
-      .then(this.reportView.setRecipients);
-
-      // Prepare parameters
-      var fromDate = new Date();
-
-      if (args.parameters === undefined) args.parameters = {};
-      if (args.parameters.validFrom) {
-        fromDate = new Date(args.parameters.validFrom);
-      }
-      var toDate = new Date(fromDate);
-      toDate.setMonth(fromDate.getMonth()+3);
-
-      if (args.parameters.validTo) {
-        toDate = new Date(args.parameters.validTo);
-      }
-      args.parameters.validFrom = fromDate;
-      args.parameters.validTo = toDate;
-
-      this.reportView.add(args.view, args.parameters).then(function () {
-      });
-
-      return promise.resolve();
+  function Form (args) {
+    if (!args) {
+      args = {};
     }
-  };
-  return form;
 
-  function createReport(clazz, from, to) {
-    return form.situ.getObjects(clazz).then(function (data) {
+    args.name = 'ro-role-allocation';
+    args.actionButtonLabel = 'Send';
+
+    BaseForm.call(this, args);
+  }
+
+  Form.prototype.render = function (args) {
+    var self = this;
+
+    this.reportView = reportView({ form: this });
+    this.reportView.setCreateReportFunction(function () {
+      return self.createReport();
+    });
+
+    createRecipients({id: "72316a2c-85cb-4a5c-ac92-e7d4e7c88c57", name: "SmartOrg administrator"}, {id: "55b52821-017c-4c18-a023-14e2b544a857", name: "Rapport generering"})
+    .then(this.reportView.setRecipients);
+
+    // Prepare parameters
+    var fromDate = new Date();
+
+    if (args.parameters === undefined) args.parameters = {};
+    if (args.parameters.validFrom) {
+      fromDate = new Date(args.parameters.validFrom);
+    }
+    var toDate = new Date(fromDate);
+    toDate.setMonth(fromDate.getMonth()+3);
+
+    if (args.parameters.validTo) {
+      toDate = new Date(args.parameters.validTo);
+    }
+    args.parameters.validFrom = fromDate;
+    args.parameters.validTo = toDate;
+
+    this.reportView.add(args.view, args.parameters).then(function () {
+    });
+
+    return promise.resolve();
+  };
+
+  Form.prototype.createReport = function (clazz, from, to) {
+    var self = this;
+
+    return this.facilitator.getObjects(clazz).then(function (data) {
       var allSnapshots = {};
       var allObjects = [];
       var allItems = [];
@@ -50,8 +63,7 @@ define([
 
       // Get all traces
       var snapshots = [];
-      form.situ.client.setContext({domain: form.situ.client.getContext().domain});
-      return form.situ.getTraces(allObjects).then(function(trace) {
+      return self.facilitator.getTraces(allObjects).then(function(trace) {
         trace.objects.forEach(function(obj) {
           obj.registrations.forEach(function(reg) {
             reg.validity.forEach(function(val) {
@@ -71,7 +83,7 @@ define([
                   allItems.push(item);
 
                   if (item.propertyValue.id) {
-                    snapshots.push(form.situ.getSnapshots([item.propertyValue],val.from));
+                    snapshots.push(self.facilitator.getSnapshots([item.propertyValue],val.from));
                   }
                 });
               }
@@ -105,7 +117,7 @@ define([
                 addressItem.propertyValue = snap.snapshot.address;
 
                 // Make a promise to get snapshot
-                locations.push(getLocation(addressItem,));
+                locations.push(self.getLocation(addressItem));
               } else {
                 // just add the name
                 item.propertyValue = snap.snapshot.name;
@@ -120,20 +132,20 @@ define([
         });
       });
     });
+  };
 
-    function getLocation(addressItem, validOn) {
-      return form.situ.getSnapshots([addressItem.propertyValue.id], validOn).then(function(result) {
-        var snapMap = utils.asObject(result.objects);
-        var address = snapMap[addressItem.propertyValue.id];
+  Form.prototype.getLocation = function (addressItem, validOn) {
+    return this.facilitator.getSnapshots([addressItem.propertyValue.id], validOn).then(function(result) {
+      var snapMap = utils.asObject(result.objects);
+      var address = snapMap[addressItem.propertyValue.id];
 
-        // The result is the address object
-        addressItem.propertyValue = address.snapshot.streetAddress + ", " + address.snapshot.postalCode + " " +
-                                    address.snapshot.city + ", " + address.snapshot.country;
-      });
-    }
-  }
+      // The result is the address object
+      addressItem.propertyValue = address.snapshot.streetAddress + ", " + address.snapshot.postalCode + " " +
+                                  address.snapshot.city + ", " + address.snapshot.country;
+    });
+  };
 
-  function sortItems(items) {
+  Form.prototype.sortItems = function (items) {
     // Sort: object id -> property name -> validFrom
     items.sort(function(a,b) {
       if (a.objectId === b.objectId) {
@@ -150,9 +162,9 @@ define([
     });
 
     return items;
-  }
+  };
 
-  function getProperties(input) {
+  Form.prototype.getProperties = function (input) {
     var properties = [];
 
     // return array of property key/values, formatted for display
@@ -182,10 +194,6 @@ define([
         case 'shortName':
           name = "Kort navn";
           break;
-//        case 'class':
-//          name = "Type";
-//          value = value.name;
-//          break;
         case 'phoneNumbers':
           name = "Telefon numre";
           value = utils.asList(value);
@@ -265,21 +273,22 @@ define([
           break;
         default:
           name = undefined;
-  console.log("DEBUG: unknown key=",key);
-  console.log("DEBUG: unknown value=",value);
           break;
       }
-      if (name && value) properties.push({name: name, value: value !== null ? value : "-- SLETTET --"});
+      if (name && value) {
+        properties.push({name: name, value: value !== null ? value : "-- SLETTET --"});
+      }
     });
 
     return properties;
-  }
+  };
 
-  function createRecipients(role, responsibility) {
+  Form.prototype.createRecipients = function (role, responsibility) {
+    var self = this;
     // Get role assignments that has the role and responsibilities
     var employments = [];
     var recipients = [];
-    return form.situ.getRoleAllocations().then(function(ras) {
+    return this.facilitator.getRoleAllocations().then(function(ras) {
       // Filter on responsibilities, and create list of employments
       ras.objects.forEach(function(ra) {
         // The ra has to have the responsibility
@@ -293,7 +302,7 @@ define([
 
       // Get all employments
       var persons = [];
-      return form.situ.getSnapshots({objects: employments}).then(function(result) {
+      return self.facilitator.getSnapshots({objects: employments}).then(function(result) {
         result.objects.forEach(function(employment) {
           if (employment.snapshot.class.id === "06c495eb-fcef-4c09-996f-63fd2dfea427") {
             if (employment.snapshot.person) persons.push(employment.snapshot.person);
@@ -306,7 +315,7 @@ define([
           }
         });
 
-        return form.situ.getSnapshots({objects: persons}).then(function(result) {
+        return self.facilitator.getSnapshots({objects: persons}).then(function(result) {
           // Match up email and person name
           result.objects.forEach(function(person) {
             if (person.snapshot.class.id === "66d33a37-f73c-4723-8dca-5feb9cf420e4") {
@@ -326,6 +335,7 @@ define([
         });
       });
     });
-  }
+  };
 
+  return Form;
 });
