@@ -38,17 +38,12 @@ define([
     var self = this;
 
     this.roleAllocAdminView = roleAllocAdminView({ form: this });
+    this.roleAllocAdminView.add(args.view);
 
-    this.roleAllocAdminView.add(args.view).then(function () {
-
-      self.createRoleOptions().then(self.roleAllocAdminView.setRoleOptions);
-      self.createEmploymentOptions().then(self.roleAllocAdminView.setEmploymentOptions);
-      self.createTreeData('0b5ef848-9242-4f0f-8f80-dc79f9d898fe').then(self.roleAllocAdminView.setTreeData)
-      .then(function() {
-        self.createRoleAllocData(args.task).then(self.roleAllocAdminView.setTableData);
-      });
-    });
-    return promise.resolve();
+    return promise.all([self.createRoleOptions().then(self.roleAllocAdminView.setRoleOptions),
+       self.createEmploymentOptions().then(self.roleAllocAdminView.setEmploymentOptions),
+       self.createTreeData('0b5ef848-9242-4f0f-8f80-dc79f9d898fe').then(self.roleAllocAdminView.setTreeData)])
+       .then(self.createRoleAllocData(args.task).then(self.roleAllocAdminView.setTableData));
   };
 
   Form.prototype.createRoleOptions = function () {
@@ -67,6 +62,7 @@ define([
 
   // Create data for the datatable
   Form.prototype.createRoleAllocData = function (task) {
+    var self = this;
     return this.facilitator.getRoleAllocations().then(function(roleAllocations) {
 
       var data = [];
@@ -93,9 +89,10 @@ define([
         if (item.newInput) {
           // Set the new data on the item
           Object.assign(item,item.newInput);
-          this.changes[item.id] = item; // Keep a list over changes
+          self.changes[item.id] = item; // Keep a list over changes
         }
       });
+console.log("DEBUG: createRoleAllocData changes=",self.changes);
 
       return promise.resolve(data);
     });
