@@ -84,56 +84,59 @@ define([
   Form.prototype.createTreeData = function (hierarchyId) {
     var self = this;
 
-    return this.facilitator.getSnapshots([{ id: hierarchyId }]).then(function (hierarchyResult) {
-      var hierarchy = hierarchyResult.objects[0];
-      var parentPath = hierarchy.snapshot.pathElements[0].relation.split('.');
-      var type = hierarchy.snapshot.pathElements[0].parentType;
+    return this.facilitator.basekit.cacheHierarchyTypes(hierarchyId)
+    .then(function () {
+      return self.facilitator.getSnapshots([{ id: hierarchyId }]).then(function (hierarchyResult) {
+        var hierarchy = hierarchyResult.objects[0];
+        var parentPath = hierarchy.snapshot.pathElements[0].relation.split('.');
+        var type = hierarchy.snapshot.pathElements[0].parentType;
 
-      return self.facilitator.getUnits(hierarchy.id).then(function (data) {
-        var possibleRoots = [];
-        var allItems = {};
+        return self.facilitator.getUnits(hierarchy.id).then(function (data) {
+          var possibleRoots = [];
+          var allItems = {};
 
-        // create all items and hashify
-        data.objects.forEach(function(obj) {
-          var item = {
-            id: obj.id,
-            value: obj.snapshot.name,
-            snapshot: obj.snapshot,
-            data:[]
-          };
-          allItems[obj.id] = item;
-        });
+          // create all items and hashify
+          data.objects.forEach(function(obj) {
+            var item = {
+              id: obj.id,
+              value: obj.snapshot.name,
+              snapshot: obj.snapshot,
+              data:[]
+            };
+            allItems[obj.id] = item;
+          });
 
-        forms.populateFromDraft(self.task, allItems);
-        // arrange items into tree data structure
-        Object.keys(allItems).forEach(function(id) {
-          var child = allItems[id];
+          forms.populateFromDraft(self.task, allItems);
+          // arrange items into tree data structure
+          Object.keys(allItems).forEach(function(id) {
+            var child = allItems[id];
 
-          // Get parent object
-          // XXX: what if more than one, pathelements ? Try then one at a time?
-          var parent = child.snapshot;
-          parentPath.forEach(function(pp) {
+            // Get parent object
+            // XXX: what if more than one, pathelements ? Try then one at a time?
+            var parent = child.snapshot;
+            parentPath.forEach(function(pp) {
+              if (parent) {
+                parent = parent[pp];
+              }
+            });
             if (parent) {
-              parent = parent[pp];
+              child.snapshot.parent = parent; // Used by form when navigatibg tree
+              allItems[parent.id].data.push(child);
+            } else {
+              // Root
+              possibleRoots.push(child);
             }
           });
-          if (parent) {
-            child.snapshot.parent = parent; // Used by form when navigatibg tree
-            allItems[parent.id].data.push(child);
-          } else {
-            // Root
-            possibleRoots.push(child);
-          }
-        });
 
-        var root;
-        possibleRoots.forEach(function (possibleRoot) {
-          if (possibleRoot.data.length > 0) {
-            root = possibleRoot;
-            root.open = true;
-          }
+          var root;
+          possibleRoots.forEach(function (possibleRoot) {
+            if (possibleRoot.data.length > 0) {
+              root = possibleRoot;
+              root.open = true;
+            }
+          });
+          return promise.resolve({ data: [root], parentPath: parentPath, type});
         });
-        return promise.resolve({ data: [root], parentPath: parentPath, type});
       });
     });
   };
