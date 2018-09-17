@@ -92,7 +92,6 @@ define([
           self.changes[item.id] = item; // Keep a list over changes
         }
       });
-console.log("DEBUG: createRoleAllocData changes=",self.changes);
 
       return promise.resolve(data);
     });
@@ -112,60 +111,19 @@ console.log("DEBUG: createRoleAllocData changes=",self.changes);
     });
   };
 
-  // Transform query response to webix tree data, where the snapshot is added/stored in the thee items
   Form.prototype.createTreeData = function (hierarchyId) {
-    var self = this;
-
-    return this.facilitator.getSnapshots([{id: hierarchyId}]).then(function (hierarchyResult) {
-      var hierarchy = hierarchyResult.objects[0];
-      return self.facilitator.getUnits(hierarchy.id).then(function (data) {
-        var possibleRoots = [];
-        var allItems = {};
-
-        // create all items and hashify
-        data.objects.forEach(function(obj) {
-          var item = {
-            id: obj.id,
-            value: obj.snapshot.name,
-            snapshot: obj.snapshot,
-            data:[]
-          };
-          allItems[obj.id] = item;
-        });
-
-        // arrange items into tree data structure
-        Object.keys(allItems).forEach(function(id) {
-          var child = allItems[id];
-
-          // Get parent object
-          // XXX: what if more than one, pathelements ? Try then one at a time?
-          var parent = child.snapshot;
-          var parentPath = hierarchy.snapshot.pathElements[0].relation.split('.');
-          parentPath.forEach(function(pp) {
-            if (parent) {
-              parent = parent[pp];
-            }
-          });
-          if (parent) {
-            child.snapshot.parent = parent; // Used by form when navigatibg tree
-            allItems[parent.id].data.push(child);
-          } else {
-            // Root
-            possibleRoots.push(child);
-          }
-        });
-
-        var root;
-        possibleRoots.forEach(function (possibleRoot) {
-          if (possibleRoot.data.length > 0) {
-            root = possibleRoot;
-            root.open = true;
-          }
-        });
-        return promise.resolve([root]);
-      });
-    });
+    return this.facilitator.basekit.fullHierarchy(hierarchyId).then(webixifyTree);
   };
 
+  function webixifyTree(node) {
+    if (Array.isArray(node)) return node.map(webixifyTree);
+    return {
+      id: node.id,
+      value: node.snapshot.name || node.id,
+      snapshot: node.snapshot,
+      childrenFetched: true,
+      data: node.children.map(webixifyTree)
+    };
+  }
   return Form;
 });
