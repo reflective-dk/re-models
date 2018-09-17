@@ -1,6 +1,6 @@
 define([
-  'webix', 'common/promise', 'common/utils', 'forms', 'forms/base', 'views/ro/report'
-], function(webix, promise, utils, forms, BaseForm, reportView) {
+  'webix', 'common/promise', 'common/utils', 'forms/base', 'views/ro/report'
+], function(webix, promise, utils, BaseForm, reportView) {
   function Form (args) {
     if (!args) {
       args = {};
@@ -56,7 +56,7 @@ define([
 
       // Get all traces
       var snapshots = [];
-      self.facilitator.client.setContext({domain: self.facilitator.client.getContext().domain});
+      self.facilitator.basekit.client.setContext({domain: self.facilitator.basekit.client.getContext().domain});
       return self.facilitator.getTraces(allObjects).then(function(trace) {
         trace.objects.forEach(function(obj) {
           obj.registrations.forEach(function(reg) {
@@ -128,7 +128,7 @@ define([
   };
 
   Form.prototype.getLocation = function (addressItem, validOn) {
-    return this.facilitator.getSnapshots([addressItem.propertyValue.id], validOn).then(function(result) {
+    return this.facilitator.getSnapshots([{id: addressItem.propertyValue.id}], validOn).then(function(result) {
       var snapMap = utils.asObject(result.objects);
       var address = snapMap[addressItem.propertyValue.id];
 
@@ -296,7 +296,7 @@ define([
 
       // Get all employments
       var persons = [];
-      return self.facilitator.getSnapshots({objects: employments}).then(function(result) {
+      return self.facilitator.getSnapshots(employments).then(function(result) {
         result.objects.forEach(function(employment) {
           if (employment.snapshot.class.id === "06c495eb-fcef-4c09-996f-63fd2dfea427") {
             if (employment.snapshot.person) persons.push(employment.snapshot.person);
@@ -309,7 +309,7 @@ define([
           }
         });
 
-        return self.facilitator.getSnapshots({objects: persons}).then(function(result) {
+        return self.facilitator.getSnapshots(persons).then(function(result) {
           // Match up email and person name
           result.objects.forEach(function(person) {
             if (person.snapshot.class.id === "66d33a37-f73c-4723-8dca-5feb9cf420e4") {
