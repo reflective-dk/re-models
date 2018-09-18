@@ -14,10 +14,10 @@
       </bpmn:lane>
     </bpmn:laneSet>
     <bpmn:sequenceFlow id="SequenceFlow_08rl4ek" sourceRef="R89aedc6c-08e5-4005-91e3-ff643a0de0af" targetRef="Rea44dece-8720-4613-ab72-501a6a7b8bd6" />
-    <bpmn:startEvent id="rounitadminstart" name="Unit Administration">
+    <bpmn:startEvent id="rounitadminstart" name="Adminisitration af hierakier">
       <bpmn:outgoing>SequenceFlow_14zjcbt</bpmn:outgoing>
     </bpmn:startEvent>
-    <bpmn:userTask id="R89aedc6c-08e5-4005-91e3-ff643a0de0af" name="Unit Administration" camunda:formKey="89aedc6c-08e5-4005-91e3-ff643a0de0af">
+    <bpmn:userTask id="R89aedc6c-08e5-4005-91e3-ff643a0de0af" name="Opdater hieraki" camunda:formKey="89aedc6c-08e5-4005-91e3-ff643a0de0af">
       <bpmn:incoming>SequenceFlow_14zjcbt</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_08rl4ek</bpmn:outgoing>
     </bpmn:userTask>

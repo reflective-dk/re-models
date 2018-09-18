@@ -17,7 +17,7 @@
     <bpmn:startEvent id="roroleallocationadminstart" name="Administration af rolletildelinger">
       <bpmn:outgoing>SequenceFlow_14zjcbt</bpmn:outgoing>
     </bpmn:startEvent>
-    <bpmn:userTask id="R30281529-c39e-4ab4-9a28-aadc4ae56d36" name="Administration af rolletildelinger" camunda:formKey="30281529-c39e-4ab4-9a28-aadc4ae56d36">
+    <bpmn:userTask id="R30281529-c39e-4ab4-9a28-aadc4ae56d36" name="Opdater rolletildelinger" camunda:formKey="30281529-c39e-4ab4-9a28-aadc4ae56d36">
       <bpmn:incoming>SequenceFlow_14zjcbt</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_08rl4ek</bpmn:outgoing>
     </bpmn:userTask>

@@ -9,6 +9,7 @@
             name: Administration af rolletildelinger
             userStartable: true
             chain: ro-administration
+            category: Reflective Organization
             system:
               id: 9374800d-1ba6-5a9e-ae4a-d6da16e7e9df
             userForms:

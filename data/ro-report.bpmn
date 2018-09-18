@@ -6,35 +6,23 @@
   <bpmn:process id="R17879b8c-c345-4a01-8166-95b2b937166f" name="Ændringsrapport" isExecutable="true" camunda:versionTag="1.0" camunda:taskPriority="1">
     <bpmn:laneSet>
       <bpmn:lane id="Lane_19ch5nt" name="anybody">
-        <bpmn:flowNodeRef>R30127697-c258-4717-8dbe-49d1bf35f1f1</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Rea44dece-8720-4613-ab72-501a6a7b8bd6</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>roroleadminstart</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>EndEvent_0718vr8</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>merge</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>R30127697-c258-4717-8dbe-49d1bf35f1f1</bpmn:flowNodeRef>
       </bpmn:lane>
     </bpmn:laneSet>
-    <bpmn:sequenceFlow id="SequenceFlow_08rl4ek" sourceRef="R30127697-c258-4717-8dbe-49d1bf35f1f1" targetRef="Rea44dece-8720-4613-ab72-501a6a7b8bd6" />
+    <bpmn:sequenceFlow id="SequenceFlow_08rl4ek" sourceRef="R30127697-c258-4717-8dbe-49d1bf35f1f1" targetRef="EndEvent_0718vr8" />
     <bpmn:startEvent id="roroleadminstart" name="Ændringsrapport">
       <bpmn:outgoing>SequenceFlow_14zjcbt</bpmn:outgoing>
     </bpmn:startEvent>
-    <bpmn:userTask id="R30127697-c258-4717-8dbe-49d1bf35f1f1" name="Ændringsrapport" camunda:formKey="30127697-c258-4717-8dbe-49d1bf35f1f1">
+    <bpmn:sequenceFlow id="SequenceFlow_14zjcbt" sourceRef="roroleadminstart" targetRef="R30127697-c258-4717-8dbe-49d1bf35f1f1" />
+    <bpmn:endEvent id="EndEvent_0718vr8" name="rapport læst">
+      <bpmn:incoming>SequenceFlow_08rl4ek</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:userTask id="R30127697-c258-4717-8dbe-49d1bf35f1f1" name="Læs rapport" camunda:formKey="30127697-c258-4717-8dbe-49d1bf35f1f1">
       <bpmn:incoming>SequenceFlow_14zjcbt</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_08rl4ek</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:sequenceFlow id="SequenceFlow_14zjcbt" sourceRef="roroleadminstart" targetRef="R30127697-c258-4717-8dbe-49d1bf35f1f1" />
-    <bpmn:userTask id="Rea44dece-8720-4613-ab72-501a6a7b8bd6" name="Godkend" camunda:formKey="ea44dece-8720-4613-ab72-501a6a7b8bd6">
-      <bpmn:incoming>SequenceFlow_08rl4ek</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_1syobs7</bpmn:outgoing>
-    </bpmn:userTask>
-    <bpmn:endEvent id="EndEvent_0718vr8" name="Role changes">
-      <bpmn:incoming>SequenceFlow_0yrv99v</bpmn:incoming>
-    </bpmn:endEvent>
-    <bpmn:sequenceFlow id="SequenceFlow_1syobs7" sourceRef="Rea44dece-8720-4613-ab72-501a6a7b8bd6" targetRef="merge" />
-    <bpmn:serviceTask id="merge" name="Merge role changes" camunda:type="external" camunda:topic="merge">
-      <bpmn:incoming>SequenceFlow_1syobs7</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_0yrv99v</bpmn:outgoing>
-    </bpmn:serviceTask>
-    <bpmn:sequenceFlow id="SequenceFlow_0yrv99v" sourceRef="merge" targetRef="EndEvent_0718vr8" />
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="_17879b8c-c345-4a01-8166-95b2b937166f">
@@ -50,47 +38,27 @@
       <bpmndi:BPMNShape id="EndEvent_0718vr8_di" bpmnElement="EndEvent_0718vr8">
         <dc:Bounds x="412" y="254" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="399" y="304" width="64" height="12" />
+          <dc:Bounds x="402" y="304" width="60" height="12" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="UserTask_01gt1p4_di" bpmnElement="R30127697-c258-4717-8dbe-49d1bf35f1f1">
-        <dc:Bounds x="-154" y="232" width="100" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="UserTask_11tgs4h_di" bpmnElement="Rea44dece-8720-4613-ab72-501a6a7b8bd6">
-        <dc:Bounds x="88" y="232" width="100" height="80" />
+        <dc:Bounds x="13" y="232" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Lane_19ch5nt_di" bpmnElement="Lane_19ch5nt">
         <dc:Bounds x="-409" y="95" width="984" height="380" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="SequenceFlow_08rl4ek_di" bpmnElement="SequenceFlow_08rl4ek">
-        <di:waypoint xsi:type="dc:Point" x="-54" y="272" />
-        <di:waypoint xsi:type="dc:Point" x="88" y="272" />
+        <di:waypoint xsi:type="dc:Point" x="113" y="272" />
+        <di:waypoint xsi:type="dc:Point" x="412" y="272" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="-28" y="251" width="90" height="12" />
+          <dc:Bounds x="217.5" y="251" width="90" height="12" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="SequenceFlow_14zjcbt_di" bpmnElement="SequenceFlow_14zjcbt">
         <di:waypoint xsi:type="dc:Point" x="-264" y="272" />
-        <di:waypoint xsi:type="dc:Point" x="-154" y="272" />
+        <di:waypoint xsi:type="dc:Point" x="13" y="272" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="-209" y="250.5" width="0" height="13" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="SequenceFlow_1syobs7_di" bpmnElement="SequenceFlow_1syobs7">
-        <di:waypoint xsi:type="dc:Point" x="188" y="272" />
-        <di:waypoint xsi:type="dc:Point" x="249" y="272" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="218.5" y="251" width="0" height="12" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="ServiceTask_0hym356_di" bpmnElement="merge">
-        <dc:Bounds x="249" y="232" width="100" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge id="SequenceFlow_0yrv99v_di" bpmnElement="SequenceFlow_0yrv99v">
-        <di:waypoint xsi:type="dc:Point" x="349" y="272" />
-        <di:waypoint xsi:type="dc:Point" x="412" y="272" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="380.5" y="251" width="0" height="12" />
+          <dc:Bounds x="-170.5" y="250.5" width="90" height="13" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
