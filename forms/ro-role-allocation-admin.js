@@ -43,7 +43,9 @@ define([
     return promise.all([self.createRoleOptions().then(self.roleAllocAdminView.setRoleOptions),
        self.createEmploymentOptions().then(self.roleAllocAdminView.setEmploymentOptions),
        self.createTreeData('0b5ef848-9242-4f0f-8f80-dc79f9d898fe').then(self.roleAllocAdminView.setTreeData)])
-       .then(self.createRoleAllocData(args.task).then(self.roleAllocAdminView.setTableData));
+       .then(function() {
+         self.createRoleAllocData(args.task).then(self.roleAllocAdminView.setTableData);
+       });
   };
 
   Form.prototype.createRoleOptions = function () {
@@ -112,18 +114,8 @@ define([
   };
 
   Form.prototype.createTreeData = function (hierarchyId) {
-    return this.facilitator.basekit.fullHierarchy(hierarchyId).then(webixifyTree);
+    return this.facilitator.basekit.fullHierarchy(hierarchyId).then(utils.webixifyTree);
   };
 
-  function webixifyTree(node) {
-    if (Array.isArray(node)) return node.map(webixifyTree);
-    return {
-      id: node.id,
-      value: node.snapshot.name || node.id,
-      snapshot: node.snapshot,
-      childrenFetched: true,
-      data: node.children.map(webixifyTree)
-    };
-  }
   return Form;
 });
