@@ -6,7 +6,7 @@
             class:
               id: efec2048-b4f3-4ffd-a7ba-b6698d412bbc
               name: Process
-            name: Administration af hierakier
+            name: Administration af hierarkier
             userStartable: true
             chain: ro-administration
             category: Reflective Organization
