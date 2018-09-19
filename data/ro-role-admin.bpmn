@@ -31,7 +31,7 @@
       <bpmn:outgoing>SequenceFlow_0yrv99v</bpmn:outgoing>
     </bpmn:serviceTask>
     <bpmn:sequenceFlow id="SequenceFlow_0yrv99v" sourceRef="merge" targetRef="EndEvent_0718vr8" />
-    <bpmn:userTask id="Rea44dece-8720-4613-ab72-501a6a7b8bd6" name="Godkend" camunda:formKey="ea44dece-8720-4613-ab72-501a6a7b8bd6">
+    <bpmn:userTask id="Rea44dece-8720-4613-ab72-501a6a7b8bd6" name="Godkend" camunda:formKey="ea44dece-8720-4613-ab72-501a6a7b8bd6" camunda:assignee="auto">
       <bpmn:incoming>SequenceFlow_08rl4ek</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1syobs7</bpmn:outgoing>
     </bpmn:userTask>
