@@ -3,7 +3,7 @@
   <bpmn:collaboration id="_ec4a7a94-46a0-44d8-8ed9-b4aa4cd62665">
     <bpmn:participant id="Participant_1cmscbv" name="Administration af hierakier" processRef="Rec4a7a94-46a0-44d8-8ed9-b4aa4cd62665" />
   </bpmn:collaboration>
-  <bpmn:process id="Rec4a7a94-46a0-44d8-8ed9-b4aa4cd62665" name="Administration af hierakier" isExecutable="true" camunda:versionTag="1.0" camunda:taskPriority="1">
+  <bpmn:process id="Rec4a7a94-46a0-44d8-8ed9-b4aa4cd62665" name="Administration af hierarkier" isExecutable="true" camunda:versionTag="1.0" camunda:taskPriority="1">
     <bpmn:laneSet>
       <bpmn:lane id="Lane_19ch5nt" name="anybody">
         <bpmn:flowNodeRef>R89aedc6c-08e5-4005-91e3-ff643a0de0af</bpmn:flowNodeRef>
@@ -14,10 +14,10 @@
       </bpmn:lane>
     </bpmn:laneSet>
     <bpmn:sequenceFlow id="SequenceFlow_08rl4ek" sourceRef="R89aedc6c-08e5-4005-91e3-ff643a0de0af" targetRef="Rea44dece-8720-4613-ab72-501a6a7b8bd6" />
-    <bpmn:startEvent id="rounitadminstart" name="Adminisitration af hierakier">
+    <bpmn:startEvent id="rounitadminstart" name="Adminisitration af hierarkier">
       <bpmn:outgoing>SequenceFlow_14zjcbt</bpmn:outgoing>
     </bpmn:startEvent>
-    <bpmn:userTask id="R89aedc6c-08e5-4005-91e3-ff643a0de0af" name="Opdater hieraki" camunda:formKey="89aedc6c-08e5-4005-91e3-ff643a0de0af">
+    <bpmn:userTask id="R89aedc6c-08e5-4005-91e3-ff643a0de0af" name="Opdater hierarki" camunda:formKey="89aedc6c-08e5-4005-91e3-ff643a0de0af">
       <bpmn:incoming>SequenceFlow_14zjcbt</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_08rl4ek</bpmn:outgoing>
     </bpmn:userTask>
