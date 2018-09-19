@@ -103,7 +103,15 @@ define([
     return promise.all(propertyNamePromises).then(function(result) {
       for (var i = 0; i < propertyDestination.length; i++) {
         var before = result[i*2];
+        if (typeof before === 'undefined') {
+          before = {};
+        }
+
         var after = result[i*2+1];
+        if (typeof after === 'undefined') {
+          after = {};
+        }
+
         switch (propertyDestination[i].key) {
           case 'activeFrom':
             propertyDestination[i].name = "Aktiv fra";
