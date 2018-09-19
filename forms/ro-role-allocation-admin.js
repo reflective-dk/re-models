@@ -17,6 +17,9 @@ define([
     this.validOnUsed = true;
   }
 
+  Form.prototype = Object.create(BaseForm.prototype);
+  Form.prototype.constructor = Form;
+
   Form.prototype.getStateAsObjects = function (validOn) {
     var self = this;
     var objects = [];
@@ -41,11 +44,11 @@ define([
     this.roleAllocAdminView.add(args.view);
 
     return promise.all([self.createRoleOptions().then(self.roleAllocAdminView.setRoleOptions),
-       self.createEmploymentOptions().then(self.roleAllocAdminView.setEmploymentOptions),
-       self.createTreeData('0b5ef848-9242-4f0f-8f80-dc79f9d898fe').then(self.roleAllocAdminView.setTreeData)])
-       .then(function() {
-         self.createRoleAllocData(args.task).then(self.roleAllocAdminView.setTableData);
-       });
+     self.createEmploymentOptions().then(self.roleAllocAdminView.setEmploymentOptions),
+     self.createTreeData('0b5ef848-9242-4f0f-8f80-dc79f9d898fe').then(self.roleAllocAdminView.setTreeData)])
+     .then(function() {
+       self.createRoleAllocData(args.task).then(self.roleAllocAdminView.setTableData);
+     });
   };
 
   Form.prototype.createRoleOptions = function () {
