@@ -135,6 +135,11 @@ define([
               root.open = true;
             }
           });
+
+          //open objects from draft
+          self.task.data.extension.snapshots.objects.forEach(function (object) {
+            allItems[object.id].open = true;
+          });
           return promise.resolve({ data: [root], parentPath: parentPath, type});
         });
       });

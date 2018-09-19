@@ -16,7 +16,6 @@ define([
     };
     this.reportView = new reportView({ form: this });
     this.data = {};
-    this.validOnUsed = true;
   }
 
   Form.prototype = Object.create(BaseForm.prototype);
