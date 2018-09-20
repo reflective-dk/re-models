@@ -1,8 +1,9 @@
 define([
   'webix', 'common/promise', 'forms', 'forms/base', 'common/utils', 'views/ro/approve'
 ], function(webix, promise, forms, BaseForm, utils, approveView) {
-
+  var self;
   function Form (args) {
+    self = this;
     if (!args) {
       args = {};
     }
@@ -13,6 +14,7 @@ define([
 
     BaseForm.call(this, args);
 
+    self = this;
     this.data = {};
     this.validOnUsed = true;
   }
@@ -21,25 +23,23 @@ define([
   Form.prototype.constructor = Form;
 
   Form.prototype.render = function (args) {
-    var self = this;
     this.approveView = approveView({ form: this });
     return this.approveView.add(args.view).then(function () {
       return getChanges(args.task.data.extension)
       .then(function(changes) {
         // Build changes tables
         changes.forEach(function(change) {
-          var table = $$('godkend_object_table');
+          var table = $$(self.approveView.ids.godkend);
           change.properties.forEach(function(prop) {
-
             table.add({
-              godkend_rt: change.timestamp,
-              godkend_vt: change.from,
+              timestamp: change.timestamp,
+              validFrom: change.from,
               author: change.author,
-              godkend_class: change.class,
-              godkend_object: change.name,
-              godkend_property: prop.name,
-              godkend_before: prop.before,
-              godkend_after: prop.after,
+              class: change.class,
+              object: change.name,
+              propertyName: prop.name,
+              propertyBeforeValue: prop.before,
+              propertyAfterValue: prop.after,
             });
           });
           table.show();
@@ -52,166 +52,214 @@ define([
   };
 
   function getChanges(ext) {
-    var propertyNamePromises = [];
-    var propertyDestination = [];
     var changes = [];
 
-    // Loop over registrations
-    ext.registrations.objects.forEach((rObj) => {
+    // Expand relations
+    return self.facilitator.expandRelations(ext.snapshots,['parents','unitType','locations'])
+    .then(function(snapshots) {
+      return self.facilitator.expandRelations(ext.registrations,['parents','unitType','locations'])
+      .then(function(registrations) {
+        registrations.objects.forEach(function(rObj) {
 
-      // Find same snapshot object with same id
-      var snap = ext.snapshots.objects.filter(snap => snap.id === rObj.id);
-      var before;
-      if (snap.length !== 0) {
-        before = getSnapshotsBefore(snap[0], new Date(rObj.registrations[0].validity[0].from), new Date(rObj.registrations[0].timestamp))[0];
-      }
-      var current = getSnapshots(snap[0], new Date(rObj.registrations[0].validity[0].from), new Date(rObj.registrations[0].timestamp))[0];
+          // Find same snapshot object with same id
+          var snaps = snapshots.objects.filter(snap => snap.id === rObj.id);
+          var before = getSnapshotsBefore(snaps, new Date(rObj.registrations[0].validity[0].from), new Date(rObj.registrations[0].timestamp))[0];
+          var current = getSnapshots(snaps, new Date(rObj.registrations[0].validity[0].from), new Date(rObj.registrations[0].timestamp))[0];
 
-      // List before / after for each changed property, build array of promises
-      var properties = [];
-      Object.keys(rObj.registrations[0].validity[0].input).forEach((key) => {
-        // Make promiese
-        propertyNamePromises.push(before ? getProperty(before.snapshot[key]) : promise.resolve(""));
-        propertyNamePromises.push(getProperty(rObj.registrations[0].validity[0].input[key]));
+          var properties = [];
+          Object.keys(rObj.registrations[0].validity[0].input).forEach((key) => {
+            // Prepare property
+            var property = {
+              key: key,
+              before: before ? before.snapshot[key] : "",
+              after: rObj.registrations[0].validity[0].input[key]
+            };
+            properties.push(property);
+          });
 
-        // Prepare property
-        var property = {
-          key: key,
-          before: "",
-          after: ""
-        };
-        properties.push(property);
-        propertyDestination.push(property);
+          var change = {
+            id: rObj.id,
+            class: current.snapshot.class ? current.snapshot.class.name : 'no class',
+            name: current.snapshot.name,
+            from: webix.i18n.dateFormatStr(new Date(rObj.registrations[0].validity[0].from)),
+            timestamp: webix.i18n.fullDateFormatStr(new Date(rObj.registrations[0].timestamp)),
+            author: rObj.registrations[0].author,
+            properties: getProperties(properties)
+          };
+          changes.push(change);
+        });
+
+        return promise.resolve(changes);
       });
-
-      changes.push({
-        id: rObj.id,
-        class: current.snapshot.class ? current.snapshot.class.name : 'no class',
-        name: current.snapshot.name,
-        from: webix.i18n.dateFormatStr(new Date(rObj.registrations[0].validity[0].from)),
-        timestamp: webix.i18n.fullDateFormatStr(new Date(rObj.registrations[0].timestamp)),
-        author: rObj.registrations[0].author,
-        properties: properties
-      });
-    });
-
-    if (propertyNamePromises.length === 0) {
-     return promise.resolve([]);
-    }
-
-    // Promise all
-    return promise.all(propertyNamePromises).then(function(result) {
-      for (var i = 0; i < propertyDestination.length; i++) {
-        var before = result[i*2];
-        if (typeof before === 'undefined') {
-          before = {};
-        }
-
-        var after = result[i*2+1];
-        if (typeof after === 'undefined') {
-          after = {};
-        }
-
-        switch (propertyDestination[i].key) {
-          case 'activeFrom':
-            propertyDestination[i].name = "Aktiv fra";
-            before = utils.fromISOString(before);
-            before = utils.toDateString(before);
-            after = utils.fromISOString(after);
-            after = utils.toDateString(after);
-            break;
-          case 'activeTo':
-            propertyDestination[i].name = "Aktiv til";
-            before = utils.fromISOString(before);
-            before = utils.toDateString(before);
-            after = utils.fromISOString(after);
-            after = utils.toDateString(after);
-            break;
-          case 'responsibilities':
-            propertyDestination[i].name = "Ansvar";
-            after = utils.toCommanListString(before,after);
-            before = utils.toCommanListString(before);
-            break;
-          case 'name':
-            propertyDestination[i].name = "Navn";
-            break;
-          case 'shortName':
-            propertyDestination[i].name = "Kort navn";
-            break;
-          case 'seNr':
-            propertyDestination[i].name = "SE-nummer";
-            break;
-          case 'ean':
-            propertyDestination[i].name = "EAN-nummer";
-            break;
-          case 'costCenter':
-            propertyDestination[i].name = "Omkostningssted";
-            break;
-          case 'class':
-            // Class is only added in first registration
-            propertyDestination[i].name = "Objekt Type";
-            after = after.name;
-            break;
-          case 'unitType':
-            // Class is only added in first registration
-            propertyDestination[i].name = "Type";
-            before = before.name;
-            after = after.name;
-            break;
-          case 'parents':
-            // Class is only added in first registration
-            propertyDestination[i].name = "Overenhed";
-            after = after.name;
-            break;
-          case 'phoneNumbers':
-            propertyDestination[i].name = "Telefon numre";
-            before = utils.asList(before);
-            after = utils.asList(after);
-            break;
-          case 'emailAddresses':
-            propertyDestination[i].name = "E-mail adresser";
-            before = utils.asList(before);
-            after = utils.asList(after);
-            break;
-          case 'mailSuffixes':
-            propertyDestination[i].name = "Mail suffix";
-            before = utils.asList(before);
-            after = utils.asList(after);
-            break;
-          case 'aliases':
-            propertyDestination[i].name = "Aliases";
-            before = utils.asList(before);
-            after = utils.asList(after);
-            break;
-
-          default:
-console.log("DEBUG: unknown key=",propertyDestination[i].key);
-console.log("DEBUG: before=",before);
-console.log("DEBUG: after=",after);
-            break;
-        }
-        propertyDestination[i].before = before;
-        propertyDestination[i].after = after;
-      }
-      return changes;
     });
   }
 
-  // Call snapshot, and return promise, for convert refs ids to snapshot name
-  function getProperty(prop) {
-    // Get name for ref. properties
-//    if (prop !== undefined && prop.id !== undefined) {
-//      return form.situ.getSnapshots([prop.id]).then(function(result) {
-//        return result.objects[0].snapshot.name;
-//      });
-//    }
-    return promise.resolve(prop);
+  function getProperties(properties) {
+    var result = [];
+    properties.forEach(function(prop) {
+      switch (prop.key) {
+      case 'activeFrom':
+        prop.before = utils.fromISOString(prop.before);
+        prop.before = utils.toDateString(prop.before);
+        prop.after = utils.fromISOString(prop.after);
+        prop.after = utils.toDateString(prop.after);
+        result.push({
+          name: "Aktiv fra",
+          before: prop.before,
+          after: prop.after
+        });
+        break;
+      case 'activeTo':
+        prop.before = utils.fromISOString(prop.before);
+        prop.before = utils.toDateString(prop.before);
+        prop.after = utils.fromISOString(prop.after);
+        prop.after = utils.toDateString(prop.after);
+        result.push({
+          name: "Aktiv til",
+          before: prop.before,
+          after: prop.after
+        });
+        break;
+      case 'responsibilities':
+        result.push({
+          name: "Ansvar",
+          after: utils.toCommanListString(prop.before,prop.after),
+          before: utils.toCommanListString(prop.before)
+        });
+        break;
+      case 'name':
+        result.push({
+          name: "Navn",
+          after: prop.after,
+          before: prop.before
+        });
+        break;
+      case 'shortName':
+        result.push({
+          name: "Kort navn",
+          after: prop.after,
+          before: prop.before
+        });
+        break;
+      case 'seNr':
+        result.push({
+          name: "SE-nummer",
+          after: prop.after,
+          before: prop.before
+        });
+        break;
+      case 'ean':
+        result.push({
+          name: "EAN-nummer",
+          after: prop.after,
+          before: prop.before
+        });
+        break;
+      case 'costCenter':
+        result.push({
+          name: "Omkostningssted",
+          after: prop.after,
+          before: prop.before
+        });
+        break;
+      case 'class':
+        // Class is only added in first registration
+        result.push({
+          name: "Klasse",
+          after: prop.after.name,
+          before: prop.before ? prop.before.name : ""
+        });
+        break;
+      case 'unitType':
+        // Class is only added in first registration
+        result.push({
+          name: "Type",
+          after: getRelationValue(prop.after),
+          before: getRelationValue(prop.before)
+        });
+        break;
+      case 'parents':
+        if (prop.after) Object.keys(prop.after).forEach(function(key) {
+          result.push({
+            name: "Overenhed "+key,
+            after: getRelationValue(prop.after[key]),
+            before: getRelationValue(prop.before[key])
+          });
+        });
+        break;
+      case 'phoneNumbers':
+        result.push({
+          name: "Telefon numre",
+          after: utils.asList(prop.after),
+          before: utils.asList(prop.before)
+        });
+        break;
+      case 'emailAddresses':
+        result.push({
+          name: "E-mail adresser",
+          after: utils.asList(prop.after),
+          before: utils.asList(prop.before)
+        });
+        break;
+      case 'mailSuffixes':
+        result.push({
+          name: "Mail suffix",
+          after: utils.asList(prop.after),
+          before: utils.asList(prop.before)
+        });
+        break;
+      case 'locations':
+        result.push({
+          name: "Lokationer",
+          after: getRelationValue(prop.after),
+          before: getRelationValue(prop.before)
+        });
+        break;
+      case 'aliases':
+        if (prop.after) Object.keys(prop.after).forEach(function(key) {
+          switch (key) {
+          case 'enName':
+            result.push({
+              name: "Navn [EN]",
+              after: prop.after[key],
+              before: prop.before ? prop.before[key] : ""
+            });
+            break;
+          case 'enShortName':
+            result.push({
+              name: "Kort navn [EN]",
+              after: prop.after[key],
+              before: prop.before ? prop.before[key] : ""
+            });
+            break;
+          case 'akronym':
+            result.push({
+              name: "Akronym",
+              after: prop.after[key],
+              before: prop.before ? prop.before[key] : ""
+            });
+            break;
+          }
+        });
+        break;
+      default:
+console.log("DEBUG: unknown key=",prop.key);
+console.log("DEBUG: before=",prop.before);
+console.log("DEBUG: after=",prop.after);
+        break;
+      }
+    });
+    return result;
+  }
+
+  function getRelationValue(relation) {
+    return relation ? relation.snapshot.name ? relation.snapshot.name : relation.id : "";
   }
 
   // Get snapshots filterd on vt and rt. Return sorted on knownOn, latest first
-  function getSnapshots(obj,vt,rt) {
+  function getSnapshots(snapshots,vt,rt) {
     var result = [];
-    obj.snapshots.forEach((snap) => {
+    snapshots.forEach((snap) => {
       var from = new Date(snap.from);
       var to = new Date(snap.to);
       if (vt >= from && (snap.to === undefined || vt < to) && snap.context.knownOn > rt) {
@@ -222,24 +270,21 @@ console.log("DEBUG: after=",after);
   }
 
   // Get snapshots that is before vt and rt. Return sorted on knownOn, latest first.
-  function getSnapshotsBefore(obj,vt,rt) {
+  function getSnapshotsBefore(snapshots,vt,rt) {
     var result = [];
-    if (obj && obj.snapshots) {
-      obj.snapshots.forEach((snap) => {
-        snap.from = new Date(snap.from);
-        var to = new Date(snap.to);
-        snap.context.knownOn = new Date(snap.context.knownOn);
+    snapshots.forEach((snap) => {
+      snap.from = new Date(snap.from);
+      var to = new Date(snap.to);
+      snap.context.knownOn = new Date(snap.context.knownOn);
 
-        // Should be known at rt, and validTo should be before er at vt
-        if (snap.to !== undefined && to <= vt && snap.context.knownOn >= rt) {
-          result.push(snap);
-        }
-      });
+      // Should be known at rt, and validTo should be before er at vt
+      if (snap.to !== undefined && to <= vt && snap.context.knownOn >= rt) {
+        result.push(snap);
+      }
+    });
 
-      // Sort by valid.to newest first
-      return result.sort((a,b) => {a.to < b.to});
-    }
-    return [undefined];
+    // Sort by valid.to newest first
+    return result.sort((a,b) => {a.to < b.to});
   }
   return Form;
 });
