@@ -44,4 +44,12 @@ registrations:
               description: Pre-rendered diagram
               type: simple
               dataType: binary
+            chain:
+              description: Target chain for final commit
+              type: simple
+              dataType: string
+            category:
+              description: Process category
+              type: simple
+              dataType: string
 ...
