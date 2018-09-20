@@ -53,7 +53,7 @@ define([
 
   Form.prototype.createRoleOptions = function () {
     return this.facilitator.getRoles().then(function(roles) {
-      var items = []; //[{id:0,value:"Vælg Rolle"}];
+      var items = [];
       roles.objects.forEach(function(obj) {
         items.push({
           id: obj.id,
@@ -74,16 +74,12 @@ define([
       var allObjects = {};
       roleAllocations.objects.forEach(function(ra) {
         ra.snapshot.id = ra.id;
-        var item = {
+        var item = Object.assign({}, ra.snapshot, {
+          id: ra.id,
           activeFrom: utils.fromISOString(ra.snapshot.activeFrom),
           activeTo: utils.fromISOString(ra.snapshot.activeTo),
-          name: ra.snapshot.name,
-          employment: ra.snapshot.employment ? ra.snapshot.employment.id : "",
-          propagateFrom: ra.snapshot.propagateFrom ? ra.snapshot.propagateFrom.id : "",
-          role: ra.snapshot.role ? ra.snapshot.role.id : "",
-          responsibilities: ra.snapshot.responsibilities ? ra.snapshot.responsibilities : {},
           snapshot: ra.snapshot
-        };
+        });
         allObjects[ra.id] = item;
         data.push(item);
       });
@@ -93,7 +89,8 @@ define([
       data.forEach(function(item) {
         if (item.newInput) {
           // Set the new data on the item
-          Object.assign(item,item.newInput);
+          Object.assign(item, item.newInput);
+          item.changed = true;
           self.changes[item.id] = item; // Keep a list over changes
         }
       });
