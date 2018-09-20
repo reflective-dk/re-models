@@ -82,65 +82,22 @@ define([
 
   // Transform query response to webix tree data, where the snapshot is added/stored in the thee items
   Form.prototype.createTreeData = function (hierarchyId) {
-    var self = this;
-
-      return this.facilitator.basekit.cacheHierarchyTypes(hierarchyId)
-      .then(function () {
-        return self.facilitator.getSnapshots([{ id: hierarchyId }])
-        .then(function (hierarchyResult) {
-          var hierarchy = hierarchyResult.objects[0];
-          var parentPath = hierarchy.snapshot.pathElements[0].relation.split('.');
-          var type = hierarchy.snapshot.pathElements[0].parentType;
-
-          return self.facilitator.getUnits(hierarchy.id).then(function (data) {
-            var possibleRoots = [];
-            var allItems = {};
-
-            // create all items and hashify
-            data.objects.forEach(function(obj) {
-              var item = {
-                id: obj.id,
-                value: obj.snapshot.name,
-                snapshot: obj.snapshot,
-                data:[]
-              };
-              allItems[obj.id] = item;
-            });
-
-            var draftIds = forms.populateFromDraft(self.task, allItems);
-            // arrange items into tree data structure
-            Object.keys(allItems).forEach(function(id) {
-              var child = allItems[id];
-
-              // Get parent object
-              // XXX: what if more than one, pathelements ? Try then one at a time?
-              var parent = child.snapshot;
-              parentPath.forEach(function(pp) {
-                if (parent) {
-                  parent = parent[pp];
-                }
-              });
-              if (parent) {
-                child.snapshot.parent = parent; // Used by form when navigatibg tree
-                allItems[parent.id].data.push(child);
-              } else {
-                // Root
-                possibleRoots.push(child);
-              }
-            });
-
-            var root;
-            possibleRoots.forEach(function (possibleRoot) {
-              if (possibleRoot.data.length > 0) {
-                root = possibleRoot;
-                root.open = true;
-              }
-            });
-
-            return promise.resolve({ data: [root], parentPath: parentPath, type: type, draftIds: draftIds});
+      var self = this;
+      return this.facilitator.cacheHierarchyTypes(hierarchyId)
+          .then(function () {
+              return self.facilitator.getSnapshots([{ id: hierarchyId }]);
+          })
+          .then(function (hierarchyResult) {
+              var hierarchy = hierarchyResult.objects[0];
+              var parentPath = hierarchy.snapshot.pathElements[0].relation.split('.');
+              var type = hierarchy.snapshot.pathElements[0].parentType;
+              return self.facilitator.getFullHierarchy(hierarchy.id)
+                  .then(function (full) {
+                      var draftIds = forms.populateFromDraft(self.task, self.facilitator.flattenTree(full));
+                      return { data: full.map(self.facilitator.webixifyTree),
+                               parentPath: parentPath, type: type, draftIds: draftIds };
+                  });
           });
-        });
-      });
   };
 
   return Form;
