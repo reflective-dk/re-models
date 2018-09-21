@@ -55,9 +55,9 @@ define([
     var changes = [];
 
     // Expand relations
-    return self.facilitator.expandRelations(ext.snapshots,['parents','unitType','locations'])
+    return self.facilitator.expandRelations(ext.snapshots,['parents','unitType','locations','responsibilities'])
     .then(function(snapshots) {
-      return self.facilitator.expandRelations(ext.registrations,['parents','unitType','locations'])
+      return self.facilitator.expandRelations(ext.registrations,['parents','unitType','locations','responsibilities'])
       .then(function(registrations) {
         registrations.objects.forEach(function(rObj) {
 
@@ -83,7 +83,7 @@ define([
             name: current.snapshot.name,
             from: webix.i18n.dateFormatStr(new Date(rObj.registrations[0].validity[0].from)),
             timestamp: webix.i18n.fullDateFormatStr(new Date(rObj.registrations[0].timestamp)),
-            author: rObj.registrations[0].author,
+            author: rObj.registrations[0].author.snapshot.name,
             properties: getProperties(properties)
           };
           changes.push(change);
@@ -123,8 +123,8 @@ define([
       case 'responsibilities':
         result.push({
           name: "Ansvar",
-          after: utils.toCommanListString(prop.before,prop.after),
-          before: utils.toCommanListString(prop.before)
+          after: utils.asList(prop.after),
+          before: utils.asList(prop.before)
         });
         break;
       case 'name':
