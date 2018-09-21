@@ -1,6 +1,6 @@
 define([
-  'webix', 'common/promise', 'forms', 'forms/base', 'common/utils', 'views/ro/approve'
-], function(webix, promise, forms, BaseForm, utils, approveView) {
+  'webix', 'common/promise', 'forms', 'forms/base', 'common/utils', 'views/ro/approve', 'lodash.get'
+], function(webix, promise, forms, BaseForm, utils, approveView, lodashGet) {
   var self;
   function Form (args) {
     self = this;
@@ -83,7 +83,7 @@ define([
             name: current.snapshot.name,
             from: webix.i18n.dateFormatStr(new Date(rObj.registrations[0].validity[0].from)),
             timestamp: webix.i18n.fullDateFormatStr(new Date(rObj.registrations[0].timestamp)),
-            author: rObj.registrations[0].author.snapshot.name,
+            author: lodashGet(rObj, 'registrations[0].author.snapshot.name', registrations[0].author.id),
             properties: getProperties(properties)
           };
           changes.push(change);
