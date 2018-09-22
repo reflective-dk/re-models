@@ -83,7 +83,7 @@ define([
             name: current.snapshot.name,
             from: webix.i18n.dateFormatStr(new Date(rObj.registrations[0].validity[0].from)),
             timestamp: webix.i18n.fullDateFormatStr(new Date(rObj.registrations[0].timestamp)),
-            author: lodashGet(rObj, 'registrations[0].author.snapshot.name', registrations[0].author.id),
+            author: rObj.registrations[0].author.snapshot ? rObj.registrations[0].author.snapshot.name : rObj.registrations[0].author.id,
             properties: getProperties(properties)
           };
           changes.push(change);
