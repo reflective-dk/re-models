@@ -59,14 +59,17 @@ define([
       return self.facilitator.getTraces(allObjects).then(function(trace) {
         trace.objects.forEach(function(obj) {
           obj.registrations.forEach(function(reg) {
-            reg.validity.forEach(function(val) {
-              if (utils.toISOString(from) < val.from && val.from < utils.toISOString(to)) {
+            var periodeType = $$(self.reportView.ids.periodeType)
+            if (periodeType == 1 || (utils.toISOString(from) <= reg.timestamp && reg.timestamp <= utils.toISOString(to))) reg.validity.forEach(function(val) {
+              if (periodeType === 2 || (utils.toISOString(from) <= val.from && val.from <= utils.toISOString(to))) {
+
                 // Iterate over properties
                 var properties = self.getProperties(val.input);
                 properties.forEach(function(property) {
                   var item = {
                     registration: utils.fromISOString(reg.timestamp),
                     validFrom: utils.fromISOString(val.from),
+//                    author: obj.registrations[0].author?(obj.registrations[0].author.snapshot?obj.registrations[0].author.snapshot.name:obj.registrations[0].author.id):"",
                     class: allSnapshots[obj.id].snapshot.class.name,
                     objectId: obj.id,
                     objectName: allSnapshots[obj.id].snapshot.name,
