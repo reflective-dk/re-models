@@ -44,31 +44,23 @@ define([
 
     this.unitAdminView = unitAdminView({ form: this, validOn: args.task.data.variables.validOn });
     return this.unitAdminView.add(args.view).then(function () {
-      var promises = [];
-
-      var createDataPromise = self.createOrganisationSelectData().then(self.unitAdminView.setHierachyData);
-      var createUnitTypeDataPromise = self.createUnitTypeSelectData().then(self.unitAdminView.setUnitTypes);
-
-      promises.push(createDataPromise);
-      promises.push(createUnitTypeDataPromise);
 
       self.unitAdminView.setTreeDataFunction(function (hierarchyId) {
         return self.createTreeData(hierarchyId);
       });
 
-      return promise.all(promises);
+      return promise.all([
+        self.createOrganisationSelectData().then(self.unitAdminView.setHierachyData),
+        self.createUnitTypeSelectData().then(self.unitAdminView.setUnitTypes),
+        self.createLocationsSelectData().then(self.unitAdminView.setLocations),
+      ]);
     });
   };
 
   Form.prototype.createOrganisationSelectData = function () {
     return this.facilitator.getOrganisations().then(function(hierarchies) {
-      var items = [{ id: 0, value: "Vælg Organisation" }];
-      hierarchies.forEach(function(obj) {
-        items.push({
-          id: obj.id,
-          value: obj.snapshot.name
-        });
-      });
+      var items = utils.asOptions({objects: hierarchies});
+      items.unshift({ id: 0, value: "Vælg Organisation" });
       return promise.resolve(items);
     });
   };
@@ -79,25 +71,33 @@ define([
     });
   };
 
+  Form.prototype.createLocationsSelectData = function () {
+    var self = this;
+    return this.facilitator.getLocations().then(function(locations) {
+      return self.facilitator.expandRelations(locations,'address').then(function(locations) {
+        return promise.resolve(utils.asOptions(locations));
+      });
+    });
+  };
 
   // Transform query response to webix tree data, where the snapshot is added/stored in the thee items
   Form.prototype.createTreeData = function (hierarchyId) {
-      var self = this;
-      return this.facilitator.cacheHierarchyTypes(hierarchyId)
-          .then(function () {
-              return self.facilitator.getSnapshots([{ id: hierarchyId }]);
-          })
-          .then(function (hierarchyResult) {
-              var hierarchy = hierarchyResult.objects[0];
-              var parentPath = hierarchy.snapshot.pathElements[0].relation.split('.');
-              var type = hierarchy.snapshot.pathElements[0].parentType;
-              return self.facilitator.getFullHierarchy(hierarchy.id)
-                  .then(function (full) {
-                      var draftIds = forms.populateFromDraft(self.task, self.facilitator.flattenTree(full));
-                      return { data: full.map(self.facilitator.webixifyTree),
-                               parentPath: parentPath, type: type, draftIds: draftIds };
-                  });
-          });
+    var self = this;
+    return this.facilitator.cacheHierarchyTypes(hierarchyId)
+      .then(function () {
+        return self.facilitator.getSnapshots([{ id: hierarchyId }]);
+      })
+      .then(function (hierarchyResult) {
+        var hierarchy = hierarchyResult.objects[0];
+        var parentPath = hierarchy.snapshot.pathElements[0].relation.split('.');
+        var type = hierarchy.snapshot.pathElements[0].parentType;
+        return self.facilitator.getFullHierarchy(hierarchy.id)
+        .then(function (full) {
+          var draftIds = forms.populateFromDraft(self.task, self.facilitator.flattenTree(full));
+          return { data: full.map(self.facilitator.webixifyTree),
+            parentPath: parentPath, type: type, draftIds: draftIds };
+        });
+      });
   };
 
   return Form;
