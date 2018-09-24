@@ -114,7 +114,7 @@ define([
   };
 
   Form.prototype.createTreeData = function (hierarchyId) {
-    return this.facilitator.basekit.fullHierarchy(hierarchyId).then(utils.webixifyTree);
+    return this.facilitator.getFullHierarchy(hierarchyId).then(utils.webixifyTree);
   };
 
   return Form;

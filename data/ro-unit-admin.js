@@ -93,8 +93,12 @@ define([
         var type = hierarchy.snapshot.pathElements[0].parentType;
         return self.facilitator.getFullHierarchy(hierarchy.id)
         .then(function (full) {
-          var draftIds = forms.populateFromDraft(self.task, self.facilitator.flattenTree(full));
-          return { data: full.map(self.facilitator.webixifyTree),
+          var all = [];
+          utils.flattenTree(full, all);
+          all = utils.asObject(all[0]);
+
+          var draftIds = forms.populateFromDraft(self.task, all);
+          return { data: full.map(utils.webixifyTree),
             parentPath: parentPath, type: type, draftIds: draftIds };
         });
       });
