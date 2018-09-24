@@ -95,12 +95,13 @@ define([
         .then(function (full) {
           var all = [];
           utils.flattenTree(full, all);
-          all = utils.asObject(all[0]);
+          all = utils.asObject(all);
 
-          var draftIds = forms.populateFromDraft(self.task, all);
-          return { data: full.map(utils.webixifyTree),
-            parentPath: parentPath, type: type, draftIds: draftIds };
-        });
+         return forms.populateFromDraft(self.task, all).then(function (draftIds) {
+          return promise.resolve({ data: full.map(utils.webixifyTree),
+            parentPath: parentPath, type: type, draftIds: draftIds });
+          });
+         });
       });
   };
 
