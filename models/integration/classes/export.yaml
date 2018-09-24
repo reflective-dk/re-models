@@ -28,4 +28,5 @@ registrations:
               dataType: binary
             timestamp:
               description: Timestamp of when the data was exported
+        from: 1900-01-01T00:00:00.000Z
 ...

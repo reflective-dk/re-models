@@ -20,4 +20,5 @@ registrations:
                 intended for assignment with respect to a specific system
               type: simple
               dataType: boolean
+        from: 1900-01-01T00:00:00.000Z
 ...

@@ -25,4 +25,5 @@ registrations:
               dataType:
                 type: relation
                 target: { id: afe35808-2e39-4a0a-bed9-19b402fc305e, name: Unit Type Hierarchy }
+        from: 1900-01-01T00:00:00.000Z
 ...

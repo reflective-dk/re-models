@@ -35,4 +35,5 @@ registrations:
               dataType:
                 type: relation
                 target: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
+        from: 1900-01-01T00:00:00.000Z
 ...

@@ -11,4 +11,5 @@ registrations:
           extends: { id: 5ea08fe4-35c6-434f-a15a-a84eb766ca71, name: KLE Element }
           name: KLE Hovedgruppe
           description: A KLE Hovedgruppe
+        from: 1900-01-01T00:00:00.000Z
 ...

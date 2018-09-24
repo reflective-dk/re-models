@@ -32,4 +32,5 @@ registrations:
               dataType:
                 type: relation
                 target: { id: 1938d89b-a935-412d-a23c-02709fe63c0c, name: System Access }
+        from: 1900-01-01T00:00:00.000Z
 ...

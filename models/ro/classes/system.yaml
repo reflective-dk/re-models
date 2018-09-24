@@ -17,4 +17,5 @@ registrations:
               dataType:
                 type: relation
                 target: { id: fe883d94-fa45-4e6f-a004-80cf0324ece5, name: Vendor }
+        from: 1900-01-01T00:00:00.000Z
 ...

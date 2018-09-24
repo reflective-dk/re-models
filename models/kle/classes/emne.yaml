@@ -45,4 +45,5 @@ registrations:
               dataType:
                 type: relation
                 target: { id: 343fcd74-b73a-486d-b81f-7eb52d809915, name: KLE Handlingsfacet }
+        from: 1900-01-01T00:00:00.000Z
 ...

@@ -66,4 +66,5 @@ registrations:
               dataType:
                 type: relation
                 target: { id: 5cad9972-6560-4136-a9d5-40c2d109be9b, name: Unit }
+        from: 1900-01-01T00:00:00.000Z
 ...

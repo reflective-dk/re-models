@@ -22,4 +22,5 @@ registrations:
               description: Multihash pointing to the static data
               type: simple
               dataType: binary
+        from: 1900-01-01T00:00:00.000Z
 ...

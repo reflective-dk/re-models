@@ -45,4 +45,5 @@ registrations:
               dataType:
                 type: relation
                 target: { id: aa6b2598-47c2-4a80-8bf0-bfa83e6afae8, name: KLE Emne }
+        from: 1900-01-01T00:00:00.000Z
 ...

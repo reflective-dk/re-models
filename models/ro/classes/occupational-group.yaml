@@ -14,4 +14,5 @@ registrations:
               dataType:
                 type: relation
                 target: { id: 677d4ec4-838c-44fa-a4fa-be1bd726fc57, name: Occupational Group }
+        from: 1900-01-01T00:00:00.000Z
 ...

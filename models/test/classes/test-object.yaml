@@ -26,4 +26,5 @@ registrations:
               dataType:
                 type: relation
                 target: { id: d2e6e577-55e1-413b-9ea0-420d16860068, name: Test Object }
+        from: 1900-01-01T00:00:00.000Z
 ...

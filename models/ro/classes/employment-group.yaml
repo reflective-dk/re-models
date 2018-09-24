@@ -47,4 +47,5 @@ registrations:
               dataType:
                 type: relation
                 target: { id: 38df45c2-f4e2-4ffd-b91f-bc509ce8bcbf, name: User Account }
+        from: 1900-01-01T00:00:00.000Z
 ...

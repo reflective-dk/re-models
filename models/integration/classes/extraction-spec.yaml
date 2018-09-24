@@ -30,4 +30,5 @@ registrations:
               dataType:
                 type: relation
                 target: { id: 8b5bcbb1-6970-463b-b93e-d2f6ad2bfeb2, name: Unstager }
+        from: 1900-01-01T00:00:00.000Z
 ...

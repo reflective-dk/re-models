@@ -12,4 +12,5 @@ registrations:
           description: >-
             This class is primarily used by extending classes to declare the
             intent for being used as mixins rather than stand-alone classes
+        from: 1900-01-01T00:00:00.000Z
 ...

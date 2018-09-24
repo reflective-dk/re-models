@@ -11,4 +11,5 @@ registrations:
           extends: { id: 2da6e709-3f63-47d9-a197-bda06fb86936, name: Entity }
           name: Vendor
           description: A Vendor something eg. system
+        from: 1900-01-01T00:00:00.000Z
 ...

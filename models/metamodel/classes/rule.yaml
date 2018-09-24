@@ -54,4 +54,5 @@ registrations:
             predicate:
               type: json
               schema: {} # TODO: Specify valid properties
+        from: 1900-01-01T00:00:00.000Z
 ...

@@ -30,4 +30,5 @@ registrations:
               dataType:
                 type: relation
                 target: { id: efefe41d-805b-478f-8e4d-841085cb7dfa, name: Type Map }
+        from: 1900-01-01T00:00:00.000Z
 ...

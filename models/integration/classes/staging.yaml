@@ -22,4 +22,5 @@ registrations:
               description: Names of all attributes left out in the staging process
               type: map
               dataType: string
+        from: 1900-01-01T00:00:00.000Z
 ...

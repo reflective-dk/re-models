@@ -26,4 +26,5 @@ registrations:
               dataType:
                 type: relation
                 target: { id: e81c542d-76c9-4396-af3a-39c223c1a5a4, name: Property Sheet }
+        from: 1900-01-01T00:00:00.000Z
 ...

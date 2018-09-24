@@ -49,4 +49,5 @@ registrations:
               schema:
                 type: string
                 pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
+        from: 1900-01-01T00:00:00.000Z
 ...
