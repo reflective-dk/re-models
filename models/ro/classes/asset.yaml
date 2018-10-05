@@ -19,6 +19,6 @@ registrations:
               type: map
               dataType:
                 type: relation
-                target: { id: 6409095a-44a1-4033-a072-21460ae9f95a, name Asset }
+                target: { id: 6409095a-44a1-4033-a072-21460ae9f95a, name: Asset }
         from: 1900-01-01T00:00:00.000Z
 ...
