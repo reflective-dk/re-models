@@ -28,5 +28,7 @@ registrations:
               dataType: binary
             timestamp:
               description: Timestamp of when the data was pulled in from the external system
+              type: simple
+              dataType: dateTime
         from: 1900-01-01T00:00:00.000Z
 ...
