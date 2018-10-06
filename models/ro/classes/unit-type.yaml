@@ -20,10 +20,5 @@ registrations:
               dataType:
                 type: relation
                 target: { id: acdce88a-ec17-4d39-a850-a083d64c28ac, name: Unit Type }
-            owner:
-              type: simple
-              dataType:
-                type: relation
-                target: { id: afe35808-2e39-4a0a-bed9-19b402fc305e, name: Unit Type Hierarchy }
         from: 1900-01-01T00:00:00.000Z
 ...
