@@ -25,6 +25,12 @@ registrations:
               dataType:
                 type: json
                 schema: {}
+            primaryType:
+              description: The primary type of elements in the hierarchy
+              type: simple
+              dataType:
+                type: relation
+                target: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
             relatedTypes:
               description: >-
                 This is a collection of types loosely connected to the hierarchy
