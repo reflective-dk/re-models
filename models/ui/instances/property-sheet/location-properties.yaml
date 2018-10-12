@@ -10,11 +10,10 @@ registrations:
           language: da
           elements:
             e00: { label: P-nummer, id: pNr }
-            e01: { label: Adresse, id: address.snapshot.streetAddress }
-            e02: { label: Stednavn, id: address.snapshot.streetAddress2 }
-            e03: { label: Postnummer, id: address.snapshot.postalCode }
-            e04: { label: By, id: address.snapshot.city }
-            e05: { label: Land, id: address.snapshot.country }
-            e06: { label: Aktiv fra, id: activeFrom$ }
-            e07: { label: Aktiv til, id: activeTo$ }
+            e01: { label: Telefon, id: phoneNumbers$ }
+            e02: { label: Adresse, id: address.snapshot.streetAddress }
+            e03: { label: Adresse 2, id: address.snapshot.streetAddress2 }
+            e04: { label: Postnummer, id: address.snapshot.postalCode }
+            e05: { label: By, id: address.snapshot.city }
+            e06: { label: Land, id: address.snapshot.country }
 ...
