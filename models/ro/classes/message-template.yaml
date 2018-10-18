@@ -1,0 +1,24 @@
+# Message Template Class
+---
+id: 07fbb512-6d24-4f3c-bd00-77a1b46cd7d7
+mimeType: application/vnd.reflective-dk.object+json
+registrations:
+  - validity:
+      - input:
+          model: { id: 17960fc5-7a6d-4e0b-95d8-f20934493819, name: Reflective Organization }
+          # Responsible actor - actor: { id: actor.id }
+          class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
+          extends: { id: 2da6e709-3f63-47d9-a197-bda06fb86936, name: Entity }
+          name: Message Template
+          description: A message template for things like email messages
+          properties:
+            subject:
+              description: Template of subject field for a message
+              type: simple
+              dataType: string
+            body:
+              description: Multihash pointing to body template
+              type: simple
+              dataType: binary
+        from: 1900-01-01T00:00:00.000Z
+...
