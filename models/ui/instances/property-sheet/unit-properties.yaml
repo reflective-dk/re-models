@@ -17,6 +17,7 @@ registrations:
             e05: { label: SE-Nummer, id: seNr }
             e06: { label: EAN-Nummer, id: ean }
             e07: { label: Eksternt enheds-id, id: foreignIds.ekstern }
-            e08: { label: Aktiv fra, id: activeFrom$ }
-            e09: { label: Aktiv til, id: activeTo$ }
+            e08: { label: Omkostningssted, id: costCenter }
+            e09: { label: Aktiv fra, id: activeFrom$ }
+            e10: { label: Aktiv til, id: activeTo$ }
 ...
