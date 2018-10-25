@@ -1,0 +1,9 @@
+---
+id: 5864bf1e-86dd-414c-8742-0c173c5656a7
+mimeType: application/vnd.reflective-dk.object+json
+registrations:
+  - validity:
+      - input:
+          class: { id: 54985140-62ec-49fd-b05a-661e090c405f, name: Model }
+          name: IntraNote Model
+...
