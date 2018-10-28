@@ -66,8 +66,8 @@ registrations:
               dataType:
                 type: relation
                 target: { id: acdce88a-ec17-4d39-a850-a083d64c28ac, name: Unit Type }
-            costCenter:
-              type: simple
+            costCenters:
+              type: map
               dataType: string
         from: 1900-01-01T00:00:00.000Z
 ...
