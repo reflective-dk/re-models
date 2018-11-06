@@ -1,0 +1,22 @@
+# Has Location Class
+---
+id: b717f9b3-10be-4455-9145-36bfc8746473
+mimeType: application/vnd.reflective-dk.object+json
+registrations:
+  - validity:
+      - input:
+          model: { id: 99aab70a-b294-44ca-a979-9c80ebe2997d, name: Entity Model }
+          # Responsible actor - actor: { id: actor.id }
+          class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
+          extends: { id: da53fe35-c03f-4d61-9e25-dbd9c2c2e56b, name: Mixin }
+          name: Has Location
+          description: >-
+            Add this mixin to a class to make it possible to identify its instances that has locations relation
+          properties:
+            locations:
+              type: map
+              dataType:
+                type: relation
+                target: { id: cfd8d4db-96cd-45e2-8de7-0b257b63a4e7, name: Location }
+        from: 1900-01-01T00:00:00.000Z
+...

@@ -9,6 +9,8 @@ registrations:
           # Responsible actor - actor: { id: actor.id }
           class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
           extends: { id: 2da6e709-3f63-47d9-a197-bda06fb86936, name: Entity }
+          mixins:
+            0: { id: b717f9b3-10be-4455-9145-36bfc8746473, name: Has Locations }
           name: Unit
           description: An organizational unit
           properties:

@@ -12,6 +12,9 @@ registrations:
           name: Location
           description: A location that represents one Production Unit ('P-nummer')
           properties:
+            primary:
+              type: simple
+              dataType: string
             pNr:
               type: simple
               dataType: string
