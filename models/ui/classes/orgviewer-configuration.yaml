@@ -20,6 +20,12 @@ registrations:
               dataType:
                 type: relation
                 target: { id: 41e0ef9b-01f3-41fd-aa39-6bcb40374704, name: Tenant }
+            treeNodeTemplate:
+              description: >-
+                Optional template string used for customizing the tree nodes in
+                the orgviewer hierarchy table
+              type: simple
+              dataType: string
             propertySheets:
               description: Property Sheets to use for the Orgviewer
               type: simple
