@@ -15,5 +15,13 @@ registrations:
             host:
               type: simple
               dataType: string
+            municipality:
+              type: simple
+              dataType: string
+            organization:
+              type: simple
+              dataType:
+                type: relation
+                target: { id: 5fa95ccd-a801-4cbb-9400-e7e1ee7cee44, name: Organization }
         from: 1900-01-01T00:00:00.000Z
 ...
