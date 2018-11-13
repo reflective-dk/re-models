@@ -12,7 +12,7 @@ registrations:
           name: STSOrgSync Unit
           description: An organizational unit for middlelayer model STSOrgSync
           properties:
-            Overenhed:
+            ParentOrgUnitUuid:
               type: simple
               dataType:
                 type: relation
