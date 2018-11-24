@@ -14,6 +14,12 @@ registrations:
             Specifies an extraction of data targeting a specific system and
             tenant
           properties:
+            extractInactiveObjects:
+              description: >-
+                Indicates whether to include inactive objects in the extraction
+                process (based on the values of activeFrom/activeTo)
+              type: simple
+              dataType: boolean
             extraction:
               description: >-
                 Type Maps used to prepare the data for export. This typically
