@@ -1,0 +1,27 @@
+# STSOrgSync Unit Class
+---
+id: 5c71d76c-9c97-4365-ade6-4bb0add4546f
+mimeType: application/vnd.reflective-dk.object+json
+registrations:
+  - validity:
+      - input:
+          model: { id: 966d055b-9327-4cb6-a0bd-ae02c6c8531b, name: STSOrgSync model }
+          # Responsible actor - actor: { id: actor.id }
+          class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
+          extends: { id: 2da6e709-3f63-47d9-a197-bda06fb86936, name: Entity }
+          name: STSOrgSync Unit
+          description: An organizational unit for middlelayer model STSOrgSync
+          properties:
+            ParentOrgUnitUuid:
+              type: simple
+              dataType:
+                type: relation
+                target: { id: 5c71d76c-9c97-4365-ade6-4bb0add4546f, name: STSOrgSync Unit }
+            Uuid:
+              type: simple
+              dataType: string
+            Name:
+              type: simple
+              dataType: string
+        from: 1900-01-01T00:00:00.000Z
+...
