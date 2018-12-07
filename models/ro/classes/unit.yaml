@@ -70,7 +70,7 @@ registrations:
               type: map
               dataType: string
             aggregateSubTree:
-              decription: >-
+              description: >-
                 This collection is used to indicate if the unit is to be treated
                 as a leaf, for the purposes of extracting data to external
                 systems. By setting a value in this collection to true, type maps
