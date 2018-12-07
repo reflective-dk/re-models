@@ -69,5 +69,13 @@ registrations:
             costCenters:
               type: map
               dataType: string
+            aggregateSubTree:
+              decription: >-
+                This collection is used to indicate if the unit is to be treated
+                as a leaf, for the purposes of extracting data to external
+                systems. By setting a value in this collection to true, type maps
+                can be directed to treat the unit as a leaf
+              type: map
+              dataType: boolean
         from: 1900-01-01T00:00:00.000Z
 ...
