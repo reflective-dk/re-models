@@ -18,7 +18,7 @@ registrations:
             e06: { label: Medarbejder-id, id: StaffNo }
             e07: { label: Afdelings-id, id: DepartmentNo }
             e08: { label: Afdeling, id: DepartmentText }
-            e19: { label: Telefon, id: Telephone }
+            e19: { label: Telefon, id: phoneNumber$ }
             e10: { label: Adresse, id: Address1 }
             e11: { label: Adresse 2, id: Address2 }
             e12: { label: Postnr., id: Zip }
