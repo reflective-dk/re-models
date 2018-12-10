@@ -18,4 +18,5 @@ registrations:
             e06: { label: Telefon, id: person.snapshot.phoneNumbers$ }
             e07: { label: E-mail, id: person.snapshot.emailAddresses$ }
             e08: { label: Adresse, id: address.snapshot.name }
+        from: 1900-01-01T00:00:00.000Z
 ...

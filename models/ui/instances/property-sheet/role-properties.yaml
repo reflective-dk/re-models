@@ -21,4 +21,5 @@ registrations:
             e07: { label: Ekspertise, id: assignment.snapshot.expertise }
             e08: { label: Interesse, id: assignment.snapshot.interests }
             e09: { label: Følsomhed, id: assignment.snapshot.sensitivity }
+        from: 1900-01-01T00:00:00.000Z
 ...

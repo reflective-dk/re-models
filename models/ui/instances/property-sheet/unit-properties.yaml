@@ -20,4 +20,5 @@ registrations:
             e08: { label: Omkostningssted, id: costCenter }
             e09: { label: Aktiv fra, id: activeFrom$ }
             e10: { label: Aktiv til, id: activeTo$ }
+        from: 1900-01-01T00:00:00.000Z
 ...
