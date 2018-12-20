@@ -1,0 +1,15 @@
+# LDAP Stager Class
+---
+id: 9a1669a1-f07b-4733-b2b0-7069c70e438c
+mimeType: application/vnd.reflective-dk.object+json
+registrations:
+  - validity:
+      - input:
+          model: { id: 855ad3bd-d62a-407c-8a33-8f49bbcc8995, name: Integration Model }
+          # Responsible actor - actor: { id: actor.id }
+          class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
+          extends: { id: 05f1c11b-da14-49c1-8f8a-7b5e48bc6c04, name: Stager }
+          name: LDAP Stager
+          description: Mechanism for staging LDAP Entries from LDAP client
+        from: 1900-01-01T00:00:00.000Z
+...
