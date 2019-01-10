@@ -1,0 +1,31 @@
+---
+id: 5b047e3d-09a2-4336-96d3-13cc8f591467
+mimeType: application/vnd.reflective-dk.object+json
+registrations:
+  - validity:
+      - input:
+          class: { id: e81c542d-76c9-4396-af3a-39c223c1a5a4, name: Property Sheet }
+          name: Intra Note Entry Properties
+          sheetKey: intra-note-entry
+          language: da
+          elements:
+            e00: { label: Navn, id: name$ }
+            e01: { label: Fornavn, id: Firstname }
+            e02: { label: Efternavn, id: Surname }
+            e03: { label: Initialer, id: Initials }
+            e04: { label: CPR-nummer, id: CprNumber }
+            e05: { label: E-mail, id: Email }
+            e06: { label: Medarbejder-id, id: StaffNo }
+            e07: { label: Afdelings-id, id: DepartmentNo }
+            e08: { label: Afdeling, id: DepartmentText }
+            e19: { label: Telefon, id: phoneNumber$ }
+            e10: { label: Adresse, id: Address1 }
+            e11: { label: Adresse 2, id: Address2 }
+            e12: { label: Postnr., id: Zip }
+            e13: { label: By, id: City }
+            e14: { label: Stilling, id: Job }
+            e15: { label: NT-Login, id: NTLogin }
+            e16: { label: Aktiv fra, id: activeFrom$ }
+            e17: { label: Aktiv til, id: activeTo$ }
+        from: 1900-01-01T00:00:00.000Z
+...

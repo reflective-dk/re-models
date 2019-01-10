@@ -14,10 +14,11 @@ registrations:
             e02: { label: Overordnet, id: parentName }
             e03: { label: Telefon, id: phoneNumbers$ }
             e04: { label: E-mail, id: emailAddresses$ }
-            e05: { label: SE-Nummer, id: seNr }
-            e06: { label: EAN-Nummer, id: ean }
+            e05: { label: SE-nummer, id: seNr }
+            e06: { label: EAN-nummer, id: ean }
             e07: { label: Eksternt enheds-id, id: foreignIds.ekstern }
-            e08: { label: Omkostningssted, id: costCenter }
+            e08: { label: Omkostningssteder, id: costCenters$ }
             e09: { label: Aktiv fra, id: activeFrom$ }
             e10: { label: Aktiv til, id: activeTo$ }
+        from: 1900-01-01T00:00:00.000Z
 ...

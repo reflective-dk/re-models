@@ -22,4 +22,11 @@ registrations:
             role:
               id: 5974cf9d-b952-455a-bd83-b88b5491f69b
               name: Role Properties
+            intraNoteUnit:
+              id: 9974c540-86f4-4318-bf32-01a326d3b1f7
+              name: IntraNote Unit Properties
+            intraNoteEntry:
+              id: 5b047e3d-09a2-4336-96d3-13cc8f591467
+              name: IntraNote Entry Properties
+        from: 1900-01-01T00:00:00.000Z
 ...

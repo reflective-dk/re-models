@@ -23,6 +23,12 @@ registrations:
               dataType:
                 type: relation
                 target: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
+            source:
+              description: >-
+                optional, can be provided to only include objects for staging from some commits
+                arguments domain, chain and depth are minimum
+              type: map
+              dataType: string
             includeAll:
               description: >-
                 Indicates whether to include all object attributes in the

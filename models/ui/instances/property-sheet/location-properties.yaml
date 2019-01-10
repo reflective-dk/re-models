@@ -16,4 +16,5 @@ registrations:
             e04: { label: Postnummer, id: address.snapshot.postalCode }
             e05: { label: By, id: address.snapshot.city }
             e06: { label: Land, id: address.snapshot.country }
+        from: 1900-01-01T00:00:00.000Z
 ...
