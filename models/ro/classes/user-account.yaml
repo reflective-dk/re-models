@@ -17,6 +17,9 @@ registrations:
             username:
               type: simple
               dataType: string
+            disabled:
+              type: simple
+              dataType: boolean
             homeDirectory:
               type: simple
               dataType: string
