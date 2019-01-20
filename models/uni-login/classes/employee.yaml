@@ -1,0 +1,32 @@
+# UNI-Login Employee Class
+---
+id: 5bbdb4bc-ad07-431f-a8cf-dd40db0d80a8
+mimeType: application/vnd.reflective-dk.object+json
+registrations:
+  - validity:
+      - input:
+          model: { id: e967154c-e026-4e8f-a1d2-bcf1db928311, name: UNI-Login Model }
+          # Responsible actor - actor: { id: actor.id }
+          class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
+          extends: { id: c4315fa9-3765-40c0-ba45-ef821c416f83, name: Object }
+          name: UNI-Login Employee
+          description: An employee as represented by UNI-Login
+          properties:
+            Institution:
+              type: simple
+              dataType:
+                type: relation
+                target:
+                  id: e14f0990-fcb4-4ffe-ad91-612a1f15052e
+                  name: UNI-Login Institution
+            Role:
+              type: simple
+              dataType: string
+            ShortName:
+              type: simple
+              dataType: string
+            Occupation:
+              type: simple
+              dataType: string
+        from: 1900-01-01T00:00:00.000Z
+...

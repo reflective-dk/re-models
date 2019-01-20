@@ -1,0 +1,38 @@
+# UNI-Login InstitutionPerson Class
+---
+id: fc0a703e-9724-4f3e-ae8e-fcaa39f2c824
+mimeType: application/vnd.reflective-dk.object+json
+registrations:
+  - validity:
+      - input:
+          model: { id: e967154c-e026-4e8f-a1d2-bcf1db928311, name: UNI-Login Model }
+          # Responsible actor - actor: { id: actor.id }
+          class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
+          extends: { id: c4315fa9-3765-40c0-ba45-ef821c416f83, name: Object }
+          name: UNI-Login InstitutionPerson
+          description: A person as represented by UNI-Login
+          properties:
+            Institution:
+              type: simple
+              dataType:
+                type: relation
+                target:
+                  id: e14f0990-fcb4-4ffe-ad91-612a1f15052e
+                  name: UNI-Login Institution
+            FirstName:
+              type: simple
+              dataType: string
+            FamilyName:
+              type: simple
+              dataType: string
+            CivilRegistrationNumber:
+              type: simple
+              dataType: string
+            EmailAddress:
+              type: simple
+              dataType: string
+            BirthDate:
+              type: simple
+              dataType: dateTime
+        from: 1900-01-01T00:00:00.000Z
+...
