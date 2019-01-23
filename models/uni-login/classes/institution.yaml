@@ -12,13 +12,7 @@ registrations:
           name: UNI-Login Institution
           description: An institution as represented by UNI-Login
           properties:
-            Role:
-              type: simple
-              dataType: string
-            ShortName:
-              type: simple
-              dataType: string
-            Occupation:
+            Number:
               type: simple
               dataType: string
         from: 1900-01-01T00:00:00.000Z

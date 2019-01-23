@@ -1,6 +1,6 @@
-# LDAP Fetcher Class
+# UNI-Login Fetcher Class
 ---
-id: d235585b-b7be-4cd5-be01-95e755570f0a
+id: f5740992-e7fb-4bd7-b33f-9536b5595af0
 mimeType: application/vnd.reflective-dk.object+json
 registrations:
   - validity:
@@ -9,21 +9,17 @@ registrations:
           # Responsible actor - actor: { id: actor.id }
           class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
           extends: { id: a28e7d85-66a0-48bf-986b-a90ece6b87d5, name: Fetcher }
-          name: LDAP Fetcher
+          name: UNI-Login Fetcher
           description: >-
-            Creates import object from LDAP stream
+            Creates import object from UNI-Login WS Export stream
           properties:
             credentials:
               description: A string identifying an environment variable to get credentials from a file in integrator image
               type: simple
               dataType: string
-            filter:
-              description: Filter to select objects from LDAP
+            instnr:
+              description: Number identifying institution to fetch
               type: simple
-              dataType: string
-            attributes:
-              description: Attributes to fetch from LDAP
-              type: array
               dataType: string
         from: 1900-01-01T00:00:00.000Z
 ...
