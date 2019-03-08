@@ -1,0 +1,42 @@
+# Opus Function Class
+---
+id: 33342c0b-076a-4f95-b391-8ab52ba64fa6
+mimeType: application/vnd.reflective-dk.object+json
+registrations:
+  - validity:
+      - input:
+          model: { id: 513421bc-7994-4ee5-a67b-4f29a903d7da, name: KMD Opus Model }
+          # Responsible actor - actor: { id: actor.id }
+          class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
+          extends: { id: c4315fa9-3765-40c0-ba45-ef821c416f83, name: Object }
+          name: Opus Function
+          description: An employee function
+          properties:
+            artId:
+              type: simple
+              dataType: string
+            artText:
+              type: simple
+              dataType: string
+            orgDaekning:
+              type: simple
+              dataType: string
+            members:
+              type: simple
+              dataType: string
+            roleId:
+              type: simple
+              dataType: string
+            employee:
+              type: simple
+              dataType:
+                type: relation
+                target: { id: 16eeb8d9-b2f7-486c-96a5-2a75d4ea983d, name: Opus Employee }
+            startDate:
+              type: simple
+              dataType: dateTime
+            endDate:
+              type: simple
+              dataType: dateTIme
+        from: 1900-01-01T00:00:00.000Z
+...
