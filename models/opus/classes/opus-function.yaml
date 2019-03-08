@@ -27,6 +27,9 @@ registrations:
             roleId:
               type: simple
               dataType: string
+            roleText:
+              type: simple
+              dataType: string
             employee:
               type: simple
               dataType:
