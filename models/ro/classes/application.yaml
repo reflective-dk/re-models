@@ -1,0 +1,15 @@
+# Application Class
+---
+id: 667fd8c5-9a50-4488-ab6c-b1afe3ed6495
+mimeType: application/vnd.reflective-dk.object+json
+registrations:
+  - validity:
+      - input:
+          model: { id: 17960fc5-7a6d-4e0b-95d8-f20934493819, name: Reflective Organization }
+          # Responsible actor - actor: { id: actor.id }
+          class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
+          extends: { id: 2da6e709-3f63-47d9-a197-bda06fb86936, name: Entity }
+          name: Right
+          description: Right required by application
+        from: 1900-01-01T00:00:00.000Z
+...
