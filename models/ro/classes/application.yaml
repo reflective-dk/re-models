@@ -9,7 +9,7 @@ registrations:
           # Responsible actor - actor: { id: actor.id }
           class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
           extends: { id: 2da6e709-3f63-47d9-a197-bda06fb86936, name: Entity }
-          name: Right
-          description: Right required by application
+          name: Application
+          description: An application comprising af set of function or operations
         from: 1900-01-01T00:00:00.000Z
 ...
