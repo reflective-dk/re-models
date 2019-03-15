@@ -18,9 +18,11 @@ registrations:
             # _role assignment_ responsibilities (which is potentially only a subset)
             e05: { label: Ansvar, id: role.snapshot.responsibilities$ }
             e06: { label: Ledelsesniveau, id: assignment.snapshot.aliases.ledelsesniveau }
-            e07: { label: System, id: system.snapshot.name }
-            e08: { label: Ekspertise, id: assignment.snapshot.expertise }
-            e09: { label: Interesse, id: assignment.snapshot.interests }
-            e10: { label: Følsomhed, id: assignment.snapshot.sensitivity }
+            e07: { label: Godkenderniveau, id: assignment.snapshot.aliases.godkenderniveau }
+            e08: { label: Beløbsgrænse, id: assignment.snapshot.aliases.beloebsgraense }
+            e09: { label: System, id: system.snapshot.name }
+            e10: { label: Ekspertise, id: assignment.snapshot.expertise }
+            e11: { label: Interesse, id: assignment.snapshot.interests }
+            e12: { label: Følsomhed, id: assignment.snapshot.sensitivity }
         from: 1900-01-01T00:00:00.000Z
 ...
