@@ -18,5 +18,7 @@ registrations:
             e06: { label: Telefon, id: employment.snapshot.phoneNumbers$ }
             e07: { label: Eksternt medarbejder-id, id: employment.snapshot.eksternId$ }
             e08: { label: AD Distinguished Name, id: employment.snapshot.foreignIds.dn }
+            e09: { label: Timetal (tæller), id: position.snapshot.aliases.taeller }
+            e10: { label: Timetal (nævner), id: position.snapshot.aliases.naevner }
         from: 1900-01-01T00:00:00.000Z
 ...

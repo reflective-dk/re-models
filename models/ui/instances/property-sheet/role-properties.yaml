@@ -17,9 +17,10 @@ registrations:
             # For now, were displaying the _role_ responsibilities, not the
             # _role assignment_ responsibilities (which is potentially only a subset)
             e05: { label: Ansvar, id: role.snapshot.responsibilities$ }
-            e06: { label: System, id: system.snapshot.name }
-            e07: { label: Ekspertise, id: assignment.snapshot.expertise }
-            e08: { label: Interesse, id: assignment.snapshot.interests }
-            e09: { label: Følsomhed, id: assignment.snapshot.sensitivity }
+            e06: { label: Ledelsesniveau, id: role.snapshot.aliases.ledelsesniveau }
+            e07: { label: System, id: system.snapshot.name }
+            e08: { label: Ekspertise, id: assignment.snapshot.expertise }
+            e09: { label: Interesse, id: assignment.snapshot.interests }
+            e10: { label: Følsomhed, id: assignment.snapshot.sensitivity }
         from: 1900-01-01T00:00:00.000Z
 ...
