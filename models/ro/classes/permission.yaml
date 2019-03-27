@@ -10,7 +10,7 @@ registrations:
           class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
           extends: { id: 2da6e709-3f63-47d9-a197-bda06fb86936, name: Entity }
           name: Permission
-          description: Granting permission to right by responsibility
+          description: Granting permission to right by responsibility, to objects specifified or all
           properties:
             right:
               type: simple
@@ -22,5 +22,17 @@ registrations:
               dataType:
                 type: relation
                 target: { id: f5155ea0-3e2f-4dcf-832a-c0fc99f2fbb4, name: Responsibility }
+            target:
+              type: simple
+              dataType:
+                type: relation
+            all:
+              type: simple
+              dataType:
+                type: boolean
+            specific:
+              type: simple
+              dataType:
+                type: relation
         from: 1900-01-01T00:00:00.000Z
 ...
