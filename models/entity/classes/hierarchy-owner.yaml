@@ -13,11 +13,5 @@ registrations:
           description: >-
             Add this mixin to a class to make it possible to identify its
             instances as owners of a hierarchy
-          properties:
-            hierarchy:
-              type: simple
-              dataType:
-                type: relation
-                target: { id: a07908c1-883f-41e6-9beb-02981f48b067, name: Hierarchy }
         from: 1900-01-01T00:00:00.000Z
 ...

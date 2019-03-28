@@ -20,6 +20,11 @@ registrations:
             rootFilter:
               type: map
               dataType: string
+            owner:
+              description: The structure, which the hierarchy is a representation of
+              type: simple
+              dataType:
+                type: relation
             pathElements:
               type: map
               dataType:
