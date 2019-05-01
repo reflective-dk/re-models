@@ -1,0 +1,12 @@
+# AD model
+---
+id: 863d8e15-99a9-452e-8dc5-2e49df2cb770
+mimeType: application/vnd.reflective-dk.object+json
+registrations:
+  - validity:
+      - input:
+          # Responsible actor - actor: { id: actor.id }
+          class: { id: 54985140-62ec-49fd-b05a-661e090c405f, name: Model }
+          name: AD Model
+          description: This model defines types and rules for AD
+...
