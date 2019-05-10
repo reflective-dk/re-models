@@ -9,6 +9,9 @@ registrations:
           name: Test Integration Spec
           tenant: { id: 7857db3f-1929-4100-86ea-a971369bd1a5, name: Test Tenant }
           system: { id: 96600be1-f12a-4841-8c90-7a3cdfed0edf, name: Test System }
+          sources:
+            some:
+              id: b9115fad-a456-47cd-ad74-848ea44a670f
           fetchers:
             test:
               id: e42e5f7d-3b2a-4f36-8230-4bc78631be5c
