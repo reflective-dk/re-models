@@ -14,9 +14,7 @@ registrations:
             e02: { label: Rolle, id: role.snapshot.name }
             e03: { label: Aktiv fra, id: assignment.snapshot.activeFrom$ }
             e04: { label: Aktiv til, id: assignment.snapshot.activeTo$ }
-            # For now, were displaying the _role_ responsibilities, not the
-            # _role assignment_ responsibilities (which is potentially only a subset)
-            e05: { label: Ansvar, id: role.snapshot.responsibilities$ }
+            e05: { label: Ansvar, id: assignment.snapshot.responsibilities$ }
             e06: { label: Ledelsesniveau, id: assignment.snapshot.aliases.ledelsesniveau }
             e07: { label: Godkenderniveau, id: assignment.snapshot.aliases.godkenderniveau }
             e08: { label: Beløbsgrænse, id: assignment.snapshot.aliases.beloebsgraense }
