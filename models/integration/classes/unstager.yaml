@@ -25,10 +25,19 @@ registrations:
                 target: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
             source:
               description: >-
-                optional, can be provided to only include objects for staging from some commits
-                arguments domain, chain and depth are minimum
+                Optional. When provided, any Extraction object is disregarded
+                and objects from certain commits are unstaged instead. Mandatory
+                arguments are domain, chain and depth
               type: map
               dataType: string
+            hierarchy:
+              description: >-
+                Optional. When provided, any Extraction object is disregarded and
+                objects from the specified hierarchy are unstaged instead
+              type: simple
+              dataType:
+                type: relation
+                target: { id: a07908c1-883f-41e6-9beb-02981f48b067, name: Hierarchy }
             includeAll:
               description: >-
                 Indicates whether to include all object attributes in the
