@@ -22,6 +22,10 @@ registrations:
                 type: definition
                 definition: uuid
               fundamental: true
+            name:
+              description: Name of this object
+              type: simple
+              dataType: string
             mimeType:
               description: "fixed mime type: 'application/vnd.reflective-dk.object+json'"
               type: simple
