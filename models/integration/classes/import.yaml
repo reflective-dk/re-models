@@ -22,6 +22,10 @@ registrations:
               description: MIME type of the fetched data
               type: simple
               dataType: string
+            fetcherKey:
+              description: Key used to match up fetchers and stagers
+              type: simple
+              dataType: string
             data:
               description: Multihash pointing to the fetched data
               type: simple
