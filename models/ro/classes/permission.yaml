@@ -26,13 +26,14 @@ registrations:
               type: simple
               dataType:
                 type: relation
+                target: { id: c4315fa9-3765-40c0-ba45-ef821c416f83, name: Object }
             all:
               type: simple
-              dataType:
-                type: boolean
+              dataType: boolean
             specific:
               type: simple
               dataType:
                 type: relation
+                target: { id: c4315fa9-3765-40c0-ba45-ef821c416f83, name: Object }
         from: 1900-01-01T00:00:00.000Z
 ...
