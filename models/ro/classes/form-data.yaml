@@ -19,7 +19,7 @@ registrations:
                 type: relation
             meta:
               description: meta data about fields
-              type: simple
-              dataType: map
+              type: map
+              dataType: {}
         from: 1900-01-01T00:00:00.000Z
 ...
