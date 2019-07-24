@@ -20,6 +20,8 @@ registrations:
             meta:
               description: meta data about fields
               type: map
-              dataType: {}
+              dataType:
+                type: json
+                schema: {}
         from: 1900-01-01T00:00:00.000Z
 ...
