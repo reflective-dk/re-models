@@ -1,50 +1,43 @@
 # Hierarchy Class
 ---
 id: a07908c1-883f-41e6-9beb-02981f48b067
-mimeType: application/vnd.reflective-dk.object+json
 registrations:
   - validity:
       - input:
           model: { id: 99aab70a-b294-44ca-a979-9c80ebe2997d, name: Entity Model }
-          # Responsible actor - actor: { id: actor.id }
           class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
           extends: { id: 2da6e709-3f63-47d9-a197-bda06fb86936, name: Entity }
           name: Hierarchy
           description: A generic hierarchy of objects
-          properties:
+          attributes:
             rootQuery:
-              type: simple
               dataType:
                 type: json
                 schema: {}
+          collections:
             rootFilter:
-              type: map
               dataType: string
+            pathElements:
+              dataType:
+                type: json
+                schema: {}
+          singleRelations:
             owner:
               description: The structure, which the hierarchy is a representation of
-              type: simple
-              dataType:
-                type: relation
-            pathElements:
-              type: map
-              dataType:
-                type: json
-                schema: {}
+              id: c4315fa9-3765-40c0-ba45-ef821c416f83
+              name: Object
             primaryType:
               description: The primary type of elements in the hierarchy
-              type: simple
-              dataType:
-                type: relation
-                target: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
+              id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9
+              name: Class
+          manyRelations:
             relatedTypes:
               description: >-
                 This is a collection of types loosely connected to the hierarchy
                 without being directly involved in it. This may be used as an
                 indication of which objects to prefetch, if building a cache of
                 related information
-              type: map
-              dataType:
-                type: relation
-                target: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
+              id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9
+              name: Class
         from: 1900-01-01T00:00:00.000Z
 ...

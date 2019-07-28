@@ -1,39 +1,30 @@
 # Permission Class
 ---
 id: ba923261-4f61-4463-af77-11f5f01e5146
-mimeType: application/vnd.reflective-dk.object+json
 registrations:
   - validity:
       - input:
           model: { id: 17960fc5-7a6d-4e0b-95d8-f20934493819, name: Reflective Organization }
-          # Responsible actor - actor: { id: actor.id }
           class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
           extends: { id: 2da6e709-3f63-47d9-a197-bda06fb86936, name: Entity }
           name: Permission
           description: Granting permission to right by responsibility, to objects specifified or all
-          properties:
-            right:
-              type: simple
-              dataType:
-                type: relation
-                target: { id: d7ae61dc-466a-4054-aa8f-1b111f9b5756, name: Right }
-            responsibilities:
-              type: map
-              dataType:
-                type: relation
-                target: { id: f5155ea0-3e2f-4dcf-832a-c0fc99f2fbb4, name: Responsibility }
-            target:
-              type: simple
-              dataType:
-                type: relation
-                target: { id: c4315fa9-3765-40c0-ba45-ef821c416f83, name: Object }
+          attributes:
             all:
-              type: simple
               dataType: boolean
+          singleRelations:
+            right:
+              id: d7ae61dc-466a-4054-aa8f-1b111f9b5756
+              name: Right
+            target:
+              id: c4315fa9-3765-40c0-ba45-ef821c416f83
+              name: Object
+          manyRelations:
+            responsibilities:
+              id: f5155ea0-3e2f-4dcf-832a-c0fc99f2fbb4
+              name: Responsibility
             specific:
-              type: simple
-              dataType:
-                type: relation
-                target: { id: c4315fa9-3765-40c0-ba45-ef821c416f83, name: Object }
+              id: c4315fa9-3765-40c0-ba45-ef821c416f83
+              name: Object
         from: 1900-01-01T00:00:00.000Z
 ...

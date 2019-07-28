@@ -1,26 +1,22 @@
 # Static Fetcher Class
 ---
 id: 513d235b-5778-499d-a71a-a2e239e35d5c
-mimeType: application/vnd.reflective-dk.object+json
 registrations:
   - validity:
       - input:
           model: { id: 855ad3bd-d62a-407c-8a33-8f49bbcc8995, name: Integration Model }
-          # Responsible actor - actor: { id: actor.id }
           class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
           extends: { id: a28e7d85-66a0-48bf-986b-a90ece6b87d5, name: Fetcher }
           name: Static Fetcher
           description: >-
             Specifies a hash that points to data already been stored in
             the platform
-          properties:
+          attributes:
             mimeType:
               description: MIME type of the static data
-              type: simple
               dataType: string
             data:
               description: Multihash pointing to the static data
-              type: simple
               dataType: binary
         from: 1900-01-01T00:00:00.000Z
 ...

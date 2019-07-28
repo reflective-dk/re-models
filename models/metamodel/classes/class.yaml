@@ -1,119 +1,100 @@
 # Class Class
 ---
 id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9
-mimeType: application/vnd.reflective-dk.object+json
 registrations:
   - validity:
       - input:
           model: { id: d341451b-d971-4656-bac2-1783776f8efe, name: Metamodel }
-          # Responsible actor - actor: { id: actor.id }
           # This class is its own class
           class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
           extends: { id: c4315fa9-3765-40c0-ba45-ef821c416f83, name: Object }
           name: Class
           description: This class defines the properties of any class (itself included)
-          properties:
+          attributes:
+            description:
+              description: A brief description of the purpose of this class
+              dataType: string
+          collections:
+            attributes:
+              description: Single-valued attributes of this class
+              dataType:
+                type: definition
+                definition: attributeType
+            collections:
+              description: Multi-valued attributes of this class
+              dataType:
+                type: definition
+                definition: attributeType
+            singleRelations:
+              description: Single-relation from this class to another
+              dataType:
+                type: definition
+                definition: relationType
+            manyRelations:
+              description: Many-relation from this class to another
+              dataType:
+                type: definition
+                definition: relationType
+            definitions:
+              description: Convenience data type declarations
+              dataType:
+                type: definition
+                definition: attributeType
+          singleRelations:
             model:
               description: Relation to the model that owns this class
-              type: simple
-              dataType:
-                type: relation
-                target: { id: 54985140-62ec-49fd-b05a-661e090c405f, name: Model }
+              id: 54985140-62ec-49fd-b05a-661e090c405f
+              name: Model
             extends:
-              description: A class may explicitly extend another class (if not it extends the Object class)
-              type: simple
-              dataType:
-                type: relation
-                target: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
+              description: >-
+                A class may explicitly extend another class. If not, it
+                implicitly extends the Object class
+              id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9
+              name: Class
+          manyRelations:
             mixins:
               description: >-
                 A class may mix in any number of other classes, inheriting all of
                 their properties. This mechanism is very similar to extends,
                 except the classes being mixed in are usually written with that
                 purpose in mind.
-              type: map
-              dataType:
-                type: relation
-                target: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
-            name:
-              description: The name of this class
-              type: simple
-              dataType: string
-            description:
-              description: A brief description of the purpose of this class
-              type: simple
-              dataType: string
-            properties:
-              description: Properties of this class (in addition to any inherited properties)
-              type: map
-              dataType:
-                type: definition
-                definition: propertyType
-            definitions:
-              description: Convenience data type declarations
-              type: map
-              dataType:
-                type: definition
-                definition: dataType
+              id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9
+              name: Class
           definitions:
-            propertyType:
-              type: json
-              schema:
-                type: object
-                properties:
-                  description: { type: 'string' }
-                  type: { type: 'string', enum: [ 'simple', 'map' ] }
-                  dataType:
-                    oneOf:
-                      - type: string
-                        enum: [ 'string', 'integer', 'float', 'boolean', 'dateTime', 'binary' ]
-                      - type: object    # dataType: relation
-                        properties:
-                          type: { type: 'string', pattern: 'relation' }
-                          target:
-                            type: object
-                            properties:
-                              id:
-                                type: string
-                                pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
-                            additionalProperties: true
-                        additionalProperties: false
-                      - type: object    # dataType: definition
-                        properties:
-                          type: { type: 'string', pattern: 'definition' }
-                          definition: { type: 'string' }
-                        additionalProperties: false
-                      - type: object    # dataType: json
-                        properties:
-                          type: { type: 'string', pattern: 'json' }
-                          schema: { type: 'object' }
-                        additionalProperties: false
-            dataType:
-              type: json
-              schema:
-                oneOf:
-                  - type: string
-                    enum: [ 'string', 'integer', 'float', 'boolean', 'dateTime', 'binary' ]
-                  - type: object    # dataType: relation
-                    properties:
-                      type: { type: 'string', pattern: 'relation' }
-                      target:
-                        type: object
-                        properties:
-                          id:
-                            type: string
-                            pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
-                        additionalProperties: true
-                    additionalProperties: false
-                  - type: object    # dataType: definition
-                    properties:
-                      type: { type: 'string', pattern: 'definition' }
-                      definition: { type: 'string' }
-                    additionalProperties: false
-                  - type: object    # dataType: json
-                    properties:
-                      type: { type: 'string', pattern: 'json' }
-                      schema: { type: 'object' }
-                    additionalProperties: false
+            attributeType:
+              dataType:
+                type: json
+                schema:
+                  type: object
+                  properties:
+                    description: { type: string }
+                    fundamental: { type: boolean }
+                    dataType:
+                      oneOf:
+                        - type: string
+                          enum: [ string, integer, float, boolean, dateTime, binary ]
+                        - type: object
+                          properties:
+                            type: { type: string, pattern: definition }
+                            definition: { type: string }
+                          additionalProperties: false
+                        - type: object
+                          properties:
+                            type: { type: string, pattern: json }
+                            schema: { type: object }
+                          additionalProperties: false
+                  additionalProperties: false
+            relationType:
+              dataType:
+                type: json
+                schema:
+                  type: object
+                  properties:
+                    description: { type: string }
+                    name: { type: string }
+                    id:
+                      type: string
+                      pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
+                  additionalProperties: true
         from: 1900-01-01T00:00:00.000Z
 ...

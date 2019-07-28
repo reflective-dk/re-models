@@ -1,84 +1,60 @@
 # Opus Org Unit Class
 ---
 id: 40864bd7-2ac2-468d-80a5-68aefa018524
-mimeType: application/vnd.reflective-dk.object+json
 registrations:
   - validity:
       - input:
           model: { id: 513421bc-7994-4ee5-a67b-4f29a903d7da, name: KMD Opus Model }
-          # Responsible actor - actor: { id: actor.id }
           class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
           extends: { id: c4315fa9-3765-40c0-ba45-ef821c416f83, name: Object }
           name: Opus Org Unit
           description: An organizational unit as represented by KMD Opus
-          properties:
+          attributes:
             orgUnitId:
-              type: simple
               dataType: string
             client:
-              type: simple
               dataType: string
             lastChanged:
-              type: simple
               dataType: dateTime
             startDate:
-              type: simple
               dataType: dateTime
             endDate:
-              type: simple
               dataType: dateTime
             activeFrom:
-              type: map
               dataType: dateTime
             activeTo:
-              type: map
               dataType: dateTime
             parentOrgUnit:
-              type: simple
               dataType: string
-            parent:
-              type: simple
-              dataType:
-                type: relation
-                target: { id: 40864bd7-2ac2-468d-80a5-68aefa018524, name: Opus Org Unit }
             shortName:
-              type: simple
               dataType: string
             longName:
-              type: simple
               dataType: string
             street:
-              type: simple
               dataType: string
             zipCode:
-              type: simple
               dataType: string
             city:
-              type: simple
               dataType: string
             phoneNumber:
-              type: simple
               dataType: string
             cvrNr:
-              type: simple
               dataType: string
             eanNr:
-              type: simple
               dataType: string
             seNr:
-              type: simple
               dataType: string
             pNr:
-              type: simple
               dataType: string
             costCenter:
-              type: simple
               dataType: string
             orgType:
-              type: simple
               dataType: string
             orgTypeTxt:
-              type: simple
               dataType: string
+          singleRelations:
+            parent:
+              id: 40864bd7-2ac2-468d-80a5-68aefa018524
+              name: Opus Org Unit
         from: 1900-01-01T00:00:00.000Z
 ...

@@ -1,11 +1,9 @@
 # Metamodel for the type and rule system on the Reflective Platform
 ---
 id: d341451b-d971-4656-bac2-1783776f8efe
-mimeType: application/vnd.reflective-dk.object+json
 registrations:
   - validity:
       - input:
-          # Responsible actor - actor: { id: actor.id }
           class: { id: 54985140-62ec-49fd-b05a-661e090c405f, name: Model }
           name: Metamodel
           description: >-

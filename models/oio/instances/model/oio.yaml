@@ -1,11 +1,9 @@
 # Model for OIO integration
 ---
 id: 8cff91ef-5776-47f6-809a-7e89e1e2c32b
-mimeType: application/vnd.reflective-dk.object+json
 registrations:
   - validity:
       - input:
-          # Responsible actor - actor: { id: actor.id }
           class: { id: 54985140-62ec-49fd-b05a-661e090c405f, name: Model }
           name: OioIntegration
           description: Model for OIO integration

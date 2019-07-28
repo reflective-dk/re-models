@@ -1,12 +1,10 @@
 # Rule ModelMustExist
 ---
 id: db45a0ec-18da-4bd8-91c4-6ceb76fac2af
-mimeType: application/vnd.reflective-dk.object+json
 registrations:
   - validity:
       - input:
           model: { id: d341451b-d971-4656-bac2-1783776f8efe, name: Metamodel }
-          # Responsible actor - actor: { id: actor.id }
           class: { id: 69c26015-0e44-4315-a5d9-343a5308dfef, name: Rule }
           name: ModelMustExist
           description: This object must be assigned to a model

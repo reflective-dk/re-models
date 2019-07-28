@@ -1,70 +1,53 @@
 # Role Assignment Class
 ---
 id: 025dfd36-f7a6-41e3-aa0c-64fe0376d3b7
-mimeType: application/vnd.reflective-dk.object+json
 registrations:
   - validity:
       - input:
           model: { id: 17960fc5-7a6d-4e0b-95d8-f20934493819, name: Reflective Organization }
-          # Responsible actor - actor: { id: actor.id }
           class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
           extends: { id: 2da6e709-3f63-47d9-a197-bda06fb86936, name: Entity }
           name: Role Assignment
           description: An assignment of a role to a specific employment
-          properties:
+          attributes:
+            sensitivity:
+              dataType:
+                type: json
+                schema: {} # TODO [ '1', '2', '3', '4' ]
+          singleRelations:
             employment:
-              type: simple
-              dataType:
-                type: relation
-                target: { id: 06c495eb-fcef-4c09-996f-63fd2dfea427, name: Employment }
+              id: 06c495eb-fcef-4c09-996f-63fd2dfea427
+              name: Employment
             role:
-              type: simple
-              dataType:
-                type: relation
-                target: { id: c4be5a95-1320-4996-b219-e2f6f7cef8dd, name: Role }
-            responsibilities:
-              type: map
-              dataType:
-                type: relation
-                target: { id: f5155ea0-3e2f-4dcf-832a-c0fc99f2fbb4, name: Responsibility }
+              id: c4be5a95-1320-4996-b219-e2f6f7cef8dd
+              name: Role
+            propagateFrom:
+              id: 5cad9972-6560-4136-a9d5-40c2d109be9b
+              name: Unit
             system:
               description: >-
                 When the role assignment includes a system responsibility, this
                 relation should be used to indicate the intended system
-              type: simple
-              dataType:
-                type: relation
-                target: { id: e8bc40c5-e542-4bab-b6fc-64b2339ffa15, name: System }
+              id: e8bc40c5-e542-4bab-b6fc-64b2339ffa15
+              name: System
+          manyRelations:
+            responsibilities:
+              id: f5155ea0-3e2f-4dcf-832a-c0fc99f2fbb4
+              name: Responsibility
             occupationalGroups:
               description: >-
                 A role may be assigned with respect to specific occupational
                 groups; e.g. different managers for doctors and nurses within the
                 same tree of organizational units
-              type: map
-              dataType:
-                type: relation
-                target: { id: 677d4ec4-838c-44fa-a4fa-be1bd726fc57, name: Occupational Group }
+              id: 677d4ec4-838c-44fa-a4fa-be1bd726fc57
+              name: Occupational Group
             expertise:
               description: Areas of responsibility from KLE
-              type: map
-              dataType:
-                type: relation
-                target: { id: aa6b2598-47c2-4a80-8bf0-bfa83e6afae8, name: KLE Klasse }
+              id: aa6b2598-47c2-4a80-8bf0-bfa83e6afae8
+              name: KLE Klasse
             interests:
               description: Areas of interest from KLE
-              type: map
-              dataType:
-                type: relation
-                target: { id: aa6b2598-47c2-4a80-8bf0-bfa83e6afae8, name: KLE Klasse }
-            sensitivity:
-              type: simple
-              dataType:
-                type: json
-                schema: {} # TODO [ '1', '2', '3', '4' ]
-            propagateFrom:
-              type: simple
-              dataType:
-                type: relation
-                target: { id: 5cad9972-6560-4136-a9d5-40c2d109be9b, name: Unit }
+              id: aa6b2598-47c2-4a80-8bf0-bfa83e6afae8
+              name: KLE Klasse
         from: 1900-01-01T00:00:00.000Z
 ...

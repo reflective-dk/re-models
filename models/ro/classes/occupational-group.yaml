@@ -1,6 +1,5 @@
 ---
 id: 677d4ec4-838c-44fa-a4fa-be1bd726fc57
-mimeType: application/vnd.reflective-dk.object+json
 registrations:
   - validity:
       - input:
@@ -8,11 +7,9 @@ registrations:
           extends: { id: 2da6e709-3f63-47d9-a197-bda06fb86936, name: Entity }
           name: Occupational Group
           description: Group of related positions, such as Teacher or Lawyer
-          properties:
+          singleRelations:
             parent:
-              type: simple
-              dataType:
-                type: relation
-                target: { id: 677d4ec4-838c-44fa-a4fa-be1bd726fc57, name: Occupational Group }
+              id: 677d4ec4-838c-44fa-a4fa-be1bd726fc57
+              name: Occupational Group
         from: 1900-01-01T00:00:00.000Z
 ...

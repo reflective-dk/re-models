@@ -1,40 +1,33 @@
 # Stager Class
 ---
 id: 05f1c11b-da14-49c1-8f8a-7b5e48bc6c04
-mimeType: application/vnd.reflective-dk.object+json
 registrations:
   - validity:
       - input:
           model: { id: 855ad3bd-d62a-407c-8a33-8f49bbcc8995, name: Integration Model }
-          # Responsible actor - actor: { id: actor.id }
           class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
           extends: { id: c4315fa9-3765-40c0-ba45-ef821c416f83, name: Object }
           name: Stager
           description: >-
             Mechanism for staging data. This class is abstract and should be
             extended by specialized classes
-          properties:
-            name:
-              type: simple
-              dataType: string
-            targetType:
-              type: simple
-              dataType:
-                type: relation
-                target: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
+          attributes:
             includeAll:
               description: >-
                 Indicates whether to include all object attributes in the staging
                 process
-              type: simple
               dataType: boolean
+          collections:
             keys:
               description: >-
                 This map specifies a set of attributes to include in the staged
                 output. The keys of the map correspond to the attributes in the
                 input, the values of the map to the attributes in the staged
                 objects
-              type: map
               dataType: string
+          singleRelations:
+            targetType:
+              id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9
+              name: Class
         from: 1900-01-01T00:00:00.000Z
 ...

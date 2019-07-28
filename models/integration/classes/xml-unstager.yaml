@@ -1,10 +1,10 @@
 ---
 id: 85c79068-a39d-4858-ac71-9f7c7803c31c
-mimeType: application/vnd.reflective-dk.object+json
 registrations:
   - validity:
       - input:
           class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
+          extends: { id: 8b5bcbb1-6970-463b-b93e-d2f6ad2bfeb2, name: Unstager }
           name: XML Unstager
           description: Mechanism for unstaging XML from generic entries
         from: 1900-01-01T00:00:00.000Z

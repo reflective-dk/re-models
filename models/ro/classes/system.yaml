@@ -1,21 +1,17 @@
 # System Class (an IT system or some other system)
 ---
 id: e8bc40c5-e542-4bab-b6fc-64b2339ffa15
-mimeType: application/vnd.reflective-dk.object+json
 registrations:
   - validity:
       - input:
           model: { id: 17960fc5-7a6d-4e0b-95d8-f20934493819, name: Reflective Organization }
-          # Responsible actor - actor: { id: actor.id }
           class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
           extends: { id: 2da6e709-3f63-47d9-a197-bda06fb86936, name: Entity }
           name: System
           description: An IT system or some other system
-          properties:
+          singleRelations:
             vendor:
-              type: simple
-              dataType:
-                type: relation
-                target: { id: fe883d94-fa45-4e6f-a004-80cf0324ece5, name: Vendor }
+              id: fe883d94-fa45-4e6f-a004-80cf0324ece5
+              name: Vendor
         from: 1900-01-01T00:00:00.000Z
 ...

@@ -1,26 +1,22 @@
 # Staging Class
 ---
 id: 93363295-acaf-4242-ad65-02acee75b274
-mimeType: application/vnd.reflective-dk.object+json
 registrations:
   - validity:
       - input:
           model: { id: 855ad3bd-d62a-407c-8a33-8f49bbcc8995, name: Integration Model }
-          # Responsible actor - actor: { id: actor.id }
           class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
           extends: { id: b712918b-a13f-4d7c-9bc7-ff3ef9dd60b1, name: Translation }
           name: Staging
           description: A translation result from the staging process
-          properties:
-            stagers:
-              description: The stagers that created this staging
-              type: map
-              dataType:
-                type: relation
-                target: { id: 05f1c11b-da14-49c1-8f8a-7b5e48bc6c04, name: Stager }
+          collections:
             ignoredAttributes:
               description: Names of all attributes left out in the staging process
-              type: map
               dataType: string
+          manyRelations:
+            stagers:
+              description: The stagers that created this staging
+              id: 05f1c11b-da14-49c1-8f8a-7b5e48bc6c04
+              name: Stager
         from: 1900-01-01T00:00:00.000Z
 ...

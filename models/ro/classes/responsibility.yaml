@@ -1,7 +1,6 @@
 # Responsibility Class
 ---
 id: f5155ea0-3e2f-4dcf-832a-c0fc99f2fbb4
-mimeType: application/vnd.reflective-dk.object+json
 registrations:
   - validity:
       - input:
@@ -13,12 +12,11 @@ registrations:
             A responsibility such as 'Hire/Fire' or 'System Allocation'.
             Responsibilities are not organized in any specific hierarchy and may
             be assigned to multiple roles
-          properties:
+          attributes:
             isSystemResponsibility:
               description: >-
                 Indicates if the responsibility is a system responsibility,
                 intended for assignment with respect to a specific system
-              type: simple
               dataType: boolean
         from: 1900-01-01T00:00:00.000Z
 ...

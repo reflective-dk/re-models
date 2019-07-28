@@ -1,22 +1,18 @@
 # Rule Set Class
 ---
 id: 0fc55fd3-7b0b-45b7-91e9-52d843c4eb65
-mimeType: application/vnd.reflective-dk.object+json
 registrations:
   - validity:
       - input:
           model: { id: 17960fc5-7a6d-4e0b-95d8-f20934493819, name: Reflective Organization }
-          # Responsible actor - actor: { id: actor.id }
           class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
           extends: { id: 2da6e709-3f63-47d9-a197-bda06fb86936, name: Entity }
           name: Rule Set
           description: A set of rules grouped by internal cohesion efforts
-          properties:
+          manyRelations:
             rules:
               description: The rules making up the set
-              type: map
-              dataType:
-                type: relation
-                target: { id: 026dc5db-1f9f-4f16-926b-33e1214f7727, name: Rule }
+              id: 026dc5db-1f9f-4f16-926b-33e1214f7727
+              name: Rule
         from: 1900-01-01T00:00:00.000Z
 ...

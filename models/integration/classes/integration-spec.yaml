@@ -1,34 +1,26 @@
 # Integration Spec Class
 ---
 id: 0b436737-7dbe-443d-9d73-d9240ce4b17e
-mimeType: application/vnd.reflective-dk.object+json
 registrations:
   - validity:
       - input:
           model: { id: 855ad3bd-d62a-407c-8a33-8f49bbcc8995, name: Integration Model }
-          # Responsible actor - actor: { id: actor.id }
           class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
           extends: { id: b2310272-ced2-4966-bba4-de0737ef01f8, name: Connection Spec }
           name: Integration Spec
           description: Specifies an integration of data from a specific system and tenant
-          properties:
+          manyRelations:
             fetchers:
               description: Mechanism used to fetch imported data
-              type: map
-              dataType:
-                type: relation
-                target: { id: a28e7d85-66a0-48bf-986b-a90ece6b87d5, name: Fetcher }
+              id: a28e7d85-66a0-48bf-986b-a90ece6b87d5
+              name: Fetcher
             stagers:
               description: Mechanism used to stage imported data
-              type: map
-              dataType:
-                type: relation
-                target: { id: 05f1c11b-da14-49c1-8f8a-7b5e48bc6c04, name: Stager }
+              id: 05f1c11b-da14-49c1-8f8a-7b5e48bc6c04
+              name: Stager
             incorporation:
               description: Type Maps used to incorporate staged data into target model
-              type: map
-              dataType:
-                type: relation
-                target: { id: efefe41d-805b-478f-8e4d-841085cb7dfa, name: Type Map }
+              id: efefe41d-805b-478f-8e4d-841085cb7dfa
+              name: Type Map
         from: 1900-01-01T00:00:00.000Z
 ...

@@ -1,24 +1,20 @@
 # Asset Class
 ---
 id: 6409095a-44a1-4033-a072-21460ae9f95a
-mimeType: application/vnd.reflective-dk.object+json
 registrations:
   - validity:
       - input:
           model: { id: 17960fc5-7a6d-4e0b-95d8-f20934493819, name: Reflective Organization }
-          # Responsible actor - actor: { id: actor.id }
           class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
           extends: { id: 2da6e709-3f63-47d9-a197-bda06fb86936, name: Entity }
           name: Asset
           description: A single asset or a collection of assets
-          properties:
+          attributes:
             externalId:
-              type: simple
               dataType: string
+          manyRelations:
             memberOf:
-              type: map
-              dataType:
-                type: relation
-                target: { id: 6409095a-44a1-4033-a072-21460ae9f95a, name: Asset }
+              id: 6409095a-44a1-4033-a072-21460ae9f95a
+              name: Asset
         from: 1900-01-01T00:00:00.000Z
 ...

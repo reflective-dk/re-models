@@ -1,48 +1,41 @@
 # Translation Class
 ---
 id: b712918b-a13f-4d7c-9bc7-ff3ef9dd60b1
-mimeType: application/vnd.reflective-dk.object+json
 registrations:
   - validity:
       - input:
           model: { id: 855ad3bd-d62a-407c-8a33-8f49bbcc8995, name: Integration Model }
-          # Responsible actor - actor: { id: actor.id }
           class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
           extends: { id: c4315fa9-3765-40c0-ba45-ef821c416f83, name: Object }
           name: Translation
           description: A translation from one set of objects to another
-          properties:
-            spec:
-              description: Specification of the integration/extraction
-              type: simple
-              dataType:
-                type: relation
-                target: { id: b2310272-ced2-4966-bba4-de0737ef01f8, name: Connection Spec }
-            sources:
-              description: The source objects of the translation
-              type: map
-              dataType:
-                type: relation
-                target: { id: c4315fa9-3765-40c0-ba45-ef821c416f83, name: Object }
-            targets:
-              description: The target objects of the translation
-              type: map
-              dataType:
-                type: relation
-                target: { id: c4315fa9-3765-40c0-ba45-ef821c416f83, name: Object }
+          attributes:
+            timestamp:
+              description: Timestamp of when the translation occurred
+              dataType: dateTime
+          collections:
             errors:
               description: >-
                 Reports of any errors that occurred while trying to effectuate
                 the translation. Even a single error is enough to abandon the
                 entire translation, so the \'errors\' attribute will never appear
                 alongside \'sources\' and \'targets\'
-              type: map
               dataType:
                 type: json
                 schema: {}
-            timestamp:
-              description: Timestamp of when the translation occurred
-              type: simple
-              dataType: dateTime
+          singleRelations:
+            spec:
+              description: Specification of the integration/extraction
+              id: b2310272-ced2-4966-bba4-de0737ef01f8
+              name: Connection Spec
+          manyRelations:
+            sources:
+              description: The source objects of the translation
+              id: c4315fa9-3765-40c0-ba45-ef821c416f83
+              name: Object
+            targets:
+              description: The target objects of the translation
+              id: c4315fa9-3765-40c0-ba45-ef821c416f83
+              name: Object
         from: 1900-01-01T00:00:00.000Z
 ...

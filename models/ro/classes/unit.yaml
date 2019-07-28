@@ -1,75 +1,35 @@
 # Unit Class
 ---
 id: 5cad9972-6560-4136-a9d5-40c2d109be9b
-mimeType: application/vnd.reflective-dk.object+json
 registrations:
   - validity:
       - input:
           model: { id: 17960fc5-7a6d-4e0b-95d8-f20934493819, name: Reflective Organization }
-          # Responsible actor - actor: { id: actor.id }
           class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
           extends: { id: 2da6e709-3f63-47d9-a197-bda06fb86936, name: Entity }
           mixins:
             0: { id: b717f9b3-10be-4455-9145-36bfc8746473, name: Has Locations }
           name: Unit
           description: An organizational unit
-          properties:
-            parents:
-              type: map
-              dataType:
-                type: relation
-                target: { id: 5cad9972-6560-4136-a9d5-40c2d109be9b, name: Unit }
-            organizations:
-              description: The organizations that this unit is a member of
-              type: map
-              dataType:
-                type: relation
-                target: { id: 5fa95ccd-a801-4cbb-9400-e7e1ee7cee44, name: Organization }
-            ean:
-              type: map
+          attributes:
+            seNr:
               dataType: string
-            locations:
-              type: map
+            sensitivity:
               dataType:
-                type: relation
-                target: { id: cfd8d4db-96cd-45e2-8de7-0b257b63a4e7, name: Location }
+                type: json
+                schema: {} # TODO [ '1', '2', '3', '4' ]
+          collections:
+            ean:
+              dataType: string
             emailAddresses:
-              type: map
               dataType:
                 type: json
                 schema:
                   type: string
                   pattern: "[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"
             phoneNumbers:
-              type: map
               dataType: string
-            seNr:
-              type: simple
-              dataType: string
-            expertise:
-              description: Areas of responsibility from KLE
-              type: map
-              dataType:
-                type: relation
-                target: { id: aa6b2598-47c2-4a80-8bf0-bfa83e6afae8, name: KLE Klasse }
-            interests:
-              description: Areas of interest from KLE
-              type: map
-              dataType:
-                type: relation
-                target: { id: aa6b2598-47c2-4a80-8bf0-bfa83e6afae8, name: KLE Klasse }
-            sensitivity:
-              type: simple
-              dataType:
-                type: json
-                schema: {} # TODO [ '1', '2', '3', '4' ]
-            unitType:
-              type: simple
-              dataType:
-                type: relation
-                target: { id: acdce88a-ec17-4d39-a850-a083d64c28ac, name: Unit Type }
             costCenters:
-              type: map
               dataType: string
             aggregateSubTree:
               description: >-
@@ -77,7 +37,29 @@ registrations:
                 as a leaf, for the purposes of extracting data to external
                 systems. By setting a value in this collection to true, type maps
                 can be directed to treat the unit as a leaf
-              type: map
               dataType: boolean
+          singleRelations:
+            unitType:
+              id: acdce88a-ec17-4d39-a850-a083d64c28ac
+              name: Unit Type
+          manyRelations:
+            parents:
+              id: 5cad9972-6560-4136-a9d5-40c2d109be9b
+              name: Unit
+            organizations:
+              description: The organizations that this unit is a member of
+              id: 5fa95ccd-a801-4cbb-9400-e7e1ee7cee44
+              name: Organization
+            locations:
+              id: cfd8d4db-96cd-45e2-8de7-0b257b63a4e7
+              name: Location
+            expertise:
+              description: Areas of responsibility from KLE
+              id: aa6b2598-47c2-4a80-8bf0-bfa83e6afae8
+              name: KLE Klasse
+            interests:
+              description: Areas of interest from KLE
+              id: aa6b2598-47c2-4a80-8bf0-bfa83e6afae8
+              name: KLE Klasse
         from: 1900-01-01T00:00:00.000Z
 ...

@@ -1,29 +1,25 @@
 # LDAP Fetcher Class
 ---
 id: d235585b-b7be-4cd5-be01-95e755570f0a
-mimeType: application/vnd.reflective-dk.object+json
 registrations:
   - validity:
       - input:
           model: { id: 855ad3bd-d62a-407c-8a33-8f49bbcc8995, name: Integration Model }
-          # Responsible actor - actor: { id: actor.id }
           class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
           extends: { id: a28e7d85-66a0-48bf-986b-a90ece6b87d5, name: Fetcher }
           name: LDAP Fetcher
           description: >-
             Creates import object from LDAP stream
-          properties:
+          attributes:
             credentials:
               description: A string identifying an environment variable to get credentials from a file in integrator image
-              type: simple
               dataType: string
             filter:
               description: Filter to select objects from LDAP
-              type: simple
               dataType: string
+          collections:
             attributes:
               description: Attributes to fetch from LDAP
-              type: map
               dataType: string
         from: 1900-01-01T00:00:00.000Z
 ...

@@ -1,84 +1,69 @@
 # Type Map Class
 ---
 id: efefe41d-805b-478f-8e4d-841085cb7dfa
-mimeType: application/vnd.reflective-dk.object+json
 registrations:
   - validity:
       - input:
           model: { id: 855ad3bd-d62a-407c-8a33-8f49bbcc8995, name: Integration Model }
-          # Responsible actor - actor: { id: actor.id }
           class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
           extends: { id: c4315fa9-3765-40c0-ba45-ef821c416f83, name: Object }
           name: Type Map
           description: Map used to translate information from one type to another
-          properties:
-            name:
-              type: simple
-              dataType: string
-            sourceType:
-              type: simple
-              dataType:
-                type: relation
-                target: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
-            targetType:
-              type: simple
-              dataType:
-                type: relation
-                target: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
+          attributes:
             query:
               description: >-
                 A query used for extraction type maps to provide the set of
                 objects to extract
-              type: simple
               dataType:
                 type: json
                 schema: {}
             idSeed:
-              type: simple
               dataType:
                 type: json
                 schema:
                   oneOf:
                     - { type: string }
                     - { type: array, items: { type: string } }
-            warmUps:
-              description: >-
-                Queries used to prefetch collections of objects in order to avoid
-                larger numbers of single-object queries going to the backend
-                during the mapping process
-              type: map
-              dataType:
-                type: json
-                schema: {}
             condition:
               description: Controls whether to record information for the target
-              type: simple
               dataType:
                 type: json
                 schema: {}
             transform:
               description: Controls how to transform the seed before id generation
-              type: simple
               dataType:
                 type: json
                 schema: {}
             validFrom:
               description: Controls the validity interval of the recorded data
-              type: simple
               dataType:
                 type: json
                 schema: {}
             validTo:
               description: Controls the validity interval of the recorded data
-              type: simple
+              dataType:
+                type: json
+                schema: {}
+          collections:
+            warmUps:
+              description: >-
+                Queries used to prefetch collections of objects in order to avoid
+                larger numbers of single-object queries going to the backend
+                during the mapping process
               dataType:
                 type: json
                 schema: {}
             mappings:
               description: Set of mappings for translation between types
-              type: map
               dataType:
                 type: json
-                schema: {} # TODO - stricter schema for type mappings
+                schema: {}
+          singleRelations:
+            sourceType:
+              id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9
+              name: Class
+            targetType:
+              id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9
+              name: Class
         from: 1900-01-01T00:00:00.000Z
 ...

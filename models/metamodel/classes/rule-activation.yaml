@@ -1,0 +1,35 @@
+# Activation Class
+---
+id: cb70fe97-13bd-4471-8f5f-a050c7f463bb
+registrations:
+  - validity:
+      - input:
+          model: { id: d341451b-d971-4656-bac2-1783776f8efe, name: Metamodel }
+          class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
+          extends: { id: c4315fa9-3765-40c0-ba45-ef821c416f83, name: Object }
+          name: Rule Activation
+          description: >-
+            This class enables a specific set of rules by assigning them to a
+            set of object types
+          attributes:
+            severity:
+              description: Severity of this rule activation
+              dataType:
+                type: json
+                schema: { type: 'string', enum: [ 'fatal', 'error', 'warning', 'info', 'none' ] }
+          singleRelations:
+            model:
+              description: Relation to the model that owns this rule activation
+              id: 54985140-62ec-49fd-b05a-661e090c405f
+              name: Model
+          manyRelations:
+            rules:
+              description: The rules to apply
+              id: 69c26015-0e44-4315-a5d9-343a5308dfef
+              name: Rule
+            types:
+              description: The types for which to apply the rules
+              id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9
+              name: Class
+        from: 1900-01-01T00:00:00.000Z
+...

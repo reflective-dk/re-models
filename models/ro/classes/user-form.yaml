@@ -1,25 +1,21 @@
 # User Form Class
 ---
 id: 6c54bdcc-691a-4190-8b50-4c5a6e4679dc
-mimeType: application/vnd.reflective-dk.object+json
 registrations:
   - validity:
       - input:
           model: { id: 17960fc5-7a6d-4e0b-95d8-f20934493819, name: Reflective Organization }
-          # Responsible actor - actor: { id: actor.id }
           class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
           extends: { id: 2da6e709-3f63-47d9-a197-bda06fb86936, name: Entity }
           name: User Form
           description: A form element used to capture user input
-          properties:
-            responsibility:
-              type: simple
-              dataType:
-                type: relation
-                target: { id: f5155ea0-3e2f-4dcf-832a-c0fc99f2fbb4, name: Responsibility }
+          attributes:
             definition:
               description: Multihash pointing to the user form definition
-              type: simple
               dataType: binary
+          singleRelations:
+            responsibility:
+              id: f5155ea0-3e2f-4dcf-832a-c0fc99f2fbb4
+              name: Responsibility
         from: 1900-01-01T00:00:00.000Z
 ...

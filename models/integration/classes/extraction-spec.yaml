@@ -1,40 +1,35 @@
 # Extraction Spec Class
 ---
 id: 48c3b7b9-dc7a-42ae-9759-b65336f12b36
-mimeType: application/vnd.reflective-dk.object+json
 registrations:
   - validity:
       - input:
           model: { id: 855ad3bd-d62a-407c-8a33-8f49bbcc8995, name: Integration Model }
-          # Responsible actor - actor: { id: actor.id }
           class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
           extends: { id: b2310272-ced2-4966-bba4-de0737ef01f8, name: Connection Spec }
           name: Extraction Spec
           description: >-
             Specifies an extraction of data targeting a specific system and
             tenant
-          properties:
+          attributes:
             extractInactiveObjects:
               description: >-
                 Indicates whether to include inactive objects in the extraction
                 process (based on the values of activeFrom/activeTo)
-              type: simple
               dataType: boolean
+          singleRelations:
+            unstager:
+              description: Mechanism used to serialize data from the staging model
+              id: 8b5bcbb1-6970-463b-b93e-d2f6ad2bfeb2
+              name: Unstager
+          manyRelations:
             extraction:
               description: >-
                 Type Maps used to prepare the data for export. This typically
                 reverses the incorporation stage of the integration process by
                 updating the target system\'s staging model with information from
                 the RO model
-              type: map
-              dataType:
-                type: relation
-                target: { id: efefe41d-805b-478f-8e4d-841085cb7dfa, name: Type Map }
-            unstager:
-              description: Mechanism used to serialize data from the staging model
-              type: simple
-              dataType:
-                type: relation
-                target: { id: 8b5bcbb1-6970-463b-b93e-d2f6ad2bfeb2, name: Unstager }
+                id: efefe41d-805b-478f-8e4d-841085cb7dfa
+                name: Type Map
         from: 1900-01-01T00:00:00.000Z
 ...

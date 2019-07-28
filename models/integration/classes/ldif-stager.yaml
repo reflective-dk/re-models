@@ -1,12 +1,10 @@
 # LDIF Stager Class
 ---
 id: 50859a74-4792-423e-acc3-bc4e606cc8f1
-mimeType: application/vnd.reflective-dk.object+json
 registrations:
   - validity:
       - input:
           model: { id: 855ad3bd-d62a-407c-8a33-8f49bbcc8995, name: Integration Model }
-          # Responsible actor - actor: { id: actor.id }
           class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
           extends: { id: 05f1c11b-da14-49c1-8f8a-7b5e48bc6c04, name: Stager }
           name: LDIF Stager

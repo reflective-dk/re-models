@@ -1,120 +1,84 @@
 # Opus Employee Class
 ---
 id: 16eeb8d9-b2f7-486c-96a5-2a75d4ea983d
-mimeType: application/vnd.reflective-dk.object+json
 registrations:
   - validity:
       - input:
           model: { id: 513421bc-7994-4ee5-a67b-4f29a903d7da, name: KMD Opus Model }
-          # Responsible actor - actor: { id: actor.id }
           class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
           extends: { id: c4315fa9-3765-40c0-ba45-ef821c416f83, name: Object }
           name: Opus Employee
           description: An employee as represented by KMD Opus
-          properties:
+          attributes:
             employeeId:
-              type: simple
               dataType: string
             client:
-              type: simple
               dataType: string
             lastChanged:
-              type: simple
               dataType: dateTime
             entryDate:
-              type: simple
               dataType: dateTime
             leaveDate:
-              type: simple
               dataType: dateTime
             activeFrom:
-              type: map
               dataType: dateTime
             activeTo:
-              type: map
               dataType: dateTime
             cpr:
-              type: simple
               dataType: string
             cprSuppId:
-              type: simple
               dataType: string
             firstName:
-              type: simple
               dataType: string
             lastName:
-              type: simple
               dataType: string
             address:
-              type: simple
               dataType: string
             addressSupplement:
-              type: simple
               dataType: string
             postalCode:
-              type: simple
               dataType: string
             city:
-              type: simple
               dataType: string
             country:
-              type: simple
               dataType: string
             workPhone:
-              type: simple
               dataType: string
             workContract:
-              type: simple
               dataType: string
             workContractText:
-              type: simple
               dataType: string
             positionId:
-              type: simple
               dataType: string
             position:
-              type: simple
               dataType: string
             positionShort:
-              type: simple
               dataType: string
             invoiceRecipient:
-              type: simple
               dataType: string
             productionNumber:
-              type: simple
               dataType: string
             isManager:
-              type: simple
               dataType: string
             superiorLevel:
-              type: simple
               dataType: string
             subordinateLevel:
-              type: simple
               dataType: string
             orgUnit:
-              type: simple
               dataType: string
-            employedAt:
-              type: simple
-              dataType:
-                type: relation
-                target: { id: 40864bd7-2ac2-468d-80a5-68aefa018524, name: Opus Org Unit }
             payGradeText:
-              type: simple
               dataType: string
             numerator:
-              type: simple
               dataType: string
             denominator:
-              type: simple
               dataType: string
             initialEntry:
-              type: simple
               dataType: dateTime
             entryIntoGroup:
-              type: simple
               dataType: dateTime
+          singleRelations:
+            employedAt:
+              id: 40864bd7-2ac2-468d-80a5-68aefa018524
+              name: Opus Org Unit
         from: 1900-01-01T00:00:00.000Z
 ...

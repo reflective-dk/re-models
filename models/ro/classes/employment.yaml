@@ -1,46 +1,36 @@
 # Employment Class
 ---
 id: 06c495eb-fcef-4c09-996f-63fd2dfea427
-mimeType: application/vnd.reflective-dk.object+json
 registrations:
   - validity:
       - input:
           model: { id: 17960fc5-7a6d-4e0b-95d8-f20934493819, name: Reflective Organization }
-          # Responsible actor - actor: { id: actor.id }
           class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
           extends: { id: 2da6e709-3f63-47d9-a197-bda06fb86936, name: Entity }
           name: Employment
           description: "An employment (Danish: 'Engagement')"
-          properties:
-            employee:
-              type: simple
-              dataType:
-                type: relation
-                target: { id: 66d33a37-f73c-4723-8dca-5feb9cf420e4, name: Person }
-            employedAt:
-              type: simple
-              dataType:
-                type: relation
-                target: { id: 5cad9972-6560-4136-a9d5-40c2d109be9b, name: Unit }
-            workingAt:
-              type: map
-              dataType:
-                type: relation
-                target: { id: 5cad9972-6560-4136-a9d5-40c2d109be9b, name: Unit }
-            position:
-              type: simple
-              dataType:
-                type: relation
-                target: { id: add5e887-841f-4f36-bb7e-0676d67c494f, name: Position }
+          collections:
             emailAddresses:
-              type: map
               dataType:
                 type: json
                 schema:
                   type: string
                   pattern: "[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"
             phoneNumbers:
-              type: map
               dataType: string
+          singleRelations:
+            employee:
+              id: 66d33a37-f73c-4723-8dca-5feb9cf420e4
+              name: Person
+            employedAt:
+              id: 5cad9972-6560-4136-a9d5-40c2d109be9b
+              name: Unit
+            position:
+              id: add5e887-841f-4f36-bb7e-0676d67c494f
+              name: Position
+          manyRelations:
+            workingAt:
+              id: 5cad9972-6560-4136-a9d5-40c2d109be9b
+              name: Unit
         from: 1900-01-01T00:00:00.000Z
 ...

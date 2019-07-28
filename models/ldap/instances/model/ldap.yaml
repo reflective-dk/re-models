@@ -1,11 +1,9 @@
 # Model for LDAP integration
 ---
 id: cba08993-bdd6-496e-b6f2-436162fe68aa
-mimeType: application/vnd.reflective-dk.object+json
 registrations:
   - validity:
       - input:
-          # Responsible actor - actor: { id: actor.id }
           class: { id: 54985140-62ec-49fd-b05a-661e090c405f, name: Model }
           name: LDAP Model
           description: Model for LDAP integration

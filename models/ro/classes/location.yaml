@@ -1,30 +1,25 @@
 # Location Class
 ---
 id: cfd8d4db-96cd-45e2-8de7-0b257b63a4e7
-mimeType: application/vnd.reflective-dk.object+json
 registrations:
   - validity:
       - input:
           model: { id: 17960fc5-7a6d-4e0b-95d8-f20934493819, name: Reflective Organization }
-          # Responsible actor - actor: { id: actor.id }
           class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
           extends: { id: 2da6e709-3f63-47d9-a197-bda06fb86936, name: Entity }
           name: Location
           description: A location that represents one Production Unit ('P-nummer')
-          properties:
+          attributes:
             primary:
-              type: simple
               dataType: string
             pNr:
-              type: simple
               dataType: string
-            address:
-              type: simple
-              dataType:
-                type: relation
-                target: { id: 6ec80fc8-4ba4-49e2-88bf-e31032cca129, name: Address }
+          collections:
             phoneNumbers:
-              type: map
               dataType: string
+          singleRelations:
+            address:
+              id: 6ec80fc8-4ba4-49e2-88bf-e31032cca129
+              name: Address
         from: 1900-01-01T00:00:00.000Z
 ...

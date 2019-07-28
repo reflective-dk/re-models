@@ -1,12 +1,10 @@
 # AD User Class
 ---
 id: 85cc0118-13d9-4739-8975-db9981351877
-mimeType: application/vnd.reflective-dk.object+json
 registrations:
   - validity:
       - input:
           model: { id: 863d8e15-99a9-452e-8dc5-2e49df2cb770, name: AD Model }
-          # Responsible actor - actor: { id: actor.id }
           class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
           extends: { id: c4315fa9-3765-40c0-ba45-ef821c416f83, name: Object }
           name: AD User Account

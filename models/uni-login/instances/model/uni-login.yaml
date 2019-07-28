@@ -1,11 +1,9 @@
 # UNI-Login model for integrating Reflective with data from external systems
 ---
 id: e967154c-e026-4e8f-a1d2-bcf1db928311
-mimeType: application/vnd.reflective-dk.object+json
 registrations:
   - validity:
       - input:
-          # Responsible actor - actor: { id: actor.id }
           class: { id: 54985140-62ec-49fd-b05a-661e090c405f, name: Model }
           name: UNI-Login
           description: >-

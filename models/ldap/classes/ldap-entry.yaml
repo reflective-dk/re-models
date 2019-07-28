@@ -1,47 +1,37 @@
 # LDAP Entry Class
 ---
 id: cc15f5a8-c50a-4bfd-9313-9cbbde31d133
-mimeType: application/vnd.reflective-dk.object+json
 registrations:
   - validity:
       - input:
           model: { id: cba08993-bdd6-496e-b6f2-436162fe68aa, name: LDAP Model }
-          # Responsible actor - actor: { id: actor.id }
           class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
           extends: { id: c4315fa9-3765-40c0-ba45-ef821c416f83, name: Object }
           name: LDAP Entry
           description: An LDAP entry with a Distinguished Name (DN)
-          properties:
+          attributes:
             dn:
-              type: simple
               dataType: string
             cn:
-              type: simple
               dataType: string
             ou:
-              type: simple
               dataType: string
+          collections:
             dc:
-              type: map
               dataType: string
-            member:
-              type: map
-              dataType:
-                type: relation
-                target: { id: cc15f5a8-c50a-4bfd-9313-9cbbde31d133, name: LDAP Entry }
-            memberOf:
-              type: map
-              dataType:
-                type: relation
-                target: { id: cc15f5a8-c50a-4bfd-9313-9cbbde31d133, name: LDAP Entry }
             objectClass:
-              type: map
               dataType: string
             attributes:
-              type: map
               dataType:
                 type: json
                 # TODO: Create stricter schema for LDIF attributes
                 schema: {}
+          manyRelations:
+            member:
+              id: cc15f5a8-c50a-4bfd-9313-9cbbde31d133
+              name: LDAP Entry
+            memberOf:
+              id: cc15f5a8-c50a-4bfd-9313-9cbbde31d133
+              name: LDAP Entry
         from: 1900-01-01T00:00:00.000Z
 ...

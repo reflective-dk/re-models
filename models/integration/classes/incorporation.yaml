@@ -1,12 +1,10 @@
 # Incorporation Class
 ---
 id: 21d44ad5-4d26-4ed7-8af6-2d6aa608f890
-mimeType: application/vnd.reflective-dk.object+json
 registrations:
   - validity:
       - input:
           model: { id: 855ad3bd-d62a-407c-8a33-8f49bbcc8995, name: Integration Model }
-          # Responsible actor - actor: { id: actor.id }
           class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
           extends: { id: b712918b-a13f-4d7c-9bc7-ff3ef9dd60b1, name: Translation }
           name: Incorporation

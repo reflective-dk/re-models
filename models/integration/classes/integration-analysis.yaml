@@ -1,49 +1,41 @@
 # Integration Analysis Class
 ---
 id: f2554daa-5c7d-4dd5-b19e-82b04aa7b4bc
-mimeType: application/vnd.reflective-dk.object+json
 registrations:
   - validity:
       - input:
           model: { id: 855ad3bd-d62a-407c-8a33-8f49bbcc8995, name: Integration Model }
-          # Responsible actor - actor: { id: actor.id }
           class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
           extends: { id: c4315fa9-3765-40c0-ba45-ef821c416f83, name: Object }
           name: Integration Analysis
           description: An analysis of the impact of an integration
-          properties:
-            spec:
-              description: Specification of the integration under analysis
-              type: simple
-              dataType:
-                type: relation
-                target: { id: 0b436737-7dbe-443d-9d73-d9240ce4b17e, name: Integration Spec }
+          attributes:
             targetExtension:
               description: >-
                 When analyzing an integration, the resulting impact is written to
                 this extension
-              type: map
-              dataType:
-                type: relation
-                target: { id: c4315fa9-3765-40c0-ba45-ef821c416f83, name: Object }
-            touched:
-              description: Objects impacted by the integration
-              type: map
-              dataType:
-                type: relation
-                target: { id: c4315fa9-3765-40c0-ba45-ef821c416f83, name: Object }
+              dataType: string
+            timestamp:
+              description: Timestamp of when the translation occurred
+              dataType: dateTime
+          collections:
             errors:
               description: >-
                 Errors that occurred while analyzing the integration. Even a
                 single error is enough to abandon the analysis, so the \'errors\'
                 attribute will never appear alongside \'touched\'
-              type: map
               dataType:
                 type: json
                 schema: {}
-            timestamp:
-              description: Timestamp of when the translation occurred
-              type: simple
-              dataType: dateTime
+          singleRelations:
+            spec:
+              description: Specification of the integration under analysis
+              id: 0b436737-7dbe-443d-9d73-d9240ce4b17e
+              name: Integration Spec
+          manyRelations:
+            touched:
+              description: Objects impacted by the integration
+              id: c4315fa9-3765-40c0-ba45-ef821c416f83
+              name: Object
         from: 1900-01-01T00:00:00.000Z
 ...

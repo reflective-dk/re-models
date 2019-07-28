@@ -1,34 +1,28 @@
 # STSOrgSync User Class
 ---
 id: 7ec87b30-4818-4705-a103-3de63b5cc16b
-mimeType: application/vnd.reflective-dk.object+json
 registrations:
   - validity:
       - input:
           model: { id: 966d055b-9327-4cb6-a0bd-ae02c6c8531b, name: STSOrgSync model }
-          # Responsible actor - actor: { id: actor.id }
           class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
           extends: { id: 2da6e709-3f63-47d9-a197-bda06fb86936, name: Entity }
           name: STSOrgSync User
           description: A user for middlelayer model STSOrgSync
-          properties:
+          attributes:
             UserId:
-              type: simple
               dataType: string
+          collections:
             Email:
-              type: map
               dataType: string
             Uuid:
-              type: simple
               dataType: string
             Positions:
-              type: map
               dataType:
                 type: json
                 # TODO: Create stricter schema for STSOrgSync positions
                 schema: {}
             Person:
-              type: map
               dataType: string
         from: 1900-01-01T00:00:00.000Z
 ...

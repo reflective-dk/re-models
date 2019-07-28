@@ -1,21 +1,18 @@
 # Organization Class
 ---
 id: 5fa95ccd-a801-4cbb-9400-e7e1ee7cee44
-mimeType: application/vnd.reflective-dk.object+json
 registrations:
   - validity:
       - input:
           model: { id: 17960fc5-7a6d-4e0b-95d8-f20934493819, name: Reflective Organization }
-          # Responsible actor - actor: { id: actor.id }
           class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
           extends: { id: 2da6e709-3f63-47d9-a197-bda06fb86936, name: Entity }
           mixins:
             0: { id: 814ad71b-798a-4544-813c-f6b75231d00c, name: Hierarchy Owner }
           name: Organization
           description: An organization
-          properties:
+          attributes:
             cvrNr:
-              type: simple
               dataType: string
         from: 1900-01-01T00:00:00.000Z
 ...
