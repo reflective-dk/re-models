@@ -1,0 +1,10 @@
+# Plan2Learn model
+---
+id: 7ebdc69a-4f8b-4efa-976a-8363b7538a6d
+registrations:
+  - validity:
+      - input:
+          class: { id: 54985140-62ec-49fd-b05a-661e090c405f, name: Model }
+          name: Plan2Learn Model
+          description: This model defines types and rules for Plan2Learn
+...
