@@ -1,0 +1,12 @@
+# Plan2Learn Engagement Class
+---
+id: 648261c8-1894-4118-8d70-11358c78d453
+registrations:
+  - validity:
+      - input:
+          model: { id: 7ebdc69a-4f8b-4efa-976a-8363b7538a6d, name: Plan2Learn Model }
+          class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
+          extends: { id: c4315fa9-3765-40c0-ba45-ef821c416f83, name: Object }
+          name: Plan2Learn Engagement
+        from: 2018-01-01T00:00:00.000Z
+...
