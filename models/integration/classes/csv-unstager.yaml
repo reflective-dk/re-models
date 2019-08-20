@@ -12,8 +12,20 @@ registrations:
           attributes:
             fieldSeparator:
               dataType: string
+            fieldSeparator:
+              dataType: string
             nameField:
               description: Optional field to use for naming the staged objects
               dataType: string
+            orderBy:
+              description: Order rows by given keys array and corresponding order desc / asc array
+              dataType:
+                type: json
+                schema: {}
+            uniqueBy:
+              description: removes duplicate based on this array of keys, all must match
+              dataType:
+                type: json
+                schema: {}
         from: 1900-01-01T00:00:00.000Z
 ...

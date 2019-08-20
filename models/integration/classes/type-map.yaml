@@ -29,6 +29,12 @@ registrations:
               dataType:
                 type: json
                 schema: {}
+            extractInactiveObjects:
+              description: >-
+                Indicates whether to include inactive objects in the extraction
+                process (based on the values of activeFrom/activeTo) <- this
+                override same property in extraction spec
+              dataType: boolean
             transform:
               description: Controls how to transform the seed before id generation
               dataType:
@@ -59,6 +65,11 @@ registrations:
                 type: json
                 schema: {}
           singleRelations:
+            hierarchy:
+              description: >-
+                Alternative to query use all objects from a hierarchy
+              id: a07908c1-883f-41e6-9beb-02981f48b067
+              name: Hierarchy
             sourceType:
               id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9
               name: Class
