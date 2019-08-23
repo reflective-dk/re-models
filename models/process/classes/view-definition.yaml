@@ -1,0 +1,13 @@
+---
+id: 36a0eb70-1ef1-45dd-a0bc-73c58685e012
+registrations:
+  - validity:
+      - input:
+          class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
+          name: View Definition
+          attributes:
+            view:
+              dataType:
+                type: json
+                schema: {}
+...

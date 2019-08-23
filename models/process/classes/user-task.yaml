@@ -1,0 +1,23 @@
+---
+id: b4b4c29e-3956-434d-8b1e-97914ae6de55
+mimeType: application/vnd.reflective-dk.object+json
+registrations:
+  - validity:
+      - input:
+          class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
+          name: User Task
+          attributes:
+            bundle:
+              dataType:
+                type: json
+                schema: {}
+            controller:
+              dataType: binary
+          collections:
+            operations:
+              dataType: string
+          manyRelations:
+            views:
+              id: 36a0eb70-1ef1-45dd-a0bc-73c58685e012
+              name: View Definition
+...
