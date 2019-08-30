@@ -69,6 +69,7 @@ registrations:
                   properties:
                     description: { type: string }
                     fundamental: { type: boolean }
+                    transient: { type: boolean }
                     dataType:
                       oneOf:
                         - type: string
@@ -92,6 +93,7 @@ registrations:
                   properties:
                     description: { type: string }
                     name: { type: string }
+                    transient: { type: boolean }
                     id:
                       type: string
                       pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
