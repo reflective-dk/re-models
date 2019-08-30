@@ -13,7 +13,9 @@ registrations:
             userStartable:
               dataType: boolean
             includeDataForUser:
-              description: Flag whether or not data is usable by user on UI. This can prevent needlessy largee xtensions to be parsed in browser.
+              description: >-
+                Flag whether or not data is usable by user on UI. This can
+                prevent needlessly large extensions from being parsed in browser
               dataType: boolean
             bpmn:
               description: Multihash pointing to the BPMN object
