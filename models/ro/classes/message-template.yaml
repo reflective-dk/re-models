@@ -16,5 +16,8 @@ registrations:
             body:
               description: Multihash pointing to body template
               dataType: binary
+            alternateURI:
+              description: replaces the clusterURI configured by SMTP config, useful for SSO
+              dataType: string
         from: 1900-01-01T00:00:00.000Z
 ...
