@@ -12,6 +12,11 @@ registrations:
           attributes:
             userStartable:
               dataType: boolean
+            assign:
+              description: >-
+                Flag whether or not ro assign first task whe n started,
+                if omitted, default value is true
+              dataType: boolean
             includeDataForUser:
               description: >-
                 Flag whether or not data is usable by user on UI. This can

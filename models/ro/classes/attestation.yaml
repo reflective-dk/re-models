@@ -1,0 +1,20 @@
+# Attestation Class
+---
+id: 446b574f-b8e2-492a-ab15-ae02d9f17e13
+registrations:
+  - validity:
+      - input:
+          model: { id: 17960fc5-7a6d-4e0b-95d8-f20934493819, name: Reflective Organization }
+          class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
+          extends: { id: 2da6e709-3f63-47d9-a197-bda06fb86936, name: Entity }
+          name: Attestation
+          description: Attestation to something to verify
+          attributes:
+            description:
+              dataType: string
+          manyRelations:
+            attests:
+              id: c9b16508-a2e2-4139-8021-55a781e0e492
+              name: Attest
+        from: 1900-01-01T00:00:00.000Z
+...
