@@ -12,10 +12,21 @@ registrations:
           attributes:
             username:
               dataType: string
+            attestedTo:
+              description: whether attest has been fulfilled
+              dataType: boolean
           singleRelations:
             attestation:
               description: attests to
               id: 446b574f-b8e2-492a-ab15-ae02d9f17e13
               name: Attestation
+            propagateFrom:
+              description: a node in a hierarchy if applicable
+              id: 2da6e709-3f63-47d9-a197-bda06fb86936
+              name: Entity
+            userAccount:
+              description: the user account with which the attest is to be given
+              id: 38df45c2-f4e2-4ffd-b91f-bc509ce8bcbf
+              name: UserAccount
         from: 1900-01-01T00:00:00.000Z
 ...

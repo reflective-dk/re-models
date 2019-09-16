@@ -12,6 +12,8 @@ registrations:
           attributes:
             description:
               dataType: string
+            timestamp:
+              dataType: dateTime
           manyRelations:
             attests:
               id: c9b16508-a2e2-4139-8021-55a781e0e492
