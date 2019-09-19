@@ -7,17 +7,73 @@ registrations:
           class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
           name: User Task
           attributes:
+            controller:
+              dataType: binary
+            layout:
+              description: >-
+                "The layout determines how views are laid out by the
+                controller. Use { rows: [ ... ] }, and { cols: [ ... ] } nested
+                to any depth like you would in a normal webix view. Use { type:
+                spacer } and { type: resizer } to get a spacer and resizer,
+                respectively. Refer to individual views by their key in the
+                'views' manyRelation, e.g. { type: view, view: my-nice-view }."
+              dataType:
+                type: definition
+                definition: layout
+          collections:
             bundle:
               dataType:
                 type: json
                 schema: {}
-            controller:
-              dataType: binary
-          collections:
             operations:
               dataType: string
           manyRelations:
             views:
               id: 36a0eb70-1ef1-45dd-a0bc-73c58685e012
               name: View Definition
+          definitions:
+            layout:
+              $ref: '#/definitions/layout'
+              definitions:
+                layout:
+                  oneOf:
+                    - $ref: '#/definitions/rows'
+                    - $ref: '#/definitions/cols'
+                    - $ref: '#/definitions/spacer'
+                    - $ref: '#/definitions/resizer'
+                    - $ref: '#/definitions/view'
+                layouts:
+                  type: array
+                  items: { $ref: '#/definitions/layout' }
+                rows:
+                  type: object
+                  properties:
+                    rows: { $ref: '#/definitions/layouts' }
+                  additionalProperties: false
+                  required: [ rows ]
+                cols:
+                  type: object
+                  properties:
+                    cols: { $ref: '#/definitions/layouts' }
+                  additionalProperties: false
+                  required: [ cols ]
+                spacer:
+                  type: object
+                  properties:
+                    type: { type: string, pattern: spacer }
+                  additionalProperties: false
+                  required: [ type ]
+                resizer:
+                  type: object
+                  properties:
+                    type: { type: string, pattern: resizer }
+                  additionalProperties: false
+                  required: [ type ]
+                view:
+                  type: object
+                  properties:
+                    type: { type: string, pattern: view }
+                    view: { type: string }
+                  additionalProperties: false
+                  required: [ type, view ]
 ...

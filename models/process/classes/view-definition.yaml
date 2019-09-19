@@ -10,4 +10,14 @@ registrations:
               dataType:
                 type: json
                 schema: {}
+          manyRelations:
+            associatedTypes:
+              description: >-
+                Types that this view is associated with. This information is used
+                to handle dynamic serialization of the information in the
+                view. If a view is associated with more than one type, it is up
+                to the controller to specify which one is relevant in the
+                specific case
+              id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9
+              name: Class
 ...
