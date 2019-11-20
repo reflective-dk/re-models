@@ -1,0 +1,10 @@
+---
+id: 51e58b66-7170-413c-aea7-ea314d236eed
+registrations:
+  - validity:
+      - input:
+          model: { id: dd9bcb59-d8c0-4c89-85f1-23f21fa3bfeb, name: Buanco Model }
+          class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
+          extends: { id: 2da6e709-3f63-47d9-a197-bda06fb86936, name: Entity }
+          name: Buanco Unit
+...

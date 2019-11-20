@@ -1,0 +1,8 @@
+---
+id: dd9bcb59-d8c0-4c89-85f1-23f21fa3bfeb
+registrations:
+  - validity:
+      - input:
+          class: { id: 54985140-62ec-49fd-b05a-661e090c405f, name: Model }
+          name: Buanco Model
+...

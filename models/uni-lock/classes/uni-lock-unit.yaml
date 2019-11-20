@@ -1,0 +1,10 @@
+---
+id: 3bd8e048-086d-4791-855a-a06331afafda
+registrations:
+  - validity:
+      - input:
+          model: { id: cfa2db45-49c3-4b06-a005-03c284b86f8a, name: UniLock Model }
+          class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
+          extends: { id: 2da6e709-3f63-47d9-a197-bda06fb86936, name: Entity }
+          name: UniLock Unit
+...

@@ -1,0 +1,8 @@
+---
+id: cfa2db45-49c3-4b06-a005-03c284b86f8a
+registrations:
+  - validity:
+      - input:
+          class: { id: 54985140-62ec-49fd-b05a-661e090c405f, name: Model }
+          name: UniLock Model
+...
