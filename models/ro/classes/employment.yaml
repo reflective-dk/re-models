@@ -18,6 +18,8 @@ registrations:
                   pattern: "[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"
             phoneNumbers:
               dataType: string
+            keyData:
+              dataType: string
           singleRelations:
             employee:
               id: 66d33a37-f73c-4723-8dca-5feb9cf420e4
