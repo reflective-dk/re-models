@@ -17,7 +17,7 @@ registrations:
             e06: { label: Afdeling, id: unitName }
             e07: { label: Telefon, id: phoneNumbers$ }
             e08: { label: Email, id: emailAddress }
-            e09: { label: Adresse, id: address }
+            e09: { label: Adresse, id: streetAddress }
             e10: { label: Postnr., id: postalCode }
             e11: { label: By, id: city }
             e14: { label: Nøgledata 1, id: keyData.0 }
