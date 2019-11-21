@@ -14,7 +14,7 @@ registrations:
             e03: { label: CPR-nummer, id: cpr }
             e04: { label: Medarbejder-id, id: employeeId }
             e05: { label: Stilling, id: position }
-            e06: { label: Afdelings-id, id: orgUnitId }
+            e06: { label: Afdelings-id, id: orgUnit }
             e07: { label: Telefon, id: workPhone$ }
             e08: { label: Adresse, id: address }
             e09: { label: Postnr., id: postalCode }
