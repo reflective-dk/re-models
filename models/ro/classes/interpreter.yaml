@@ -1,0 +1,18 @@
+# Interpreter Class
+---
+id: f59f6979-1cb4-4851-980c-7b6bba88c35d
+registrations:
+  - validity:
+      - input:
+          model: { id: 17960fc5-7a6d-4e0b-95d8-f20934493819, name: Reflective Organization }
+          class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
+          extends: { id: 2da6e709-3f63-47d9-a197-bda06fb86936, name: Entity }
+          name: Interpreter
+          description: An interpreter for changes in data
+          attributes:
+            matchers:
+              dataType:
+                type: json
+                schema: {}
+        from: 1900-01-01T00:00:00.000Z
+...
