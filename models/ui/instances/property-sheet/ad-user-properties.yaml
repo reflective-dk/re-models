@@ -1,0 +1,13 @@
+---
+id: 4813d361-ad2c-4fd8-ab6b-b0c5df8a9fba
+registrations:
+  - validity:
+      - input:
+          class: { id: e81c542d-76c9-4396-af3a-39c223c1a5a4, name: Property Sheet }
+          name: AD User Properties
+          sheetKey: ad-user
+          language: da
+          elements:
+            e00: { label: Navn, id: name$ }
+        from: 1900-01-01T00:00:00.000Z
+...
