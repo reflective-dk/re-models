@@ -9,5 +9,18 @@ registrations:
           language: da
           elements:
             e00: { label: Navn, id: name$ }
+            e01: { label: Common Name, id: user.snapshot.cn }
+            e02: { label: Distinguished Name, id: user.snapshot.dn }
+            e03: { label: Description, id: user.snapshot.description }
+            e04: { label: Delivery Office, id: user.snapshot.physicalDeliveryOfficeName }
+            e05: { label: Home Directory, id: user.snapshot.homeDirectory }
+            e06: { label: State, id: user.snapshot.st }
+            e07: { label: Home Drive, id: user.snapshot.homeDrive }
+            e08: { label: sAMAccountName, id: user.snapshot.sAMAccountName }
+            e09: { label: UPN, id: user.snapshot.userPrincipalName }
+            e10: { label: Telephone, id: user.snapshot.telephoneNumber }
+            e11: { label: Mail, id: user.snapshot.mail }
+            e12: { label: Category, id: user.snapshot.objectCategory }
+            e13: { label: GUID, id: user.snapshot.objectGUID }
         from: 1900-01-01T00:00:00.000Z
 ...

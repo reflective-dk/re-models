@@ -27,5 +27,11 @@ registrations:
             intraNoteEntry:
               id: 5b047e3d-09a2-4336-96d3-13cc8f591467
               name: IntraNote Entry Properties
+            adGroup:
+              id: 194c1a39-f0f2-41b8-bf3d-a910be1f3742
+              name: AD Group Properties
+            adUser:
+              id: 4813d361-ad2c-4fd8-ab6b-b0c5df8a9fba
+              name: AD User Properties
         from: 1900-01-01T00:00:00.000Z
 ...

@@ -9,5 +9,8 @@ registrations:
           language: da
           elements:
             e00: { label: Navn, id: name$ }
+            e01: { label: Common Name, id: cn }
+            e02: { label: Distinguished Name, id: dn }
+            e03: { label: GUID, id: objectGUID }
         from: 1900-01-01T00:00:00.000Z
 ...
