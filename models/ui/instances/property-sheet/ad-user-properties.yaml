@@ -8,7 +8,7 @@ registrations:
           sheetKey: ad-user
           language: da
           elements:
-            e00: { label: Navn, id: name$ }
+            e00: { label: Name, id: user.snapshot.name$ }
             e01: { label: Common Name, id: user.snapshot.cn }
             e02: { label: Distinguished Name, id: user.snapshot.dn }
             e03: { label: Description, id: user.snapshot.description }
