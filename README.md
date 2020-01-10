@@ -18,10 +18,16 @@ npm run build
 
 ### Models ###
 
-* Integration
+* Active Directory
+* Buanco
+* IntraNote
 * LDAP
-* KMD LOS
 * KMD Opus
-* OIO
-* Raw
+* Plan2learn
 * Reflective Organization
+* SD Løn
+* STS Klassifikation
+* STS Organisation
+* STSOrgSync
+* UniLock
+* UNI-Login
