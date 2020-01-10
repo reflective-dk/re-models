@@ -1,0 +1,17 @@
+---
+id: e58dfae7-8979-44cd-832e-523d39cd7bb8
+mimeType: application/vnd.reflective-dk.object+json
+registrations:
+  - validity:
+      - input:
+          model: { id: 404874b1-7015-4e8d-a139-182bf6b57cc7, name: STS Klassifikation }
+          class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
+          extends: { id: 2da6e709-3f63-47d9-a197-bda06fb86936, name: Entity }
+          name: STS Klasse
+          description:
+          attributes:
+          collections:
+          singleRelations:
+          manyRelations:
+        from: 1900-01-01T00:00:00.000Z
+...

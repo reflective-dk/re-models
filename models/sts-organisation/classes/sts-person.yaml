@@ -1,0 +1,24 @@
+---
+id: d6ca79b1-3e2e-440a-adb5-4588e9a37c6f
+mimeType: application/vnd.reflective-dk.object+json
+registrations:
+  - validity:
+      - input:
+          model: { id: 691d69d0-aee3-455b-89a2-0b6e0215bb2e, name: STS Organisation }
+          class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
+          extends: { id: 2da6e709-3f63-47d9-a197-bda06fb86936, name: Entity }
+          name: STS Person
+          description:
+          attributes:
+            BrugervendtNoegle:
+              description: '<element ref="sd:BrugervendtNoegleTekst" minOccurs="0" oio:content="brugervendtnoegle"/>'
+              dataType: string
+            CPR-Nummer:
+              description: '<element ref="sts:CPR-NummerTekst" minOccurs="0" oio:content="cprnr"/>'
+              dataType:
+                type: json
+                schema:
+                  type: string
+                  pattern: "[0-9]{10}"
+        from: 1900-01-01T00:00:00.000Z
+...

@@ -1,0 +1,29 @@
+---
+id: a30ad304-1b55-47d3-acfc-93bc59c67a4b
+mimeType: application/vnd.reflective-dk.object+json
+registrations:
+  - validity:
+      - input:
+          model: { id: 691d69d0-aee3-455b-89a2-0b6e0215bb2e, name: STS Organisation }
+          class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
+          name: STS Myndighed
+          attributes:
+            BrugervendtNoegle:
+              description: '<element ref="sd:BrugervendtNoegleTekst" minOccurs="0" oio:content="brugervendtnoegle"/>'
+              dataType: string
+            CVR-Nummer:
+              description: '<element oio:content="cvrnr" minOccurs="0" ref="sts:CVR-NummerTekst"/>'
+              dataType:
+                type: json
+                schema:
+                  type: string
+                  pattern: "[0-9]{8}"
+            Myndighedskode:
+              description: '<element oio:content="myndighedskode" minOccurs="0" ref="sts:MyndighedsKode"/>'
+              dataType:
+                type: json
+                schema:
+                  type: string
+                  pattern: "[0-9]{3}|[0-9]{4}"
+        from: 1900-01-01T00:00:00.000Z
+...

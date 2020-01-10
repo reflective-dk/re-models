@@ -1,0 +1,8 @@
+---
+id: 691d69d0-aee3-455b-89a2-0b6e0215bb2e
+registrations:
+  - validity:
+      - input:
+          class: { id: 54985140-62ec-49fd-b05a-661e090c405f, name: Model }
+          name: STS Organisation
+...

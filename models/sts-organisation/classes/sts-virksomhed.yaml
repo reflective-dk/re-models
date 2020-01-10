@@ -1,0 +1,36 @@
+---
+id: 18140076-6e5f-4e2a-a9b0-5b4933ac87f6
+mimeType: application/vnd.reflective-dk.object+json
+registrations:
+  - validity:
+      - input:
+          model: { id: 691d69d0-aee3-455b-89a2-0b6e0215bb2e, name: STS Organisation }
+          class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
+          name: STS Virksomhed
+          attributes:
+            BrugervendtNoegle:
+              description: '<element ref="sd:BrugervendtNoegleTekst" minOccurs="0" oio:content="brugervendtnoegle"/>'
+              dataType: string
+            CVR-Nummer:
+              description: '<element oio:content="cvrnr" minOccurs="0" ref="sts:CVR-NummerTekst"/>'
+              dataType:
+                type: json
+                schema:
+                  type: string
+                  pattern: "[0-9]{8}"
+            SE-Nummer:
+              description: '<element oio:content="se-nummer" minOccurs="0" ref="sts:SE-NummerTekst"/>'
+              dataType:
+                type: json
+                schema:
+                  type: string
+                  pattern: "[0-9]{8}"
+            P-Nummer:
+              description: '<element oio:content="p-nummer" minOccurs="0" ref="sts:P-NummerTekst"/>'
+              dataType:
+                type: json
+                schema:
+                  type: string
+                  pattern: "[0-9]{10}"
+        from: 1900-01-01T00:00:00.000Z
+...
