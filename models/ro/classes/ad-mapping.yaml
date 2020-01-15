@@ -1,0 +1,12 @@
+# AD Mapping Class
+---
+id: c5fa1d73-a8b0-41fe-94ac-4f676ff30c0c
+registrations:
+  - validity:
+      - input:
+          model: { id: 17960fc5-7a6d-4e0b-95d8-f20934493819, name: Reflective Organization }
+          class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
+          extends: { id: 2da6e709-3f63-47d9-a197-bda06fb86936, name: Entity }
+          name: AD Mapping
+        from: 2018-01-01T00:00:00.000Z
+...
