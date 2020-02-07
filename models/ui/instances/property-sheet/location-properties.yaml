@@ -8,6 +8,7 @@ registrations:
           sheetKey: location
           language: da
           elements:
+            e005: { label: Navn, id: name }
             e00: { label: P-nummer, id: pNr }
             e01: { label: Telefon, id: phoneNumbers$ }
             e02: { label: Adresse, id: address.snapshot.streetAddress }
@@ -15,5 +16,7 @@ registrations:
             e04: { label: Postnummer, id: address.snapshot.postalCode }
             e05: { label: By, id: address.snapshot.city }
             e06: { label: Land, id: address.snapshot.country }
+            e07: { label: Aktiv fra, id: activeFrom$ }
+            e08: { label: Aktiv til, id: activeTo$ }
         from: 1900-01-01T00:00:00.000Z
 ...
