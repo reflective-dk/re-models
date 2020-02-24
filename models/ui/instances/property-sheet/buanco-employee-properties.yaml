@@ -20,6 +20,7 @@ registrations:
             e09: { label: Postnr., id: postalCode }
             e10: { label: By, id: city }
             e11: { label: Land, id: country }
+            e115: { label: Kort-id, id: cardId }
             e12: { label: Aktiv fra, id: activeFrom$ }
             e13: { label: Aktiv til, id: activeTo$ }
         from: 1900-01-01T00:00:00.000Z
