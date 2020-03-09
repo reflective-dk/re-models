@@ -1,0 +1,14 @@
+---
+id: ed64e910-cd0b-4800-8c92-59d28e43d739
+registrations:
+  - validity:
+      - input:
+          model: { id: 8456c1b2-9003-4a76-a56b-ddf6abdde72d, name: Cura Model }
+          class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
+          extends: { id: 2da6e709-3f63-47d9-a197-bda06fb86936, name: Entity }
+          name: Cura Practitioner
+          attributes:
+            cprNr:
+              dataType: string
+        from: 1900-01-01T00:00:00.000Z
+...
