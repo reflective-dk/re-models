@@ -1,21 +1,19 @@
 ---
-id: 632998df-c34d-4fe9-8bec-b2e2b6f9cf9a
+id: 579ee324-ed92-48fe-8958-2f1956db8f68
 registrations:
   - validity:
       - input:
           model: { id: 855ad3bd-d62a-407c-8a33-8f49bbcc8995, name: Integration Model }
           class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
-          extends: { id: 8b5bcbb1-6970-463b-b93e-d2f6ad2bfeb2, name: Unstager }
-          name: Cura Unstager
+          extends: { id: a28e7d85-66a0-48bf-986b-a90ece6b87d5, name: Fetcher }
+          name: Cura Fetcher
+          description: Fetches information from Cura
           attributes:
             fhirServerAddress:
               dataType: string
             fhirServerName:
               dataType: string
             fhirServerPort:
-              dataType: string
-          collections:
-            keys:
               dataType: string
         from: 1900-01-01T00:00:00.000Z
 ...
