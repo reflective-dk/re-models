@@ -1,18 +1,17 @@
-# System Class (an IT system or some other system)
+# Product Class (a product provided by a vendor)
 ---
-id: e8bc40c5-e542-4bab-b6fc-64b2339ffa15
+id: aa5d8880-06a1-46ff-9a55-89244a45a0f0
 registrations:
   - validity:
       - input:
           model: { id: 17960fc5-7a6d-4e0b-95d8-f20934493819, name: Reflective Organization }
           class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
           extends: { id: 2da6e709-3f63-47d9-a197-bda06fb86936, name: Entity }
-          name: System
-          description: An IT system or some other system
+          name: Product
+          description: A Product
           singleRelations:
-            product:
-              description: An installation instance of a Product
-              id: ee8d2f2e-bc8f-46cf-9925-edf75c5d30fc
-              name: Product
+            vendor:
+              id: fe883d94-fa45-4e6f-a004-80cf0324ece5
+              name: Vendor
         from: 1900-01-01T00:00:00.000Z
 ...
