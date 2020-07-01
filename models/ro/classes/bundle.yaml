@@ -1,0 +1,24 @@
+# Bundle Class
+---
+id: bdf5f201-8440-472e-8751-f93691220fce
+registrations:
+  - validity:
+      - input:
+          model: { id: 17960fc5-7a6d-4e0b-95d8-f20934493819, name: Reflective Organization }
+          class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
+          extends: { id: 2da6e709-3f63-47d9-a197-bda06fb86936, name: Entity }
+          name: Bundle
+          description: A bundle for collecting datas
+          attributes:
+            bundle:
+              dataType:
+                type: json
+                schema: {}
+            allDomains:
+              dataType: boolean
+            schedule:
+              dataType: string
+            description:
+              dataType: string
+        from: 1900-01-01T00:00:00.000Z
+...
