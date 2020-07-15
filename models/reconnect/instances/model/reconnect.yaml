@@ -1,0 +1,10 @@
+# ReConnect model
+---
+id: b3a19dc9-f378-4c62-94f6-d182fa27de42
+registrations:
+  - validity:
+      - input:
+          class: { id: 54985140-62ec-49fd-b05a-661e090c405f, name: Model }
+          name: ReConnect Model
+          description: This model defines types and rules for ReConnect
+...
