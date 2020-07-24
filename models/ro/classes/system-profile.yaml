@@ -27,5 +27,9 @@ registrations:
               description: The set of System Accesses given by this profile
               id: 1938d89b-a935-412d-a23c-02709fe63c0c
               name: System Access
+            systemAccessMeta:
+              description: The set of System Access Templates available by this profile
+              id: e5f5c067-7af9-4a26-9817-f19b162b08ba
+              name: System Access Template
         from: 1900-01-01T00:00:00.000Z
 ...

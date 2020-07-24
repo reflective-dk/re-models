@@ -23,6 +23,13 @@ registrations:
             roleAssignment:
               id: 025dfd36-f7a6-41e3-aa0c-64fe0376d3b7
               name: Role Assignment
+            user-account:
+              id: 38df45c2-f4e2-4ffd-b91f-bc509ce8bcbf
+              name: User Account
+            right:
+              description: Specific accesses rights
+              id: d7ae61dc-466a-4054-aa8f-1b111f9b5756
+              name: Right
           manyRelations:
             systemProfiles:
               description: Generic profiles assigned to this System Allocation
@@ -32,6 +39,10 @@ registrations:
               description: Specific accesses assigned to this System Allocation
               id: 1938d89b-a935-412d-a23c-02709fe63c0c
               name: System Access
+            rights:
+              description: Specific accesses rights produced from AD systemAccesses
+              id: d7ae61dc-466a-4054-aa8f-1b111f9b5756
+              name: Right
             expertise:
               description: Areas of responsibility from KLE
               id: aa6b2598-47c2-4a80-8bf0-bfa83e6afae8
