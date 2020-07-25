@@ -1,0 +1,51 @@
+---
+id: a882353e-8b1b-4649-a759-ccf95b9c1fe3
+registrations:
+  - validity:
+      - input:
+          model: { id: 17960fc5-7a6d-4e0b-95d8-f20934493819, name: Reflective Organization }
+          class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
+          extends: { id: 2da6e709-3f63-47d9-a197-bda06fb86936, name: Entity }
+          name: System Access Profile
+          description: >-
+            A System Access Profile groups a set of System Accesses to be
+            allocated to an Employment through a System Access Allocation
+          singleRelations:
+            system:
+              id: e8bc40c5-e542-4bab-b6fc-64b2339ffa15
+              name: System
+          manyRelations:
+            roleAccesses:
+              description: >-
+                System Accesses of category 'role' permitted by this System
+                Access Profile. If any System Accesses of this category are
+                included in the System Access Profile, then precisely one such
+                System Access must be specified in each of the System Access
+                Allocations.
+              id: 1938d89b-a935-412d-a23c-02709fe63c0c
+              name: System Access
+            unitAccesses:
+              description: >-
+                System Accesses of category 'unit' permitted by this System
+                Access Profile. If any System Accesses of this category are
+                included in the System Access Profile, then precisely one such
+                System Access must be specified in each of the System Access
+                Allocations.
+              id: 1938d89b-a935-412d-a23c-02709fe63c0c
+              name: System Access
+            mandatoryAccesses:
+              description: >-
+                System Accesses of category 'generic' permitted by this System
+                Access Profile. Every System Access specified here is mandatory
+                for inclusion in each of the System Access Allocations.
+              id: 1938d89b-a935-412d-a23c-02709fe63c0c
+              name: System Access
+            optionalAccesses:
+              description: >-
+                System Accesses of category 'generic' permitted by this System
+                Access Profile. Every System Access specified here is optional
+                for inclusion in each of the System Access Allocations.
+              id: 1938d89b-a935-412d-a23c-02709fe63c0c
+              name: System Access
+        from: 1900-01-01T00:00:00.000Z
+...

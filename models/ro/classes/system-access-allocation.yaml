@@ -1,0 +1,29 @@
+---
+id: 8b0390d1-74b9-48a2-a4cf-406e934ea120
+registrations:
+  - validity:
+      - input:
+          model: { id: 17960fc5-7a6d-4e0b-95d8-f20934493819, name: Reflective Organization }
+          class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
+          extends: { id: 2da6e709-3f63-47d9-a197-bda06fb86936, name: Entity }
+          name: System Access Allocation
+          description: >-
+            A System Access Allocation allocates specific System Accesses from a
+            System Access Profile to an Employment
+          attributes:
+          singleRelations:
+            profile:
+              description: System Access Profile from which to allocate System Accesses
+              id: a882353e-8b1b-4649-a759-ccf95b9c1fe3
+              name: System Access Profile
+            employment:
+              description: Employment receiving the allocated System Accesses
+              id: 06c495eb-fcef-4c09-996f-63fd2dfea427
+              name: Employment
+          manyRelations:
+            accesses:
+              description: >-
+                System Accesses allocated to the Employment. Only System Accesses
+                from the System Access Profile may be allocated.
+        from: 1900-01-01T00:00:00.000Z
+...
