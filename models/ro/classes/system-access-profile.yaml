@@ -10,6 +10,44 @@ registrations:
           description: >-
             A System Access Profile groups a set of System Accesses to be
             allocated to an Employment through a System Access Allocation
+          collections:
+            mandatory:
+              description: >-
+                "The 'mandatory' string collection governs the way in which
+                specific System Accesses are mandatory, when allocated to an
+                Employment through a System Access Allocation. The values
+                permitted in each element are:
+                  '?': Zero or one
+                  '*': Zero or more
+                  '+': One or more
+                  <n>: a specific number ('0', '1', '2', ...)
+
+                For 'categorized' System Accesses, the name of the category
+                collection also acts as a keyword in the 'mandatory'
+                collection. For example, the following states that precisely one
+                'role' System Access must be allocated:
+                  { \"roleAccesses\": \"1\" }
+
+                To state that specific 'generic' System Accesses are mandatory,
+                simply reference them by their key in the 'genericAccesses'
+                collection:
+                  { \"key-of-specific-access\": \"1\" }"
+              dataType:
+                type: json
+                schema:
+                  type: object
+                  properties:
+                    # mandatory settings for categorized System Accesses
+                    roleAccesses: { $ref: '#/definitions/multiplicity' }
+                    unitAccesses: { $ref: '#/definitions/multiplicity' }
+                    fieldAccesses: { $ref: '#/definitions/multiplicity' }
+                    communicationAccesses: { $ref: '#/definitions/multiplicity' }
+                  # mandatory settings for generic System Accesses
+                  additionalProperties: { $ref: '#/definitions/multiplicity' }
+                  definitions:
+                    multiplicity:
+                      type: string
+                      pattern: '^(?:\\*|\\+|\\?|\\d+)$'
           singleRelations:
             system:
               id: e8bc40c5-e542-4bab-b6fc-64b2339ffa15
@@ -18,33 +56,40 @@ registrations:
             roleAccesses:
               description: >-
                 System Accesses of category 'role' permitted by this System
-                Access Profile. If any System Accesses of this category are
-                included in the System Access Profile, then precisely one such
-                System Access must be specified in each of the System Access
-                Allocations.
+                Access Profile. How many of these, if any, must be included in a
+                System Access Allocation is controlled through the 'mandatory'
+                string collection (see above).
               id: 1938d89b-a935-412d-a23c-02709fe63c0c
               name: System Access
             unitAccesses:
               description: >-
                 System Accesses of category 'unit' permitted by this System
-                Access Profile. If any System Accesses of this category are
-                included in the System Access Profile, then precisely one such
-                System Access must be specified in each of the System Access
-                Allocations.
+                Access Profile. How many of these, if any, must be included in a
+                System Access Allocation is controlled through the 'mandatory'
+                string collection (see above).
               id: 1938d89b-a935-412d-a23c-02709fe63c0c
               name: System Access
-            mandatoryAccesses:
+            fieldAccesses:
               description: >-
-                System Accesses of category 'generic' permitted by this System
-                Access Profile. Every System Access specified here is mandatory
-                for inclusion in each of the System Access Allocations.
+                System Accesses of category 'field' permitted by this System
+                Access Profile. How many of these, if any, must be included in a
+                System Access Allocation is controlled through the 'mandatory'
+                string collection (see above).
               id: 1938d89b-a935-412d-a23c-02709fe63c0c
               name: System Access
-            optionalAccesses:
+            communicationAccesses:
               description: >-
-                System Accesses of category 'generic' permitted by this System
-                Access Profile. Every System Access specified here is optional
-                for inclusion in each of the System Access Allocations.
+                System Accesses of category 'communication' permitted by this
+                System Access Profile. How many of these, if any, must be
+                included in a System Access Allocation is controlled through the
+                'mandatory' string collection (see above).
+              id: 1938d89b-a935-412d-a23c-02709fe63c0c
+              name: System Access
+            genericAccesses:
+              description: >-
+                Generic System Accesses permitted by this System Access
+                Profile. Which of these are mandatory is controlled through the
+                'mandatory' string collection (see above).
               id: 1938d89b-a935-412d-a23c-02709fe63c0c
               name: System Access
         from: 1900-01-01T00:00:00.000Z
