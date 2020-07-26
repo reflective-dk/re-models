@@ -8,9 +8,15 @@ registrations:
           extends: { id: 2da6e709-3f63-47d9-a197-bda06fb86936, name: Entity }
           name: System Access Profile
           description: >-
-            A System Access Profile groups a set of System Accesses to be
+            A System Access Profile provides a set of System Accesses to be
             allocated to an Employment through a System Access Allocation
           collections:
+            defaulted:
+              description: >-
+                The 'defaulted' boolean collection indicates which of all the
+                System Accesses provided by the System Access Profile should be
+                enabled by default when creating a new System Access Allocation.
+              dataType: boolean
             mandatory:
               description: >-
                 "The 'mandatory' string collection governs the way in which
@@ -53,6 +59,14 @@ registrations:
               id: e8bc40c5-e542-4bab-b6fc-64b2339ffa15
               name: System
           manyRelations:
+            applicationAccesses:
+              description: >-
+                System Accesses of category 'application' permitted by this
+                System Access Profile. How many of these, if any, must be
+                included in a System Access Allocation is controlled through the
+                'mandatory' string collection (see above).
+              id: 1938d89b-a935-412d-a23c-02709fe63c0c
+              name: System Access
             roleAccesses:
               description: >-
                 System Accesses of category 'role' permitted by this System
