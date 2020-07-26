@@ -44,6 +44,7 @@ registrations:
                   type: object
                   properties:
                     # mandatory settings for categorized System Accesses
+                    applicationAccesses: { $ref: '#/definitions/multiplicity' }
                     roleAccesses: { $ref: '#/definitions/multiplicity' }
                     unitAccesses: { $ref: '#/definitions/multiplicity' }
                     fieldAccesses: { $ref: '#/definitions/multiplicity' }
