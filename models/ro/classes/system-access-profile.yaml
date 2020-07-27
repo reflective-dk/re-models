@@ -11,12 +11,6 @@ registrations:
             A System Access Profile provides a set of System Accesses to be
             allocated to an Employment through a System Access Allocation
           collections:
-            defaulted:
-              description: >-
-                The 'defaulted' boolean collection indicates which of all the
-                System Accesses provided by the System Access Profile should be
-                enabled by default when creating a new System Access Allocation.
-              dataType: boolean
             mandatory:
               description: >-
                 "The 'mandatory' string collection governs the way in which
@@ -59,6 +53,13 @@ registrations:
             system:
               id: e8bc40c5-e542-4bab-b6fc-64b2339ffa15
               name: System
+            allocationTemplate:
+              description: >-
+                The 'allocationTemplate' is a default System Access Allocation
+                tailored specifically to the System Access Profile. It is used as
+                a starting point when creating a new System Access Allocation.
+                id: 8b0390d1-74b9-48a2-a4cf-406e934ea120
+                name: System Access Allocation
           manyRelations:
             applicationAccesses:
               description: >-
