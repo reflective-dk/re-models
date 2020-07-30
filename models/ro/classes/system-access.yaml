@@ -50,7 +50,7 @@ registrations:
                 A System Access may be associated directly with an AD Group, if
                 access to the target system is managed through Active Directory
               id: b54fc01e-0777-4f67-b49a-80f7072a1ba0
-              name: Ad Group
+              name: AD Group
             system:
               description: The System targeted by this System Access
               id: e8bc40c5-e542-4bab-b6fc-64b2339ffa15
