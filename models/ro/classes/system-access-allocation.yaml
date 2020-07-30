@@ -34,5 +34,16 @@ registrations:
               description: >-
                 System Accesses allocated to the Employment. Only System Accesses
                 from the System Access Profile may be allocated.
+              id: 1938d89b-a935-412d-a23c-02709fe63c0c
+              name: System Access
+            units:
+              description: >-
+                System Accesses of category \'unit\' have a collection of units
+                to indicate where in the organization the access has been
+                allocated. For an external system such as Cura, the units are not
+                part of the RO Administrative Organization but belong to an
+                organization specific to the system in question
+              id: c4315fa9-3765-40c0-ba45-ef821c416f83
+              name: Object
         from: 1900-01-01T00:00:00.000Z
 ...
