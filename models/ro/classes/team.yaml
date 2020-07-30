@@ -1,0 +1,27 @@
+---
+id: 0a978850-c9ec-4a43-9e4a-6f1a09004445
+registrations:
+  - validity:
+      - input:
+          model: { id: 17960fc5-7a6d-4e0b-95d8-f20934493819, name: Reflective Organization }
+          class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
+          extends: { id: 2da6e709-3f63-47d9-a197-bda06fb86936, name: Entity }
+          name: Team
+          description: >-
+            A Team groups together a set of Role Assignments. This effectively
+            represents a set of Employees with specific Responsibilities in
+            specific areas of the Organization.
+          singleRelations:
+            adGroup:
+              description: >-
+                A Team may be associated directly with an AD Group, if the target
+                system is managed through Active Directory.
+              id: b54fc01e-0777-4f67-b49a-80f7072a1ba0
+              name: AD Group
+          manyRelations:
+            assignments:
+              description: Role Assignments included in the team.
+              id: 025dfd36-f7a6-41e3-aa0c-64fe0376d3b7
+              name: Role Assignment
+        from: 1900-01-01T00:00:00.000Z
+...
