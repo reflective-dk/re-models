@@ -11,6 +11,15 @@ registrations:
             A System Access Allocation allocates specific System Accesses from a
             System Access Profile to an Employment
           attributes:
+          collections:
+            auxiliary:
+              description: >-
+                UI helper. This collection exists primarily as an aid to the
+                System Access UI for the dynamic recording/rendering of auxiliary
+                data.
+              dataType:
+                type: json
+                schema: {}
           singleRelations:
             profile:
               description: System Access Profile from which to allocate System Accesses

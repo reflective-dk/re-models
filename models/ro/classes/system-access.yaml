@@ -1,4 +1,3 @@
-# System Access
 ---
 id: 1938d89b-a935-412d-a23c-02709fe63c0c
 registrations:
@@ -8,16 +7,53 @@ registrations:
           class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
           extends: { id: 2da6e709-3f63-47d9-a197-bda06fb86936, name: Entity }
           name: System Access
-          description: A specific access into an external system
+          description: >-
+            A System Access represents a role, a unit or some other aspect of a
+            access that may be granted to a system. System Accesses are grouped
+            together in System Access Profiles and are allocated to Employments
+            through a System Access Allocation
           attributes:
-            dn:
-              dataType: string
+            category:
+              description: >-
+                System Accesses are categorized according to the aspect of the
+                access they represent. Although different systems have different
+                access models, there are elements that always apply to a certain
+                extent. We use this to present a unified access view across all
+                systems.
+              dataType:
+                type: json
+                schema:
+                  type: string
+                  enum: [ role, unit, team, area, communication, generic ]
+            auxiliaryType:
+              description: >-
+                UI helper. This attribute tells the UI how to record/render
+                auxiliary data for this specific System Access.
+              dataType:
+                type: json
+                schema:
+                  type: string
+                  enum: [ text, longtext, multitext, select, multiselect ]
+            auxiliaryItems:
+              description: >-
+                UI helper. This attribute contains a (potentially flat) tree of
+                items to pick from, in cases where the auxiliaryType (see above)
+                is either \'select\' or \'multiselect\'.
+              dataType:
+                type: json
+                schema:
+                  type: array
+                  items: { type: object }
           singleRelations:
+            adGroup:
+              description: >-
+                A System Access may be associated directly with an AD Group, if
+                access to the target system is managed through Active Directory
+              id: b54fc01e-0777-4f67-b49a-80f7072a1ba0
+              name: Ad Group
             system:
+              description: The System targeted by this System Access
               id: e8bc40c5-e542-4bab-b6fc-64b2339ffa15
               name: System
-            systemAccessMeta:
-              id: e5f5c067-7af9-4a26-9817-f19b162b08ba
-              name: System Access Meta
         from: 1900-01-01T00:00:00.000Z
 ...
