@@ -34,6 +34,10 @@ registrations:
                 schema:
                   type: string
                   enum: [ text, longtext, multitext, select, multiselect ]
+            auxiliaryOperation:
+              description: >-
+                UI helper. This attribute specifies which operation to call in
+                order to get a list of items.
             auxiliaryItems:
               description: >-
                 UI helper. This attribute contains a (potentially flat) tree of
@@ -42,8 +46,17 @@ registrations:
               dataType:
                 type: json
                 schema:
-                  type: array
-                  items: { type: object }
+                  $ref: '#/definitions/node'
+                  definitions:
+                    node:
+                      type: object
+                      properties:
+                        id: { type: string }
+                        name: { type: string }
+                        data:
+                          type: array
+                          items: { $ref: '#/definitions/node' }
+                      required: [ id ]
           singleRelations:
             adGroup:
               description: >-
