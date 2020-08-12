@@ -1,0 +1,15 @@
+---
+id: 56ee1d79-9ef7-463c-94ad-6fc5ffbbf03e
+registrations:
+  - validity:
+      - input:
+          model: { id: 8456c1b2-9003-4a76-a56b-ddf6abdde72d, name: Cura Model }
+          class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
+          extends: { id: 2da6e709-3f63-47d9-a197-bda06fb86936, name: Entity }
+          name: Cura Unit
+          singleRelations:
+            adGroup:
+              id: b54fc01e-0777-4f67-b49a-80f7072a1ba0
+              name: AD Group
+        from: 1900-01-01T00:00:00.000Z
+...
