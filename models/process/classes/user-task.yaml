@@ -26,6 +26,16 @@ registrations:
                 type: json
                 schema: {}
             operations:
+              # 1. The User Task specifies which operations can be called from
+              #    the client
+              # 2. The client may call these operations through a mechanism
+              #    similar to provideBundle - perhaps callOperation( opName, userTaskId )
+              # 3. If an operation needs parameters, these are passed as part of
+              #    the body to a POST call to callOperation
+              # 4. The client may (maliciously) attempt to call operations that
+              #    are not specified in this collection, but the server can use
+              #    the userTaskId to verify that the operation called is indeed
+              #    associated with the userTask being executed
               dataType: string
           manyRelations:
             views:
