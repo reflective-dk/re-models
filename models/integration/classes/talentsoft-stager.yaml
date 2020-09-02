@@ -1,0 +1,13 @@
+# Talentsoft Stager Class
+---
+id: 44ba15b0-1624-4af5-b270-67c064d31f96
+registrations:
+  - validity:
+      - input:
+          model: { id: 855ad3bd-d62a-407c-8a33-8f49bbcc8995, name: Integration Model }
+          class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
+          extends: { id: 05f1c11b-da14-49c1-8f8a-7b5e48bc6c04, name: Stager }
+          name: Talentsoft Stager
+          description: Mechanism for staging Talentsoft data to Reflective canonical model
+        from: 1900-01-01T00:00:00.000Z
+...
