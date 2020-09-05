@@ -1,0 +1,11 @@
+---
+id: 1154b533-0ec7-46e3-8a49-5aad91624788
+registrations:
+  - validity:
+      - input:
+          model: { id: 14a41d40-9331-4689-b403-68dc56c208fe, name: Talentsoft Model }
+          class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
+          extends: { id: 2da6e709-3f63-47d9-a197-bda06fb86936, name: Entity }
+          name: Talentsoft Contract
+        from: 1900-01-01T00:00:00.000Z
+...
