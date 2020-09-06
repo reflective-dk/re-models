@@ -1,0 +1,10 @@
+# ProMark model
+---
+id: 2e71d31c-011f-43cb-916a-c99fc7b681c4
+registrations:
+  - validity:
+      - input:
+          class: { id: 54985140-62ec-49fd-b05a-661e090c405f, name: Model }
+          name: ProMark Model
+          description: This model defines types and rules for ProMark
+...
