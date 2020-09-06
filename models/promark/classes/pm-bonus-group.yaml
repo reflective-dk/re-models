@@ -1,4 +1,4 @@
-# ProMark Team Class
+# ProMark Bonus Group Class
 ---
 id: 0b0f350e-d636-4758-8a23-50ca777db909
 registrations:
@@ -7,6 +7,6 @@ registrations:
           model: { id: 2e71d31c-011f-43cb-916a-c99fc7b681c4, name: ProMark Model }
           class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
           extends: { id: c4315fa9-3765-40c0-ba45-ef821c416f83, name: Object }
-          name: ProMark Team
+          name: ProMark Bonus Group
         from: 2018-01-01T00:00:00.000Z
 ...

@@ -1,12 +1,12 @@
-# ProMark Division Class
+# ProMark User Class
 ---
-id: 37e9bb1d-ed2d-4e1a-a18d-33f2cf9086d0
+id: b36d88b7-8c88-453c-b9f9-cf2f23ba1a1f
 registrations:
   - validity:
       - input:
           model: { id: 2e71d31c-011f-43cb-916a-c99fc7b681c4, name: ProMark Model }
           class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
           extends: { id: c4315fa9-3765-40c0-ba45-ef821c416f83, name: Object }
-          name: ProMark Division
+          name: ProMark User
         from: 2018-01-01T00:00:00.000Z
 ...
