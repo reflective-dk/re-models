@@ -1,12 +1,12 @@
-# ProMark Bonus Group Class
+# ProMark Afdeling Class
 ---
-id: 0b0f350e-d636-4758-8a23-50ca777db909
+id: 1bc5abf4-e790-42fc-b0ac-eff9d06a0974
 registrations:
   - validity:
       - input:
           model: { id: 2e71d31c-011f-43cb-916a-c99fc7b681c4, name: ProMark Model }
           class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
           extends: { id: c4315fa9-3765-40c0-ba45-ef821c416f83, name: Object }
-          name: ProMark Bonus Group
+          name: ProMark Afdeling
         from: 2018-01-01T00:00:00.000Z
 ...
