@@ -1,0 +1,16 @@
+---
+id: 8e80de8b-4c8c-42ca-8ddd-cec816a955fa
+registrations:
+  - validity:
+      - input:
+          model: { id: 17960fc5-7a6d-4e0b-95d8-f20934493819, name: Reflective Organization }
+          class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
+          extends: { id: 2da6e709-3f63-47d9-a197-bda06fb86936, name: Entity }
+          name: Process Configuration
+          description: A process configuration
+          singleRelations:
+            process:
+              id: efec2048-b4f3-4ffd-a7ba-b6698d412bbc
+              name: Process
+        from: 1900-01-01T00:00:00.000Z
+...
