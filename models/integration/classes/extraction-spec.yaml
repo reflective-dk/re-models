@@ -31,5 +31,13 @@ registrations:
                 the RO model
                 id: efefe41d-805b-478f-8e4d-841085cb7dfa
                 name: Type Map
+            extractionHierarchies:
+              description: >-
+                Hierarchy (if any) to use for each type map. A type map works off
+                a hierarchy or a query. The hierarchy can be specified either
+                here or directly in the type map. Hierarchies specified here are
+                paired with the corresponding type map using the collection keys
+                id: a07908c1-883f-41e6-9beb-02981f48b067
+                name: Hierarchy
         from: 1900-01-01T00:00:00.000Z
 ...
