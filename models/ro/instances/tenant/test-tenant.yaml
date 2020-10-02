@@ -1,8 +1,0 @@
----
-id: 7857db3f-1929-4100-86ea-a971369bd1a5
-registrations:
-  - validity:
-      - input:
-          class: { id: 41e0ef9b-01f3-41fd-aa39-6bcb40374704, name: Tenant }
-          name: Test Tenant
-...
