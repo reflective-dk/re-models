@@ -1,0 +1,11 @@
+---
+id: 820b88cf-645d-40f8-949e-8a3f7f5ee494
+registrations:
+  - validity:
+      - input:
+          model: { id: 65b8bd96-6d6f-4fbe-8d1f-078193f9d1e3, name: SD Løn Model }
+          class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
+          extends: { id: c4315fa9-3765-40c0-ba45-ef821c416f83, name: Object }
+          name: SD Løn Employment
+        from: 1900-01-01T00:00:00.000Z
+...
