@@ -1,0 +1,34 @@
+---
+id: 16826607-fce1-48df-9d19-c3dc9e08d8ec
+mimeType: application/vnd.reflective-dk.object+json
+registrations:
+  - validity:
+      - input:
+          class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
+          name: User Task Archive
+          attributes:
+            username:
+              dataType: string
+            context:
+              dataType:
+                type: json
+                schema: {}
+            processId:
+              dataType: string
+            processInstanceId:
+              dataType: string
+            processNumber:
+              dataType: string
+            processName:
+              dataType: string
+            userTaskName:
+              dataType: string
+            serialization:
+              dataType: string
+            error:
+              dataType: string
+            requiredResponsibility:
+              dataType: string
+            wasTaskSubmitted:
+              dataType: boolean
+...
