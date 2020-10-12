@@ -21,6 +21,8 @@ registrations:
               dataType: string
             processName:
               dataType: string
+            userTaskId:
+              dataType: string
             userTaskName:
               dataType: string
             serialization:
