@@ -33,7 +33,11 @@ registrations:
                 type: json
                 schema:
                   type: string
-                  enum: [ text, longtext, multitext, select, multiselect ]
+                  enum: [ checkbox, text, longtext, multitext, select, multiselect ]
+            auxiliaryPlaceholder:
+              type: string
+              description: >-
+                UI helper. This attribute specifies the inputs watermark
             auxiliaryOperation:
               description: >-
                 UI helper. This attribute specifies which operation to call in

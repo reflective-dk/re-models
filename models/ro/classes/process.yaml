@@ -38,16 +38,5 @@ registrations:
             system:
               id: e8bc40c5-e542-4bab-b6fc-64b2339ffa15
               name: System
-          manyRelations:
-            roles:
-              id: c4be5a95-1320-4996-b219-e2f6f7cef8dd
-              name: Role
-            responsibilities:
-              id: f5155ea0-3e2f-4dcf-832a-c0fc99f2fbb4
-              name: Responsibility
-            userForms:
-              description: Form elements used to capture user input
-              id: 6c54bdcc-691a-4190-8b50-4c5a6e4679dc
-              name: User Form
         from: 1900-01-01T00:00:00.000Z
 ...

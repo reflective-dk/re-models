@@ -10,6 +10,10 @@ registrations:
           name: System
           description: An IT system or some other system
           singleRelations:
+            masterProfile:
+              description: The profile that has all system accesses
+              id: a882353e-8b1b-4649-a759-ccf95b9c1fe3
+              name: System Profile
             product:
               description: An installation instance of a Product
               id: ee8d2f2e-bc8f-46cf-9925-edf75c5d30fc
