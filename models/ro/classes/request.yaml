@@ -1,0 +1,13 @@
+# Request Class
+---
+id: 99f89156-dcbc-4d17-84d4-0bd70be01b67
+registrations:
+  - validity:
+      - input:
+          model: { id: 17960fc5-7a6d-4e0b-95d8-f20934493819, name: Reflective Organization }
+          class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
+          extends: { id: 2da6e709-3f63-47d9-a197-bda06fb86936, name: Entity }
+          name: Request
+          description: A request is a meta file of data on a request
+        from: 1900-01-01T00:00:00.000Z
+...
