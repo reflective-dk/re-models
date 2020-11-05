@@ -1,4 +1,4 @@
-# Position Unit Class
+# Position Class
 ---
 id: 6517aa6d-93ad-4f0f-aa88-b117b6785e9b
 registrations:
@@ -7,7 +7,10 @@ registrations:
           model: { id: 17960fc5-7a6d-4e0b-95d8-f20934493819, name: Reflective Organization }
           class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
           extends: { id: 2da6e709-3f63-47d9-a197-bda06fb86936, name: Entity }
-          name: Position Unit
-          description: A position unit for position management
+          name: Position
+          description: >-
+            A Position used for position management. This is not the same as a
+            Job Title. A Position represents a concrete position that can be
+            occupied or open.
         from: 1900-01-01T00:00:00.000Z
 ...
