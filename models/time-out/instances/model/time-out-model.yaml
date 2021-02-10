@@ -1,0 +1,9 @@
+---
+id: 9fd73eb9-0171-422c-b1a7-08f149e5533b
+registrations:
+  - validity:
+      - input:
+          class: { id: 54985140-62ec-49fd-b05a-661e090c405f, name: Model }
+          name: TimeOut Model
+        from: 1900-01-01T00:00:00.000Z
+...

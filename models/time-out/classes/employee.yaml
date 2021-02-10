@@ -1,0 +1,11 @@
+---
+id: 4728b139-5722-42e8-9147-4c5d8ab82c19
+registrations:
+  - validity:
+      - input:
+          model: { id: 9fd73eb9-0171-422c-b1a7-08f149e5533b, name: TimeOut Model }
+          class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
+          extends: { id: 2da6e709-3f63-47d9-a197-bda06fb86936, name: Entity }
+          name: TimeOut Employee
+        from: 1900-01-01T00:00:00.000Z
+...
