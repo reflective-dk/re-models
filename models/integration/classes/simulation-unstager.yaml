@@ -1,0 +1,16 @@
+# Simulation Unstager Class
+---
+id: b394990d-cc13-459d-bc03-c8cf8c9c6a1e
+registrations:
+  - validity:
+      - input:
+          model: { id: 855ad3bd-d62a-407c-8a33-8f49bbcc8995, name: Integration Model }
+          class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
+          extends: { id: 8b5bcbb1-6970-463b-b93e-d2f6ad2bfeb2, name: Unstager }
+          name: Simulation Unstager
+          description: Calculates simulation based on a spreadsheet given by latest import of spreadsheet file
+          attributes:
+            mapping:
+              dataType: json
+        from: 1900-01-01T00:00:00.000Z
+...
