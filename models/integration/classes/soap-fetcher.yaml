@@ -1,0 +1,19 @@
+---
+id: 6c06e75b-3ee5-4622-b507-410987fa3482
+registrations:
+  - validity:
+      - input:
+          model: { id: 855ad3bd-d62a-407c-8a33-8f49bbcc8995, name: Integration Model }
+          class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
+          extends: { id: a28e7d85-66a0-48bf-986b-a90ece6b87d5, name: Fetcher }
+          name: SOAP Fetcher
+          description: Fetches a SOAP message
+          attributes:
+            wsdlPath:
+              dataType: string
+            soapOptions:
+              dataType:
+                type: json
+                schema: {}
+        from: 1900-01-01T00:00:00.000Z
+...
