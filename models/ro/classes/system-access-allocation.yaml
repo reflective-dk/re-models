@@ -32,7 +32,7 @@ registrations:
             userAccount:
               description: User account receiving the allocated System Accesses
               id: 38df45c2-f4e2-4ffd-b91f-bc509ce8bcbf
-              name: user-account
+              name: User Account
           manyRelations:
             accesses:
               description: >-
