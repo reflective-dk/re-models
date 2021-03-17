@@ -35,10 +35,11 @@ registrations:
                   type: string
                   enum: [ checkbox, text, longtext, multitext, select, multiselect ]
             auxiliaryPlaceholder:
-              type: string
+              dataType: string
               description: >-
                 UI helper. This attribute specifies the inputs watermark
             auxiliaryOperation:
+              dataType: string
               description: >-
                 UI helper. This attribute specifies which operation to call in
                 order to get a list of items.
