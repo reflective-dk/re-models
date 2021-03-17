@@ -17,6 +17,12 @@ registrations:
           collections:
             phoneNumbers:
               dataType: string
+            emailAddresses:
+              dataType:
+                type: json
+                schema:
+                  type: string
+                  pattern: "[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"
           singleRelations:
             address:
               id: 6ec80fc8-4ba4-49e2-88bf-e31032cca129
