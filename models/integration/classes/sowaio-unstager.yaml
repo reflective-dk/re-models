@@ -8,9 +8,7 @@ registrations:
           extends: { id: 8b5bcbb1-6970-463b-b93e-d2f6ad2bfeb2, name: Unstager }
           name: Sowaio Unstager
           attributes:
-            payload:
-              dataType: json
-            processInstanceId:
+            secretKey:
               dataType: string
         from: 1900-01-01T00:00:00.000Z
 ...

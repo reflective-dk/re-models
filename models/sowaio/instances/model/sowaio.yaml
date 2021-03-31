@@ -1,0 +1,11 @@
+# Sowaio model for integrating Reflective with data from external systems
+---
+id: 9d5318ff-07f0-4d73-b9b4-d97199258023
+registrations:
+  - validity:
+      - input:
+          class: { id: 54985140-62ec-49fd-b05a-661e090c405f, name: Model }
+          name: Sowaio Model
+          description: >-
+            This model defines types and rules for the Sowaio integration model
+...

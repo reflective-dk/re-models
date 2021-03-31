@@ -1,0 +1,18 @@
+# Sowaio Request Class
+---
+id: 6f31ca29-2dbb-4b39-a18c-0c819be94853
+registrations:
+  - validity:
+      - input:
+          model: { id: 9d5318ff-07f0-4d73-b9b4-d97199258023, name: Sowaio Model }
+          class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
+          extends: { id: c4315fa9-3765-40c0-ba45-ef821c416f83, name: Object }
+          name: Sowaio Request
+          description: A request for Sowaio RPA
+          attributes:
+            payload:
+              dataType: json
+            processInstanceId:
+              dataType: string
+        from: 1900-01-01T00:00:00.000Z
+...
