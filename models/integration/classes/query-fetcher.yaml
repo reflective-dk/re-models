@@ -1,0 +1,18 @@
+# Query Fetcher Class
+---
+id: a4f32177-3263-41e9-8435-345b1ded2be6
+registrations:
+  - validity:
+      - input:
+          model: { id: 855ad3bd-d62a-407c-8a33-8f49bbcc8995, name: Integration Model }
+          class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
+          extends: { id: a28e7d85-66a0-48bf-986b-a90ece6b87d5, name: Fetcher }
+          name: Query Fetcher
+          description: >-
+            Fetches objects based on a query
+          attributes:
+            query:
+              description: Query to select objects for staging
+              dataType: string
+        from: 1900-01-01T00:00:00.000Z
+...

@@ -8,10 +8,6 @@ registrations:
           extends: { id: 05f1c11b-da14-49c1-8f8a-7b5e48bc6c04, name: Stager }
           name: Through Stager
           description: >-
-            A stager that simply passes Object ids from a Query on Reflective Platform to a staging object
-          attributes:
-            query:
-              description: Query to select objects for staging
-              dataType: string
+            A stager that simply passes Object ids from a file to staging object
         from: 1900-01-01T00:00:00.000Z
 ...
