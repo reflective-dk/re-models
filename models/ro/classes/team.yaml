@@ -11,6 +11,13 @@ registrations:
             A Team effectively groups together a set of Employments, although the
             'teams' relation is defined on the Employment class
           singleRelations:
+            unit:
+              description: >-
+                A Team may be associated directly with a Unit to tie it into a
+                Unit hierarchy, e.g. in order to determine the nearest Manager
+                across both Teams and Units
+              id: 5cad9972-6560-4136-a9d5-40c2d109be9b
+              name: Unit
             adGroup:
               description: >-
                 A Team may be associated directly with an AD Group, if the target
