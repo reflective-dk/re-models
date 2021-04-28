@@ -62,59 +62,7 @@ registrations:
                 id: 8b0390d1-74b9-48a2-a4cf-406e934ea120
                 name: System Access Allocation
           manyRelations:
-            applicationAccesses:
-              description: >-
-                System Accesses of category \'application\' permitted by this
-                System Access Profile. How many of these, if any, must be
-                included in a System Access Allocation is controlled through the
-                \'mandatory\' string collection (see above).
-              id: 1938d89b-a935-412d-a23c-02709fe63c0c
-              name: System Access
-            roleAccesses:
-              description: >-
-                System Accesses of category \'role\' permitted by this System
-                Access Profile. How many of these, if any, must be included in a
-                System Access Allocation is controlled through the \'mandatory\'
-                string collection (see above).
-              id: 1938d89b-a935-412d-a23c-02709fe63c0c
-              name: System Access
-            unitAccesses:
-              description: >-
-                System Accesses of category \'unit\' permitted by this System
-                Access Profile. How many of these, if any, must be included in a
-                System Access Allocation is controlled through the \'mandatory\'
-                string collection (see above).
-              id: 1938d89b-a935-412d-a23c-02709fe63c0c
-              name: System Access
-            teamAccesses:
-              description: >-
-                System Accesses of category \'team\' permitted by this System
-                Access Profile. How many of these, if any, must be included in a
-                System Access Allocation is controlled through the \'mandatory\'
-                string collection (see above).
-              id: 1938d89b-a935-412d-a23c-02709fe63c0c
-              name: System Access
-            areaAccesses:
-              description: >-
-                System Accesses of category \'area\' permitted by this System
-                Access Profile. How many of these, if any, must be included in a
-                System Access Allocation is controlled through the \'mandatory\'
-                string collection (see above).
-              id: 1938d89b-a935-412d-a23c-02709fe63c0c
-              name: System Access
-            communicationAccesses:
-              description: >-
-                System Accesses of category \'communication\' permitted by this
-                System Access Profile. How many of these, if any, must be
-                included in a System Access Allocation is controlled through the
-                \'mandatory\' string collection (see above).
-              id: 1938d89b-a935-412d-a23c-02709fe63c0c
-              name: System Access
-            genericAccesses:
-              description: >-
-                Generic System Accesses permitted by this System Access
-                Profile. Which of these are mandatory is controlled through the
-                \'mandatory\' string collection (see above).
+            accesses:
               id: 1938d89b-a935-412d-a23c-02709fe63c0c
               name: System Access
         from: 1900-01-01T00:00:00.000Z
