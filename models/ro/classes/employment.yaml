@@ -34,5 +34,8 @@ registrations:
             workingAt:
               id: 5cad9972-6560-4136-a9d5-40c2d109be9b
               name: Unit
+            teams:
+              id: 0a978850-c9ec-4a43-9e4a-6f1a09004445
+              name: Team
         from: 1900-01-01T00:00:00.000Z
 ...

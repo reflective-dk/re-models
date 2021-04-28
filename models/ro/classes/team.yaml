@@ -8,9 +8,8 @@ registrations:
           extends: { id: 2da6e709-3f63-47d9-a197-bda06fb86936, name: Entity }
           name: Team
           description: >-
-            A Team groups together a set of Role Assignments. This effectively
-            represents a set of Employees with specific Responsibilities in
-            specific areas of the Organization.
+            A Team effectively groups together a set of Employments, although the
+            'teams' relation is defined on the Employment class
           singleRelations:
             adGroup:
               description: >-
@@ -18,10 +17,14 @@ registrations:
                 system is managed through Active Directory.
               id: b54fc01e-0777-4f67-b49a-80f7072a1ba0
               name: AD Group
+            occupationalGroup:
+              description: >-
+                A Team may in some cases represent a specific Occupational Group,
+                such as Nurses or Doctors
           manyRelations:
-            assignments:
-              description: Role Assignments included in the team.
-              id: 025dfd36-f7a6-41e3-aa0c-64fe0376d3b7
-              name: Role Assignment
+            parents:
+              descriptions: Teams may be organized in a hierarchy or a network
+              id: 0a978850-c9ec-4a43-9e4a-6f1a09004445
+              name: Team
         from: 1900-01-01T00:00:00.000Z
 ...

@@ -22,6 +22,17 @@ registrations:
               id: c4be5a95-1320-4996-b219-e2f6f7cef8dd
               name: Role
             propagateFrom:
+              description: >-
+                Determines which Unit this Role and Responsibility assignment
+                propagates from, if any
+              id: 5cad9972-6560-4136-a9d5-40c2d109be9b
+              name: Unit
+            team:
+              description: >-
+                Determines which Team this Role and Responsibility assignment is
+                associated with. This may be used alone or in combination with
+                propagatesFrom, dependending on whether the member Employments
+                are all employed in the same Unit
               id: 5cad9972-6560-4136-a9d5-40c2d109be9b
               name: Unit
             system:
@@ -34,20 +45,5 @@ registrations:
             responsibilities:
               id: f5155ea0-3e2f-4dcf-832a-c0fc99f2fbb4
               name: Responsibility
-            occupationalGroups:
-              description: >-
-                A role may be assigned with respect to specific occupational
-                groups; e.g. different managers for doctors and nurses within the
-                same tree of organizational units
-              id: 677d4ec4-838c-44fa-a4fa-be1bd726fc57
-              name: Occupational Group
-            expertise:
-              description: Areas of responsibility from KLE
-              id: aa6b2598-47c2-4a80-8bf0-bfa83e6afae8
-              name: KLE Klasse
-            interests:
-              description: Areas of interest from KLE
-              id: aa6b2598-47c2-4a80-8bf0-bfa83e6afae8
-              name: KLE Klasse
         from: 1900-01-01T00:00:00.000Z
 ...
