@@ -24,10 +24,18 @@ registrations:
               dataType: string
             hash:
               dataType: string
-          manyRelations:
-            systems:
+          singleRelations:
+            system:
+              description: System associated with this User Account
               id: e8bc40c5-e542-4bab-b6fc-64b2339ffa15
               name: System
+            primaryEmployment:
+              description: >-
+                Employment that is considered \'primary\' wrt. the System
+                associated with this User Account
+              id: 06c495eb-fcef-4c09-996f-63fd2dfea427
+              name: Employment
+          manyRelations:
             employments:
               id: 06c495eb-fcef-4c09-996f-63fd2dfea427
               name: Employment
