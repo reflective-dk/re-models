@@ -73,5 +73,9 @@ registrations:
               description: The System targeted by this System Access
               id: e8bc40c5-e542-4bab-b6fc-64b2339ffa15
               name: System
+            profile:
+              description: The Profile used when access was allocated
+              id: a882353e-8b1b-4649-a759-ccf95b9c1fe3
+              name Profile
         from: 1900-01-01T00:00:00.000Z
 ...
