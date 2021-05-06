@@ -29,10 +29,10 @@ registrations:
               description: Target system of the Allocation
               id: e8bc40c5-e542-4bab-b6fc-64b2339ffa15
               name: System
-            userAccount:
-              description: User account receiving the allocated System Accesses
-              id: 38df45c2-f4e2-4ffd-b91f-bc509ce8bcbf
-              name: User Account
+            employment:
+              description: Employment receiving the allocated System Accesses
+              id: 06c495eb-fcef-4c09-996f-63fd2dfea427
+              name: Employment
           manyRelations:
             accesses:
               description: >-
