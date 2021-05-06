@@ -76,6 +76,6 @@ registrations:
             profile:
               description: The Profile used when access was allocated
               id: a882353e-8b1b-4649-a759-ccf95b9c1fe3
-              name Profile
+              name: Profile
         from: 1900-01-01T00:00:00.000Z
 ...
