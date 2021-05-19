@@ -9,5 +9,10 @@ registrations:
           extends: { id: b712918b-a13f-4d7c-9bc7-ff3ef9dd60b1, name: Translation }
           name: Incorporation
           description: A translation result from the incorporation process
+          singleRelations:
+            spec:
+              description: Specification of the integration
+              id: 0b436737-7dbe-443d-9d73-d9240ce4b17e
+              name: Integration Spec
         from: 1900-01-01T00:00:00.000Z
 ...

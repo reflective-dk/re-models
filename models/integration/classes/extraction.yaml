@@ -9,5 +9,10 @@ registrations:
           extends: { id: b712918b-a13f-4d7c-9bc7-ff3ef9dd60b1, name: Translation }
           name: Extraction
           description: A translation result from the extraction process
+          singleRelations:
+            spec:
+              description: Specification of the integration
+              id: 48c3b7b9-dc7a-42ae-9759-b65336f12b36
+              name: Extraction Spec
         from: 1900-01-01T00:00:00.000Z
 ...
