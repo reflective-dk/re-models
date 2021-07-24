@@ -13,6 +13,11 @@ registrations:
             propagates:
               description: Indicates whether this role propagates down the unit hierarchy
               dataType: boolean
+            systemRequired:
+              description: >-
+                Indicates if the role is
+                intended for assignment with respect to a specific system
+              dataType: boolean
           manyRelations:
             responsibilities:
               description: >-
