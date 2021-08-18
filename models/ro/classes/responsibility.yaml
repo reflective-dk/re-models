@@ -12,11 +12,5 @@ registrations:
             A responsibility such as 'Hire/Fire' or 'System Allocation'.
             Responsibilities are not organized in any specific hierarchy and may
             be assigned to multiple roles
-          attributes:
-            isSystemResponsibility:
-              description: >-
-                Indicates if the responsibility is a system responsibility,
-                intended for assignment with respect to a specific system
-              dataType: boolean
         from: 1900-01-01T00:00:00.000Z
 ...

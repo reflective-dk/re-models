@@ -45,5 +45,8 @@ registrations:
             responsibilities:
               id: f5155ea0-3e2f-4dcf-832a-c0fc99f2fbb4
               name: Responsibility
+            proxies:
+              id: 06c495eb-fcef-4c09-996f-63fd2dfea427
+              name: Employment
         from: 1900-01-01T00:00:00.000Z
 ...
