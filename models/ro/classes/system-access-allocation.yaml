@@ -40,7 +40,7 @@ registrations:
               name: System Access
             tags:
               description: >-
-                If the System Access Profile category is \'tagging\', this
+                If the System Access Profile category is 'tagging', this
                 many-relation specifies the tags that the target Entity has been
                 tagged with. These tags may be of any Entity class, such as KLE
                 Emne, KLE handlingsfacet, etc.
