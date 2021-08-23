@@ -1,8 +1,0 @@
----
-id: 024c4fb7-4bad-4680-bfad-679501eb8b7f
-registrations:
-  - validity:
-      - input:
-          class: { id: e8bc40c5-e542-4bab-b6fc-64b2339ffa15, name: System }
-          name: SD Løn
-...
