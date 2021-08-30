@@ -30,13 +30,17 @@ registrations:
                 schema: {}
           singleRelations:
             owner:
-              description: The structure, which the hierarchy is a representation of
+              description: The hierarchical structure represented by this hierarchy
               id: c4315fa9-3765-40c0-ba45-ef821c416f83
               name: Object
             primaryType:
-              description: The primary type of elements in the hierarchy
+              description: The primary type of element in the hierarchy
               id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9
               name: Class
+            system:
+              description: The system this hierarchy belongs to or is associated with
+              id: e8bc40c5-e542-4bab-b6fc-64b2339ffa15
+              name: System
           manyRelations:
             relatedTypes:
               description: >-
