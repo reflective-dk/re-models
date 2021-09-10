@@ -9,6 +9,9 @@ registrations:
           extends: { id: 2da6e709-3f63-47d9-a197-bda06fb86936, name: Entity }
           name: Employment
           description: "An employment (Danish: 'Engagement')"
+          attributes:
+            employmentId:
+              dataType: string
           collections:
             emailAddresses:
               dataType:
