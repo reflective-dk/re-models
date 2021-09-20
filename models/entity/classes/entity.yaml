@@ -10,9 +10,6 @@ registrations:
           name: Entity
           description: A generic entity with common properties
           attributes:
-            title:
-              description: Title of this object
-              dataType: string
             shortName:
               dataType: string
             description:
