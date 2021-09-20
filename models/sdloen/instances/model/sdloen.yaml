@@ -1,9 +1,0 @@
----
-id: 65b8bd96-6d6f-4fbe-8d1f-078193f9d1e3
-registrations:
-  - validity:
-      - input:
-          class: { id: 54985140-62ec-49fd-b05a-661e090c405f, name: Model }
-          name: SD Løn Model
-          description: The external model used by SD Løn
-...

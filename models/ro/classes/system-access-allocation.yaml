@@ -9,8 +9,7 @@ registrations:
           name: System Access Allocation
           description: >-
             A System Access Allocation allocates specific System Accesses from a
-            System Access Profile to an Employment
-          attributes:
+            System Access Profile to an Entity
           collections:
             auxiliary:
               description: >-
@@ -25,14 +24,13 @@ registrations:
               description: System Access Profile from which to allocate System Accesses
               id: a882353e-8b1b-4649-a759-ccf95b9c1fe3
               name: System Access Profile
-            system:
-              description: Target system of the Allocation
-              id: e8bc40c5-e542-4bab-b6fc-64b2339ffa15
-              name: System
-            employment:
-              description: Employment receiving the allocated System Accesses
-              id: 06c495eb-fcef-4c09-996f-63fd2dfea427
-              name: Employment
+            entity:
+              description: >-
+                Entity to which the specified System Access Profile is
+                allocated. Depending on the System Access Profile category, this
+                Entity may be an Employment, a Unit, a Role Assignment, etc.
+              id: 2da6e709-3f63-47d9-a197-bda06fb86936
+              name: Entity
           manyRelations:
             accesses:
               description: >-
@@ -40,20 +38,13 @@ registrations:
                 from the System Access Profile may be allocated.
               id: 1938d89b-a935-412d-a23c-02709fe63c0c
               name: System Access
-            units:
+            tags:
               description: >-
-                System Accesses of category \'unit\' have a collection of units
-                to indicate where in the organization the access has been
-                allocated. For an external system such as Cura, the units are not
-                part of the RO Administrative Organization but belong to an
-                organization specific to the system in question.
-              id: c4315fa9-3765-40c0-ba45-ef821c416f83
-              name: Object
-            teams:
-              description: >-
-                System Accesses of category \'team\' have a collection of teams
-                to indicate the teams to which the access has been allocated.
-              id: 0a978850-c9ec-4a43-9e4a-6f1a09004445
-              name: Team
+                If the System Access Profile category is 'tagging', this
+                many-relation specifies the tags that the target Entity has been
+                tagged with. These tags may be of any Entity class, such as KLE
+                Emne, KLE handlingsfacet, etc.
+              id: 2da6e709-3f63-47d9-a197-bda06fb86936
+              name: Entity
         from: 1900-01-01T00:00:00.000Z
 ...

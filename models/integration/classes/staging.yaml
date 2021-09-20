@@ -18,5 +18,10 @@ registrations:
               description: The stagers that created this staging
               id: 05f1c11b-da14-49c1-8f8a-7b5e48bc6c04
               name: Stager
+          singleRelations:
+            spec:
+              description: Specification of the integration
+              id: 0b436737-7dbe-443d-9d73-d9240ce4b17e
+              name: Integration Spec
         from: 1900-01-01T00:00:00.000Z
 ...
