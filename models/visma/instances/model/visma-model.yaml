@@ -1,0 +1,9 @@
+---
+id: 5058c1ae-6dcf-4be3-b0d3-d194adb348c1
+registrations:
+  - validity:
+      - input:
+          class: { id: 54985140-62ec-49fd-b05a-661e090c405f, name: Model }
+          name: Visma Model
+        from: 1900-01-01T00:00:00.000Z
+...

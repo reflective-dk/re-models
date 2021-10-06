@@ -3,7 +3,7 @@ id: 5d01feaf-f7a9-4e76-a98c-10284bbc0573
 registrations:
   - validity:
       - input:
-          model: { id: 14a41d40-9331-4689-b403-68dc56c208fe, name: Talentsoft Model }
+          model: { id: 75979135-107d-4fa8-9b93-347c3a695ff0, name: Nintex Model }
           class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
           extends: { id: 2da6e709-3f63-47d9-a197-bda06fb86936, name: Entity }
           name: Nintex Employee

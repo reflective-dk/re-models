@@ -1,0 +1,9 @@
+---
+id: ee3624e7-1df8-4e95-8222-6b4c2760113c
+registrations:
+  - validity:
+      - input:
+          class: { id: 54985140-62ec-49fd-b05a-661e090c405f, name: Model }
+          name: Mood Model
+        from: 1900-01-01T00:00:00.000Z
+...

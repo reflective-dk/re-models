@@ -3,7 +3,7 @@ id: 5a10b505-e2cc-4a9e-9c1e-52b5d621bc4c
 registrations:
   - validity:
       - input:
-          model: { id: 14a41d40-9331-4689-b403-68dc56c208fe, name: Talentsoft Model }
+          model: { id: 5058c1ae-6dcf-4be3-b0d3-d194adb348c1, name: Visma Model }
           class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
           extends: { id: 2da6e709-3f63-47d9-a197-bda06fb86936, name: Entity }
           name: Visma MLE-30-ANSF

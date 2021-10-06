@@ -1,11 +1,11 @@
 ---
-id: 172003d5-474e-44ac-9bb4-ac12a8b36d7a
+id: 0b288597-0402-4be4-a490-ae09e45fb22a
 registrations:
   - validity:
       - input:
-          model: { id: 5058c1ae-6dcf-4be3-b0d3-d194adb348c1, name: Visma Model }
+          model: { id: ee3624e7-1df8-4e95-8222-6b4c2760113c, name: Mood Model }
           class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
           extends: { id: 2da6e709-3f63-47d9-a197-bda06fb86936, name: Entity }
-          name: Visma MLE-50-ANSO
+          name: Mood Position
         from: 1900-01-01T00:00:00.000Z
 ...

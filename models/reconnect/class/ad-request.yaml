@@ -7,6 +7,6 @@ registrations:
           model: { id: 863d8e15-99a9-452e-8dc5-2e49df2cb770, name: AD Model }
           class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
           extends: { id: c4315fa9-3765-40c0-ba45-ef821c416f83, name: Object }
-          name: AD Group
+          name: AD Request
         from: 2018-01-01T00:00:00.000Z
 ...

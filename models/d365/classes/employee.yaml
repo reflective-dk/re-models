@@ -3,7 +3,7 @@ id: d24494a3-9eff-4bbd-a3ea-e4ac92a51e42
 registrations:
   - validity:
       - input:
-          model: { id: 14a41d40-9331-4689-b403-68dc56c208fe, name: Talentsoft Model }
+          model: { id: 293fc671-18ba-4e4d-98e7-c95208808d9d, name: D365 Model }
           class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
           extends: { id: 2da6e709-3f63-47d9-a197-bda06fb86936, name: Entity }
           name: D365 Employee
