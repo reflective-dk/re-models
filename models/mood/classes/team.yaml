@@ -1,0 +1,11 @@
+---
+id: e6d17a34-08c2-4d15-b24d-3b5ad50d469a
+registrations:
+  - validity:
+      - input:
+          model: { id: ee3624e7-1df8-4e95-8222-6b4c2760113c, name: Mood Model }
+          class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
+          extends: { id: 2da6e709-3f63-47d9-a197-bda06fb86936, name: Entity }
+          name: Mood Team
+        from: 1900-01-01T00:00:00.000Z
+...
