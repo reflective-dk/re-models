@@ -12,9 +12,7 @@ registrations:
           attributes:
             externalId:
               dataType: string
-            recuringCost:
-              dataType: string
-            recuringInterval:
+            recurringCost:
               dataType: string
             replacementCost:
               dataType: string
