@@ -13,9 +13,9 @@ registrations:
             externalId:
               dataType: string
             recurringCost:
-              dataType: string
+              dataType: float
             replacementCost:
-              dataType: string
+              dataType: float
           manyRelations:
             memberOf:
               id: 6409095a-44a1-4033-a072-21460ae9f95a
