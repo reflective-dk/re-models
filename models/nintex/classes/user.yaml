@@ -1,0 +1,11 @@
+---
+id: dd99cc50-eb6e-4ba0-92bd-659f757fb60e
+registrations:
+  - validity:
+      - input:
+          model: { id: 75979135-107d-4fa8-9b93-347c3a695ff0, name: Nintex Model }
+          class: { id: 12b4049a-fb65-4429-a9d7-c91d88a58ac9, name: Class }
+          extends: { id: 2da6e709-3f63-47d9-a197-bda06fb86936, name: Entity }
+          name: Nintex User
+        from: 1900-01-01T00:00:00.000Z
+...
