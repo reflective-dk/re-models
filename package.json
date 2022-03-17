@@ -16,7 +16,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/reflective-dk/re-models.git"
+    "url": "git+ssh://git@github.com/reflective-dk/re-models.git"
   },
   "keywords": [
     "reflective",
