@@ -59,8 +59,8 @@ registrations:
                 The \'allocationTemplate\' is a default System Access Allocation
                 tailored specifically to the System Access Profile. It is used as
                 a starting point when creating a new System Access Allocation.
-                id: 8b0390d1-74b9-48a2-a4cf-406e934ea120
-                name: System Access Allocation
+              id: 8b0390d1-74b9-48a2-a4cf-406e934ea120
+              name: System Access Allocation
           manyRelations:
             accesses:
               id: 1938d89b-a935-412d-a23c-02709fe63c0c
