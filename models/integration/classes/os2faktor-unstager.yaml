@@ -12,5 +12,10 @@ registrations:
           attributes:
             domain:
               dataType: string
+            keys:
+              description: if defined then used to pick the keys
+              dataType:
+                type: json
+                schema: {}
         from: 1900-01-01T00:00:00.000Z
 ...
