@@ -24,6 +24,9 @@ registrations:
               dataType: string
             hash:
               dataType: string
+          collections:
+            phoneNumbers:
+              dataType: string
           singleRelations:
             system:
               description: System associated with this User Account
